@@ -1,8 +1,8 @@
 package de.tum;
 
 import java.io.IOException;
-import java.rmi.registry.Registry;
 
+import de.tum.service.Registry;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
