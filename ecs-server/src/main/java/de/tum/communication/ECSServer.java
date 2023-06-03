@@ -1,5 +1,6 @@
 package de.tum.communication;
 
+import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
 import java.io.IOException;
@@ -14,10 +15,14 @@ import java.io.IOException;
  * @Version 1.0
  */
 public class ECSServer {
-    public ECSServer() {}
+    private int port;
+
+    public ECSServer(int port) {
+        this.port = port;
+    }
 
     public void start() throws IOException {
-        server = ServerBuilder.forPort(port)
+        Server server = ServerBuilder.forPort(port)
                 .addService(new Registry())
                 .build()
                 .start();
@@ -25,8 +30,8 @@ public class ECSServer {
     }
 
     public void blockUntilShutdown() throws InterruptedException {
-        if (server != null) {
-            server.awaitTermination();
-        }
+//        if (server != null) {
+//            server.awaitTermination();
+//        }
     }
 }

@@ -1,4 +1,4 @@
-package de.tum.data;
+package de.tum.dto;
 
 /**
  * ClassName: Metadata

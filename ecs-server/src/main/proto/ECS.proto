@@ -4,17 +4,15 @@ option java_multiple_files = false;
 option java_package = "de.tum";
 option java_outer_classname = "ECS";
 
-message NodeInfo {
-    string identifier = 1;
-    string address = 2;
+message HelloRequest {
+    string name = 1;
 }
 
-service ECSService {
-    rpc AddNode(NodeInfo) returns (google.protobuf.Empty);
-    rpc RemoveNode(NodeInfo) returns (google.protobuf.Empty);
-    rpc GetNode(google.protobuf.StringValue) returns (NodeInfo);
+message HelloResponse {
+    string result = 1;
 }
 
-service NodeService {
-    rpc ProcessRequest(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+
+service HelloService {
+    rpc hello(HelloRequest) returns (HelloResponse);
 }

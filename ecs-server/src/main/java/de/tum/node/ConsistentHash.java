@@ -1,6 +1,5 @@
 package de.tum.node;
 
-import org.w3c.dom.Node;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,53 +9,58 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * ClassName: ConsistentHash
- * Package: de.tum.node
- * Description:
+ * ClassName: ConsistentHash Package: de.tum.node Description:
  *
  * @Author Weijian Feng, Jingyi Jia, Mingrun Ma
  * @Create 2023/6/2 23:37
  * @Version 1.0
  */
-public class ConsistentHash {
-    private SortedMap<Long, Long> ring;
+public enum ConsistentHash {
+	INSTANCE;
+	private SortedMap<String, Node> ring = new TreeMap<>();  // <hash, node>
 
-    public ConsistentHash() {
-        ring = new TreeMap<>();
-        nodes = new ArrayList<>();
-    }
 
-    public Node getNode(String key) {
-        if (ring.isEmpty()) {
-            return null;
-        }
+	/** TODO: For K-V Store only
+	 * Get the node that the key belongs to
+	 * @param key data key
+	 * @return node
+	 */
+	public Node getNode(String key) {
+		if (ring.isEmpty()) {
+			return null;
+		}
 
-        long hash = hash(key);
-        SortedMap<Long, Long> tailMap = ring.tailMap(hash);
-        long nodeHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
-        return ring.get(nodeHash);
-    }
+		String keyHash = MD5Hash.hash(key);
+		if (!ring.containsKey(keyHash)) {
+			SortedMap<String, Node> tailMap = ring.tailMap(keyHash);
+			keyHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
+		}
+		return ring.get(keyHash);
+	}
 
-    private void updateRing() {
-        ring.clear();
-        for (Node node : nodes) {
-            long nodeHash = hash(node.getIdentifier());
-            ring.put(nodeHash, node);
-        }
-    }
+	public void addNode(Node node) {
+		String nodeHash = MD5Hash.hash(node.toString());
+		ring.put(nodeHash, node);
+	}
 
-    private long hash(String key) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(key.getBytes());
-            byte[] digest = md.digest();
-            // MD5 return 16 Bytea
-            return ((long) (digest[3] & 0xFF) << 24) |
-                    ((long) (digest[2] & 0xFF) << 16) |
-                    ((long) (digest[1] & 0xFF) << 8) |
-                    (digest[0] & 0xFF);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("MD5 algorithm not found.");
-        }
-    }
+	public void removeNode(Node node) {
+		String nodeHash = MD5Hash.hash(node.toString());
+		ring.remove(nodeHash);
+	}
+
+	public Node getNextNode(Node node) {
+		String nodeHash = MD5Hash.hash(node.toString());
+		SortedMap<String, Node> tailMap = ring.tailMap(nodeHash);
+		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
+		return ring.get(nextHash);
+	}
+
+	public Node getPreviousNode(Node node) {
+		String nodeHash = MD5Hash.hash(node.toString());
+		SortedMap<String, Node> headMap = ring.headMap(nodeHash);
+		String previousHash = headMap.isEmpty() ? ring.lastKey() : headMap.lastKey();
+		return ring.get(previousHash);
+	}
+
+
 }

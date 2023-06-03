@@ -4,11 +4,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5Hash {
-    public MD5Hash() {
+    private MD5Hash() {
         throw new AssertionError("This class is not meant to be instantiated");
     }
 
-    public static String getHash(String key) {
+    public static String hash(String key) {
         try {
             // Create an instance of the MD5 algorithm
             MessageDigest md = MessageDigest.getInstance("MD5");
