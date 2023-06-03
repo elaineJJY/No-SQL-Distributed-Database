@@ -1,10 +1,6 @@
 package de.tum.node;
 
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -18,17 +14,6 @@ import java.util.TreeMap;
 public enum ConsistentHash {
 	INSTANCE;
 	private SortedMap<String, Node> ring = new TreeMap<>();  // <hash, node>
-
-	public void addNode(Node node) {
-		String nodeHash = MD5Hash.hash(node.toString());
-
-		ring.put(nodeHash, node);
-	}
-
-	public void removeNode(Node node) {
-		String nodeHash = MD5Hash.hash(node.toString());
-		ring.remove(nodeHash);
-	}
 
 	public Node getNextNode(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString());

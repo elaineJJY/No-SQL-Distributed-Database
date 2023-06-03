@@ -11,20 +11,11 @@ public class Node implements Serializable {
 		this.host = host;
 		this.port = port;
 	}
-
 	public int getPort() {
 		return port;
 	}
 	public String getHost() {
 		return host;
-	}
-
-	// for K-V server
-	public String getRange() {
-		String hash = MD5Hash.hash(this.toString());
-		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-		String nextHash = MD5Hash.hash(nextNode.toString());
-		return hash + " - " + nextHash;
 	}
 
 	@Override
