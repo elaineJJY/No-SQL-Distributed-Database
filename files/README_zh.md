@@ -62,6 +62,16 @@ IP哈希是很容易想到的，就是**对节点的个数N进行取模运算**�
 
 在实际的工程中，虚拟节点的数量会大很多，比如 Nginx 的一致性哈希算法，每个权重为 1 的真实节点就含有160 个虚拟节点。有了虚拟节点后，还可以为硬件配置更好的节点增加权重，比如对权重更高的节点增加更多的虚拟机节点即可。**带虚拟节点的一致性哈希方法不仅适合硬件配置不同的节点的场景，而且适合节点规模会发生变化的场景**
 
+### 数据转移
+
+* 主动下线
+
+  ```
+  
+  ```
+
+* 故障下线
+
 ### Java中的实现
 
 Documentation for `java.security.MessageDigest` <https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html>

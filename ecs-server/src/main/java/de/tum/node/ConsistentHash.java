@@ -50,7 +50,7 @@ public class ConsistentHash {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(key.getBytes());
             byte[] digest = md.digest();
-            // MD5 return 16 Bytes
+            // MD5 return 16 Bytea
             return ((long) (digest[3] & 0xFF) << 24) |
                     ((long) (digest[2] & 0xFF) << 16) |
                     ((long) (digest[1] & 0xFF) << 8) |
