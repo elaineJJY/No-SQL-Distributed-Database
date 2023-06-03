@@ -1,10 +1,28 @@
+[Chinese REAMDE](files/README_zh.md)
+
+
+
+KVClient = client application in ms2
+
+KVStore = client library, new stuff in ms3
+
+
+
 # Background
 
 ## *Consistent Hashing*
 
 ## *BASE*
 
+## *protobuf & gRPC*
+
+### protobuf
+
+### gRPC
+
 # Components
+
+<img src="files/ms3.png">
 
 ## *ECS*
 
