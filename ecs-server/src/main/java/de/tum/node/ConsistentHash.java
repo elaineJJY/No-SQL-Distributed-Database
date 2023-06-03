@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -19,16 +20,34 @@ public enum ConsistentHash {
 	INSTANCE;
 	private SortedMap<String, Node> ring = new TreeMap<>();  // <hash, node>
 
+	private void updateRingForAllNodes() {
+		for (Node node : ring.values()) {
+			node.updateRing(ring);
+		}
+	}
+
 	public void addNode(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString());
-
+		if (ring.containsKey(nodeHash)) {
+			int i = 1;
+			while (ring.containsKey(nodeHash)) {
+				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
+			}
+		}
+		node.updateRing(ring);
+		node.init();
 		ring.put(nodeHash, node);
+		updateRingForAllNodes();
 	}
 
 	public void removeNode(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString());
+		getPreviousNode(node).recover();
+		getNextNode(node).recover();
 		ring.remove(nodeHash);
+		updateRingForAllNodes();
 	}
+
 
 	public Node getNextNode(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString());

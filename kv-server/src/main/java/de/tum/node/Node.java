@@ -1,8 +1,10 @@
 package de.tum.node;
 
 import java.io.Serializable;
+import java.util.SortedMap;
 
 public class Node implements Serializable {
+
 	private String host;
 	private int port;
 
@@ -20,10 +22,19 @@ public class Node implements Serializable {
 	}
 
 	public String getRange() {
-		String hash = MD5Hash.hash(this.toString());
+		String hash = ConsistentHash.INSTANCE.getKey(this).toString();
 		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-		String nextHash = MD5Hash.hash(nextNode.toString());
+		String nextHash = ConsistentHash.INSTANCE.getKey(nextNode).toString();
 		return hash + " - " + nextHash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Node) {
+			Node node = (Node) obj;
+			return node.toString().equals(this.toString());
+		}
+		return false;
 	}
 
 	@Override
@@ -31,23 +42,60 @@ public class Node implements Serializable {
 		return host + ":" + port;
 	}
 
-	public Node getReplica() {
-		return ConsistentHash.INSTANCE.getNextNode(this);
-	}
-
-	public Node isReplicaOf() {
-		return ConsistentHash.INSTANCE.getPreviousNode(this);
-	}
 
 	/**
 	 * Check if this node is responsible for the given (key, value) pair
+	 *
 	 * @param key
 	 * @return
 	 */
 	public boolean isResponsible(String key) {
-		String hash = MD5Hash.hash(key);
+		String hash = ConsistentHash.INSTANCE.getKey(this).toString();
 		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-		String nextHash = MD5Hash.hash(nextNode.toString());
+		String nextHash = ConsistentHash.INSTANCE.getKey(nextNode).toString();
 		return hash.compareTo(nextHash) < 0;
+	}
+
+	// will be called when this node joins the ring
+	public void init() {
+		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
+		Node previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+		String data = nextNode.transfer(Database.DATA, getRange());
+		String backup = previousNode.transfer(Database.BACKUP, getRange());
+	}
+
+	// will be called when a node leaves the ring
+	public void recover(Node isReplicaOf, Node myReplica, String newRange) {
+		String backup = isReplicaOf.copy(Database.DATA, isReplicaOf.getRange());
+		String data = myReplica.copy(Database.BACKUP, newRange);
+	}
+
+	/**TODO grpc
+	 * TODO 能不能做先copy，等esc发消息了再把这部分的range删除
+	 * Transfer data from this node to another node, and delete the data from this
+	 *
+	 * @param where
+	 * @param range
+	 * @return the data that has been transferred
+	 */
+	public String transfer(Database where, String range) {
+		String data = copy(where, range);
+		String rangeToBeDeleted = range;
+		return "Transfer:" + range;
+	}
+
+	/**TODO grpc
+	 * Copy data from another node to this node
+	 *
+	 * @param where
+	 * @param range
+	 * @return the data that has been copied
+	 */
+	public String copy(Database where, String range) {
+		return "Copy:" + range;
+	}
+
+	public enum Database {
+		DATA, BACKUP
 	}
 }

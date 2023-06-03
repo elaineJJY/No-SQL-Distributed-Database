@@ -23,12 +23,17 @@ public class Node implements Serializable {
 		return host + ":" + port;
 	}
 
-	public Node getReplica() {
-		return ConsistentHash.INSTANCE.getNextNode(this);
+	//TODO: gRPC
+	public void init() {
+
 	}
 
-	public Node isReplicaOf() {
-		return ConsistentHash.INSTANCE.getPreviousNode(this);
+	//TODO: gRPC
+	public void recover() {
+
 	}
 
+	public void updateRing(SortedMap<String, Node> ring) {
+
+	}
 }
