@@ -21,6 +21,10 @@ public class Node implements Serializable {
 		return host;
 	}
 
+	/**
+	 * Get the range of this node in the ring
+	 * @return String range
+	 */
 	public String getRange() {
 		String hash = ConsistentHash.INSTANCE.getKey(this).toString();
 		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
@@ -28,6 +32,11 @@ public class Node implements Serializable {
 		return hash + " - " + nextHash;
 	}
 
+	/**
+	 * Override the equals method, which will be used to compare two nodes according to their toString <ip:port>
+	 * @param obj
+	 * @return
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Node) {
@@ -37,6 +46,10 @@ public class Node implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Print the node in the format of string <ip:port>, which will be used as the key in the Hash ring
+	 * @return <ip:port> string
+	 */
 	@Override
 	public String toString() {
 		return host + ":" + port;
@@ -45,10 +58,10 @@ public class Node implements Serializable {
 
 	/**
 	 * Check if this node is responsible for the given (key, value) pair
-	 *
 	 * @param key
-	 * @return
+	 * @return true if this node is responsible for the given (key, value) pair
 	 */
+	//TODO
 	public boolean isResponsible(String key) {
 		String hash = ConsistentHash.INSTANCE.getKey(this).toString();
 		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);

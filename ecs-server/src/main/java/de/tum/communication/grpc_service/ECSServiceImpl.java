@@ -1,6 +1,5 @@
-package de.tum.communication.grpcService;
+package de.tum.communication.grpc_service;
 
-import de.tum.communication.grpcService.ECSProto;
 import io.grpc.stub.StreamObserver;
 
 public class ECSServiceImpl {

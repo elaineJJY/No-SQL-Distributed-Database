@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
 
 public class CacheManager {
     // store hash and correponded
-    private SortedMap<String, String>;
+    private SortedMap<String, String> cache;
     private static String directory = "src/main/java/de/tum/server/database/data/";
     static ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -26,8 +26,10 @@ public class CacheManager {
             public Entry<String, String> call() throws Exception {
                 String hash = MD5Hash.hash(key);
                 String fileName = directory + "/"  + key + ".dat";
-                FileWriter fileWriter = new FileWriter(fi)
-
+                FileWriter fileWriter = new FileWriter(fileName);
+                // Return null for testing purpose
+                // TODO
+                return null;
             }
         };
         Future<Entry<String, String>> future = executor.submit(writingTask);

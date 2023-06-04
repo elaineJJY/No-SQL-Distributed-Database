@@ -3,6 +3,16 @@ package de.tum.node;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * ClassName: MD5Hash
+ * Package: de.tum.server
+ * Description: Provides MD5 hash function as a String
+ *
+ * @Author Weijian Feng, Jingyi Jia, Mingrun Ma
+ * @Create 2023/05/06 20:25
+ * @Version 1.0
+ */
+
 public class MD5Hash {
     private MD5Hash() {
         throw new AssertionError("This class is not meant to be instantiated");

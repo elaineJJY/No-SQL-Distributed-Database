@@ -1,8 +1,7 @@
 package de.tum;
 
 import de.tum.common.ServerLogger;
-import de.tum.communication.ParseCommand;
-import de.tum.communication.Server;
+import de.tum.communication.*;
 import de.tum.server.database.Database;
 import java.util.logging.Logger;
 
@@ -20,7 +19,7 @@ public class App
     private static Logger LOGGER = Logger.getLogger(App.class.getName());
     public static void main( String[] args )
     {
-        ParseCommand parseCommand = new ParseCommand(args);
+        de.tum.server.communication.ParseCommand parseCommand = new de.tum.server.communication.ParseCommand(args);
 
         // parse args
         int port = parseCommand.getPort();

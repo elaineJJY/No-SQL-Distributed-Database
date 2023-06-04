@@ -1,4 +1,4 @@
-package de.tum.communication.grpcService;
+package de.tum.communication.grpc_service;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
