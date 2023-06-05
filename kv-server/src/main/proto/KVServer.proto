@@ -1,7 +1,17 @@
 syntax = "proto3";
 
 option java_multiple_files = false;
-option java_package = "de.tum";
-option java_outer_classname = "ECSProto";
+option java_package = "grpc_api";
+option java_outer_classname = "KVServerProto";
 
+message HelloRequest {
+  string name = 1;
+}
 
+message HelloResponse {
+  string result = 1;
+}
+
+service HelloService {
+  rpc hello(HelloRequest) returns (HelloResponse);
+}

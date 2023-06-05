@@ -127,6 +127,7 @@
         </configuration>
       </plugin>
 
+      <!-- Configure the Protobuf Maven Plugin to generate Java code from .proto files -->
       <plugin>
         <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>
@@ -153,7 +154,7 @@
           <protocArtifact>com.google.protobuf:protoc:3.21.7:exe:${os.detected.classifier}</protocArtifact>
           <pluginId>grpc-java</pluginId>
           <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.54.1:exe:${os.detected.classifier}</pluginArtifact>
-          <outputDirectory>${basedir}/src/main/proto</outputDirectory>
+          <outputDirectory>${basedir}/src/main/java/de/tum</outputDirectory>
           <clearOutputDirectory>false</clearOutputDirectory>
         </configuration>
         <executions>

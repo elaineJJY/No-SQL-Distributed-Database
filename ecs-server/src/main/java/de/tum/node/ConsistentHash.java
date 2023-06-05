@@ -20,6 +20,10 @@ public enum ConsistentHash {
 	INSTANCE;
 	private SortedMap<String, Node> ring = new TreeMap<>();  // <hash, node>
 
+	// TODO: initialization of whole hash ring
+	//public void initRing()
+
+
 	private void updateRingForAllNodes() {
 		for (Node node : ring.values()) {
 			node.updateRing(ring);
@@ -62,6 +66,4 @@ public enum ConsistentHash {
 		String previousHash = headMap.isEmpty() ? ring.lastKey() : headMap.lastKey();
 		return ring.get(previousHash);
 	}
-
-
 }

@@ -3,11 +3,11 @@ package de.tum;
 import de.tum.communication.ServerLogger;
 import java.io.IOException;
 
-import de.tum.communication.ECSServer;
 import de.tum.communication.ParseCommand;
-import de.tum.communication.Registry;
+import de.tum.communication.grpc_service.ECSServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+
 import java.util.logging.Logger;
 
 public class App {
@@ -16,7 +16,7 @@ public class App {
 	private static final Logger logger = Logger.getLogger("ECS Server");
 
 	public static void main(String[] args) throws IOException {
-		final App server = new App();
+		//final App server = new App();
 		ParseCommand parseCommand = new ParseCommand(args);
 
 		// parse args
@@ -24,16 +24,22 @@ public class App {
 		String address = parseCommand.getAddress();
 		ServerLogger.INSTANCE.init(parseCommand.getLogLevel(), parseCommand.getLogFile(), logger);
 
-		ECSServer ecsServer = new ECSServer(port);
+		//ECSServer ecsServer = new Server(port);
 		try {
-			ecsServer.start();
+			// 1. 绑定端口
+			ServerBuilder serverBuilder = ServerBuilder.forPort(5152);
+			// 2. 发布服务
+			serverBuilder.addService(new ECSServiceImpl());
+			// 3. 创建服务对象
+			Server server = serverBuilder.build();
+
+			// 4. 启动服务
+			server.start();
+			server.awaitTermination();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		try {
-			ecsServer.blockUntilShutdown();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 }

@@ -5,6 +5,9 @@ import de.tum.communication.*;
 import de.tum.server.database.Database;
 import java.util.logging.Logger;
 
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+
 /**
  * ClassName: App
  * Package: de.tum.server
@@ -39,7 +42,26 @@ public class App
 
             // run server
             LOGGER.info("Server is starting...");
-            new Server().start(address, port, helpUsage);
+            //new Server().start(address, port, helpUsage);
+
+
+
+            // 1. 创建channel
+            ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 5152).usePlaintext().build();
+            grpc_api.HelloServiceGrpc.HelloServiceBlockingStub helloService = grpc_api.HelloServiceGrpc.newBlockingStub(managedChannel);
+            // 3. 完成rpc调用
+            // 3.1 准备请求参数
+            // 填充参数
+            grpc_api.KVServerProto.HelloRequest.Builder builder = grpc_api.KVServerProto.HelloRequest.newBuilder();
+            builder.setName("wjfeng");
+            grpc_api.KVServerProto.HelloRequest helloRequest = builder.build();
+            // 3.2 调用rpc服务，获取响应内容
+            grpc_api.KVServerProto.HelloResponse helloResponse = helloService.hello(helloRequest);
+
+            String result = helloResponse.getResult();
+            System.out.println("result = " + result);
+
+
             LOGGER.info("Server is shutting down...");
         }
         catch (Exception e) {
