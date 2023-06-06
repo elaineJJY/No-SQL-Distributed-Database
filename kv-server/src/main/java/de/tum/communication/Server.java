@@ -1,5 +1,6 @@
 package de.tum.communication;
 
+import com.sun.source.tree.Tree;
 import de.tum.common.ServerLogger;
 import de.tum.node.ConsistentHash;
 import de.tum.server.database.Database;
@@ -83,29 +84,33 @@ public class Server {
 	 * Register server to ECS
 	 * @param address ECS address
 	 * @param port ECS port
-	 *
 	 */
 	public void registerToECS(String address, int port) {
 		ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(address, port).usePlaintext().build();
 		// 2. 创建stub 代理对象
 		try {
+			// We will use blocking stub here, since successful registration to ECS is a prerequisite
 			grpc_api.ECSServiceGrpc.ECSServiceBlockingStub ecsService = grpc_api.ECSServiceGrpc.newBlockingStub(managedChannel);
-			// 3. 完成rpc调用
-			// 3.1 准备请求参数
-			// 填充参数
-			KVServerProto.NodeMessage.Builder nodeMessageBuilder = grpc_api.KVServerProto.NodeMessage.newBuilder()
+			// sub-Builder
+			KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
 					.setHost(address)
 					.setPort(port);
 
-			grpc_api.KVServerProto.InitRequest.Builder builder = grpc_api.KVServerProto.InitRequest.newBuilder();
+			KVServerProto.InitRequest initRequest = KVServerProto.InitRequest.newBuilder()
+					.setIpPort(nodeMessageBuilder.build()).build();
+			//separate
+			//builder.setIpPort(nodeMessageBuilder.build());
+			//KVServerProto.InitRequest initRequest = builder.build();
 
-			builder.setIpPort(nodeMessageBuilder.build());
-			grpc_api.KVServerProto.InitRequest initRequest = builder.build();
-			// 3.2 调用rpc服务，获取响应内容
-			grpc_api.KVServerProto.InitResponse helloResponse = ecsService.init(initRequest);
-
-			String result = KVServerProto.InitResponse.getDescriptor().getName();
-			System.out.println("result = " + result);
+			// call rpc init(InitRequest) returns (InitResponse)
+			KVServerProto.InitResponse initResponse = ecsService.init(initRequest);
+			// get result and print
+			Map<String, KVServerProto.NodeMessage> ring = initResponse.getRingMap();
+			// print ring's information
+			System.out.println("Ring information:");
+			for (Map.Entry<String, KVServerProto.NodeMessage> entry : ring.entrySet()) {
+				System.out.println("Hash: " + entry.getKey() + " Node: " + entry.getValue().getHost() + ":" + entry.getValue().getPort());
+			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {

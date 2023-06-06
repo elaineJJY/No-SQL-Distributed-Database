@@ -29,7 +29,7 @@ public class ECSServiceImpl extends grpc_api.ECSServiceGrpc.ECSServiceImplBase {
 		ConsistentHash.INSTANCE.addNode(node);
 		// 3. 封装响应
 		// 3.1 构建响应对象
-		grpc_api.ECSProto.InitResponse.Builder builder = grpc_api.ECSProto.InitResponse.newBuilder();
+		ECSProto.InitResponse.Builder builder = grpc_api.ECSProto.InitResponse.newBuilder();
 		// 3.2 填充数据
 		// put the hash value of the node into the response
 		ECSProto.NodeMessage nodeMessage = ECSProto.NodeMessage.newBuilder()

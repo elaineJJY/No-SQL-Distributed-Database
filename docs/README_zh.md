@@ -1,3 +1,8 @@
+---
+Title: README_zh for ms3
+Author: Weijian Feng 封伟健
+---
+
 [英文版README](../README.md)
 
 # Background
@@ -127,7 +132,38 @@ Redis Cluster 是一种无主模式 Leaderless 的无主分布式存储方案，
 
 ### protobuf
 
+主要用到的是map类型的API以及message相关的API，尤其是Builder
+
+```protobuf
+map<int32, int32> weight = 1;
+```
+
+protoc编译器会在message class和它的builder中生成下面的方法
+
+* `Map<Integer, Integer> getWeightMap();`：返回一个**不可修改**的map
+* `int getWeightOrDefault(int key, int default);`：返回key对应的value，或者default若key不存在
+* `int getWeightOrThrow(int key);`：返回key对应的value，或者抛 IllegalArgumentException 异常若key不存在
+* `boolean containsWeight(int key);`：检查map里是否有key
+* `int getWeightCount();`：返回map中元素个数
+
+protoc编译器只会在message的builder中生成下面的方法
+
+* `Builder putWeight(int key, int value);`：插入一个KV
+* `Builder putAllWeight(Map<Integer, Integer> value);`: Adds all entries in the given map to this field.
+* `Builder removeWeight(int key);`: Removes the weight from this field.
+* `Builder clearWeight();`: Removes all weights from this field.
+* `@Deprecated Map<Integer, Integer> getMutableWeight();`：返回一个**可修改**的map. Note that multiple calls to this method may return different map instances. The returned map reference may be invalidated by any subsequent method calls to the Builder.
+
 ### gRPC
+
+<img src="gRPC流程.drawio.png">
+
+4种通信方式
+
+1. 简单RPC/一元RPC Unary RPC：一个请求对应一个响应
+2. 服务端流式RPC Server Streaming RPC：一个请求对应多个响应
+3. 客户端流式RPC Client Streaming RPC：多个请求对应一个响应 IOT
+4. 双向流RPC Bi-directional Stream RPC：多个请求返回多个响应
 
 # 结构
 
@@ -201,8 +237,6 @@ Redis Cluster 是一种无主模式 Leaderless 的无主分布式存储方案，
 
 一旦启动了KVServer应用程序，它会处于 **stopped** 状态。这意味着它能够接受客户端连接，但会回复 `SERVER_STOPPED` 给查询。然后KVServer连接到ECS以取得其元数据
 
-
-
 KVClient的get put是发给KVStore，然后再由KVStore转发给KVServer
 
 ### Metadata
@@ -240,8 +274,6 @@ Client library/KVStore 提供了一个抽象来查询存储服务。KVServer的�
 <img src="ms3哈希环的扩容和缩容.drawio.png">
 
 ### 主动下线
-
-
 
 ### 故障下线
 

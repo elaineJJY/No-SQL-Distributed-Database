@@ -36,3 +36,37 @@
 信息: Init Cache with strategy LRU
 6月 06, 2023 4:24:59 下午 de.tum.App main
 信息: Server is starting...
+6月 06, 2023 4:50:54 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 06, 2023 4:50:55 下午 de.tum.server.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 06, 2023 4:50:55 下午 de.tum.App main
+信息: Server is starting...
+6月 06, 2023 4:50:55 下午 de.tum.App main
+严重: Server init failed: io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+6月 06, 2023 10:22:02 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 06, 2023 10:22:02 下午 de.tum.server.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 06, 2023 10:22:02 下午 de.tum.App main
+信息: Server is starting...
+6月 06, 2023 10:22:39 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 06, 2023 10:22:39 下午 de.tum.server.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 06, 2023 10:22:39 下午 de.tum.App main
+信息: Server is starting...
+6月 07, 2023 12:07:30 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 07, 2023 12:07:30 上午 de.tum.server.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 07, 2023 12:07:30 上午 de.tum.App main
+信息: Server is starting...
+6月 07, 2023 12:07:31 上午 de.tum.App main
+严重: Server init failed: io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+6月 07, 2023 12:07:48 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 07, 2023 12:07:49 上午 de.tum.server.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 07, 2023 12:07:49 上午 de.tum.App main
+信息: Server is starting...

@@ -52,21 +52,4 @@ public class App
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
     }
-
-    public void testGRPCClient() {
-        //// 1. 创建channel
-        //ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 5152).usePlaintext().build();
-        //grpc_api.HelloServiceGrpc.HelloServiceBlockingStub helloService = grpc_api.HelloServiceGrpc.newBlockingStub(managedChannel);
-        //// 3. 完成rpc调用
-        //// 3.1 准备请求参数
-        //// 填充参数
-        //grpc_api.KVServerProto.HelloRequest.Builder builder = grpc_api.KVServerProto.HelloRequest.newBuilder();
-        //builder.setName("wjfeng");
-        //grpc_api.KVServerProto.HelloRequest helloRequest = builder.build();
-        //// 3.2 调用rpc服务，获取响应内容
-        //grpc_api.KVServerProto.HelloResponse helloResponse = helloService.hello(helloRequest);
-
-        //String result = helloResponse.getResult();
-        //System.out.println("result = " + result);
-    }
 }
