@@ -20,6 +20,7 @@ import io.grpc.ManagedChannelBuilder;
 public class App 
 {
     private static Logger LOGGER = Logger.getLogger(App.class.getName());
+
     public static void main( String[] args )
     {
         de.tum.server.communication.ParseCommand parseCommand = new de.tum.server.communication.ParseCommand(args);
@@ -42,24 +43,7 @@ public class App
 
             // run server
             LOGGER.info("Server is starting...");
-            //new Server().start(address, port, helpUsage);
-
-
-
-            // 1. 创建channel
-            ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 5152).usePlaintext().build();
-            grpc_api.HelloServiceGrpc.HelloServiceBlockingStub helloService = grpc_api.HelloServiceGrpc.newBlockingStub(managedChannel);
-            // 3. 完成rpc调用
-            // 3.1 准备请求参数
-            // 填充参数
-            grpc_api.KVServerProto.HelloRequest.Builder builder = grpc_api.KVServerProto.HelloRequest.newBuilder();
-            builder.setName("wjfeng");
-            grpc_api.KVServerProto.HelloRequest helloRequest = builder.build();
-            // 3.2 调用rpc服务，获取响应内容
-            grpc_api.KVServerProto.HelloResponse helloResponse = helloService.hello(helloRequest);
-
-            String result = helloResponse.getResult();
-            System.out.println("result = " + result);
+            new Server().start(address, port, helpUsage);
 
 
             LOGGER.info("Server is shutting down...");
@@ -67,5 +51,22 @@ public class App
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
+    }
+
+    public void testGRPCClient() {
+        //// 1. 创建channel
+        //ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 5152).usePlaintext().build();
+        //grpc_api.HelloServiceGrpc.HelloServiceBlockingStub helloService = grpc_api.HelloServiceGrpc.newBlockingStub(managedChannel);
+        //// 3. 完成rpc调用
+        //// 3.1 准备请求参数
+        //// 填充参数
+        //grpc_api.KVServerProto.HelloRequest.Builder builder = grpc_api.KVServerProto.HelloRequest.newBuilder();
+        //builder.setName("wjfeng");
+        //grpc_api.KVServerProto.HelloRequest helloRequest = builder.build();
+        //// 3.2 调用rpc服务，获取响应内容
+        //grpc_api.KVServerProto.HelloResponse helloResponse = helloService.hello(helloRequest);
+
+        //String result = helloResponse.getResult();
+        //System.out.println("result = " + result);
     }
 }

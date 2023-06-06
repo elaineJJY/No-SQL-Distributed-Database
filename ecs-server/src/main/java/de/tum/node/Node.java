@@ -23,10 +23,6 @@ public class Node implements Serializable {
 		return host + ":" + port;
 	}
 
-
-
-
-
 	//TODO: gRPC
 	public void init() {
 

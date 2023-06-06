@@ -1,7 +1,10 @@
 package de.tum.communication.grpc_service;
 
-import grpc_api.HelloServiceGrpc;
+import de.tum.node.ConsistentHash;
+import de.tum.node.MD5Hash;
+import grpc_api.ECSProto;
 import io.grpc.stub.StreamObserver;
+import de.tum.node.Node;
 
 /**
  * ClassName: ECSServiceImpl
@@ -13,23 +16,31 @@ import io.grpc.stub.StreamObserver;
  * @Version 1.0
  */
 
-public class ECSServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
+public class ECSServiceImpl extends grpc_api.ECSServiceGrpc.ECSServiceImplBase {
 	@Override
-	public void hello(grpc_api.ECSProto.HelloRequest request,
-					  StreamObserver<grpc_api.ECSProto.HelloResponse> responseObserver) {
+	public void init(grpc_api.ECSProto.InitRequest request,
+					  StreamObserver<grpc_api.ECSProto.InitResponse> responseObserver) {
 		// 1. 接受client的参数
-		String name = request.getName();
+		String Host = request.getIpPort().getHost();
+		int Port = request.getIpPort().getPort();
 		// 2. 业务处理
-		System.out.println("接受到客户端信息:" + name);
+		System.out.println("ECS receive register request form KVServer:<" + Host + ":" + Port + ">");
+		Node node = new Node(Host, Port);
+		ConsistentHash.INSTANCE.addNode(node);
 		// 3. 封装响应
 		// 3.1 构建响应对象
-		grpc_api.ECSProto.HelloResponse.Builder builder = grpc_api.ECSProto.HelloResponse.newBuilder();
+		grpc_api.ECSProto.InitResponse.Builder builder = grpc_api.ECSProto.InitResponse.newBuilder();
 		// 3.2 填充数据
-		builder.setResult("hello method invoke ok");
+		// put the hash value of the node into the response
+		ECSProto.NodeMessage nodeMessage = ECSProto.NodeMessage.newBuilder()
+				.setHost(Host)
+				.setPort(Port)
+				.build();
+
 		// 3.3 封装响应
-		grpc_api.ECSProto.HelloResponse helloResponse = builder.build();
+		ECSProto.InitResponse initResponse = builder.putRing(MD5Hash.hash(node.toString()), nodeMessage).build();
 		// 3.4
-		responseObserver.onNext(helloResponse); // 处理后的响应通过网络回传给client
+		responseObserver.onNext(initResponse); // 处理后的响应通过网络回传给client
 		responseObserver.onCompleted(); // 通知client 响应已经结束了，会返回一个标志，client接收到这个标志后，会结束这次rpc调用
 	}
 }

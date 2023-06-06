@@ -4,14 +4,31 @@ option java_multiple_files = false;
 option java_package = "grpc_api";
 option java_outer_classname = "KVServerProto";
 
-message HelloRequest {
-  string name = 1;
+message NodeMessage {
+  string host = 1;
+  int32 port = 2;
 }
 
-message HelloResponse {
-  string result = 1;
+// Service for ECS to register KVServer
+message InitRequest {
+  NodeMessage IpPort = 1;
 }
 
-service HelloService {
-  rpc hello(HelloRequest) returns (HelloResponse);
+message InitResponse {
+  map<string, NodeMessage> ring = 1;
+}
+
+// Service for ECS to update all KVServers
+message UpdateRequest {
+  map<string, NodeMessage> ring = 1;
+}
+
+message UpdateResponse {
+  bool isSuccess = 1;
+}
+
+service ECSService {
+  rpc init(InitRequest) returns (InitResponse); // initialize server
+  //rpc recover(KVRequest) returns (KVResponse);
+  rpc update(UpdateRequest) returns (UpdateResponse); // update all nodes with latest ring
 }

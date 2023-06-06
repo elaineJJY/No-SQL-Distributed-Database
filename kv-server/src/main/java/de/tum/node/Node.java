@@ -61,12 +61,17 @@ public class Node implements Serializable {
 	 * @param key
 	 * @return true if this node is responsible for the given (key, value) pair
 	 */
-	//TODO
-	public boolean isResponsible(String key) {
-		String hash = ConsistentHash.INSTANCE.getKey(this).toString();
-		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-		String nextHash = ConsistentHash.INSTANCE.getKey(nextNode).toString();
-		return hash.compareTo(nextHash) < 0;
+	//TODO: old code doesnt feel right
+	public boolean isResponsible(String key) throws NullPointerException {
+		String currHash = ConsistentHash.INSTANCE.getKey(this).toString();
+		//Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
+		//String nextHash = ConsistentHash.INSTANCE.getKey(nextNode).toString();
+		//return hash.compareTo(nextHash) < 0;
+
+		String keyHash = MD5Hash.hash(key);
+		Node prevNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+		String prevHash = ConsistentHash.INSTANCE.getKey(prevNode).toString();
+		return (currHash.compareTo(prevHash) > 0 && keyHash.compareTo(currHash) <= 0);
 	}
 
 	// will be called when this node joins the ring

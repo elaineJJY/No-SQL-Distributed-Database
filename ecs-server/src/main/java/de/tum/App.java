@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import de.tum.communication.ParseCommand;
 import de.tum.communication.grpc_service.ECSServiceImpl;
+import de.tum.node.ConsistentHash;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
@@ -24,6 +25,7 @@ public class App {
 		String address = parseCommand.getAddress();
 		ServerLogger.INSTANCE.init(parseCommand.getLogLevel(), parseCommand.getLogFile(), logger);
 
+
 		//ECSServer ecsServer = new Server(port);
 		try {
 			// 1. 绑定端口
@@ -32,7 +34,6 @@ public class App {
 			serverBuilder.addService(new ECSServiceImpl());
 			// 3. 创建服务对象
 			Server server = serverBuilder.build();
-
 			// 4. 启动服务
 			server.start();
 			server.awaitTermination();

@@ -15,6 +15,9 @@ import java.nio.channels.SocketChannel;
 import java.util.*;
 import java.util.logging.Logger;
 import de.tum.common.*;
+import grpc_api.KVServerProto;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 
 public class Server {
 	private final ConsistentHash metaData;
@@ -57,6 +60,9 @@ public class Server {
 		ssChannel.register(selector, SelectionKey.OP_ACCEPT);
 		System.out.println("Server is listening on port " + port);
 
+		// register server to ECS
+		//registerToECS(address, port);
+		registerToECS("127.0.0.1", 5152);
 		// 无参select()方法会一直阻塞直到有事件发生
 		while (selector.select() > 0) {
 			Set<SelectionKey> selectionKeys = selector.selectedKeys();
@@ -70,6 +76,40 @@ public class Server {
 				}
 				selectionKeyIterator.remove();
 			}
+		}
+	}
+
+	/**
+	 * Register server to ECS
+	 * @param address ECS address
+	 * @param port ECS port
+	 *
+	 */
+	public void registerToECS(String address, int port) {
+		ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(address, port).usePlaintext().build();
+		// 2. 创建stub 代理对象
+		try {
+			grpc_api.ECSServiceGrpc.ECSServiceBlockingStub ecsService = grpc_api.ECSServiceGrpc.newBlockingStub(managedChannel);
+			// 3. 完成rpc调用
+			// 3.1 准备请求参数
+			// 填充参数
+			KVServerProto.NodeMessage.Builder nodeMessageBuilder = grpc_api.KVServerProto.NodeMessage.newBuilder()
+					.setHost(address)
+					.setPort(port);
+
+			grpc_api.KVServerProto.InitRequest.Builder builder = grpc_api.KVServerProto.InitRequest.newBuilder();
+
+			builder.setIpPort(nodeMessageBuilder.build());
+			grpc_api.KVServerProto.InitRequest initRequest = builder.build();
+			// 3.2 调用rpc服务，获取响应内容
+			grpc_api.KVServerProto.InitResponse helloResponse = ecsService.init(initRequest);
+
+			String result = KVServerProto.InitResponse.getDescriptor().getName();
+			System.out.println("result = " + result);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			managedChannel.shutdown();
 		}
 	}
 

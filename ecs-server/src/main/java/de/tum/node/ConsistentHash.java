@@ -20,28 +20,26 @@ public enum ConsistentHash {
 	INSTANCE;
 	private SortedMap<String, Node> ring = new TreeMap<>();  // <hash, node>
 
-	// TODO: initialization of whole hash ring
-	//public void initRing()
-
-
-	private void updateRingForAllNodes() {
-		for (Node node : ring.values()) {
-			node.updateRing(ring);
-		}
+	public SortedMap<String, Node> getRing() {
+		return ring;
 	}
 
 	public void addNode(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString());
+		// in case of hash collision
 		if (ring.containsKey(nodeHash)) {
 			int i = 1;
 			while (ring.containsKey(nodeHash)) {
 				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
 			}
 		}
-		node.updateRing(ring);
-		node.init();
-		ring.put(nodeHash, node);
-		updateRingForAllNodes();
+		ring.put(nodeHash, node); // add node to the ring
+
+		//// TODO: gRPC
+		//node.init(); // initialize the node
+		//// TODO: gRPC
+		//node.updateRing(ring); // update the ring replica for the node
+		//updateRingForAllNodes(); // update the ring replica for all the nodes
 	}
 
 	public void removeNode(Node node) {
@@ -65,5 +63,11 @@ public enum ConsistentHash {
 		SortedMap<String, Node> headMap = ring.headMap(nodeHash);
 		String previousHash = headMap.isEmpty() ? ring.lastKey() : headMap.lastKey();
 		return ring.get(previousHash);
+	}
+
+	private void updateRingForAllNodes() {
+		for (Node node : ring.values()) {
+			node.updateRing(ring);
+		}
 	}
 }
