@@ -1,0 +1,6 @@
+6月 07, 2023 10:22:29 上午 de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+6月 07, 2023 10:22:30 上午 de.tum.server.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+6月 07, 2023 10:22:30 上午 de.tum.App main
+INFO: Server is starting...
