@@ -86,3 +86,19 @@
 信息: Server is starting...
 6月 07, 2023 7:41:57 下午 de.tum.App main
 信息: Server is shutting down...
+6月 07, 2023 7:50:37 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 07, 2023 7:50:37 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 07, 2023 7:50:37 下午 de.tum.App main
+信息: Server is starting...
+6月 07, 2023 7:50:38 下午 de.tum.App main
+信息: Server is shutting down...
+6月 07, 2023 7:51:42 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 07, 2023 7:51:42 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 07, 2023 7:51:42 下午 de.tum.App main
+信息: Server is starting...
+6月 07, 2023 7:51:43 下午 de.tum.App main
+信息: Server is shutting down...

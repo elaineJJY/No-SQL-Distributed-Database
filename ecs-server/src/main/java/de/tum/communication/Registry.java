@@ -21,7 +21,6 @@ public class Registry implements BindableService {  // extends TestGRPCGrpc.Test
     public ServerServiceDefinition bindService(){
         return null;
     }
-
 //    @Override
 //    public void getVersion(TestProto.GetVersionRequest request, StreamObserver<TestProto.GetVersionResponse> responseObserver) {
 //        System.out.println("请求信息" + request);
