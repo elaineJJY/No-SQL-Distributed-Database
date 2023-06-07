@@ -55,7 +55,6 @@ public class Node implements Serializable {
 		return host + ":" + port;
 	}
 
-
 	/**
 	 * Check if this node is responsible for the given (key, value) pair
 	 * @param key

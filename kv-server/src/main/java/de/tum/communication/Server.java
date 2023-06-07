@@ -63,7 +63,7 @@ public class Server {
 
 		// register server to ECS
 		//registerToECS(address, port);
-		registerToECS("127.0.0.1", 5152);
+		registerToECS("10.181.95.176", 5152);
 		// 无参select()方法会一直阻塞直到有事件发生
 		while (selector.select() > 0) {
 			Set<SelectionKey> selectionKeys = selector.selectedKeys();
