@@ -36,9 +36,9 @@ public enum ConsistentHash {
 		ring.put(nodeHash, node); // add node to the ring
 
 		//// TODO: gRPC
-		//node.init(); // initialize the node
+		node.init(); // initialize the node
 		//// TODO: gRPC
-		//node.updateRing(ring); // update the ring replica for the node
+		node.updateRing(ring); // update the ring replica for the node
 		//updateRingForAllNodes(); // update the ring replica for all the nodes
 	}
 
