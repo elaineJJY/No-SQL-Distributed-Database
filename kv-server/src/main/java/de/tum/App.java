@@ -3,9 +3,11 @@ package de.tum;
 import de.tum.common.Help;
 import de.tum.common.ServerLogger;
 import de.tum.communication.KVServer;
+import de.tum.communication.grpc_service.KVServiceImpl;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
 import de.tum.node.Node;
+import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.util.logging.Logger;
 
@@ -52,8 +54,8 @@ public class App
 
             // rpc server and public service
             ServerBuilder rpcServerBuilder = ServerBuilder.forPort(5152);
-            rpcServerBuilder.addService(new KVserviceImpl());
-            Server rpcServer = rpcServerbuilder.build();
+            rpcServerBuilder.addService(new KVServiceImpl());
+            Server rpcServer = rpcServerBuilder.build();
             rpcServer.start();
 
 
@@ -64,7 +66,7 @@ public class App
 
 
             LOGGER.info("Server is shutting down...");
-            server.awaitTermination();
+            rpcServer.awaitTermination();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());

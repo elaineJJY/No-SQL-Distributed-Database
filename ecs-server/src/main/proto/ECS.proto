@@ -4,6 +4,8 @@ option java_multiple_files = false;
 option java_package = "de.tum.grpc_api";
 option java_outer_classname = "ECSProto";
 
+import "google/protobuf/empty.proto";
+
 message NodeMessage {
     string host = 1;
     int32 port = 2;

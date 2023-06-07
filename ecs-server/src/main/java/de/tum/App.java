@@ -4,11 +4,13 @@ import de.tum.communication.ServerLogger;
 import java.io.IOException;
 
 import de.tum.communication.ParseCommand;
-import de.tum.communication.grpc_service.ECSServiceImpl;
 import de.tum.node.ConsistentHash;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import io.grpc.netty.NettyServerBuilder;
 
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.util.logging.Logger;
 
 public class App {
@@ -23,18 +25,5 @@ public class App {
 		int port = parseCommand.getPort();
 		String address = parseCommand.getAddress();
 		ServerLogger.INSTANCE.init(parseCommand.getLogLevel(), parseCommand.getLogFile(), logger);
-		try {
-			Server server;
-			//SocketAddress ECSAddress = new InetSocketAddress(address, port);
-			SocketAddress ECSAddress = new InetSocketAddress("localhost", 5144);
-			server = NettyServerBuilder.forAddress(ECSAddress).addService(new ECSServiceImpl()).build();
-
-			server.start();
-			server.awaitTermination();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
 	}
 }

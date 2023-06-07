@@ -1,12 +1,36 @@
-import de.tum.grpc_api.*;
 package de.tum.communication.grpc_service;
 
+import de.tum.grpc_api.*;
+import com.google.protobuf.Empty;
+
+
+//public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
+//	@Override
+//	public void init(com.google.protobuf.Empty request,
+//		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//
+//		google.protobuf.Empty response = google.protobuf.Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//	@Override
+//	public void updateRing(com.google.protobuf.Empty request,
+//		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//
+//		google.protobuf.Empty response = google.protobuf.Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//}
+
+//public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
 public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
 	@Override
 	public void init(com.google.protobuf.Empty request,
 		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 
-		google.protobuf.Empty response = google.protobuf.Empty.newBuilder().build();
+		Empty response = Empty.newBuilder().build();
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
@@ -15,12 +39,11 @@ public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
 	public void updateRing(com.google.protobuf.Empty request,
 		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 
-		google.protobuf.Empty response = google.protobuf.Empty.newBuilder().build();
+		Empty response = Empty.newBuilder().build();
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
 }
-
 
 
 
@@ -50,4 +73,4 @@ public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
 //		responseObserver.onNext(registerResponse); // 处理后的响应通过网络回传给client
 //		responseObserver.onCompleted(); // 通知client 响应已经结束了，会返回一个标志，client接收到这个标志后，会结束这次rpc调用
 //	}
-}
+
