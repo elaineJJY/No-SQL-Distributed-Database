@@ -163,8 +163,10 @@ public class Node implements Serializable {
 	}
 	public void put(String key, String value) throws Exception {
 		mainDatabase.put(key, value);
+		ConsistentHash.INSTANCE.getNextNode(this).put(key, value);
 	}
 	public void delete(String key) throws Exception {
 		mainDatabase.delete(key);
+		ConsistentHash.INSTANCE.getNextNode(this).delete(key);
 	}
 }
