@@ -1,4 +1,4 @@
-package grpc_api;
+package de.tum.grpc_api;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -15,60 +15,60 @@ public final class ECSServiceGrpc {
   public static final String SERVICE_NAME = "ECSService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<grpc_api.ECSProto.InitRequest,
-      grpc_api.ECSProto.InitResponse> getInitMethod;
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.RegisterRequest,
+      de.tum.grpc_api.ECSProto.RegisterResponse> getRegisterMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "init",
-      requestType = grpc_api.ECSProto.InitRequest.class,
-      responseType = grpc_api.ECSProto.InitResponse.class,
+      fullMethodName = SERVICE_NAME + '/' + "register",
+      requestType = de.tum.grpc_api.ECSProto.RegisterRequest.class,
+      responseType = de.tum.grpc_api.ECSProto.RegisterResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<grpc_api.ECSProto.InitRequest,
-      grpc_api.ECSProto.InitResponse> getInitMethod() {
-    io.grpc.MethodDescriptor<grpc_api.ECSProto.InitRequest, grpc_api.ECSProto.InitResponse> getInitMethod;
-    if ((getInitMethod = ECSServiceGrpc.getInitMethod) == null) {
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.RegisterRequest,
+      de.tum.grpc_api.ECSProto.RegisterResponse> getRegisterMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.RegisterRequest, de.tum.grpc_api.ECSProto.RegisterResponse> getRegisterMethod;
+    if ((getRegisterMethod = ECSServiceGrpc.getRegisterMethod) == null) {
       synchronized (ECSServiceGrpc.class) {
-        if ((getInitMethod = ECSServiceGrpc.getInitMethod) == null) {
-          ECSServiceGrpc.getInitMethod = getInitMethod =
-              io.grpc.MethodDescriptor.<grpc_api.ECSProto.InitRequest, grpc_api.ECSProto.InitResponse>newBuilder()
+        if ((getRegisterMethod = ECSServiceGrpc.getRegisterMethod) == null) {
+          ECSServiceGrpc.getRegisterMethod = getRegisterMethod =
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.ECSProto.RegisterRequest, de.tum.grpc_api.ECSProto.RegisterResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "init"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "register"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc_api.ECSProto.InitRequest.getDefaultInstance()))
+                  de.tum.grpc_api.ECSProto.RegisterRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc_api.ECSProto.InitResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new ECSServiceMethodDescriptorSupplier("init"))
+                  de.tum.grpc_api.ECSProto.RegisterResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new ECSServiceMethodDescriptorSupplier("register"))
               .build();
         }
       }
     }
-    return getInitMethod;
+    return getRegisterMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<grpc_api.ECSProto.UpdateRequest,
-      grpc_api.ECSProto.UpdateResponse> getUpdateMethod;
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.UpdateRequest,
+      de.tum.grpc_api.ECSProto.UpdateResponse> getUpdateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "update",
-      requestType = grpc_api.ECSProto.UpdateRequest.class,
-      responseType = grpc_api.ECSProto.UpdateResponse.class,
+      requestType = de.tum.grpc_api.ECSProto.UpdateRequest.class,
+      responseType = de.tum.grpc_api.ECSProto.UpdateResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<grpc_api.ECSProto.UpdateRequest,
-      grpc_api.ECSProto.UpdateResponse> getUpdateMethod() {
-    io.grpc.MethodDescriptor<grpc_api.ECSProto.UpdateRequest, grpc_api.ECSProto.UpdateResponse> getUpdateMethod;
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.UpdateRequest,
+      de.tum.grpc_api.ECSProto.UpdateResponse> getUpdateMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.UpdateRequest, de.tum.grpc_api.ECSProto.UpdateResponse> getUpdateMethod;
     if ((getUpdateMethod = ECSServiceGrpc.getUpdateMethod) == null) {
       synchronized (ECSServiceGrpc.class) {
         if ((getUpdateMethod = ECSServiceGrpc.getUpdateMethod) == null) {
           ECSServiceGrpc.getUpdateMethod = getUpdateMethod =
-              io.grpc.MethodDescriptor.<grpc_api.ECSProto.UpdateRequest, grpc_api.ECSProto.UpdateResponse>newBuilder()
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.ECSProto.UpdateRequest, de.tum.grpc_api.ECSProto.UpdateResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "update"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc_api.ECSProto.UpdateRequest.getDefaultInstance()))
+                  de.tum.grpc_api.ECSProto.UpdateRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc_api.ECSProto.UpdateResponse.getDefaultInstance()))
+                  de.tum.grpc_api.ECSProto.UpdateResponse.getDefaultInstance()))
               .setSchemaDescriptor(new ECSServiceMethodDescriptorSupplier("update"))
               .build();
         }
@@ -127,12 +127,12 @@ public final class ECSServiceGrpc {
 
     /**
      * <pre>
-     * initialize server
+     * register new KVServer to ECS
      * </pre>
      */
-    default void init(grpc_api.ECSProto.InitRequest request,
-        io.grpc.stub.StreamObserver<grpc_api.ECSProto.InitResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getInitMethod(), responseObserver);
+    default void register(de.tum.grpc_api.ECSProto.RegisterRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.RegisterResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
     }
 
     /**
@@ -140,8 +140,8 @@ public final class ECSServiceGrpc {
      *rpc recover(KVRequest) returns (KVResponse);
      * </pre>
      */
-    default void update(grpc_api.ECSProto.UpdateRequest request,
-        io.grpc.stub.StreamObserver<grpc_api.ECSProto.UpdateResponse> responseObserver) {
+    default void update(de.tum.grpc_api.ECSProto.UpdateRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.UpdateResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateMethod(), responseObserver);
     }
   }
@@ -175,13 +175,13 @@ public final class ECSServiceGrpc {
 
     /**
      * <pre>
-     * initialize server
+     * register new KVServer to ECS
      * </pre>
      */
-    public void init(grpc_api.ECSProto.InitRequest request,
-        io.grpc.stub.StreamObserver<grpc_api.ECSProto.InitResponse> responseObserver) {
+    public void register(de.tum.grpc_api.ECSProto.RegisterRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.RegisterResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getInitMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -189,8 +189,8 @@ public final class ECSServiceGrpc {
      *rpc recover(KVRequest) returns (KVResponse);
      * </pre>
      */
-    public void update(grpc_api.ECSProto.UpdateRequest request,
-        io.grpc.stub.StreamObserver<grpc_api.ECSProto.UpdateResponse> responseObserver) {
+    public void update(de.tum.grpc_api.ECSProto.UpdateRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.UpdateResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getUpdateMethod(), getCallOptions()), request, responseObserver);
     }
@@ -214,12 +214,12 @@ public final class ECSServiceGrpc {
 
     /**
      * <pre>
-     * initialize server
+     * register new KVServer to ECS
      * </pre>
      */
-    public grpc_api.ECSProto.InitResponse init(grpc_api.ECSProto.InitRequest request) {
+    public de.tum.grpc_api.ECSProto.RegisterResponse register(de.tum.grpc_api.ECSProto.RegisterRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getInitMethod(), getCallOptions(), request);
+          getChannel(), getRegisterMethod(), getCallOptions(), request);
     }
 
     /**
@@ -227,7 +227,7 @@ public final class ECSServiceGrpc {
      *rpc recover(KVRequest) returns (KVResponse);
      * </pre>
      */
-    public grpc_api.ECSProto.UpdateResponse update(grpc_api.ECSProto.UpdateRequest request) {
+    public de.tum.grpc_api.ECSProto.UpdateResponse update(de.tum.grpc_api.ECSProto.UpdateRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
@@ -251,13 +251,13 @@ public final class ECSServiceGrpc {
 
     /**
      * <pre>
-     * initialize server
+     * register new KVServer to ECS
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc_api.ECSProto.InitResponse> init(
-        grpc_api.ECSProto.InitRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.ECSProto.RegisterResponse> register(
+        de.tum.grpc_api.ECSProto.RegisterRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getInitMethod(), getCallOptions()), request);
+          getChannel().newCall(getRegisterMethod(), getCallOptions()), request);
     }
 
     /**
@@ -265,14 +265,14 @@ public final class ECSServiceGrpc {
      *rpc recover(KVRequest) returns (KVResponse);
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc_api.ECSProto.UpdateResponse> update(
-        grpc_api.ECSProto.UpdateRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.ECSProto.UpdateResponse> update(
+        de.tum.grpc_api.ECSProto.UpdateRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getUpdateMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_INIT = 0;
+  private static final int METHODID_REGISTER = 0;
   private static final int METHODID_UPDATE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
@@ -292,13 +292,13 @@ public final class ECSServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_INIT:
-          serviceImpl.init((grpc_api.ECSProto.InitRequest) request,
-              (io.grpc.stub.StreamObserver<grpc_api.ECSProto.InitResponse>) responseObserver);
+        case METHODID_REGISTER:
+          serviceImpl.register((de.tum.grpc_api.ECSProto.RegisterRequest) request,
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.RegisterResponse>) responseObserver);
           break;
         case METHODID_UPDATE:
-          serviceImpl.update((grpc_api.ECSProto.UpdateRequest) request,
-              (io.grpc.stub.StreamObserver<grpc_api.ECSProto.UpdateResponse>) responseObserver);
+          serviceImpl.update((de.tum.grpc_api.ECSProto.UpdateRequest) request,
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.UpdateResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -319,18 +319,18 @@ public final class ECSServiceGrpc {
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
-          getInitMethod(),
+          getRegisterMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              grpc_api.ECSProto.InitRequest,
-              grpc_api.ECSProto.InitResponse>(
-                service, METHODID_INIT)))
+              de.tum.grpc_api.ECSProto.RegisterRequest,
+              de.tum.grpc_api.ECSProto.RegisterResponse>(
+                service, METHODID_REGISTER)))
         .addMethod(
           getUpdateMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              grpc_api.ECSProto.UpdateRequest,
-              grpc_api.ECSProto.UpdateResponse>(
+              de.tum.grpc_api.ECSProto.UpdateRequest,
+              de.tum.grpc_api.ECSProto.UpdateResponse>(
                 service, METHODID_UPDATE)))
         .build();
   }
@@ -341,7 +341,7 @@ public final class ECSServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return grpc_api.ECSProto.getDescriptor();
+      return de.tum.grpc_api.ECSProto.getDescriptor();
     }
 
     @java.lang.Override
@@ -380,7 +380,7 @@ public final class ECSServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ECSServiceFileDescriptorSupplier())
-              .addMethod(getInitMethod())
+              .addMethod(getRegisterMethod())
               .addMethod(getUpdateMethod())
               .build();
         }

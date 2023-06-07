@@ -1,6 +1,5 @@
 package de.tum.communication;
 
-import com.sun.source.tree.Tree;
 import de.tum.common.ServerLogger;
 import de.tum.node.ConsistentHash;
 import de.tum.server.database.Database;
@@ -23,7 +22,8 @@ import io.grpc.ManagedChannelBuilder;
 public class Server {
 	private final ConsistentHash metaData;
 	private Node node;
-	private Database database;
+	public MainDatabase mainDatabase;
+	public BackupDatabase backupDatabase;
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	//单例模式，设置selector为static
 	private static Selector selector;
@@ -36,6 +36,8 @@ public class Server {
 	public Server () {
 		this.database = Database.INSTANCE;
 		this.metaData = ConsistentHash.INSTANCE;
+		this.mainDatabase = mainDatabase;
+		this.backupDatabase = backupDatabase;
 	}
 
 	/**
@@ -192,12 +194,12 @@ public class Server {
 				sb.append(tokens[i]);
 			}
 			String value = sb.toString();
-			if (database.get(tokens[1]) != null) {
-				database.put(tokens[1], value);
+			if (mainDatabase.get(tokens[1]) != null) {
+				mainDatabase.put(tokens[1], value);
 				String msg = "put_update " + tokens[1];
 				send(msg, socketChannel);
 			} else {
-				database.put(tokens[1], value);
+				mainDatabase.put(tokens[1], value);
 				String msg = "put_success " + tokens[1];
 				send(msg, socketChannel);
 			}
@@ -216,7 +218,7 @@ public class Server {
 
 	private void getCommandHandler(String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
-			Object value = database.get(tokens[1]);
+			Object value = mainDatabase.get(tokens[1]);
 			if (value != null) {
 				String msg = "get_success " + tokens[1] + " " + value.toString();
 				send(msg, socketChannel);
@@ -240,9 +242,9 @@ public class Server {
 
 	private void deleteCommandHandler(String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
-			Object value = database.get(tokens[1]);
+			Object value = mainDatabase.get(tokens[1]);
 			if (value != null) {
-				database.delete(tokens[1]);
+				mainDatabase.delete(tokens[1]);
 				String msg = "delete_success " + tokens[1];
 				send(msg, socketChannel);
 			}

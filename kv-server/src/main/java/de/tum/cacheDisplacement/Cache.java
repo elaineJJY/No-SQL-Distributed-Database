@@ -1,4 +1,4 @@
-package de.tum.server.cacheDisplacement;
+package de.tum.cacheDisplacement;
 
 import de.tum.common.ServerLogger;
 

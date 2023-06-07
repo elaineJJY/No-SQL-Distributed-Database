@@ -1,12 +1,11 @@
 package de.tum;
 
 import de.tum.common.ServerLogger;
-import de.tum.communication.*;
-import de.tum.server.database.Database;
+import de.tum.communication.Server;
+import de.tum.database.BackupDatabase;
+import de.tum.database.MainDatabase;
+import de.tum.node.Node;
 import java.util.logging.Logger;
-
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 
 /**
  * ClassName: App
@@ -39,7 +38,8 @@ public class App
         try {
             // init according to the args
             ServerLogger.INSTANCE.init(logLevel,logFile, LOGGER);
-            Database.INSTANCE.init(cacheSize, cacheStrategy);
+            MainDatabase database = new MainDatabase(cacheSize, cacheStrategy);
+            BackupDatabase backupDatabase = new BackupDatabase();
 
             // run server
             LOGGER.info("Server is starting...");
