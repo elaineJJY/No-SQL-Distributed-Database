@@ -4,3 +4,13 @@ INFO: Already initialized loggers using Level INFO
 INFO: Init Cache with strategy LRU
 6月 07, 2023 10:22:30 上午 de.tum.App main
 INFO: Server is starting...
+6月 07, 2023 7:41:19 下午 de.tum.communication.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+6月 07, 2023 7:44:22 下午 de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+6月 07, 2023 7:44:22 下午 de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+6月 07, 2023 7:44:22 下午 de.tum.App main
+INFO: Server is starting...
+6月 07, 2023 7:44:22 下午 de.tum.App main
+INFO: Server is shutting down...
