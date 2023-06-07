@@ -12,15 +12,16 @@ import java.util.Map;
  * @author Weijian Feng, Jingyi Jia, Mingrun Ma
  * @version 2.0 Test passed
  */
-public class LRU implements Cache {
-
+public class LRU extends Cache {
+    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private Map<String, Object> cache;
     private final int capacity;
 
     public LRU(int capacity) {
+        super();
         this.capacity = capacity;
         this.cache = new LinkedHashMap<>(capacity, 0.75f, true);
-        LOGGER.info("Init Cache with strategy LRU");
+        getLOGGER().info("Init Cache with strategy LRU");
     }
 
     @Override
@@ -28,7 +29,7 @@ public class LRU implements Cache {
         if (cache.size() >= capacity) {
             String oldKey = cache.keySet().iterator().next();
             Object oldValue = cache.get(oldKey);
-            PersistentStorage.storeToDisk(oldKey, oldValue);
+            getPersistentStorage().storeToDisk(oldKey, oldValue);
             cache.remove(oldKey);
         }
         cache.put(key, value);
@@ -39,10 +40,10 @@ public class LRU implements Cache {
         Object value = cache.get(key);
         // if the value is not in the cache, then read from disk
         if (value == null) {
-            value = PersistentStorage.readFromDisk(key);
+            value = getPersistentStorage().readFromDisk(key);
             if (value != null) {
                 this.put(key, value);
-                PersistentStorage.deleteFromDisk(key);
+                getPersistentStorage().deleteFromDisk(key);
             }
         }
         return value;
@@ -51,7 +52,7 @@ public class LRU implements Cache {
     @Override
     public synchronized void delete(String key) throws Exception {
         if (cache.remove(key) == null) {
-            PersistentStorage.deleteFromDisk(key);
+            getPersistentStorage().deleteFromDisk(key);
         }
     }
 

@@ -12,14 +12,14 @@ import java.util.concurrent.Executors;
 
 public class BackupDatabase implements IDatabase {
 	private PersistentStorage persistentStorage;
-	private static final String DEFAULTDIR = "src/main/java/de/tum/server/database/data/backupdata";
+	private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
 	private SortedMap<String, String> hashToKeyMap;   // Store <Hash, Key>
 
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);
 
 	public BackupDatabase() {
 		this.hashToKeyMap = new TreeMap<>();
-		this.persistentStorage = new PersistentStorage(DEFAULTDIR);
+		this.persistentStorage = new PersistentStorage(DEFAULT_DIR);
 	}
 
 	public void setDirectory(String directory) {
@@ -66,6 +66,14 @@ public class BackupDatabase implements IDatabase {
 
 			// Store key and value
 			persistentStorage.storeToDisk(entry.getKey(), entry.getValue());
+		}
+	}
+
+	public void deleteDataByRange(Range range) throws Exception {
+		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		for (String key : keysInRange.values()) {
+			persistentStorage.deleteFromDisk(key);
+			hashToKeyMap.remove(key);
 		}
 	}
 }

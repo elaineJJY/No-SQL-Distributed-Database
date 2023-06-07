@@ -13,7 +13,8 @@ import java.util.Map;
  * @Create 2023/5/10 10:18
  * @Version 1.0
  */
-public class LFU implements Cache {
+public class LFU extends Cache {
+    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private final int capacity;
     private final Map<String, Object> cache; // 缓存
     private final Map<String, Integer> freq; // 记录每个 key 的访问次数
@@ -21,22 +22,23 @@ public class LFU implements Cache {
     private int minFreq;
 
     public LFU(int capacity) {
+        super();
         this.capacity = capacity;
         this.cache = new HashMap<>();
         this.freq = new HashMap<>();
         this.freqMap = new HashMap<>();
         this.minFreq = 0;
-        LOGGER.info("Init Cache with strategy LFU");
+        getLOGGER().info("Init Cache with strategy LFU");
     }
 
     @Override
     public Object get(String key) throws Exception {
         Object value = cache.get(key);
         if (!cache.containsKey(key)) {
-            value = PersistentStorage.readFromDisk(key);
+            value = getPersistentStorage().readFromDisk(key);
             if (value != null) {
                 this.put(key, value);
-                PersistentStorage.deleteFromDisk(key);
+                getPersistentStorage().deleteFromDisk(key);
             }
         }
         int f = freq.get(key);
@@ -59,7 +61,7 @@ public class LFU implements Cache {
         if (cache.size() == capacity) {
             String evictKey = freqMap.get(minFreq).iterator().next(); // 获取访问次数最少的 key 集合中的第一个 key，即要被淘汰的 key
             freqMap.get(minFreq).remove(evictKey); // 从访问次数最少的 key 集合中移除该 key
-            PersistentStorage.storeToDisk(evictKey, cache.get(evictKey));
+            getPersistentStorage().storeToDisk(evictKey, cache.get(evictKey));
             cache.remove(evictKey); // 从缓存中移除该 key
             freq.remove(evictKey); // 从访问次数的记录中移除该 key
         }
@@ -72,7 +74,7 @@ public class LFU implements Cache {
     @Override
     public void delete(String key) throws Exception {
         if (!cache.containsKey(key)) {
-            PersistentStorage.deleteFromDisk(key);
+            getPersistentStorage().deleteFromDisk(key);
         }
         int f = freq.get(key);
         freq.remove(key);

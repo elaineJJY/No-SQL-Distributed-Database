@@ -84,4 +84,12 @@ public class MainDatabase implements IDatabase {
 			cache.put(entry.getKey(), entry.getValue());
 		}
 	}
+
+	public void deleteDataByRange(Range range) throws Exception {
+		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		for (String key : keysInRange.values()) {
+			cache.delete(key);
+			hashToKeyMap.remove(key);
+		}
+	}
 }

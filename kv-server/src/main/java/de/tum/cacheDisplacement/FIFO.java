@@ -12,24 +12,26 @@ import de.tum.database.PersistentStorage;
  * @author Weijian Feng
  * @version 1.0
  */
-public class FIFO implements Cache {
-
+public class FIFO extends Cache {
+    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private final int capacity;
     private final LinkedList<String> keys;
     private final LinkedList<Object> values;
 
+
     public FIFO(int capacity) {
+        super();
         this.capacity = capacity;
         this.keys = new LinkedList<>();
         this.values = new LinkedList<>();
-        LOGGER.info("Init Cache with strategy FIFO");
+        getLOGGER().info("Init Cache with strategy FIFO");
     }
 
     @Override
     public void put(String key, Object value) throws Exception {
         if (keys.size() >= capacity) {
             String oldKey = keys.removeFirst();
-            PersistentStorage.storeToDisk(oldKey, value);
+            getPersistentStorage().storeToDisk(oldKey, value);
             values.removeFirst();
         }
         keys.addLast(key);
@@ -42,10 +44,10 @@ public class FIFO implements Cache {
         if (index >= 0) {
             return values.get(index);
         } else {
-            Object value = PersistentStorage.readFromDisk(key);
+            Object value = getPersistentStorage().readFromDisk(key);
             if (value!= null) {
                 this.put(key, value);
-                PersistentStorage.deleteFromDisk(key);
+                getPersistentStorage().deleteFromDisk(key);
             }
             return value;
         }
@@ -59,7 +61,7 @@ public class FIFO implements Cache {
             keys.remove(index);
             values.remove(index);
         } else {
-            PersistentStorage.deleteFromDisk(key);
+            getPersistentStorage().deleteFromDisk(key);
         }
     }
 }
