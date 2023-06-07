@@ -1,7 +1,7 @@
 package de.tum.database;
 
 import de.tum.node.Range;
-import java.util.Map;
+import java.util.HashMap;
 
 public interface IDatabase {
 
@@ -11,9 +11,12 @@ public interface IDatabase {
 
 	void delete(String key) throws Exception;
 
-	Map getDataByRange(Range range) throws Exception;
+	HashMap<String, Object> getDataByRange(Range range) throws Exception;
 
-	Map getAllData() throws Exception;
+	HashMap<String, Object> getAllData() throws Exception;
 
-	void saveData(Map data) throws Exception;// Map<K, V> = HashMap<String, Object>
+	void saveAllData(HashMap<String, Object> map) throws Exception;// Map<K, V> = HashMap<String, Object>
+
+	void deleteDataByRange(Range range) throws Exception;
+
 }

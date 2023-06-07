@@ -58,7 +58,7 @@ public class BackupDatabase implements IDatabase {
 		return data;
 	}
 
-	public void saveData(HashMap<String, Object> data) throws Exception {
+	public void saveAllData(HashMap<String, Object> data) throws Exception {
 		for (Map.Entry<String, Object> entry : data.entrySet()) {
 			// Store each key and hash
 			String hash = MD5Hash.hash(entry.getKey());

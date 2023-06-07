@@ -1,11 +1,10 @@
 package de.tum.communication;
 
+import de.tum.common.Help;
 import de.tum.common.ServerLogger;
-import de.tum.database.BackupDatabase;
 import de.tum.node.ConsistentHash;
-import de.tum.database.MainDatabase;
-import de.tum.node.Node;
 
+import de.tum.node.Node;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -15,29 +14,23 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 import java.util.logging.Logger;
-import de.tum.common.*;
-import grpc_api.KVServerProto;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
-public class Server {
+public class KVServer {
 	private final ConsistentHash metaData;
-	private Node node;
-	public MainDatabase mainDatabase;
-	public BackupDatabase backupDatabase;
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	//单例模式，设置selector为static
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
 
 	// 分离读写缓冲区，按需设置server的写缓冲区
-	private static ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-	private static ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
+	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+	private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
 
-	public Server (MainDatabase mainDatabase, BackupDatabase backupDatabase) {
+	public KVServer(Node node) {
 		this.metaData = ConsistentHash.INSTANCE;
-		this.mainDatabase = mainDatabase;
-		this.backupDatabase = backupDatabase;
+		this.node = node;
 	}
 
 	/**
@@ -47,10 +40,8 @@ public class Server {
 	 * @param helpUsage whether to display help information
 	 * @throws Exception
 	 */
-	public void start(String address, int port, boolean helpUsage) throws Exception {
-		this.node = new Node(address, port);
+	public void start(String address, int port) throws Exception {
 
-		if (helpUsage) Help.helpDisplay();
 		// open selector
 		ssChannel = ServerSocketChannel.open();
 		// set non-blocking mode
@@ -220,7 +211,7 @@ public class Server {
 		try {
 			Object value = mainDatabase.get(tokens[1]);
 			if (value != null) {
-				String msg = "get_success " + tokens[1] + " " + value.toString();
+				String msg = "get_success " + tokens[1] + " " + value;
 				send(msg, socketChannel);
 			}
 			else {
@@ -267,16 +258,17 @@ public class Server {
 	private void process(String request, SocketChannel socketChannel) throws Exception {
 		String[] tokens = request.trim().split("\\s+");
 		String key = tokens[1];
-		if (node.isResponsible(key)) {
-			switch(tokens[0]) {
-				case "put": putCommandHandler(tokens, socketChannel); break;
-				case "get": getCommandHandler(tokens, socketChannel); break;
-				case "quit": socketChannel.close(); break;
-				case "delete": deleteCommandHandler(tokens, socketChannel); break;
-				default: send("error Unknown Command", socketChannel);
-			}
-		} else {
-			send("keyrange_success" + metaData.toString(), socketChannel);
+		Node resopnsibleNode = this.node;
+		if (!node.isResponsible(key)) {
+			System.out.println("Not responsible for key: " + key);
+			resopnsibleNode = metaData.getResponsibleServerByKey(key);
+		}
+		switch(tokens[0]) {
+			case "put": putCommandHandler(resopnsibleNode, tokens, socketChannel); break;
+			case "get": getCommandHandler(resopnsibleNode, tokens, socketChannel); break;
+			case "delete": deleteCommandHandler(resopnsibleNode, tokens, socketChannel); break;
+			case "quit": socketChannel.close(); break;
+			default: send("error Unknown Command", socketChannel);
 		}
 	}
 }

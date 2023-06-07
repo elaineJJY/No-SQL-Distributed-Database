@@ -19,11 +19,6 @@ public enum ConsistentHash {
 	 */
 	private SortedMap<String, Node> ring = new TreeMap<>();
 
-	//TODO: gRPC
-	// initialization of currentRing
-	public void updateRing(SortedMap<String, Node> ring) {
-		this.ring = ring;
-	}
 
 
 	/**
@@ -71,13 +66,26 @@ public enum ConsistentHash {
 	 */
 	@Override
 	public String toString() {
-		 // for each node: <kr-from>, <kr-to>, <ip:port>
-		 String text = "";
-		 for (String hash : ring.keySet()) {
-		 	Node node = ring.get(hash);
-			 //  <kr-from>, <kr-to>, <ip:port>
-		 	text += node.getRange(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
-		 }
+		// for each node: <kr-from>, <kr-to>, <ip:port>
+		String text = "";
+		for (String hash : ring.keySet()) {
+			Node node = ring.get(hash);
+			//  <kr-from>, <kr-to>, <ip:port>
+			text += node.getRange(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
+		}
 		return text;
+	}
+
+	public void update(SortedMap<String, Node> ring) {
+		this.ring = ring;
+	}
+
+	public Node getResponsibleServerByKey(String key) {
+		String hash = MD5Hash.hash(key);
+		SortedMap<String, Node> tailMap = ring.tailMap(hash);
+		if (tailMap.isEmpty()) {
+			return ring.get(ring.firstKey());
+		}
+		return tailMap.get(tailMap.firstKey());
 	}
 }

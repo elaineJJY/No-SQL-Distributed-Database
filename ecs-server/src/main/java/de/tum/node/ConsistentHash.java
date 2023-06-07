@@ -24,7 +24,7 @@ public enum ConsistentHash {
 		return ring;
 	}
 
-	public void addNode(Node node) {
+	public void addNode(Node node) throws Exception {
 		String nodeHash = MD5Hash.hash(node.toString());
 		// in case of hash collision
 		if (ring.containsKey(nodeHash)) {
@@ -39,13 +39,18 @@ public enum ConsistentHash {
 		node.updateRing(ring);
 		node.init(); // initialize node in the KV_Server
 		updateRingForAllNodes();
-		getNextNode(node).deleteExpiredData();
-		getPreviousNode(node).deleteExpiredData();
+		getPreviousNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
+		getNextNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
 	}
 
-	public void removeNode(Node node) {
-		// if node still alive
-		// set node to read-olny
+	public void removeNode(Node node) throws Exception {
+
+		// if node still alive, set node to read-olny
+		try {
+			// node.setReadOnly();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		String nodeHash = getHash(node);
 		Node previousNode = getPreviousNode(node);
@@ -55,17 +60,17 @@ public enum ConsistentHash {
 		previousNode.recover(node);
 		nextNode.recover(node);
 		updateRingForAllNodes();
-		previousNode.deleteExpiredData();
-		nextNode.deleteExpiredData();
 	}
 
 	/**
 	 * Get the node hash corresponding to the node
+	 *
 	 * @param node
 	 * @return hash value
 	 */
 	public String getHash(Node node) {
-		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
+		String nodeHash = MD5Hash.hash(
+			node.toString()); // hash value of the node, key is string <ip:port>
 		int i = 1;
 		while (!ring.get(nodeHash).equals(node)) {
 			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
@@ -75,10 +80,11 @@ public enum ConsistentHash {
 
 	/**
 	 * Get the next node given the current node
+	 *
 	 * @param node
 	 * @return next node
 	 */
-	public Node getNextNode(Node node){
+	public Node getNextNode(Node node) {
 		String nodeHash = getHash(node);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
 		SortedMap<String, Node> tailMap = ring.tailMap(nodeHash);
@@ -88,10 +94,11 @@ public enum ConsistentHash {
 
 	/**
 	 * Get the previous node given the current node
+	 *
 	 * @param node
 	 * @return previous node
 	 */
-	public Node getPreviousNode(Node node){
+	public Node getPreviousNode(Node node) {
 		String nodeHash = getHash(node);
 		SortedMap<String, Node> headMap = ring.headMap(nodeHash);
 		String previousHash = headMap.isEmpty() ? ring.lastKey() : headMap.lastKey();

@@ -25,7 +25,7 @@ public class ECSServiceImpl extends ECSServiceGrpc.ECSServiceImplBase {
 		int Port = request.getIpPort().getPort();
 		// 2. 业务处理
 		System.out.println("ECS receive register request form KVServer:<" + Host + ":" + Port + ">");
-		Node node = new Node(Host, Port);
+		Node node = new Node(Host, Port); // Stub from KVServer
 		ConsistentHash.INSTANCE.addNode(node);
 		// 3. 封装响应
 		// 3.1 构建响应对象

@@ -1,26 +1,29 @@
 package de.tum.node;
 
-import de.tum.communication.Server;
+
+import de.tum.communication.KVServer;
 import de.tum.database.BackupDatabase;
 import de.tum.database.IDatabase;
 import de.tum.database.MainDatabase;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.SortedMap;
 
 public class Node implements Serializable {
 
+	private KVServer server;
 	private String host;
 	private int port;
+	private IDatabase mainDatabase;
+	private IDatabase backupDatabase;
 
-	private Server server;
-
-
-	public Node(String host, int port, Server server) {
+	public Node(String host, int port, IDatabase mainDatabase, IDatabase backupDatabase){
 		this.host = host;
 		this.port = port;
-		this.server = server;
+		this.mainDatabase = mainDatabase;
+		this.backupDatabase = backupDatabase;
 	}
 
 	public int getPort() {
@@ -91,16 +94,16 @@ public class Node implements Serializable {
 		return (keyHash.compareTo(key) >= 0 && prevHash.compareTo(key) < 0);
 	}
 
-	// will be called when this node joins the ring
-	public void init() {
+	public void init() throws Exception {
 		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
 		Node previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-		String data = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
-		String backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
+		mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
+		backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
+		server = new KVServer(this);
 	}
 
-	// will be called when a node leaves the ring
-	public void recover(Node removedNode) {
+
+	public void recover(Node removedNode) throws Exception {
 
 		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
 
@@ -110,11 +113,12 @@ public class Node implements Serializable {
 			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
 			try {
 				removedNode.heartbeat(); // check whether the removed node is alive
-				server.mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
+				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
 			}
 			catch (Exception e) {
 				System.out.println("Node " + removedNode + " is dead");
-				server.mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+				// recover data from the backup
+				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 			}
 		}
 		// recover backup from the removed node
@@ -123,34 +127,44 @@ public class Node implements Serializable {
 			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
 			try {
 				removedNode.heartbeat(); // check whether the removed node is alive
-				server.backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
+				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
 			}
 			catch (Exception e) {
 				System.out.println("Node " + removedNode + " is dead");
-				server.backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+				// recover data from the backup
+				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
 			}
 		}
-
 	}
 
-	public void deleteExpiredData() {
-		String dataRange = getRange(DataType.DATA);
-		String backupRange = getRange(DataType.BACKUP);
-		//TODO: Database.onlyKeep(dataRange, DataType.DATA);
-		//TODO: Database.onlyKeep(backupRange, DataType.BACKUP);
+	public void updateRing(SortedMap<String, Node> ring) {
+		ConsistentHash.INSTANCE.update(ring);
 	}
 
+	public void deleteExpiredData(DataType dataType, Range range) throws Exception {
+		IDatabase database = dataType == DataType.DATA ? mainDatabase : backupDatabase;
+		database.deleteDataByRange(range);
+	}
 
-	/**TODO grpc
+	/**
 	 * Get data from another node to this node
 	 *
 	 * @param where
 	 * @param range
 	 * @return the data that in this range
 	 */
-	public Data copy(DataType where, Range range) {
-		IDatabase database = where == DataType.DATA ? server.mainDatabase : server.backupDatabase;
+	public HashMap<String, Object> copy(DataType where, Range range) throws Exception {
+		IDatabase database = where == DataType.DATA ? mainDatabase : backupDatabase;
 		return database.getDataByRange(range);
 	}
 
+	public Object get(String key) throws Exception {
+		return mainDatabase.get(key);
+	}
+	public void put(String key, String value) throws Exception {
+		mainDatabase.put(key, value);
+	}
+	public void delete(String key) throws Exception {
+		mainDatabase.delete(key);
+	}
 }

@@ -3,6 +3,9 @@ package de.tum.database;
 import de.tum.cacheDisplacement.*;
 import de.tum.common.ServerLogger;
 import de.tum.node.MD5Hash;
+import de.tum.node.Range;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -16,7 +19,7 @@ import java.util.logging.Logger;
  * @create 2023/5/9 20:32
  * @version 1.0
  */
-public class MainDatabase {
+public class MainDatabase implements IDatabase {
 	private Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private Cache cache;
 	private SortedMap<String, String> hashToKeyMap;
@@ -71,7 +74,7 @@ public class MainDatabase {
 		return data;
 	}
 
-	public void saveData(HashMap<String, Object> data) throws Exception {
+	public void saveAllData(HashMap<String, Object> data) throws Exception {
 		for (Map.Entry<String, Object> entry : data.entrySet()) {
 			// Store each key and hash
 			String hash = MD5Hash.hash(entry.getKey());
