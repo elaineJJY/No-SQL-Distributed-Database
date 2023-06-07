@@ -45,7 +45,7 @@ public class App
             // run server
             LOGGER.info("Server is starting...");
             Server KVServer = new Server(database, backupDatabase);
-            Node node = new Node(address, port, server);
+            Node node = new Node(address, port, KVServer);
             KVServer.registerToECS("localhost", port);
             KVServer.start(address, port, helpUsage);
             //KVServer.registerToECS(bootStrapServerIP, bootStrapServerPort);

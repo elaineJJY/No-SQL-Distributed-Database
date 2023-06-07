@@ -1,5 +1,6 @@
 package de.tum.node;
 
+import de.tum.communication.Server;
 import de.tum.database.BackupDatabase;
 import de.tum.database.IDatabase;
 import de.tum.database.MainDatabase;
