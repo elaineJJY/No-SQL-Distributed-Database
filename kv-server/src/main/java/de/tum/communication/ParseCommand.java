@@ -16,7 +16,7 @@ import java.io.PrintStream;
 public class ParseCommand {
     private int port = 5551;
     private String address = "127.0.0.1";
-    private String bootstrapServerAddress = " ";
+    private String bootstrapServerAddress = "192.168.1.24:5144";
     private String directory = "data/";
     private String logFile = "echo.log";
     private String logLevel = "INFO";

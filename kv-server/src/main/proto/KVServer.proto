@@ -10,12 +10,12 @@ message NodeMessage {
 }
 
 // Service for ECS to register KVServer
-message InitRequest {
+message RegisterRequest {
   NodeMessage IpPort = 1;
 }
 
-message InitResponse {
-  map<string, NodeMessage> ring = 1;
+message RegisterResponse {
+  map<string, NodeMessage> ring = 1; //<nodeHash, Node>
 }
 
 // Service for ECS to update all KVServers
@@ -28,7 +28,8 @@ message UpdateResponse {
 }
 
 service ECSService {
-  rpc init(InitRequest) returns (InitResponse); // initialize server
+  rpc register(RegisterRequest) returns (RegisterResponse); // register new KVServer to ECS
+
   //rpc recover(KVRequest) returns (KVResponse);
   rpc update(UpdateRequest) returns (UpdateResponse); // update all nodes with latest ring
 }

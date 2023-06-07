@@ -21,6 +21,7 @@ public class App
     private static Logger LOGGER = Logger.getLogger(App.class.getName());
 
     public static void main( String[] args )
+
     {
         de.tum.server.communication.ParseCommand parseCommand = new de.tum.server.communication.ParseCommand(args);
 
@@ -43,7 +44,11 @@ public class App
 
             // run server
             LOGGER.info("Server is starting...");
-            new Server().start(address, port, helpUsage);
+            Server KVServer = new Server(database, backupDatabase);
+            Node node = new Node(address, port, server);
+            KVServer.registerToECS("localhost", port);
+            KVServer.start(address, port, helpUsage);
+            //KVServer.registerToECS(bootStrapServerIP, bootStrapServerPort);
 
 
             LOGGER.info("Server is shutting down...");

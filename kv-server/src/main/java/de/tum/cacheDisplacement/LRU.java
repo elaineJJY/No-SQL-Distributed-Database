@@ -1,4 +1,4 @@
-package de.tum.server.cacheDisplacement;
+package de.tum.cacheDisplacement;
 
 
 import java.util.LinkedHashMap;
@@ -28,7 +28,7 @@ public class LRU implements Cache {
         if (cache.size() >= capacity) {
             String oldKey = cache.keySet().iterator().next();
             Object oldValue = cache.get(oldKey);
-            CacheManager.storeToDisk(oldKey, oldValue);
+            PersistentStorage.storeToDisk(oldKey, oldValue);
             cache.remove(oldKey);
         }
         cache.put(key, value);
@@ -39,10 +39,10 @@ public class LRU implements Cache {
         Object value = cache.get(key);
         // if the value is not in the cache, then read from disk
         if (value == null) {
-            value = CacheManager.readFromDisk(key);
+            value = PersistentStorage.readFromDisk(key);
             if (value != null) {
                 this.put(key, value);
-                CacheManager.deleteFromDisk(key);
+                PersistentStorage.deleteFromDisk(key);
             }
         }
         return value;
@@ -51,7 +51,7 @@ public class LRU implements Cache {
     @Override
     public synchronized void delete(String key) throws Exception {
         if (cache.remove(key) == null) {
-            CacheManager.deleteFromDisk(key);
+            PersistentStorage.deleteFromDisk(key);
         }
     }
 

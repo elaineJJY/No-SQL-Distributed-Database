@@ -24,9 +24,11 @@ public class App {
 		String address = parseCommand.getAddress();
 		ServerLogger.INSTANCE.init(parseCommand.getLogLevel(), parseCommand.getLogFile(), logger);
 		try {
-			ServerBuilder serverBuilder = ServerBuilder.forPort(5152);
-			serverBuilder.addService(new ECSServiceImpl());
-			Server server = serverBuilder.build();
+			Server server;
+			//SocketAddress ECSAddress = new InetSocketAddress(address, port);
+			SocketAddress ECSAddress = new InetSocketAddress("localhost", 5144);
+			server = NettyServerBuilder.forAddress(ECSAddress).addService(new ECSServiceImpl()).build();
+
 			server.start();
 			server.awaitTermination();
 		} catch (IOException e) {

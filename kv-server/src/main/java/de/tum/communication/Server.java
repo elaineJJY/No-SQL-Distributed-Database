@@ -1,8 +1,9 @@
 package de.tum.communication;
 
 import de.tum.common.ServerLogger;
+import de.tum.database.BackupDatabase;
 import de.tum.node.ConsistentHash;
-import de.tum.server.database.Database;
+import de.tum.database.MainDatabase;
 import de.tum.node.Node;
 
 import java.io.IOException;
@@ -33,8 +34,7 @@ public class Server {
 	private static ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 	private static ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
 
-	public Server () {
-		this.database = Database.INSTANCE;
+	public Server (MainDatabase mainDatabase, BackupDatabase backupDatabase) {
 		this.metaData = ConsistentHash.INSTANCE;
 		this.mainDatabase = mainDatabase;
 		this.backupDatabase = backupDatabase;

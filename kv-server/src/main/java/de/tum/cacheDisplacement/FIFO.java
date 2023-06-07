@@ -1,6 +1,7 @@
-package de.tum.server.cacheDisplacement;
+package de.tum.cacheDisplacement;
 
 import java.util.LinkedList;
+import de.tum.database.PersistentStorage;
 
 /**
  * ClassName: FIFO
@@ -28,7 +29,7 @@ public class FIFO implements Cache {
     public void put(String key, Object value) throws Exception {
         if (keys.size() >= capacity) {
             String oldKey = keys.removeFirst();
-            CacheManager.storeToDisk(oldKey, value);
+            PersistentStorage.storeToDisk(oldKey, value);
             values.removeFirst();
         }
         keys.addLast(key);
@@ -41,10 +42,10 @@ public class FIFO implements Cache {
         if (index >= 0) {
             return values.get(index);
         } else {
-            Object value = CacheManager.readFromDisk(key);
+            Object value = PersistentStorage.readFromDisk(key);
             if (value!= null) {
                 this.put(key, value);
-                CacheManager.deleteFromDisk(key);
+                PersistentStorage.deleteFromDisk(key);
             }
             return value;
         }
@@ -58,7 +59,7 @@ public class FIFO implements Cache {
             keys.remove(index);
             values.remove(index);
         } else {
-            CacheManager.deleteFromDisk(key);
+            PersistentStorage.deleteFromDisk(key);
         }
     }
 }
