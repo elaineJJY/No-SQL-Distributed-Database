@@ -64,9 +64,14 @@ public class App
 
 
             LOGGER.info("Server is shutting down...");
+            server.awaitTermination();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
+    }
+
+    public void registerToECS(String bootstrapServerIp, int bootstrapServerPort) {
+
     }
 }

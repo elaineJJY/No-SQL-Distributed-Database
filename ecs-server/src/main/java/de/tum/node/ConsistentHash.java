@@ -33,9 +33,8 @@ public enum ConsistentHash {
 				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
 			}
 		}
-		ring.put(nodeHash, node); // add node to the ring
-
-		//// TODO: gRPC
+		ring.put(nodeHash, node); // add node to the ring //
+		// TODO: gRPC
 		node.updateRing(ring);
 		node.init(); // initialize node in the KV_Server
 		updateRingForAllNodes();

@@ -9,29 +9,17 @@ message NodeMessage {
     int32 port = 2;
 }
 
-// Service for ECS to register KVServer
-message RegisterRequest {
-    NodeMessage IpPort = 1;
+message InitRequest {
+    NodeMessage node = 1;
 }
 
-message RegisterResponse {
-    map<string, NodeMessage> ring = 1; //<nodeHash, Node>
-}
-
-// Service for ECS to update all KVServers
-message UpdateRequest {
-    map<string, NodeMessage> ring = 1;
-}
-
-message UpdateResponse {
-    bool isSuccess = 1;
+message UpdateRingRequest {
+    NodeMessage node = 1;
 }
 
 service ECSService {
-    rpc register(RegisterRequest) returns (RegisterResponse); // register new KVServer to ECS
-
-    //rpc recover(KVRequest) returns (KVResponse);
-    rpc update(UpdateRequest) returns (UpdateResponse); // update all nodes with latest ring
+    rpc init(InitRequest) returns (google.protobuf.Empty) {}
+    rpc updateRing(UpdateRingRequest) returns (google.protobuf.Empty) {}
 }
 
 

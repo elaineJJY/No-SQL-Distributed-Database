@@ -23,6 +23,7 @@ public class KVServer {
 	//单例模式，设置selector为static
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
+	private Node node;
 
 	// 分离读写缓冲区，按需设置server的写缓冲区
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
@@ -37,7 +38,6 @@ public class KVServer {
 	 * Start server
 	 * @param address server address
 	 * @param port server port to listen
-	 * @param helpUsage whether to display help information
 	 * @throws Exception
 	 */
 	public void start(String address, int port) throws Exception {
@@ -175,7 +175,7 @@ public class KVServer {
 	 * @param socketChannel
 	 * @throws IOException
 	 */
-	private void putCommandHandler(String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void putCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 2; i < tokens.length; i++) {
@@ -185,12 +185,12 @@ public class KVServer {
 				sb.append(tokens[i]);
 			}
 			String value = sb.toString();
-			if (mainDatabase.get(tokens[1]) != null) {
-				mainDatabase.put(tokens[1], value);
+			if (responsibleNode.get(tokens[1]) != null) {
+				responsibleNode.put(tokens[1], value);
 				String msg = "put_update " + tokens[1];
 				send(msg, socketChannel);
 			} else {
-				mainDatabase.put(tokens[1], value);
+				responsibleNode.put(tokens[1], value);
 				String msg = "put_success " + tokens[1];
 				send(msg, socketChannel);
 			}
@@ -207,9 +207,9 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void getCommandHandler(String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void getCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
-			Object value = mainDatabase.get(tokens[1]);
+			Object value = responsibleNode.get(tokens[1]);
 			if (value != null) {
 				String msg = "get_success " + tokens[1] + " " + value;
 				send(msg, socketChannel);
@@ -218,6 +218,7 @@ public class KVServer {
 				String msg = "get_error " + tokens[1];
 				send(msg, socketChannel);
 			}
+
 		} catch (Exception e) {
 			String msg = "get_error " + tokens[1];
 			send(msg, socketChannel);
@@ -231,11 +232,11 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void deleteCommandHandler(String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void deleteCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
-			Object value = mainDatabase.get(tokens[1]);
+			Object value = node.get(tokens[1]);
 			if (value != null) {
-				mainDatabase.delete(tokens[1]);
+				node.delete(tokens[1]);
 				String msg = "delete_success " + tokens[1];
 				send(msg, socketChannel);
 			}
