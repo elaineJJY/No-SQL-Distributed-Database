@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class LRU extends Cache {
     private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
-    private Map<String, Object> cache;
+    private Map<String, String> cache;
     private final int capacity;
 
     public LRU(int capacity) {
@@ -25,10 +25,10 @@ public class LRU extends Cache {
     }
 
     @Override
-    public synchronized void put(String key, Object value) throws Exception {
+    public synchronized void put(String key, String value) throws Exception {
         if (cache.size() >= capacity) {
             String oldKey = cache.keySet().iterator().next();
-            Object oldValue = cache.get(oldKey);
+            String oldValue = cache.get(oldKey);
             getPersistentStorage().storeToDisk(oldKey, oldValue);
             cache.remove(oldKey);
         }
@@ -36,8 +36,8 @@ public class LRU extends Cache {
     }
 
     @Override
-    public synchronized Object get(String key) throws Exception {
-        Object value = cache.get(key);
+    public synchronized String get(String key) throws Exception {
+        String value = cache.get(key);
         // if the value is not in the cache, then read from disk
         if (value == null) {
             value = getPersistentStorage().readFromDisk(key);

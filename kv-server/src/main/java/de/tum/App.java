@@ -56,8 +56,15 @@ public class App
             BackupDatabase backupDatabase = new BackupDatabase();
             Node node = new Node(address, port, database, backupDatabase);
 
+            ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0);
+            rpcServerBuilder.addService(node);
+            Server rpcServer = rpcServerBuilder.build();
+            rpcServer.start();
+            int rpcPort = rpcServer.getPort();
             // register to ECS
-            registerHandler(bootStrapServerIP, bootStrapServerPort, address, port);
+            registerHandler(bootStrapServerIP, bootStrapServerPort, address, port, rpcPort);
+
+            LOGGER.info("RPC service published on port: " + rpcPort + ", waiting to receive heartbeat from ECS/Other Servers");
 
 //            if (registerResponse) {}
 //            else {
@@ -70,14 +77,14 @@ public class App
             KVServer kvServer = new KVServer(node);
             kvServer.start(address, port);
 
-//            rpcServer.awaitTermination();
+            rpcServer.awaitTermination();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
     }
 
-    public static void registerHandler(String bootStrapServerIP, int bootStrapServerPort, String address, int port) {
+    public static void registerHandler(String bootStrapServerIP, int bootStrapServerPort, String address, int port, int rpcPort) {
         // Register to ECS
         ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(bootStrapServerIP, bootStrapServerPort).usePlaintext().build();
         ECServiceGrpc.ECServiceBlockingStub ecsService = ECServiceGrpc.newBlockingStub(managedChannel);
@@ -86,8 +93,13 @@ public class App
                 .setHost(address)
                 .setPort(port);
 
+//        KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
+//                .setNode(nodeMessageBuilder.build()).build();
+
         KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
-                .setNode(nodeMessageBuilder.build()).build();
+                .setNode(nodeMessageBuilder.build())
+                .setRpcPort(rpcPort)
+                .build();
 
         ecsService.register(registerRequest);
         managedChannel.shutdown();

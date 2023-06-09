@@ -28,6 +28,7 @@ message HeartBeatResponse {
 
 message RegisterRequest {
     NodeMessage node = 1;
+    int32 rpcPort = 2;
 }
 
 message ToStringResponse {
@@ -55,7 +56,8 @@ message GetRequest {
 }
 
 message GetResponse {
-    google.protobuf.Any Object = 1;
+    //  google.protobuf.Any Object = 1;
+    string value = 1;
 }
 
 message PutRequest {
@@ -80,7 +82,7 @@ service KVService {
     rpc updateRingRPC(UpdateRingRequest) returns (google.protobuf.Empty) {}
     rpc deleteExpiredData(google.protobuf.Empty) returns (google.protobuf.Empty) {}
     rpc copy(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc getRPC(GetRequest) returns (GetRequest) {}
+    rpc getRPC(GetRequest) returns (GetResponse) {}
     rpc putRPC(PutRequest) returns (google.protobuf.Empty) {}
     rpc deleteRPC(DeleteRequest) returns (google.protobuf.Empty) {}
 }

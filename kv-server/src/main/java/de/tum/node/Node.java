@@ -221,12 +221,12 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	 * @param range
 	 * @return the data that in this range
 	 */
-	public HashMap<String, Object> copy(DataType where, Range range) throws Exception {
+	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
 		IDatabase database = where == DataType.DATA ? mainDatabase : backupDatabase;
 		return database.getDataByRange(range);
 	}
 
-	public Object get(String key) throws Exception {
+	public String get(String key) throws Exception {
 		return mainDatabase.get(key);
 	}
 	public void put(String key, String value) throws Exception {
@@ -237,9 +237,18 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 	public void getRPC(de.tum.grpc_api.KVServerProto.GetRequest request,
-					   io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRequest> responseObserver) {
+					   io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse> responseObserver) {
 		String key = request.getKey();
-
+		KVServerProto.GetResponse response = null;
+		try {
+			response = KVServerProto.GetResponse.newBuilder()
+					.setValue(mainDatabase.get(key))
+					.build();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
 	}
 	public void putRPC(de.tum.grpc_api.KVServerProto.PutRequest request,
 					   io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {

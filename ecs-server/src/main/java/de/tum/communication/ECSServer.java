@@ -87,6 +87,7 @@ public class ECSServer {
                 System.out.println("test register starts");
                 String Host = request.getNode().getHost();
                 int Port = request.getNode().getPort();
+                int rpcPort = request.getRpcPort();
                 System.out.println(
                         "ECS receive register request form KVServer: <" + Host + ":" + Port + ">");
                 // Build and send the response
@@ -101,7 +102,7 @@ public class ECSServer {
                 // new Thread?
 //                ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(Host, KV_LISTEN_ECS_PORT).usePlaintext().build();
 //                KVServiceGrpc.KVServiceBlockingStub kvServiceStub = KVServiceGrpc.newBlockingStub(managedChannel);
-                Node node = new Node(Host);
+                Node node = new Node(Host, rpcPort);
                 try {
                     //ConsistentHash.INSTANCE.addNode(nodeStub);
                     // 心跳
@@ -110,7 +111,8 @@ public class ECSServer {
 //                    }
 //                    removeNode(nodeStub);
                     //System.out.println(node.heartbeat());
-                    System.out.println(node.heartbeat());
+                    Thread.sleep(20000);
+                    System.out.println(node.get("1"));
 //                    managedChannel.shutdown();
                 } catch (Exception e) {
                     throw new RuntimeException(e);

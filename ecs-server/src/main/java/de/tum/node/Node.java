@@ -43,9 +43,9 @@ public class Node {
     private final KVServiceGrpc.KVServiceBlockingStub stub;
     public static final int KV_LISTEN_ECS_PORT = 5200;
 
-    public Node(String host) {
+    public Node(String host, int port) {
         this.host = host;
-        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, KV_LISTEN_ECS_PORT).usePlaintext().build());
+        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, port).usePlaintext().build());
     }
 
     public long heartbeat() {
@@ -88,8 +88,10 @@ public class Node {
         return null;
     }
 
-    public Object get(String key) throws Exception {
-        return null;
+    public String get(String key) throws Exception {
+        ECSProto.GetRequest request = ECSProto.GetRequest.newBuilder().setKey(key).build();
+        ECSProto.GetResponse response = this.stub.getRPC(request);
+        return response.getValue();
     }
     public void put(String key, String value) throws Exception {
         ECSProto.PutRequest request = ECSProto.PutRequest.newBuilder().setKey(key).setValue(value).build();

@@ -26,13 +26,13 @@ public class BackupDatabase implements IDatabase {
 		persistentStorage.setDirectory(directory);
 	}
 
-	public void put(String key, Object value) throws Exception {
+	public void put(String key, String value) throws Exception {
 		String hash = MD5Hash.hash(key);
 		hashToKeyMap.put(hash, key);
 		persistentStorage.storeToDisk(key, value);
 	}
 
-	public Object get(String key) throws Exception {
+	public String get(String key) throws Exception {
 		return persistentStorage.readFromDisk(key);
 	}
 
@@ -41,8 +41,8 @@ public class BackupDatabase implements IDatabase {
 		persistentStorage.deleteFromDisk(key);
 	}
 
-	public HashMap<String, Object> getDataByRange(Range range) throws Exception {
-		HashMap<String, Object> data = new HashMap<>();
+	public HashMap<String, String> getDataByRange(Range range) throws Exception {
+		HashMap<String, String> data = new HashMap<>();
 		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
 		for (String key : keysInRange.values()) {
 			data.put(key, persistentStorage.readFromDisk(key));
@@ -50,16 +50,16 @@ public class BackupDatabase implements IDatabase {
 		return data;
 	}
 
-	public HashMap<String, Object> getAllData() throws Exception {
-		HashMap<String, Object> data = new HashMap<>();
+	public HashMap<String, String> getAllData() throws Exception {
+		HashMap<String, String> data = new HashMap<>();
 		for (String key : hashToKeyMap.values()) {
 			data.put(key, persistentStorage.readFromDisk(key));
 		}
 		return data;
 	}
 
-	public void saveAllData(HashMap<String, Object> data) throws Exception {
-		for (Map.Entry<String, Object> entry : data.entrySet()) {
+	public void saveAllData(HashMap<String, String> data) throws Exception {
+		for (Map.Entry<String, String> entry : data.entrySet()) {
 			// Store each key and hash
 			String hash = MD5Hash.hash(entry.getKey());
 			hashToKeyMap.put(hash, entry.getKey());

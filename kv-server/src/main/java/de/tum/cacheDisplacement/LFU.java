@@ -16,7 +16,7 @@ import java.util.Map;
 public class LFU extends Cache {
     private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private final int capacity;
-    private final Map<String, Object> cache; // 缓存
+    private final Map<String, String> cache; // 缓存
     private final Map<String, Integer> freq; // 记录每个 key 的访问次数
     private final Map<Integer, LinkedHashSet<String>> freqMap; // 记录每个访问次数对应的 key 集合
     private int minFreq;
@@ -32,8 +32,8 @@ public class LFU extends Cache {
     }
 
     @Override
-    public Object get(String key) throws Exception {
-        Object value = cache.get(key);
+    public String get(String key) throws Exception {
+        String value = cache.get(key);
         if (!cache.containsKey(key)) {
             value = getPersistentStorage().readFromDisk(key);
             if (value != null) {
@@ -52,7 +52,7 @@ public class LFU extends Cache {
     }
 
     @Override
-    public void put(String key, Object value) throws Exception {
+    public void put(String key, String value) throws Exception {
         if (cache.containsKey(key)) {
             cache.put(key, value);
             get(key); // 更新访问次数

@@ -1928,6 +1928,12 @@ public final class ECSProto {
      * <code>.NodeMessage node = 1;</code>
      */
     de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder();
+
+    /**
+     * <code>int32 rpcPort = 2;</code>
+     * @return The rpcPort.
+     */
+    int getRpcPort();
   }
   /**
    * Protobuf type {@code RegisterRequest}
@@ -1995,6 +2001,17 @@ public final class ECSProto {
       return getNode();
     }
 
+    public static final int RPCPORT_FIELD_NUMBER = 2;
+    private int rpcPort_;
+    /**
+     * <code>int32 rpcPort = 2;</code>
+     * @return The rpcPort.
+     */
+    @java.lang.Override
+    public int getRpcPort() {
+      return rpcPort_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2012,6 +2029,9 @@ public final class ECSProto {
       if (node_ != null) {
         output.writeMessage(1, getNode());
       }
+      if (rpcPort_ != 0) {
+        output.writeInt32(2, rpcPort_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2024,6 +2044,10 @@ public final class ECSProto {
       if (node_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getNode());
+      }
+      if (rpcPort_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, rpcPort_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2045,6 +2069,8 @@ public final class ECSProto {
         if (!getNode()
             .equals(other.getNode())) return false;
       }
+      if (getRpcPort()
+          != other.getRpcPort()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -2060,6 +2086,8 @@ public final class ECSProto {
         hash = (37 * hash) + NODE_FIELD_NUMBER;
         hash = (53 * hash) + getNode().hashCode();
       }
+      hash = (37 * hash) + RPCPORT_FIELD_NUMBER;
+      hash = (53 * hash) + getRpcPort();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2194,6 +2222,8 @@ public final class ECSProto {
           node_ = null;
           nodeBuilder_ = null;
         }
+        rpcPort_ = 0;
+
         return this;
       }
 
@@ -2225,6 +2255,7 @@ public final class ECSProto {
         } else {
           result.node_ = nodeBuilder_.build();
         }
+        result.rpcPort_ = rpcPort_;
         onBuilt();
         return result;
       }
@@ -2276,6 +2307,9 @@ public final class ECSProto {
         if (other.hasNode()) {
           mergeNode(other.getNode());
         }
+        if (other.getRpcPort() != 0) {
+          setRpcPort(other.getRpcPort());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -2309,6 +2343,11 @@ public final class ECSProto {
 
                 break;
               } // case 10
+              case 16: {
+                rpcPort_ = input.readInt32();
+
+                break;
+              } // case 16
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2442,6 +2481,37 @@ public final class ECSProto {
           node_ = null;
         }
         return nodeBuilder_;
+      }
+
+      private int rpcPort_ ;
+      /**
+       * <code>int32 rpcPort = 2;</code>
+       * @return The rpcPort.
+       */
+      @java.lang.Override
+      public int getRpcPort() {
+        return rpcPort_;
+      }
+      /**
+       * <code>int32 rpcPort = 2;</code>
+       * @param value The rpcPort to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRpcPort(int value) {
+        
+        rpcPort_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 rpcPort = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRpcPort() {
+        
+        rpcPort_ = 0;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5946,19 +6016,24 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.google.protobuf.Any Object = 1;</code>
-     * @return Whether the object field is set.
+     * <pre>
+     *  google.protobuf.Any Object = 1;
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The value.
      */
-    boolean hasObject();
+    java.lang.String getValue();
     /**
-     * <code>.google.protobuf.Any Object = 1;</code>
-     * @return The object.
+     * <pre>
+     *  google.protobuf.Any Object = 1;
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The bytes for value.
      */
-    com.google.protobuf.Any getObject();
-    /**
-     * <code>.google.protobuf.Any Object = 1;</code>
-     */
-    com.google.protobuf.AnyOrBuilder getObjectOrBuilder();
+    com.google.protobuf.ByteString
+        getValueBytes();
   }
   /**
    * Protobuf type {@code GetResponse}
@@ -5973,6 +6048,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       super(builder);
     }
     private GetResponse() {
+      value_ = "";
     }
 
     @java.lang.Override
@@ -6000,30 +6076,50 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
               de.tum.grpc_api.ECSProto.GetResponse.class, de.tum.grpc_api.ECSProto.GetResponse.Builder.class);
     }
 
-    public static final int OBJECT_FIELD_NUMBER = 1;
-    private com.google.protobuf.Any object_;
+    public static final int VALUE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object value_;
     /**
-     * <code>.google.protobuf.Any Object = 1;</code>
-     * @return Whether the object field is set.
+     * <pre>
+     *  google.protobuf.Any Object = 1;
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The value.
      */
     @java.lang.Override
-    public boolean hasObject() {
-      return object_ != null;
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        value_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.google.protobuf.Any Object = 1;</code>
-     * @return The object.
+     * <pre>
+     *  google.protobuf.Any Object = 1;
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     * @return The bytes for value.
      */
     @java.lang.Override
-    public com.google.protobuf.Any getObject() {
-      return object_ == null ? com.google.protobuf.Any.getDefaultInstance() : object_;
-    }
-    /**
-     * <code>.google.protobuf.Any Object = 1;</code>
-     */
-    @java.lang.Override
-    public com.google.protobuf.AnyOrBuilder getObjectOrBuilder() {
-      return getObject();
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        value_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -6040,8 +6136,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (object_ != null) {
-        output.writeMessage(1, getObject());
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6052,9 +6148,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (size != -1) return size;
 
       size = 0;
-      if (object_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getObject());
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -6071,11 +6166,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       de.tum.grpc_api.ECSProto.GetResponse other = (de.tum.grpc_api.ECSProto.GetResponse) obj;
 
-      if (hasObject() != other.hasObject()) return false;
-      if (hasObject()) {
-        if (!getObject()
-            .equals(other.getObject())) return false;
-      }
+      if (!getValue()
+          .equals(other.getValue())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -6087,10 +6179,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasObject()) {
-        hash = (37 * hash) + OBJECT_FIELD_NUMBER;
-        hash = (53 * hash) + getObject().hashCode();
-      }
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6219,12 +6309,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (objectBuilder_ == null) {
-          object_ = null;
-        } else {
-          object_ = null;
-          objectBuilder_ = null;
-        }
+        value_ = "";
+
         return this;
       }
 
@@ -6251,11 +6337,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       @java.lang.Override
       public de.tum.grpc_api.ECSProto.GetResponse buildPartial() {
         de.tum.grpc_api.ECSProto.GetResponse result = new de.tum.grpc_api.ECSProto.GetResponse(this);
-        if (objectBuilder_ == null) {
-          result.object_ = object_;
-        } else {
-          result.object_ = objectBuilder_.build();
-        }
+        result.value_ = value_;
         onBuilt();
         return result;
       }
@@ -6304,8 +6386,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
 
       public Builder mergeFrom(de.tum.grpc_api.ECSProto.GetResponse other) {
         if (other == de.tum.grpc_api.ECSProto.GetResponse.getDefaultInstance()) return this;
-        if (other.hasObject()) {
-          mergeObject(other.getObject());
+        if (!other.getValue().isEmpty()) {
+          value_ = other.value_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -6334,9 +6417,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
                 done = true;
                 break;
               case 10: {
-                input.readMessage(
-                    getObjectFieldBuilder().getBuilder(),
-                    extensionRegistry);
+                value_ = input.readStringRequireUtf8();
 
                 break;
               } // case 10
@@ -6356,123 +6437,100 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
         return this;
       }
 
-      private com.google.protobuf.Any object_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> objectBuilder_;
+      private java.lang.Object value_ = "";
       /**
-       * <code>.google.protobuf.Any Object = 1;</code>
-       * @return Whether the object field is set.
+       * <pre>
+       *  google.protobuf.Any Object = 1;
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @return The value.
        */
-      public boolean hasObject() {
-        return objectBuilder_ != null || object_ != null;
-      }
-      /**
-       * <code>.google.protobuf.Any Object = 1;</code>
-       * @return The object.
-       */
-      public com.google.protobuf.Any getObject() {
-        if (objectBuilder_ == null) {
-          return object_ == null ? com.google.protobuf.Any.getDefaultInstance() : object_;
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          value_ = s;
+          return s;
         } else {
-          return objectBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.google.protobuf.Any Object = 1;</code>
+       * <pre>
+       *  google.protobuf.Any Object = 1;
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @return The bytes for value.
        */
-      public Builder setObject(com.google.protobuf.Any value) {
-        if (objectBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          object_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        java.lang.Object ref = value_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          value_ = b;
+          return b;
         } else {
-          objectBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.google.protobuf.Any Object = 1;</code>
+       * <pre>
+       *  google.protobuf.Any Object = 1;
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
        */
-      public Builder setObject(
-          com.google.protobuf.Any.Builder builderForValue) {
-        if (objectBuilder_ == null) {
-          object_ = builderForValue.build();
-          onChanged();
-        } else {
-          objectBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Any Object = 1;</code>
-       */
-      public Builder mergeObject(com.google.protobuf.Any value) {
-        if (objectBuilder_ == null) {
-          if (object_ != null) {
-            object_ =
-              com.google.protobuf.Any.newBuilder(object_).mergeFrom(value).buildPartial();
-          } else {
-            object_ = value;
-          }
-          onChanged();
-        } else {
-          objectBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Any Object = 1;</code>
-       */
-      public Builder clearObject() {
-        if (objectBuilder_ == null) {
-          object_ = null;
-          onChanged();
-        } else {
-          object_ = null;
-          objectBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Any Object = 1;</code>
-       */
-      public com.google.protobuf.Any.Builder getObjectBuilder() {
-        
+      public Builder setValue(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        value_ = value;
         onChanged();
-        return getObjectFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>.google.protobuf.Any Object = 1;</code>
+       * <pre>
+       *  google.protobuf.Any Object = 1;
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @return This builder for chaining.
        */
-      public com.google.protobuf.AnyOrBuilder getObjectOrBuilder() {
-        if (objectBuilder_ != null) {
-          return objectBuilder_.getMessageOrBuilder();
-        } else {
-          return object_ == null ?
-              com.google.protobuf.Any.getDefaultInstance() : object_;
-        }
+      public Builder clearValue() {
+        
+        value_ = getDefaultInstance().getValue();
+        onChanged();
+        return this;
       }
       /**
-       * <code>.google.protobuf.Any Object = 1;</code>
+       * <pre>
+       *  google.protobuf.Any Object = 1;
+       * </pre>
+       *
+       * <code>string value = 1;</code>
+       * @param value The bytes for value to set.
+       * @return This builder for chaining.
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
-          getObjectFieldBuilder() {
-        if (objectBuilder_ == null) {
-          objectBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
-                  getObject(),
-                  getParentForChildren(),
-                  isClean());
-          object_ = null;
-        }
-        return objectBuilder_;
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        value_ = value;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -7868,42 +7926,42 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       "\032\031google/protobuf/any.proto\")\n\013NodeMessa" +
       "ge\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"!\n\005Range\022" +
       "\014\n\004from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\"&\n\021HeartBeatRe" +
-      "sponse\022\021\n\ttimestamp\030\001 \001(\003\"-\n\017RegisterReq" +
-      "uest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\"$\n\020ToSt" +
-      "ringResponse\022\020\n\010HostPort\030\001 \001(\t\"#\n\024IsResp" +
-      "onsibleRequest\022\013\n\003key\030\001 \001(\t\".\n\025IsRespons" +
-      "ibleResponse\022\025\n\risResponsible\030\001 \001(\010\",\n\016R" +
-      "ecoverRequest\022\032\n\004node\030\001 \001(\0132\014.NodeMessag" +
-      "e\"z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003(\0132\034.U" +
-      "pdateRingRequest.RingEntry\0329\n\tRingEntry\022" +
-      "\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.NodeMessag" +
-      "e:\0028\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"3\n\013GetR" +
-      "esponse\022$\n\006Object\030\001 \001(\0132\024.google.protobu" +
-      "f.Any\"(\n\nPutRequest\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
-      "e\030\002 \001(\t\"\034\n\rDeleteRequest\022\013\n\003key\030\001 \001(\t* \n" +
-      "\010DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\210\006\n\tKVSe" +
-      "rvice\022<\n\014heartBeatRPC\022\026.google.protobuf." +
-      "Empty\032\022.HeartBeatResponse\"\000\022<\n\010getRange\022" +
-      "\026.google.protobuf.Empty\032\026.google.protobu" +
-      "f.Empty\"\000\022:\n\006equals\022\026.google.protobuf.Em" +
-      "pty\032\026.google.protobuf.Empty\"\000\022:\n\013toStrin" +
-      "gRPC\022\026.google.protobuf.Empty\032\021.ToStringR" +
-      "esponse\"\000\022C\n\020isResponsibleRPC\022\025.IsRespon" +
-      "sibleRequest\032\026.IsResponsibleResponse\"\000\022;" +
-      "\n\007initRPC\022\026.google.protobuf.Empty\032\026.goog" +
-      "le.protobuf.Empty\"\000\0227\n\nrecoverRPC\022\017.Reco" +
-      "verRequest\032\026.google.protobuf.Empty\"\000\022=\n\r" +
-      "updateRingRPC\022\022.UpdateRingRequest\032\026.goog" +
-      "le.protobuf.Empty\"\000\022E\n\021deleteExpiredData" +
-      "\022\026.google.protobuf.Empty\032\026.google.protob" +
-      "uf.Empty\"\000\0228\n\004copy\022\026.google.protobuf.Emp" +
-      "ty\032\026.google.protobuf.Empty\"\000\022$\n\006getRPC\022\013" +
-      ".GetRequest\032\013.GetRequest\"\000\022/\n\006putRPC\022\013.P" +
-      "utRequest\032\026.google.protobuf.Empty\"\000\0225\n\td" +
-      "eleteRPC\022\016.DeleteRequest\032\026.google.protob" +
-      "uf.Empty\"\0002C\n\tECService\0226\n\010register\022\020.Re" +
-      "gisterRequest\032\026.google.protobuf.Empty\"\000B" +
-      "\035\n\017de.tum.grpc_apiB\010ECSProtoP\000b\006proto3"
+      "sponse\022\021\n\ttimestamp\030\001 \001(\003\">\n\017RegisterReq" +
+      "uest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\022\017\n\007rpcP" +
+      "ort\030\002 \001(\005\"$\n\020ToStringResponse\022\020\n\010HostPor" +
+      "t\030\001 \001(\t\"#\n\024IsResponsibleRequest\022\013\n\003key\030\001" +
+      " \001(\t\".\n\025IsResponsibleResponse\022\025\n\risRespo" +
+      "nsible\030\001 \001(\010\",\n\016RecoverRequest\022\032\n\004node\030\001" +
+      " \001(\0132\014.NodeMessage\"z\n\021UpdateRingRequest\022" +
+      "*\n\004ring\030\001 \003(\0132\034.UpdateRingRequest.RingEn" +
+      "try\0329\n\tRingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002" +
+      " \001(\0132\014.NodeMessage:\0028\001\"\031\n\nGetRequest\022\013\n\003" +
+      "key\030\001 \001(\t\"\034\n\013GetResponse\022\r\n\005value\030\001 \001(\t\"" +
+      "(\n\nPutRequest\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
+      "\t\"\034\n\rDeleteRequest\022\013\n\003key\030\001 \001(\t* \n\010DataT" +
+      "ype\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\211\006\n\tKVService\022" +
+      "<\n\014heartBeatRPC\022\026.google.protobuf.Empty\032" +
+      "\022.HeartBeatResponse\"\000\022<\n\010getRange\022\026.goog" +
+      "le.protobuf.Empty\032\026.google.protobuf.Empt" +
+      "y\"\000\022:\n\006equals\022\026.google.protobuf.Empty\032\026." +
+      "google.protobuf.Empty\"\000\022:\n\013toStringRPC\022\026" +
+      ".google.protobuf.Empty\032\021.ToStringRespons" +
+      "e\"\000\022C\n\020isResponsibleRPC\022\025.IsResponsibleR" +
+      "equest\032\026.IsResponsibleResponse\"\000\022;\n\007init" +
+      "RPC\022\026.google.protobuf.Empty\032\026.google.pro" +
+      "tobuf.Empty\"\000\0227\n\nrecoverRPC\022\017.RecoverReq" +
+      "uest\032\026.google.protobuf.Empty\"\000\022=\n\rupdate" +
+      "RingRPC\022\022.UpdateRingRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\022E\n\021deleteExpiredData\022\026.goo" +
+      "gle.protobuf.Empty\032\026.google.protobuf.Emp" +
+      "ty\"\000\0228\n\004copy\022\026.google.protobuf.Empty\032\026.g" +
+      "oogle.protobuf.Empty\"\000\022%\n\006getRPC\022\013.GetRe" +
+      "quest\032\014.GetResponse\"\000\022/\n\006putRPC\022\013.PutReq" +
+      "uest\032\026.google.protobuf.Empty\"\000\0225\n\tdelete" +
+      "RPC\022\016.DeleteRequest\032\026.google.protobuf.Em" +
+      "pty\"\0002C\n\tECService\0226\n\010register\022\020.Registe" +
+      "rRequest\032\026.google.protobuf.Empty\"\000B\035\n\017de" +
+      ".tum.grpc_apiB\010ECSProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7934,7 +7992,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     internal_static_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,
-        new java.lang.String[] { "Node", });
+        new java.lang.String[] { "Node", "RpcPort", });
     internal_static_ToStringResponse_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_ToStringResponse_fieldAccessorTable = new
@@ -7982,7 +8040,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     internal_static_GetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetResponse_descriptor,
-        new java.lang.String[] { "Object", });
+        new java.lang.String[] { "Value", });
     internal_static_PutRequest_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_PutRequest_fieldAccessorTable = new

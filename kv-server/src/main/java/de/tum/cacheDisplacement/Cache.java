@@ -35,7 +35,7 @@ public abstract class Cache {
         return persistentStorage;
     }
 
-    public abstract void put(String key, Object value) throws Exception;
-    public abstract Object get(String key) throws Exception ;
+    public abstract void put(String key, String value) throws Exception;
+    public abstract String get(String key) throws Exception ;
     public abstract void delete(String key) throws Exception;
 }

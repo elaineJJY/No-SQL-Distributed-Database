@@ -326,28 +326,28 @@ public final class KVServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest,
-      de.tum.grpc_api.KVServerProto.GetRequest> getGetRPCMethod;
+      de.tum.grpc_api.KVServerProto.GetResponse> getGetRPCMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getRPC",
       requestType = de.tum.grpc_api.KVServerProto.GetRequest.class,
-      responseType = de.tum.grpc_api.KVServerProto.GetRequest.class,
+      responseType = de.tum.grpc_api.KVServerProto.GetResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest,
-      de.tum.grpc_api.KVServerProto.GetRequest> getGetRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetRequest> getGetRPCMethod;
+      de.tum.grpc_api.KVServerProto.GetResponse> getGetRPCMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetResponse> getGetRPCMethod;
     if ((getGetRPCMethod = KVServiceGrpc.getGetRPCMethod) == null) {
       synchronized (KVServiceGrpc.class) {
         if ((getGetRPCMethod = KVServiceGrpc.getGetRPCMethod) == null) {
           KVServiceGrpc.getGetRPCMethod = getGetRPCMethod =
-              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetRequest>newBuilder()
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getRPC"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.GetRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.tum.grpc_api.KVServerProto.GetRequest.getDefaultInstance()))
+                  de.tum.grpc_api.KVServerProto.GetResponse.getDefaultInstance()))
               .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("getRPC"))
               .build();
         }
@@ -543,7 +543,7 @@ public final class KVServiceGrpc {
     /**
      */
     default void getRPC(de.tum.grpc_api.KVServerProto.GetRequest request,
-        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRequest> responseObserver) {
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetRPCMethod(), responseObserver);
     }
 
@@ -676,7 +676,7 @@ public final class KVServiceGrpc {
     /**
      */
     public void getRPC(de.tum.grpc_api.KVServerProto.GetRequest request,
-        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRequest> responseObserver) {
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetRPCMethod(), getCallOptions()), request, responseObserver);
     }
@@ -790,7 +790,7 @@ public final class KVServiceGrpc {
 
     /**
      */
-    public de.tum.grpc_api.KVServerProto.GetRequest getRPC(de.tum.grpc_api.KVServerProto.GetRequest request) {
+    public de.tum.grpc_api.KVServerProto.GetResponse getRPC(de.tum.grpc_api.KVServerProto.GetRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetRPCMethod(), getCallOptions(), request);
     }
@@ -912,7 +912,7 @@ public final class KVServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.GetRequest> getRPC(
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.GetResponse> getRPC(
         de.tum.grpc_api.KVServerProto.GetRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetRPCMethod(), getCallOptions()), request);
@@ -1008,7 +1008,7 @@ public final class KVServiceGrpc {
           break;
         case METHODID_GET_RPC:
           serviceImpl.getRPC((de.tum.grpc_api.KVServerProto.GetRequest) request,
-              (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRequest>) responseObserver);
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse>) responseObserver);
           break;
         case METHODID_PUT_RPC:
           serviceImpl.putRPC((de.tum.grpc_api.KVServerProto.PutRequest) request,
@@ -1111,7 +1111,7 @@ public final class KVServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.GetRequest,
-              de.tum.grpc_api.KVServerProto.GetRequest>(
+              de.tum.grpc_api.KVServerProto.GetResponse>(
                 service, METHODID_GET_RPC)))
         .addMethod(
           getPutRPCMethod(),

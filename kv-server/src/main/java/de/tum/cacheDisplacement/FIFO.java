@@ -16,7 +16,7 @@ public class FIFO extends Cache {
     private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private final int capacity;
     private final LinkedList<String> keys;
-    private final LinkedList<Object> values;
+    private final LinkedList<String> values;
 
 
     public FIFO(int capacity) {
@@ -28,7 +28,7 @@ public class FIFO extends Cache {
     }
 
     @Override
-    public void put(String key, Object value) throws Exception {
+    public void put(String key, String value) throws Exception {
         if (keys.size() >= capacity) {
             String oldKey = keys.removeFirst();
             getPersistentStorage().storeToDisk(oldKey, value);
@@ -39,12 +39,12 @@ public class FIFO extends Cache {
     }
 
     @Override
-    public Object get(String key) throws Exception {
+    public String get(String key) throws Exception {
         int index = keys.indexOf(key);
         if (index >= 0) {
             return values.get(index);
         } else {
-            Object value = getPersistentStorage().readFromDisk(key);
+            String value = getPersistentStorage().readFromDisk(key);
             if (value!= null) {
                 this.put(key, value);
                 getPersistentStorage().deleteFromDisk(key);
