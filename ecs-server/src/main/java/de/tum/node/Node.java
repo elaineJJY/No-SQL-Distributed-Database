@@ -48,10 +48,6 @@ public class Node {
         this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, KV_LISTEN_ECS_PORT).usePlaintext().build());
     }
 
-    public String getHost() {
-        return host;
-    }
-
     public long heartbeat() {
         ECSProto.HeartBeatResponse heartBeatResponse = this.stub.heartBeatRPC(emptyRequest);
         return heartBeatResponse.getTimestamp();
@@ -68,7 +64,8 @@ public class Node {
     }
 
     public boolean isResponsible(String key) throws NullPointerException {
-        return false;
+        ECSProto.IsResponsibleRequest request = ECSProto.IsResponsibleRequest.newBuilder().setKey(key).build();
+        return this.stub.isResponsibleRPC(request).getIsResponsible();
     }
 
     public void init() throws Exception {

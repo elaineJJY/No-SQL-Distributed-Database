@@ -40,7 +40,7 @@ public class ECSServer {
 
     public void start(boolean helpUsage) throws IOException, InterruptedException {
         if (helpUsage) Help.helpDisplay();
-        executorService = Executors.newFixedThreadPool(10);
+        executorService = Executors.newFixedThreadPool(15);
         // Start ECS as an RCP server
         SocketAddress IpPort = new InetSocketAddress(this.address, this.port);
         ecsServer = NettyServerBuilder.forAddress(IpPort).addService(new ECSServiceImpl()).build();
