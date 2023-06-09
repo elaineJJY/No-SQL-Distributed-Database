@@ -6,7 +6,10 @@ import de.tum.node.ConsistentHash;
 
 import de.tum.node.Node;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -16,16 +19,18 @@ import java.util.*;
 import java.util.logging.Logger;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
 
 public class KVServer {
 	private final ConsistentHash metaData;
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
-	//单例模式，设置selector为static
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
 	private Node node;
+	public static final int KV_LISTEN_ECS_PORT = 5200;
 
-	// 分离读写缓冲区，按需设置server的写缓冲区
+	// detach read and write buffer
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 	private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
 
@@ -42,6 +47,13 @@ public class KVServer {
 	 */
 	public void start(String address, int port) throws Exception {
 
+		//Now KVServer needs to provide RPC service for ECSService
+		ServerBuilder rpcServerBuilder = ServerBuilder.forPort(KV_LISTEN_ECS_PORT);
+		rpcServerBuilder.addService(node);
+		Server rpcServer = rpcServerBuilder.build();
+		rpcServer.start();
+		LOGGER.info("RPC service published on port: " + KV_LISTEN_ECS_PORT + ", waiting to receive heartbeat from ECS/Other Servers");
+
 		// open selector
 		ssChannel = ServerSocketChannel.open();
 		// set non-blocking mode
@@ -52,18 +64,16 @@ public class KVServer {
 		selector = Selector.open();
 		// register listen channel to selector
 		ssChannel.register(selector, SelectionKey.OP_ACCEPT);
-		System.out.println("Server is listening on port " + port);
+		LOGGER.info("KVServer is listening on port " + port + ", ready to receive data from KVClient");
 
-		// register server to ECS
-		//registerToECS(address, port);
-		//registerToECS("10.181.95.176", 5152);
-		// 无参select()方法会一直阻塞直到有事件发生
+		// select() method without parameter will block until at least one event occurs
 		while (selector.select() > 0) {
 			Set<SelectionKey> selectionKeys = selector.selectedKeys();
 			Iterator<SelectionKey> selectionKeyIterator = selectionKeys.iterator();
 			while (selectionKeyIterator.hasNext()) {
 				SelectionKey next = selectionKeyIterator.next();
 				if (next.isAcceptable()) {
+					System.out.println("Acceptable");
 					accept(next);
 				} else if (next.isReadable()) {
 					read(next);
@@ -71,45 +81,9 @@ public class KVServer {
 				selectionKeyIterator.remove();
 			}
 		}
-	}
 
-	/**
-	 * Register server to ECS
-	 * @param address ECS address
-	 * @param port ECS port
-	 */
-//	public void registerToECS(String address, int port) {
-//		ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(address, port).usePlaintext().build();
-//		// 2. 创建stub 代理对象
-//		try {
-//			// We will use blocking stub here, since successful registration to ECS is a prerequisite
-//			grpc_api.ECSServiceGrpc.ECSServiceBlockingStub ecsService = grpc_api.ECSServiceGrpc.newBlockingStub(managedChannel);
-//			// sub-Builder
-//			KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
-//					.setHost(address)
-//					.setPort(port);
-//
-//			KVServerProto.InitRequest initRequest = KVServerProto.InitRequest.newBuilder()
-//					.setIpPort(nodeMessageBuilder.build()).build();
-//			//separate
-//			//builder.setIpPort(nodeMessageBuilder.build());
-//			//KVServerProto.InitRequest initRequest = builder.build();
-//
-//			// call rpc init(InitRequest) returns (InitResponse)
-//			KVServerProto.InitResponse initResponse = ecsService.init(initRequest);
-//			// get result and print
-//			Map<String, KVServerProto.NodeMessage> ring = initResponse.getRingMap();
-//			// print ring's information
-//			System.out.println("Ring information:");
-//			for (Map.Entry<String, KVServerProto.NodeMessage> entry : ring.entrySet()) {
-//				System.out.println("Hash: " + entry.getKey() + " Node: " + entry.getValue().getHost() + ":" + entry.getValue().getPort());
-//			}
-//		} catch (Exception e) {
-//			throw new RuntimeException(e);
-//		} finally {
-//			managedChannel.shutdown();
-//		}
-//	}
+		rpcServer.awaitTermination();
+	}
 
 	/**
 	 * Handler to accept new client
@@ -134,11 +108,11 @@ public class KVServer {
 	 * @throws Exception
 	 */
 	private void read(SelectionKey key) throws Exception {
-		readBuffer.clear(); //清空读缓存区
+		readBuffer.clear(); // clear buffer
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 		int len = socketChannel.read(readBuffer);
 		if (len != -1) {
-			readBuffer.flip(); // 重置position
+			readBuffer.flip(); // reset position
 			byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
 			readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
 			String request = new String(bytes).trim();
@@ -147,7 +121,6 @@ public class KVServer {
 			//key.interestOps(SelectionKey.OP_READ); // 关心读事件?
 			LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
 
-			//read到一条request，交给process处理
 			//String request =  new String(readBuffer.array());
 			LOGGER.info("Received request:" + request);
 			process(request, socketChannel);
@@ -260,7 +233,7 @@ public class KVServer {
 		String[] tokens = request.trim().split("\\s+");
 		String key = tokens[1];
 		Node resopnsibleNode = this.node;
-		if (!node.isResponsible(key)) {
+		if (!node.isResponsibleLocal(key)) {
 			System.out.println("Not responsible for key: " + key);
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);
 		}

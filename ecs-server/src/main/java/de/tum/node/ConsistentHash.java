@@ -1,11 +1,6 @@
 package de.tum.node;
 
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -16,6 +11,7 @@ import java.util.TreeMap;
  * @Create 2023/6/2 23:37
  * @Version 1.0
  */
+
 public enum ConsistentHash {
 	INSTANCE;
 	private SortedMap<String, Node> ring = new TreeMap<>();  // <hash, node>
@@ -44,7 +40,7 @@ public enum ConsistentHash {
 
 	public void removeNode(Node node) throws Exception {
 
-		// if node still alive, set node to read-olny
+		// if node still alive, set node to read-only
 		try {
 			// node.setReadOnly();
 		} catch (Exception e) {
@@ -69,7 +65,7 @@ public enum ConsistentHash {
 	 */
 	public String getHash(Node node) {
 		String nodeHash = MD5Hash.hash(
-			node.toString()); // hash value of the node, key is string <ip:port>
+				node.toString()); // hash value of the node, key is string <ip:port>
 		int i = 1;
 		while (!ring.get(nodeHash).equals(node)) {
 			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));

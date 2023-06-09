@@ -3,6 +3,8 @@ package de.tum.communication.grpc_service;
 import de.tum.grpc_api.*;
 import com.google.protobuf.Empty;
 
+import javax.sound.sampled.Port;
+
 
 //public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
 //	@Override
@@ -24,26 +26,79 @@ import com.google.protobuf.Empty;
 //	}
 //}
 
-//public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
-public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
-	@Override
-	public void init(com.google.protobuf.Empty request,
-		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-
-		Empty response = Empty.newBuilder().build();
-		responseObserver.onNext(response);
-		responseObserver.onCompleted();
-	}
-
-	@Override
-	public void updateRing(com.google.protobuf.Empty request,
-		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-
-		Empty response = Empty.newBuilder().build();
-		responseObserver.onNext(response);
-		responseObserver.onCompleted();
-	}
-}
+////public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
+//public class KVServiceImpl extends KVServiceGrpc.KVServiceImplBase {
+//	@Override
+//	public void getPort(com.google.protobuf.Empty request,
+//						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test getPort");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//	@Override
+//	public void getHost(com.google.protobuf.Empty request,
+//						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test getHost");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//	@Override
+//	public void heartBeat(com.google.protobuf.Empty request,
+//						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test heartBeat");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//	@Override
+//	public void getRange(com.google.protobuf.Empty request,
+//						  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test getRange");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//	@Override
+//	public void equals(com.google.protobuf.Empty request,
+//						  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test equals");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//
+//	@Override
+//	public void initRPC(com.google.protobuf.Empty request,
+//		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test init");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//
+//	@Override
+//	public void updateRing(com.google.protobuf.Empty request,
+//		io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+//		System.out.println("test updateRing");
+//
+//		Empty response = Empty.newBuilder().build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//	}
+//}
 
 
 

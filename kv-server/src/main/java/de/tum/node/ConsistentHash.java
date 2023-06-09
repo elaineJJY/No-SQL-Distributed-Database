@@ -19,7 +19,7 @@ public enum ConsistentHash {
 	 */
 	private SortedMap<String, Node> ring = new TreeMap<>();
 
-
+	public SortedMap<String, Node> getRing() { return ring; }
 
 	/**
 	 * Get the node hash corresponding to the node
@@ -71,7 +71,7 @@ public enum ConsistentHash {
 		for (String hash : ring.keySet()) {
 			Node node = ring.get(hash);
 			//  <kr-from>, <kr-to>, <ip:port>
-			text += node.getRange(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
+			text += node.getRangeLocal(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
 		}
 		return text;
 	}

@@ -5,23 +5,88 @@ option java_package = "de.tum.grpc_api";
 option java_outer_classname = "ECSProto";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
 
 message NodeMessage {
     string host = 1;
     int32 port = 2;
 }
 
-message InitRequest {
+message Range {
+    string from = 1;
+    string to = 2;
+}
+
+enum DataType {
+    DATA = 0;
+    BACKUP = 1;
+}
+
+message HeartBeatResponse {
+    int64 timestamp = 1;
+}
+
+message RegisterRequest {
+    NodeMessage node = 1;
+}
+
+message ToStringResponse {
+    string HostPort = 1;
+}
+
+message IsResponsibleRequest {
+    string key = 1;
+}
+
+message IsResponsibleResponse {
+    bool isResponsible = 1;
+}
+
+message RecoverRequest {
     NodeMessage node = 1;
 }
 
 message UpdateRingRequest {
-    NodeMessage node = 1;
+    map<string, NodeMessage> ring = 1;
 }
 
-service ECSService {
-    rpc init(InitRequest) returns (google.protobuf.Empty) {}
-    rpc updateRing(UpdateRingRequest) returns (google.protobuf.Empty) {}
+message GetRequest {
+    string key = 1;
+}
+
+message GetResponse {
+    google.protobuf.Any Object = 1;
+}
+
+message PutRequest {
+    string key = 1;
+    string value = 2;
+}
+
+message DeleteRequest {
+    string key = 1;
+}
+
+service KVService {
+    //  rpc getPort(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    //  rpc getHost(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc heartBeatRPC(google.protobuf.Empty) returns (HeartBeatResponse) {} // Server-streaming RPC
+    rpc getRange(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc equals(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc toStringRPC(google.protobuf.Empty) returns (ToStringResponse) {}
+    rpc isResponsibleRPC(IsResponsibleRequest) returns (IsResponsibleResponse) {}
+    rpc initRPC(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc recoverRPC(RecoverRequest) returns (google.protobuf.Empty) {}
+    rpc updateRingRPC(UpdateRingRequest) returns (google.protobuf.Empty) {}
+    rpc deleteExpiredData(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc copy(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc getRPC(GetRequest) returns (GetRequest) {}
+    rpc putRPC(PutRequest) returns (google.protobuf.Empty) {}
+    rpc deleteRPC(DeleteRequest) returns (google.protobuf.Empty) {}
+}
+
+service ECService {
+    rpc register(RegisterRequest) returns (google.protobuf.Empty) {}
 }
 
 

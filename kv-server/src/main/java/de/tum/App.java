@@ -1,12 +1,17 @@
 package de.tum;
 
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Empty;
 import de.tum.common.Help;
 import de.tum.common.ServerLogger;
 import de.tum.communication.KVServer;
-import de.tum.communication.grpc_service.KVServiceImpl;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
+import de.tum.grpc_api.ECServiceGrpc;
+import de.tum.grpc_api.KVServerProto;
 import de.tum.node.Node;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.util.logging.Logger;
@@ -23,16 +28,19 @@ import java.util.logging.Logger;
 public class App 
 {
     private static Logger LOGGER = Logger.getLogger(App.class.getName());
-
+    // KVServer's port to listen ECS cannot conflict with KVServer's port to listen client
+    public static final int KV_LISTEN_ECS_PORT = 5200;
     public static void main( String[] args )
 
     {
         de.tum.server.communication.ParseCommand parseCommand = new de.tum.server.communication.ParseCommand(args);
         
-        // parse args
+        // CLI parse args
         int port = parseCommand.getPort();
         String address = parseCommand.getAddress();
         String bootStrapServerAddress = parseCommand.getBootstrapServerAddress();
+        String bootStrapServerIP = bootStrapServerAddress.split(":")[0];
+        int bootStrapServerPort = Integer.parseInt(bootStrapServerAddress.split(":")[1]);
         String directory = parseCommand.getDirectory();
         String logFile = parseCommand.getLogFile();
         String logLevel = parseCommand.getLogLevel();
@@ -40,40 +48,50 @@ public class App
         String cacheStrategy = parseCommand.getCacheDisplacement();
         boolean helpUsage = parseCommand.getHelpUsage();
         if (helpUsage) Help.helpDisplay();
+
         try {
-            // init according to the args
+            // prepare for server
             ServerLogger.INSTANCE.init(logLevel,logFile, LOGGER);
             MainDatabase database = new MainDatabase(cacheSize, cacheStrategy);
             BackupDatabase backupDatabase = new BackupDatabase();
-
             Node node = new Node(address, port, database, backupDatabase);
 
-            // run server
-            LOGGER.info("Server is starting...");
+            // register to ECS
+            registerHandler(bootStrapServerIP, bootStrapServerPort, address, port);
 
+//            if (registerResponse) {}
+//            else {
+//                LOGGER.severe("Register to ECS failed");
+//                throw new Exception("Register to ECS failed");
+//            }
 
-            // rpc server and public service
-            ServerBuilder rpcServerBuilder = ServerBuilder.forPort(5152);
-            rpcServerBuilder.addService(new KVServiceImpl());
-            Server rpcServer = rpcServerBuilder.build();
-            rpcServer.start();
+            // Start KVServer
+            LOGGER.info("KVServer is starting...");
+            KVServer kvServer = new KVServer(node);
+            kvServer.start(address, port);
 
-
-//            Server KVServer = new Server();
-//            KVServer.registerToECS("localhost", port);
-//            KVServer.start(address, port, helpUsage);
-            //KVServer.registerToECS(bootStrapServerIP, bootStrapServerPort);
-
-
-            LOGGER.info("Server is shutting down...");
-            rpcServer.awaitTermination();
+//            rpcServer.awaitTermination();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
     }
 
-    public void registerToECS(String bootstrapServerIp, int bootstrapServerPort) {
+    public static void registerHandler(String bootStrapServerIP, int bootStrapServerPort, String address, int port) {
+        // Register to ECS
+        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(bootStrapServerIP, bootStrapServerPort).usePlaintext().build();
+        ECServiceGrpc.ECServiceBlockingStub ecsService = ECServiceGrpc.newBlockingStub(managedChannel);
 
+        KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
+                .setHost(address)
+                .setPort(port);
+
+        KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
+                .setNode(nodeMessageBuilder.build()).build();
+
+        ecsService.register(registerRequest);
+        managedChannel.shutdown();
+        LOGGER.info("Register to ECS successfully");
     }
 }
+

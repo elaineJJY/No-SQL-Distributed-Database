@@ -14,6 +14,114 @@ public final class ECSProto {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code DataType}
+   */
+  public enum DataType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>DATA = 0;</code>
+     */
+    DATA(0),
+    /**
+     * <code>BACKUP = 1;</code>
+     */
+    BACKUP(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>DATA = 0;</code>
+     */
+    public static final int DATA_VALUE = 0;
+    /**
+     * <code>BACKUP = 1;</code>
+     */
+    public static final int BACKUP_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static DataType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static DataType forNumber(int value) {
+      switch (value) {
+        case 0: return DATA;
+        case 1: return BACKUP;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<DataType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        DataType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<DataType>() {
+            public DataType findValueByNumber(int number) {
+              return DataType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final DataType[] VALUES = values();
+
+    public static DataType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private DataType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:DataType)
+  }
+
   public interface NodeMessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:NodeMessage)
       com.google.protobuf.MessageOrBuilder {
@@ -633,30 +741,1195 @@ public final class ECSProto {
 
   }
 
+  public interface RangeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Range)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string from = 1;</code>
+     * @return The from.
+     */
+    java.lang.String getFrom();
+    /**
+     * <code>string from = 1;</code>
+     * @return The bytes for from.
+     */
+    com.google.protobuf.ByteString
+        getFromBytes();
+
+    /**
+     * <code>string to = 2;</code>
+     * @return The to.
+     */
+    java.lang.String getTo();
+    /**
+     * <code>string to = 2;</code>
+     * @return The bytes for to.
+     */
+    com.google.protobuf.ByteString
+        getToBytes();
+  }
+  /**
+   * Protobuf type {@code Range}
+   */
+  public static final class Range extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Range)
+      RangeOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Range.newBuilder() to construct.
+    private Range(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Range() {
+      from_ = "";
+      to_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Range();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_Range_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_Range_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.Range.class, de.tum.grpc_api.ECSProto.Range.Builder.class);
+    }
+
+    public static final int FROM_FIELD_NUMBER = 1;
+    private volatile java.lang.Object from_;
+    /**
+     * <code>string from = 1;</code>
+     * @return The from.
+     */
+    @java.lang.Override
+    public java.lang.String getFrom() {
+      java.lang.Object ref = from_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        from_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string from = 1;</code>
+     * @return The bytes for from.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getFromBytes() {
+      java.lang.Object ref = from_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        from_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TO_FIELD_NUMBER = 2;
+    private volatile java.lang.Object to_;
+    /**
+     * <code>string to = 2;</code>
+     * @return The to.
+     */
+    @java.lang.Override
+    public java.lang.String getTo() {
+      java.lang.Object ref = to_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        to_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string to = 2;</code>
+     * @return The bytes for to.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getToBytes() {
+      java.lang.Object ref = to_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        to_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(from_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, from_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(to_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, to_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(from_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, from_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(to_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, to_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.Range)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.Range other = (de.tum.grpc_api.ECSProto.Range) obj;
+
+      if (!getFrom()
+          .equals(other.getFrom())) return false;
+      if (!getTo()
+          .equals(other.getTo())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FROM_FIELD_NUMBER;
+      hash = (53 * hash) + getFrom().hashCode();
+      hash = (37 * hash) + TO_FIELD_NUMBER;
+      hash = (53 * hash) + getTo().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.Range parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.Range prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Range}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Range)
+        de.tum.grpc_api.ECSProto.RangeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_Range_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_Range_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.Range.class, de.tum.grpc_api.ECSProto.Range.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.Range.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        from_ = "";
+
+        to_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_Range_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.Range getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.Range.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.Range build() {
+        de.tum.grpc_api.ECSProto.Range result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.Range buildPartial() {
+        de.tum.grpc_api.ECSProto.Range result = new de.tum.grpc_api.ECSProto.Range(this);
+        result.from_ = from_;
+        result.to_ = to_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.Range) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.Range)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.Range other) {
+        if (other == de.tum.grpc_api.ECSProto.Range.getDefaultInstance()) return this;
+        if (!other.getFrom().isEmpty()) {
+          from_ = other.from_;
+          onChanged();
+        }
+        if (!other.getTo().isEmpty()) {
+          to_ = other.to_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                from_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              case 18: {
+                to_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object from_ = "";
+      /**
+       * <code>string from = 1;</code>
+       * @return The from.
+       */
+      public java.lang.String getFrom() {
+        java.lang.Object ref = from_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          from_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string from = 1;</code>
+       * @return The bytes for from.
+       */
+      public com.google.protobuf.ByteString
+          getFromBytes() {
+        java.lang.Object ref = from_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          from_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string from = 1;</code>
+       * @param value The from to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFrom(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        from_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string from = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFrom() {
+        
+        from_ = getDefaultInstance().getFrom();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string from = 1;</code>
+       * @param value The bytes for from to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFromBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        from_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object to_ = "";
+      /**
+       * <code>string to = 2;</code>
+       * @return The to.
+       */
+      public java.lang.String getTo() {
+        java.lang.Object ref = to_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          to_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string to = 2;</code>
+       * @return The bytes for to.
+       */
+      public com.google.protobuf.ByteString
+          getToBytes() {
+        java.lang.Object ref = to_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          to_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string to = 2;</code>
+       * @param value The to to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTo(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        to_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string to = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTo() {
+        
+        to_ = getDefaultInstance().getTo();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string to = 2;</code>
+       * @param value The bytes for to to set.
+       * @return This builder for chaining.
+       */
+      public Builder setToBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        to_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Range)
+    }
+
+    // @@protoc_insertion_point(class_scope:Range)
+    private static final de.tum.grpc_api.ECSProto.Range DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.Range();
+    }
+
+    public static de.tum.grpc_api.ECSProto.Range getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Range>
+        PARSER = new com.google.protobuf.AbstractParser<Range>() {
+      @java.lang.Override
+      public Range parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Range> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Range> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.Range getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HeartBeatResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HeartBeatResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 timestamp = 1;</code>
+     * @return The timestamp.
+     */
+    long getTimestamp();
+  }
+  /**
+   * Protobuf type {@code HeartBeatResponse}
+   */
+  public static final class HeartBeatResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HeartBeatResponse)
+      HeartBeatResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HeartBeatResponse.newBuilder() to construct.
+    private HeartBeatResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HeartBeatResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new HeartBeatResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_HeartBeatResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_HeartBeatResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.HeartBeatResponse.class, de.tum.grpc_api.ECSProto.HeartBeatResponse.Builder.class);
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 1;
+    private long timestamp_;
+    /**
+     * <code>int64 timestamp = 1;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (timestamp_ != 0L) {
+        output.writeInt64(1, timestamp_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, timestamp_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.HeartBeatResponse)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.HeartBeatResponse other = (de.tum.grpc_api.ECSProto.HeartBeatResponse) obj;
+
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimestamp());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.HeartBeatResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HeartBeatResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HeartBeatResponse)
+        de.tum.grpc_api.ECSProto.HeartBeatResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_HeartBeatResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_HeartBeatResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.HeartBeatResponse.class, de.tum.grpc_api.ECSProto.HeartBeatResponse.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.HeartBeatResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        timestamp_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_HeartBeatResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.HeartBeatResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.HeartBeatResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.HeartBeatResponse build() {
+        de.tum.grpc_api.ECSProto.HeartBeatResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.HeartBeatResponse buildPartial() {
+        de.tum.grpc_api.ECSProto.HeartBeatResponse result = new de.tum.grpc_api.ECSProto.HeartBeatResponse(this);
+        result.timestamp_ = timestamp_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.HeartBeatResponse) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.HeartBeatResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.HeartBeatResponse other) {
+        if (other == de.tum.grpc_api.ECSProto.HeartBeatResponse.getDefaultInstance()) return this;
+        if (other.getTimestamp() != 0L) {
+          setTimestamp(other.getTimestamp());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                timestamp_ = input.readInt64();
+
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private long timestamp_ ;
+      /**
+       * <code>int64 timestamp = 1;</code>
+       * @return The timestamp.
+       */
+      @java.lang.Override
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <code>int64 timestamp = 1;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimestamp(long value) {
+        
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 timestamp = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimestamp() {
+        
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HeartBeatResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:HeartBeatResponse)
+    private static final de.tum.grpc_api.ECSProto.HeartBeatResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.HeartBeatResponse();
+    }
+
+    public static de.tum.grpc_api.ECSProto.HeartBeatResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HeartBeatResponse>
+        PARSER = new com.google.protobuf.AbstractParser<HeartBeatResponse>() {
+      @java.lang.Override
+      public HeartBeatResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<HeartBeatResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HeartBeatResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.HeartBeatResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RegisterRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:RegisterRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.NodeMessage IpPort = 1;</code>
-     * @return Whether the ipPort field is set.
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
      */
-    boolean hasIpPort();
+    boolean hasNode();
     /**
-     * <code>.NodeMessage IpPort = 1;</code>
-     * @return The ipPort.
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
      */
-    de.tum.grpc_api.ECSProto.NodeMessage getIpPort();
+    de.tum.grpc_api.ECSProto.NodeMessage getNode();
     /**
-     * <code>.NodeMessage IpPort = 1;</code>
+     * <code>.NodeMessage node = 1;</code>
      */
-    de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getIpPortOrBuilder();
+    de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder();
   }
   /**
-   * <pre>
-   * Service for ECS to register KVServer
-   * </pre>
-   *
    * Protobuf type {@code RegisterRequest}
    */
   public static final class RegisterRequest extends
@@ -696,30 +1969,30 @@ public final class ECSProto {
               de.tum.grpc_api.ECSProto.RegisterRequest.class, de.tum.grpc_api.ECSProto.RegisterRequest.Builder.class);
     }
 
-    public static final int IPPORT_FIELD_NUMBER = 1;
-    private de.tum.grpc_api.ECSProto.NodeMessage ipPort_;
+    public static final int NODE_FIELD_NUMBER = 1;
+    private de.tum.grpc_api.ECSProto.NodeMessage node_;
     /**
-     * <code>.NodeMessage IpPort = 1;</code>
-     * @return Whether the ipPort field is set.
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
      */
     @java.lang.Override
-    public boolean hasIpPort() {
-      return ipPort_ != null;
+    public boolean hasNode() {
+      return node_ != null;
     }
     /**
-     * <code>.NodeMessage IpPort = 1;</code>
-     * @return The ipPort.
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
      */
     @java.lang.Override
-    public de.tum.grpc_api.ECSProto.NodeMessage getIpPort() {
-      return ipPort_ == null ? de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : ipPort_;
+    public de.tum.grpc_api.ECSProto.NodeMessage getNode() {
+      return node_ == null ? de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : node_;
     }
     /**
-     * <code>.NodeMessage IpPort = 1;</code>
+     * <code>.NodeMessage node = 1;</code>
      */
     @java.lang.Override
-    public de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getIpPortOrBuilder() {
-      return getIpPort();
+    public de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder() {
+      return getNode();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -736,8 +2009,8 @@ public final class ECSProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (ipPort_ != null) {
-        output.writeMessage(1, getIpPort());
+      if (node_ != null) {
+        output.writeMessage(1, getNode());
       }
       getUnknownFields().writeTo(output);
     }
@@ -748,9 +2021,9 @@ public final class ECSProto {
       if (size != -1) return size;
 
       size = 0;
-      if (ipPort_ != null) {
+      if (node_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getIpPort());
+          .computeMessageSize(1, getNode());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -767,10 +2040,10 @@ public final class ECSProto {
       }
       de.tum.grpc_api.ECSProto.RegisterRequest other = (de.tum.grpc_api.ECSProto.RegisterRequest) obj;
 
-      if (hasIpPort() != other.hasIpPort()) return false;
-      if (hasIpPort()) {
-        if (!getIpPort()
-            .equals(other.getIpPort())) return false;
+      if (hasNode() != other.hasNode()) return false;
+      if (hasNode()) {
+        if (!getNode()
+            .equals(other.getNode())) return false;
       }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -783,9 +2056,9 @@ public final class ECSProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasIpPort()) {
-        hash = (37 * hash) + IPPORT_FIELD_NUMBER;
-        hash = (53 * hash) + getIpPort().hashCode();
+      if (hasNode()) {
+        hash = (37 * hash) + NODE_FIELD_NUMBER;
+        hash = (53 * hash) + getNode().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -883,10 +2156,6 @@ public final class ECSProto {
       return builder;
     }
     /**
-     * <pre>
-     * Service for ECS to register KVServer
-     * </pre>
-     *
      * Protobuf type {@code RegisterRequest}
      */
     public static final class Builder extends
@@ -919,11 +2188,11 @@ public final class ECSProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (ipPortBuilder_ == null) {
-          ipPort_ = null;
+        if (nodeBuilder_ == null) {
+          node_ = null;
         } else {
-          ipPort_ = null;
-          ipPortBuilder_ = null;
+          node_ = null;
+          nodeBuilder_ = null;
         }
         return this;
       }
@@ -951,10 +2220,10 @@ public final class ECSProto {
       @java.lang.Override
       public de.tum.grpc_api.ECSProto.RegisterRequest buildPartial() {
         de.tum.grpc_api.ECSProto.RegisterRequest result = new de.tum.grpc_api.ECSProto.RegisterRequest(this);
-        if (ipPortBuilder_ == null) {
-          result.ipPort_ = ipPort_;
+        if (nodeBuilder_ == null) {
+          result.node_ = node_;
         } else {
-          result.ipPort_ = ipPortBuilder_.build();
+          result.node_ = nodeBuilder_.build();
         }
         onBuilt();
         return result;
@@ -1004,8 +2273,8 @@ public final class ECSProto {
 
       public Builder mergeFrom(de.tum.grpc_api.ECSProto.RegisterRequest other) {
         if (other == de.tum.grpc_api.ECSProto.RegisterRequest.getDefaultInstance()) return this;
-        if (other.hasIpPort()) {
-          mergeIpPort(other.getIpPort());
+        if (other.hasNode()) {
+          mergeNode(other.getNode());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1035,7 +2304,7 @@ public final class ECSProto {
                 break;
               case 10: {
                 input.readMessage(
-                    getIpPortFieldBuilder().getBuilder(),
+                    getNodeFieldBuilder().getBuilder(),
                     extensionRegistry);
 
                 break;
@@ -1056,123 +2325,123 @@ public final class ECSProto {
         return this;
       }
 
-      private de.tum.grpc_api.ECSProto.NodeMessage ipPort_;
+      private de.tum.grpc_api.ECSProto.NodeMessage node_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder> ipPortBuilder_;
+          de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder> nodeBuilder_;
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
-       * @return Whether the ipPort field is set.
+       * <code>.NodeMessage node = 1;</code>
+       * @return Whether the node field is set.
        */
-      public boolean hasIpPort() {
-        return ipPortBuilder_ != null || ipPort_ != null;
+      public boolean hasNode() {
+        return nodeBuilder_ != null || node_ != null;
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
-       * @return The ipPort.
+       * <code>.NodeMessage node = 1;</code>
+       * @return The node.
        */
-      public de.tum.grpc_api.ECSProto.NodeMessage getIpPort() {
-        if (ipPortBuilder_ == null) {
-          return ipPort_ == null ? de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : ipPort_;
+      public de.tum.grpc_api.ECSProto.NodeMessage getNode() {
+        if (nodeBuilder_ == null) {
+          return node_ == null ? de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : node_;
         } else {
-          return ipPortBuilder_.getMessage();
+          return nodeBuilder_.getMessage();
         }
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
-      public Builder setIpPort(de.tum.grpc_api.ECSProto.NodeMessage value) {
-        if (ipPortBuilder_ == null) {
+      public Builder setNode(de.tum.grpc_api.ECSProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ipPort_ = value;
+          node_ = value;
           onChanged();
         } else {
-          ipPortBuilder_.setMessage(value);
+          nodeBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
-      public Builder setIpPort(
+      public Builder setNode(
           de.tum.grpc_api.ECSProto.NodeMessage.Builder builderForValue) {
-        if (ipPortBuilder_ == null) {
-          ipPort_ = builderForValue.build();
+        if (nodeBuilder_ == null) {
+          node_ = builderForValue.build();
           onChanged();
         } else {
-          ipPortBuilder_.setMessage(builderForValue.build());
+          nodeBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
-      public Builder mergeIpPort(de.tum.grpc_api.ECSProto.NodeMessage value) {
-        if (ipPortBuilder_ == null) {
-          if (ipPort_ != null) {
-            ipPort_ =
-              de.tum.grpc_api.ECSProto.NodeMessage.newBuilder(ipPort_).mergeFrom(value).buildPartial();
+      public Builder mergeNode(de.tum.grpc_api.ECSProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (node_ != null) {
+            node_ =
+              de.tum.grpc_api.ECSProto.NodeMessage.newBuilder(node_).mergeFrom(value).buildPartial();
           } else {
-            ipPort_ = value;
+            node_ = value;
           }
           onChanged();
         } else {
-          ipPortBuilder_.mergeFrom(value);
+          nodeBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
-      public Builder clearIpPort() {
-        if (ipPortBuilder_ == null) {
-          ipPort_ = null;
+      public Builder clearNode() {
+        if (nodeBuilder_ == null) {
+          node_ = null;
           onChanged();
         } else {
-          ipPort_ = null;
-          ipPortBuilder_ = null;
+          node_ = null;
+          nodeBuilder_ = null;
         }
 
         return this;
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
-      public de.tum.grpc_api.ECSProto.NodeMessage.Builder getIpPortBuilder() {
+      public de.tum.grpc_api.ECSProto.NodeMessage.Builder getNodeBuilder() {
         
         onChanged();
-        return getIpPortFieldBuilder().getBuilder();
+        return getNodeFieldBuilder().getBuilder();
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
-      public de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getIpPortOrBuilder() {
-        if (ipPortBuilder_ != null) {
-          return ipPortBuilder_.getMessageOrBuilder();
+      public de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder() {
+        if (nodeBuilder_ != null) {
+          return nodeBuilder_.getMessageOrBuilder();
         } else {
-          return ipPort_ == null ?
-              de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : ipPort_;
+          return node_ == null ?
+              de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : node_;
         }
       }
       /**
-       * <code>.NodeMessage IpPort = 1;</code>
+       * <code>.NodeMessage node = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder> 
-          getIpPortFieldBuilder() {
-        if (ipPortBuilder_ == null) {
-          ipPortBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          getNodeFieldBuilder() {
+        if (nodeBuilder_ == null) {
+          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder>(
-                  getIpPort(),
+                  getNode(),
                   getParentForChildren(),
                   isClean());
-          ipPort_ = null;
+          node_ = null;
         }
-        return ipPortBuilder_;
+        return nodeBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1238,86 +2507,43 @@ public final class ECSProto {
 
   }
 
-  public interface RegisterResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RegisterResponse)
+  public interface ToStringResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ToStringResponse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     * <code>string HostPort = 1;</code>
+     * @return The hostPort.
      */
-    int getRingCount();
+    java.lang.String getHostPort();
     /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     * <code>string HostPort = 1;</code>
+     * @return The bytes for hostPort.
      */
-    boolean containsRing(
-        java.lang.String key);
-    /**
-     * Use {@link #getRingMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-    getRing();
-    /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-    getRingMap();
-    /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    /* nullable */
-de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
-        java.lang.String key,
-        /* nullable */
-de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
-    /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
-        java.lang.String key);
+    com.google.protobuf.ByteString
+        getHostPortBytes();
   }
   /**
-   * Protobuf type {@code RegisterResponse}
+   * Protobuf type {@code ToStringResponse}
    */
-  public static final class RegisterResponse extends
+  public static final class ToStringResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:RegisterResponse)
-      RegisterResponseOrBuilder {
+      // @@protoc_insertion_point(message_implements:ToStringResponse)
+      ToStringResponseOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RegisterResponse.newBuilder() to construct.
-    private RegisterResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ToStringResponse.newBuilder() to construct.
+    private ToStringResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RegisterResponse() {
+    private ToStringResponse() {
+      hostPort_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RegisterResponse();
+      return new ToStringResponse();
     }
 
     @java.lang.Override
@@ -1327,124 +2553,53 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return de.tum.grpc_api.ECSProto.internal_static_RegisterResponse_descriptor;
+      return de.tum.grpc_api.ECSProto.internal_static_ToStringResponse_descriptor;
     }
 
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 1:
-          return internalGetRing();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.ECSProto.internal_static_RegisterResponse_fieldAccessorTable
+      return de.tum.grpc_api.ECSProto.internal_static_ToStringResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.ECSProto.RegisterResponse.class, de.tum.grpc_api.ECSProto.RegisterResponse.Builder.class);
+              de.tum.grpc_api.ECSProto.ToStringResponse.class, de.tum.grpc_api.ECSProto.ToStringResponse.Builder.class);
     }
 
-    public static final int RING_FIELD_NUMBER = 1;
-    private static final class RingDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>newDefaultInstance(
-                  de.tum.grpc_api.ECSProto.internal_static_RegisterResponse_RingEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance());
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> ring_;
-    private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-    internalGetRing() {
-      if (ring_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            RingDefaultEntryHolder.defaultEntry);
+    public static final int HOSTPORT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object hostPort_;
+    /**
+     * <code>string HostPort = 1;</code>
+     * @return The hostPort.
+     */
+    @java.lang.Override
+    public java.lang.String getHostPort() {
+      java.lang.Object ref = hostPort_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        hostPort_ = s;
+        return s;
       }
-      return ring_;
-    }
-
-    public int getRingCount() {
-      return internalGetRing().getMap().size();
     }
     /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    @java.lang.Override
-    public boolean containsRing(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      return internalGetRing().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getRingMap()} instead.
+     * <code>string HostPort = 1;</code>
+     * @return The bytes for hostPort.
      */
     @java.lang.Override
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRing() {
-      return getRingMap();
-    }
-    /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRingMap() {
-      return internalGetRing().getMap();
-    }
-    /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
-        java.lang.String key,
-        de.tum.grpc_api.ECSProto.NodeMessage defaultValue) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-          internalGetRing().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <pre>
-     *&lt;nodeHash, Node&gt;
-     * </pre>
-     *
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-          internalGetRing().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
+    public com.google.protobuf.ByteString
+        getHostPortBytes() {
+      java.lang.Object ref = hostPort_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        hostPort_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
       }
-      return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1461,12 +2616,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetRing(),
-          RingDefaultEntryHolder.defaultEntry,
-          1);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hostPort_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, hostPort_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -1476,15 +2628,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (size != -1) return size;
 
       size = 0;
-      for (java.util.Map.Entry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> entry
-           : internalGetRing().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-        ring__ = RingDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, ring__);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hostPort_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, hostPort_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1496,13 +2641,13 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof de.tum.grpc_api.ECSProto.RegisterResponse)) {
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.ToStringResponse)) {
         return super.equals(obj);
       }
-      de.tum.grpc_api.ECSProto.RegisterResponse other = (de.tum.grpc_api.ECSProto.RegisterResponse) obj;
+      de.tum.grpc_api.ECSProto.ToStringResponse other = (de.tum.grpc_api.ECSProto.ToStringResponse) obj;
 
-      if (!internalGetRing().equals(
-          other.internalGetRing())) return false;
+      if (!getHostPort()
+          .equals(other.getHostPort())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1514,78 +2659,76 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (!internalGetRing().getMap().isEmpty()) {
-        hash = (37 * hash) + RING_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetRing().hashCode();
-      }
+      hash = (37 * hash) + HOSTPORT_FIELD_NUMBER;
+      hash = (53 * hash) + getHostPort().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(byte[] data)
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(java.io.InputStream input)
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseDelimitedFrom(java.io.InputStream input)
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseDelimitedFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.RegisterResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.ToStringResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1598,7 +2741,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(de.tum.grpc_api.ECSProto.RegisterResponse prototype) {
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.ToStringResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1614,48 +2757,26 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       return builder;
     }
     /**
-     * Protobuf type {@code RegisterResponse}
+     * Protobuf type {@code ToStringResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RegisterResponse)
-        de.tum.grpc_api.ECSProto.RegisterResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ToStringResponse)
+        de.tum.grpc_api.ECSProto.ToStringResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return de.tum.grpc_api.ECSProto.internal_static_RegisterResponse_descriptor;
+        return de.tum.grpc_api.ECSProto.internal_static_ToStringResponse_descriptor;
       }
 
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetRing();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableRing();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.ECSProto.internal_static_RegisterResponse_fieldAccessorTable
+        return de.tum.grpc_api.ECSProto.internal_static_ToStringResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.ECSProto.RegisterResponse.class, de.tum.grpc_api.ECSProto.RegisterResponse.Builder.class);
+                de.tum.grpc_api.ECSProto.ToStringResponse.class, de.tum.grpc_api.ECSProto.ToStringResponse.Builder.class);
       }
 
-      // Construct using de.tum.grpc_api.ECSProto.RegisterResponse.newBuilder()
+      // Construct using de.tum.grpc_api.ECSProto.ToStringResponse.newBuilder()
       private Builder() {
 
       }
@@ -1668,24 +2789,25 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        internalGetMutableRing().clear();
+        hostPort_ = "";
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return de.tum.grpc_api.ECSProto.internal_static_RegisterResponse_descriptor;
+        return de.tum.grpc_api.ECSProto.internal_static_ToStringResponse_descriptor;
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.RegisterResponse getDefaultInstanceForType() {
-        return de.tum.grpc_api.ECSProto.RegisterResponse.getDefaultInstance();
+      public de.tum.grpc_api.ECSProto.ToStringResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.ToStringResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.RegisterResponse build() {
-        de.tum.grpc_api.ECSProto.RegisterResponse result = buildPartial();
+      public de.tum.grpc_api.ECSProto.ToStringResponse build() {
+        de.tum.grpc_api.ECSProto.ToStringResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1693,11 +2815,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.RegisterResponse buildPartial() {
-        de.tum.grpc_api.ECSProto.RegisterResponse result = new de.tum.grpc_api.ECSProto.RegisterResponse(this);
-        int from_bitField0_ = bitField0_;
-        result.ring_ = internalGetRing();
-        result.ring_.makeImmutable();
+      public de.tum.grpc_api.ECSProto.ToStringResponse buildPartial() {
+        de.tum.grpc_api.ECSProto.ToStringResponse result = new de.tum.grpc_api.ECSProto.ToStringResponse(this);
+        result.hostPort_ = hostPort_;
         onBuilt();
         return result;
       }
@@ -1736,18 +2856,20 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.ECSProto.RegisterResponse) {
-          return mergeFrom((de.tum.grpc_api.ECSProto.RegisterResponse)other);
+        if (other instanceof de.tum.grpc_api.ECSProto.ToStringResponse) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.ToStringResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(de.tum.grpc_api.ECSProto.RegisterResponse other) {
-        if (other == de.tum.grpc_api.ECSProto.RegisterResponse.getDefaultInstance()) return this;
-        internalGetMutableRing().mergeFrom(
-            other.internalGetRing());
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.ToStringResponse other) {
+        if (other == de.tum.grpc_api.ECSProto.ToStringResponse.getDefaultInstance()) return this;
+        if (!other.getHostPort().isEmpty()) {
+          hostPort_ = other.hostPort_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -1775,11 +2897,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
                 done = true;
                 break;
               case 10: {
-                com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-                ring__ = input.readMessage(
-                    RingDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-                internalGetMutableRing().getMutableMap().put(
-                    ring__.getKey(), ring__.getValue());
+                hostPort_ = input.readStringRequireUtf8();
+
                 break;
               } // case 10
               default: {
@@ -1797,164 +2916,80 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
         } // finally
         return this;
       }
-      private int bitField0_;
 
-      private com.google.protobuf.MapField<
-          java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> ring_;
-      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-      internalGetRing() {
-        if (ring_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              RingDefaultEntryHolder.defaultEntry);
+      private java.lang.Object hostPort_ = "";
+      /**
+       * <code>string HostPort = 1;</code>
+       * @return The hostPort.
+       */
+      public java.lang.String getHostPort() {
+        java.lang.Object ref = hostPort_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          hostPort_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
         }
-        return ring_;
       }
-      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-      internalGetMutableRing() {
-        onChanged();;
-        if (ring_ == null) {
-          ring_ = com.google.protobuf.MapField.newMapField(
-              RingDefaultEntryHolder.defaultEntry);
+      /**
+       * <code>string HostPort = 1;</code>
+       * @return The bytes for hostPort.
+       */
+      public com.google.protobuf.ByteString
+          getHostPortBytes() {
+        java.lang.Object ref = hostPort_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          hostPort_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
         }
-        if (!ring_.isMutable()) {
-          ring_ = ring_.copy();
-        }
-        return ring_;
-      }
-
-      public int getRingCount() {
-        return internalGetRing().getMap().size();
       }
       /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       * <code>string HostPort = 1;</code>
+       * @param value The hostPort to set.
+       * @return This builder for chaining.
        */
-
-      @java.lang.Override
-      public boolean containsRing(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        return internalGetRing().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getRingMap()} instead.
-       */
-      @java.lang.Override
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRing() {
-        return getRingMap();
-      }
-      /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRingMap() {
-        return internalGetRing().getMap();
-      }
-      /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
-          java.lang.String key,
-          de.tum.grpc_api.ECSProto.NodeMessage defaultValue) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-            internalGetRing().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-            internalGetRing().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearRing() {
-        internalGetMutableRing().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-
-      public Builder removeRing(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        internalGetMutableRing().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-      getMutableRing() {
-        return internalGetMutableRing().getMutableMap();
-      }
-      /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      public Builder putRing(
-          java.lang.String key,
-          de.tum.grpc_api.ECSProto.NodeMessage value) {
-        if (key == null) { throw new NullPointerException("map key"); }
+      public Builder setHostPort(
+          java.lang.String value) {
         if (value == null) {
-  throw new NullPointerException("map value");
-}
-
-        internalGetMutableRing().getMutableMap()
-            .put(key, value);
+    throw new NullPointerException();
+  }
+  
+        hostPort_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <pre>
-       *&lt;nodeHash, Node&gt;
-       * </pre>
-       *
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       * <code>string HostPort = 1;</code>
+       * @return This builder for chaining.
        */
-
-      public Builder putAllRing(
-          java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> values) {
-        internalGetMutableRing().getMutableMap()
-            .putAll(values);
+      public Builder clearHostPort() {
+        
+        hostPort_ = getDefaultInstance().getHostPort();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string HostPort = 1;</code>
+       * @param value The bytes for hostPort to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHostPortBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        hostPort_ = value;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -1970,23 +3005,23 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:RegisterResponse)
+      // @@protoc_insertion_point(builder_scope:ToStringResponse)
     }
 
-    // @@protoc_insertion_point(class_scope:RegisterResponse)
-    private static final de.tum.grpc_api.ECSProto.RegisterResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:ToStringResponse)
+    private static final de.tum.grpc_api.ECSProto.ToStringResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.RegisterResponse();
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.ToStringResponse();
     }
 
-    public static de.tum.grpc_api.ECSProto.RegisterResponse getDefaultInstance() {
+    public static de.tum.grpc_api.ECSProto.ToStringResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RegisterResponse>
-        PARSER = new com.google.protobuf.AbstractParser<RegisterResponse>() {
+    private static final com.google.protobuf.Parser<ToStringResponse>
+        PARSER = new com.google.protobuf.AbstractParser<ToStringResponse>() {
       @java.lang.Override
-      public RegisterResponse parsePartialFrom(
+      public ToStringResponse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2005,86 +3040,59 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
     };
 
-    public static com.google.protobuf.Parser<RegisterResponse> parser() {
+    public static com.google.protobuf.Parser<ToStringResponse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RegisterResponse> getParserForType() {
+    public com.google.protobuf.Parser<ToStringResponse> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public de.tum.grpc_api.ECSProto.RegisterResponse getDefaultInstanceForType() {
+    public de.tum.grpc_api.ECSProto.ToStringResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface UpdateRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:UpdateRequest)
+  public interface IsResponsibleRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:IsResponsibleRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     * <code>string key = 1;</code>
+     * @return The key.
      */
-    int getRingCount();
+    java.lang.String getKey();
     /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
-    boolean containsRing(
-        java.lang.String key);
-    /**
-     * Use {@link #getRingMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-    getRing();
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-    getRingMap();
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    /* nullable */
-de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
-        java.lang.String key,
-        /* nullable */
-de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
-        java.lang.String key);
+    com.google.protobuf.ByteString
+        getKeyBytes();
   }
   /**
-   * <pre>
-   * Service for ECS to update all KVServers
-   * </pre>
-   *
-   * Protobuf type {@code UpdateRequest}
+   * Protobuf type {@code IsResponsibleRequest}
    */
-  public static final class UpdateRequest extends
+  public static final class IsResponsibleRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:UpdateRequest)
-      UpdateRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:IsResponsibleRequest)
+      IsResponsibleRequestOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use UpdateRequest.newBuilder() to construct.
-    private UpdateRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use IsResponsibleRequest.newBuilder() to construct.
+    private IsResponsibleRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private UpdateRequest() {
+    private IsResponsibleRequest() {
+      key_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new UpdateRequest();
+      return new IsResponsibleRequest();
     }
 
     @java.lang.Override
@@ -2094,108 +3102,53 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return de.tum.grpc_api.ECSProto.internal_static_UpdateRequest_descriptor;
+      return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleRequest_descriptor;
     }
 
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 1:
-          return internalGetRing();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.ECSProto.internal_static_UpdateRequest_fieldAccessorTable
+      return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.ECSProto.UpdateRequest.class, de.tum.grpc_api.ECSProto.UpdateRequest.Builder.class);
+              de.tum.grpc_api.ECSProto.IsResponsibleRequest.class, de.tum.grpc_api.ECSProto.IsResponsibleRequest.Builder.class);
     }
 
-    public static final int RING_FIELD_NUMBER = 1;
-    private static final class RingDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>newDefaultInstance(
-                  de.tum.grpc_api.ECSProto.internal_static_UpdateRequest_RingEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance());
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> ring_;
-    private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-    internalGetRing() {
-      if (ring_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            RingDefaultEntryHolder.defaultEntry);
+    public static final int KEY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object key_;
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    @java.lang.Override
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
       }
-      return ring_;
-    }
-
-    public int getRingCount() {
-      return internalGetRing().getMap().size();
     }
     /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    @java.lang.Override
-    public boolean containsRing(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      return internalGetRing().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getRingMap()} instead.
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     @java.lang.Override
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRing() {
-      return getRingMap();
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRingMap() {
-      return internalGetRing().getMap();
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
-        java.lang.String key,
-        de.tum.grpc_api.ECSProto.NodeMessage defaultValue) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-          internalGetRing().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-          internalGetRing().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
       }
-      return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2212,12 +3165,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetRing(),
-          RingDefaultEntryHolder.defaultEntry,
-          1);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2227,15 +3177,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (size != -1) return size;
 
       size = 0;
-      for (java.util.Map.Entry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> entry
-           : internalGetRing().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-        ring__ = RingDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, ring__);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2247,13 +3190,13 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof de.tum.grpc_api.ECSProto.UpdateRequest)) {
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.IsResponsibleRequest)) {
         return super.equals(obj);
       }
-      de.tum.grpc_api.ECSProto.UpdateRequest other = (de.tum.grpc_api.ECSProto.UpdateRequest) obj;
+      de.tum.grpc_api.ECSProto.IsResponsibleRequest other = (de.tum.grpc_api.ECSProto.IsResponsibleRequest) obj;
 
-      if (!internalGetRing().equals(
-          other.internalGetRing())) return false;
+      if (!getKey()
+          .equals(other.getKey())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -2265,78 +3208,76 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (!internalGetRing().getMap().isEmpty()) {
-        hash = (37 * hash) + RING_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetRing().hashCode();
-      }
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(byte[] data)
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(java.io.InputStream input)
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseDelimitedFrom(java.io.InputStream input)
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseDelimitedFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateRequest parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2349,7 +3290,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(de.tum.grpc_api.ECSProto.UpdateRequest prototype) {
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.IsResponsibleRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2365,52 +3306,26 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       return builder;
     }
     /**
-     * <pre>
-     * Service for ECS to update all KVServers
-     * </pre>
-     *
-     * Protobuf type {@code UpdateRequest}
+     * Protobuf type {@code IsResponsibleRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:UpdateRequest)
-        de.tum.grpc_api.ECSProto.UpdateRequestOrBuilder {
+        // @@protoc_insertion_point(builder_implements:IsResponsibleRequest)
+        de.tum.grpc_api.ECSProto.IsResponsibleRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return de.tum.grpc_api.ECSProto.internal_static_UpdateRequest_descriptor;
+        return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleRequest_descriptor;
       }
 
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetRing();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableRing();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.ECSProto.internal_static_UpdateRequest_fieldAccessorTable
+        return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.ECSProto.UpdateRequest.class, de.tum.grpc_api.ECSProto.UpdateRequest.Builder.class);
+                de.tum.grpc_api.ECSProto.IsResponsibleRequest.class, de.tum.grpc_api.ECSProto.IsResponsibleRequest.Builder.class);
       }
 
-      // Construct using de.tum.grpc_api.ECSProto.UpdateRequest.newBuilder()
+      // Construct using de.tum.grpc_api.ECSProto.IsResponsibleRequest.newBuilder()
       private Builder() {
 
       }
@@ -2423,24 +3338,25 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        internalGetMutableRing().clear();
+        key_ = "";
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return de.tum.grpc_api.ECSProto.internal_static_UpdateRequest_descriptor;
+        return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleRequest_descriptor;
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.UpdateRequest getDefaultInstanceForType() {
-        return de.tum.grpc_api.ECSProto.UpdateRequest.getDefaultInstance();
+      public de.tum.grpc_api.ECSProto.IsResponsibleRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.IsResponsibleRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.UpdateRequest build() {
-        de.tum.grpc_api.ECSProto.UpdateRequest result = buildPartial();
+      public de.tum.grpc_api.ECSProto.IsResponsibleRequest build() {
+        de.tum.grpc_api.ECSProto.IsResponsibleRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2448,11 +3364,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.UpdateRequest buildPartial() {
-        de.tum.grpc_api.ECSProto.UpdateRequest result = new de.tum.grpc_api.ECSProto.UpdateRequest(this);
-        int from_bitField0_ = bitField0_;
-        result.ring_ = internalGetRing();
-        result.ring_.makeImmutable();
+      public de.tum.grpc_api.ECSProto.IsResponsibleRequest buildPartial() {
+        de.tum.grpc_api.ECSProto.IsResponsibleRequest result = new de.tum.grpc_api.ECSProto.IsResponsibleRequest(this);
+        result.key_ = key_;
         onBuilt();
         return result;
       }
@@ -2491,18 +3405,20 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.ECSProto.UpdateRequest) {
-          return mergeFrom((de.tum.grpc_api.ECSProto.UpdateRequest)other);
+        if (other instanceof de.tum.grpc_api.ECSProto.IsResponsibleRequest) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.IsResponsibleRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(de.tum.grpc_api.ECSProto.UpdateRequest other) {
-        if (other == de.tum.grpc_api.ECSProto.UpdateRequest.getDefaultInstance()) return this;
-        internalGetMutableRing().mergeFrom(
-            other.internalGetRing());
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.IsResponsibleRequest other) {
+        if (other == de.tum.grpc_api.ECSProto.IsResponsibleRequest.getDefaultInstance()) return this;
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -2530,11 +3446,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
                 done = true;
                 break;
               case 10: {
-                com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-                ring__ = input.readMessage(
-                    RingDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-                internalGetMutableRing().getMutableMap().put(
-                    ring__.getKey(), ring__.getValue());
+                key_ = input.readStringRequireUtf8();
+
                 break;
               } // case 10
               default: {
@@ -2552,136 +3465,80 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
         } // finally
         return this;
       }
-      private int bitField0_;
 
-      private com.google.protobuf.MapField<
-          java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> ring_;
-      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-      internalGetRing() {
-        if (ring_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              RingDefaultEntryHolder.defaultEntry);
+      private java.lang.Object key_ = "";
+      /**
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
         }
-        return ring_;
       }
-      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-      internalGetMutableRing() {
-        onChanged();;
-        if (ring_ == null) {
-          ring_ = com.google.protobuf.MapField.newMapField(
-              RingDefaultEntryHolder.defaultEntry);
+      /**
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
         }
-        if (!ring_.isMutable()) {
-          ring_ = ring_.copy();
-        }
-        return ring_;
-      }
-
-      public int getRingCount() {
-        return internalGetRing().getMap().size();
       }
       /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
-
-      @java.lang.Override
-      public boolean containsRing(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        return internalGetRing().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getRingMap()} instead.
-       */
-      @java.lang.Override
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRing() {
-        return getRingMap();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRingMap() {
-        return internalGetRing().getMap();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
-          java.lang.String key,
-          de.tum.grpc_api.ECSProto.NodeMessage defaultValue) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-            internalGetRing().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
-            internalGetRing().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearRing() {
-        internalGetMutableRing().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-
-      public Builder removeRing(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        internalGetMutableRing().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
-      getMutableRing() {
-        return internalGetMutableRing().getMutableMap();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      public Builder putRing(
-          java.lang.String key,
-          de.tum.grpc_api.ECSProto.NodeMessage value) {
-        if (key == null) { throw new NullPointerException("map key"); }
+      public Builder setKey(
+          java.lang.String value) {
         if (value == null) {
-  throw new NullPointerException("map value");
-}
-
-        internalGetMutableRing().getMutableMap()
-            .put(key, value);
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
-
-      public Builder putAllRing(
-          java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> values) {
-        internalGetMutableRing().getMutableMap()
-            .putAll(values);
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -2697,23 +3554,23 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:UpdateRequest)
+      // @@protoc_insertion_point(builder_scope:IsResponsibleRequest)
     }
 
-    // @@protoc_insertion_point(class_scope:UpdateRequest)
-    private static final de.tum.grpc_api.ECSProto.UpdateRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:IsResponsibleRequest)
+    private static final de.tum.grpc_api.ECSProto.IsResponsibleRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.UpdateRequest();
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.IsResponsibleRequest();
     }
 
-    public static de.tum.grpc_api.ECSProto.UpdateRequest getDefaultInstance() {
+    public static de.tum.grpc_api.ECSProto.IsResponsibleRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<UpdateRequest>
-        PARSER = new com.google.protobuf.AbstractParser<UpdateRequest>() {
+    private static final com.google.protobuf.Parser<IsResponsibleRequest>
+        PARSER = new com.google.protobuf.AbstractParser<IsResponsibleRequest>() {
       @java.lang.Override
-      public UpdateRequest parsePartialFrom(
+      public IsResponsibleRequest parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2732,52 +3589,52 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
     };
 
-    public static com.google.protobuf.Parser<UpdateRequest> parser() {
+    public static com.google.protobuf.Parser<IsResponsibleRequest> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<UpdateRequest> getParserForType() {
+    public com.google.protobuf.Parser<IsResponsibleRequest> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public de.tum.grpc_api.ECSProto.UpdateRequest getDefaultInstanceForType() {
+    public de.tum.grpc_api.ECSProto.IsResponsibleRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface UpdateResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:UpdateResponse)
+  public interface IsResponsibleResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:IsResponsibleResponse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool isSuccess = 1;</code>
-     * @return The isSuccess.
+     * <code>bool isResponsible = 1;</code>
+     * @return The isResponsible.
      */
-    boolean getIsSuccess();
+    boolean getIsResponsible();
   }
   /**
-   * Protobuf type {@code UpdateResponse}
+   * Protobuf type {@code IsResponsibleResponse}
    */
-  public static final class UpdateResponse extends
+  public static final class IsResponsibleResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:UpdateResponse)
-      UpdateResponseOrBuilder {
+      // @@protoc_insertion_point(message_implements:IsResponsibleResponse)
+      IsResponsibleResponseOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use UpdateResponse.newBuilder() to construct.
-    private UpdateResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use IsResponsibleResponse.newBuilder() to construct.
+    private IsResponsibleResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private UpdateResponse() {
+    private IsResponsibleResponse() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new UpdateResponse();
+      return new IsResponsibleResponse();
     }
 
     @java.lang.Override
@@ -2787,26 +3644,26 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return de.tum.grpc_api.ECSProto.internal_static_UpdateResponse_descriptor;
+      return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.ECSProto.internal_static_UpdateResponse_fieldAccessorTable
+      return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.ECSProto.UpdateResponse.class, de.tum.grpc_api.ECSProto.UpdateResponse.Builder.class);
+              de.tum.grpc_api.ECSProto.IsResponsibleResponse.class, de.tum.grpc_api.ECSProto.IsResponsibleResponse.Builder.class);
     }
 
-    public static final int ISSUCCESS_FIELD_NUMBER = 1;
-    private boolean isSuccess_;
+    public static final int ISRESPONSIBLE_FIELD_NUMBER = 1;
+    private boolean isResponsible_;
     /**
-     * <code>bool isSuccess = 1;</code>
-     * @return The isSuccess.
+     * <code>bool isResponsible = 1;</code>
+     * @return The isResponsible.
      */
     @java.lang.Override
-    public boolean getIsSuccess() {
-      return isSuccess_;
+    public boolean getIsResponsible() {
+      return isResponsible_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2823,8 +3680,8 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (isSuccess_ != false) {
-        output.writeBool(1, isSuccess_);
+      if (isResponsible_ != false) {
+        output.writeBool(1, isResponsible_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2835,9 +3692,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (size != -1) return size;
 
       size = 0;
-      if (isSuccess_ != false) {
+      if (isResponsible_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, isSuccess_);
+          .computeBoolSize(1, isResponsible_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2849,13 +3706,13 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof de.tum.grpc_api.ECSProto.UpdateResponse)) {
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.IsResponsibleResponse)) {
         return super.equals(obj);
       }
-      de.tum.grpc_api.ECSProto.UpdateResponse other = (de.tum.grpc_api.ECSProto.UpdateResponse) obj;
+      de.tum.grpc_api.ECSProto.IsResponsibleResponse other = (de.tum.grpc_api.ECSProto.IsResponsibleResponse) obj;
 
-      if (getIsSuccess()
-          != other.getIsSuccess()) return false;
+      if (getIsResponsible()
+          != other.getIsResponsible()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -2867,77 +3724,77 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ISSUCCESS_FIELD_NUMBER;
+      hash = (37 * hash) + ISRESPONSIBLE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsSuccess());
+          getIsResponsible());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(byte[] data)
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(java.io.InputStream input)
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseDelimitedFrom(java.io.InputStream input)
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseDelimitedFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.tum.grpc_api.ECSProto.UpdateResponse parseFrom(
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2950,7 +3807,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(de.tum.grpc_api.ECSProto.UpdateResponse prototype) {
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.IsResponsibleResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2966,26 +3823,26 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       return builder;
     }
     /**
-     * Protobuf type {@code UpdateResponse}
+     * Protobuf type {@code IsResponsibleResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:UpdateResponse)
-        de.tum.grpc_api.ECSProto.UpdateResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:IsResponsibleResponse)
+        de.tum.grpc_api.ECSProto.IsResponsibleResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return de.tum.grpc_api.ECSProto.internal_static_UpdateResponse_descriptor;
+        return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.ECSProto.internal_static_UpdateResponse_fieldAccessorTable
+        return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.ECSProto.UpdateResponse.class, de.tum.grpc_api.ECSProto.UpdateResponse.Builder.class);
+                de.tum.grpc_api.ECSProto.IsResponsibleResponse.class, de.tum.grpc_api.ECSProto.IsResponsibleResponse.Builder.class);
       }
 
-      // Construct using de.tum.grpc_api.ECSProto.UpdateResponse.newBuilder()
+      // Construct using de.tum.grpc_api.ECSProto.IsResponsibleResponse.newBuilder()
       private Builder() {
 
       }
@@ -2998,7 +3855,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        isSuccess_ = false;
+        isResponsible_ = false;
 
         return this;
       }
@@ -3006,17 +3863,17 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return de.tum.grpc_api.ECSProto.internal_static_UpdateResponse_descriptor;
+        return de.tum.grpc_api.ECSProto.internal_static_IsResponsibleResponse_descriptor;
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.UpdateResponse getDefaultInstanceForType() {
-        return de.tum.grpc_api.ECSProto.UpdateResponse.getDefaultInstance();
+      public de.tum.grpc_api.ECSProto.IsResponsibleResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.IsResponsibleResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.UpdateResponse build() {
-        de.tum.grpc_api.ECSProto.UpdateResponse result = buildPartial();
+      public de.tum.grpc_api.ECSProto.IsResponsibleResponse build() {
+        de.tum.grpc_api.ECSProto.IsResponsibleResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -3024,9 +3881,9 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
 
       @java.lang.Override
-      public de.tum.grpc_api.ECSProto.UpdateResponse buildPartial() {
-        de.tum.grpc_api.ECSProto.UpdateResponse result = new de.tum.grpc_api.ECSProto.UpdateResponse(this);
-        result.isSuccess_ = isSuccess_;
+      public de.tum.grpc_api.ECSProto.IsResponsibleResponse buildPartial() {
+        de.tum.grpc_api.ECSProto.IsResponsibleResponse result = new de.tum.grpc_api.ECSProto.IsResponsibleResponse(this);
+        result.isResponsible_ = isResponsible_;
         onBuilt();
         return result;
       }
@@ -3065,18 +3922,18 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.ECSProto.UpdateResponse) {
-          return mergeFrom((de.tum.grpc_api.ECSProto.UpdateResponse)other);
+        if (other instanceof de.tum.grpc_api.ECSProto.IsResponsibleResponse) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.IsResponsibleResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(de.tum.grpc_api.ECSProto.UpdateResponse other) {
-        if (other == de.tum.grpc_api.ECSProto.UpdateResponse.getDefaultInstance()) return this;
-        if (other.getIsSuccess() != false) {
-          setIsSuccess(other.getIsSuccess());
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.IsResponsibleResponse other) {
+        if (other == de.tum.grpc_api.ECSProto.IsResponsibleResponse.getDefaultInstance()) return this;
+        if (other.getIsResponsible() != false) {
+          setIsResponsible(other.getIsResponsible());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -3105,7 +3962,7 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
                 done = true;
                 break;
               case 8: {
-                isSuccess_ = input.readBool();
+                isResponsible_ = input.readBool();
 
                 break;
               } // case 8
@@ -3125,33 +3982,33 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
         return this;
       }
 
-      private boolean isSuccess_ ;
+      private boolean isResponsible_ ;
       /**
-       * <code>bool isSuccess = 1;</code>
-       * @return The isSuccess.
+       * <code>bool isResponsible = 1;</code>
+       * @return The isResponsible.
        */
       @java.lang.Override
-      public boolean getIsSuccess() {
-        return isSuccess_;
+      public boolean getIsResponsible() {
+        return isResponsible_;
       }
       /**
-       * <code>bool isSuccess = 1;</code>
-       * @param value The isSuccess to set.
+       * <code>bool isResponsible = 1;</code>
+       * @param value The isResponsible to set.
        * @return This builder for chaining.
        */
-      public Builder setIsSuccess(boolean value) {
+      public Builder setIsResponsible(boolean value) {
         
-        isSuccess_ = value;
+        isResponsible_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool isSuccess = 1;</code>
+       * <code>bool isResponsible = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearIsSuccess() {
+      public Builder clearIsResponsible() {
         
-        isSuccess_ = false;
+        isResponsible_ = false;
         onChanged();
         return this;
       }
@@ -3168,23 +4025,23 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:UpdateResponse)
+      // @@protoc_insertion_point(builder_scope:IsResponsibleResponse)
     }
 
-    // @@protoc_insertion_point(class_scope:UpdateResponse)
-    private static final de.tum.grpc_api.ECSProto.UpdateResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:IsResponsibleResponse)
+    private static final de.tum.grpc_api.ECSProto.IsResponsibleResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.UpdateResponse();
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.IsResponsibleResponse();
     }
 
-    public static de.tum.grpc_api.ECSProto.UpdateResponse getDefaultInstance() {
+    public static de.tum.grpc_api.ECSProto.IsResponsibleResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<UpdateResponse>
-        PARSER = new com.google.protobuf.AbstractParser<UpdateResponse>() {
+    private static final com.google.protobuf.Parser<IsResponsibleResponse>
+        PARSER = new com.google.protobuf.AbstractParser<IsResponsibleResponse>() {
       @java.lang.Override
-      public UpdateResponse parsePartialFrom(
+      public IsResponsibleResponse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3203,17 +4060,3726 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       }
     };
 
-    public static com.google.protobuf.Parser<UpdateResponse> parser() {
+    public static com.google.protobuf.Parser<IsResponsibleResponse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<UpdateResponse> getParserForType() {
+    public com.google.protobuf.Parser<IsResponsibleResponse> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public de.tum.grpc_api.ECSProto.UpdateResponse getDefaultInstanceForType() {
+    public de.tum.grpc_api.ECSProto.IsResponsibleResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RecoverRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:RecoverRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
+     */
+    boolean hasNode();
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
+     */
+    de.tum.grpc_api.ECSProto.NodeMessage getNode();
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     */
+    de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code RecoverRequest}
+   */
+  public static final class RecoverRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:RecoverRequest)
+      RecoverRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RecoverRequest.newBuilder() to construct.
+    private RecoverRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RecoverRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RecoverRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_RecoverRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_RecoverRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.RecoverRequest.class, de.tum.grpc_api.ECSProto.RecoverRequest.Builder.class);
+    }
+
+    public static final int NODE_FIELD_NUMBER = 1;
+    private de.tum.grpc_api.ECSProto.NodeMessage node_;
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
+     */
+    @java.lang.Override
+    public boolean hasNode() {
+      return node_ != null;
+    }
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.NodeMessage getNode() {
+      return node_ == null ? de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : node_;
+    }
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder() {
+      return getNode();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (node_ != null) {
+        output.writeMessage(1, getNode());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (node_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getNode());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.RecoverRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.RecoverRequest other = (de.tum.grpc_api.ECSProto.RecoverRequest) obj;
+
+      if (hasNode() != other.hasNode()) return false;
+      if (hasNode()) {
+        if (!getNode()
+            .equals(other.getNode())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasNode()) {
+        hash = (37 * hash) + NODE_FIELD_NUMBER;
+        hash = (53 * hash) + getNode().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.RecoverRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.RecoverRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code RecoverRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:RecoverRequest)
+        de.tum.grpc_api.ECSProto.RecoverRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_RecoverRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_RecoverRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.RecoverRequest.class, de.tum.grpc_api.ECSProto.RecoverRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.RecoverRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (nodeBuilder_ == null) {
+          node_ = null;
+        } else {
+          node_ = null;
+          nodeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_RecoverRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.RecoverRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.RecoverRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.RecoverRequest build() {
+        de.tum.grpc_api.ECSProto.RecoverRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.RecoverRequest buildPartial() {
+        de.tum.grpc_api.ECSProto.RecoverRequest result = new de.tum.grpc_api.ECSProto.RecoverRequest(this);
+        if (nodeBuilder_ == null) {
+          result.node_ = node_;
+        } else {
+          result.node_ = nodeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.RecoverRequest) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.RecoverRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.RecoverRequest other) {
+        if (other == de.tum.grpc_api.ECSProto.RecoverRequest.getDefaultInstance()) return this;
+        if (other.hasNode()) {
+          mergeNode(other.getNode());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getNodeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private de.tum.grpc_api.ECSProto.NodeMessage node_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder> nodeBuilder_;
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       * @return Whether the node field is set.
+       */
+      public boolean hasNode() {
+        return nodeBuilder_ != null || node_ != null;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       * @return The node.
+       */
+      public de.tum.grpc_api.ECSProto.NodeMessage getNode() {
+        if (nodeBuilder_ == null) {
+          return node_ == null ? de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : node_;
+        } else {
+          return nodeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder setNode(de.tum.grpc_api.ECSProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          node_ = value;
+          onChanged();
+        } else {
+          nodeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder setNode(
+          de.tum.grpc_api.ECSProto.NodeMessage.Builder builderForValue) {
+        if (nodeBuilder_ == null) {
+          node_ = builderForValue.build();
+          onChanged();
+        } else {
+          nodeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder mergeNode(de.tum.grpc_api.ECSProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (node_ != null) {
+            node_ =
+              de.tum.grpc_api.ECSProto.NodeMessage.newBuilder(node_).mergeFrom(value).buildPartial();
+          } else {
+            node_ = value;
+          }
+          onChanged();
+        } else {
+          nodeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder clearNode() {
+        if (nodeBuilder_ == null) {
+          node_ = null;
+          onChanged();
+        } else {
+          node_ = null;
+          nodeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public de.tum.grpc_api.ECSProto.NodeMessage.Builder getNodeBuilder() {
+        
+        onChanged();
+        return getNodeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public de.tum.grpc_api.ECSProto.NodeMessageOrBuilder getNodeOrBuilder() {
+        if (nodeBuilder_ != null) {
+          return nodeBuilder_.getMessageOrBuilder();
+        } else {
+          return node_ == null ?
+              de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance() : node_;
+        }
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder> 
+          getNodeFieldBuilder() {
+        if (nodeBuilder_ == null) {
+          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.ECSProto.NodeMessage, de.tum.grpc_api.ECSProto.NodeMessage.Builder, de.tum.grpc_api.ECSProto.NodeMessageOrBuilder>(
+                  getNode(),
+                  getParentForChildren(),
+                  isClean());
+          node_ = null;
+        }
+        return nodeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:RecoverRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:RecoverRequest)
+    private static final de.tum.grpc_api.ECSProto.RecoverRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.RecoverRequest();
+    }
+
+    public static de.tum.grpc_api.ECSProto.RecoverRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RecoverRequest>
+        PARSER = new com.google.protobuf.AbstractParser<RecoverRequest>() {
+      @java.lang.Override
+      public RecoverRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<RecoverRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RecoverRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.RecoverRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateRingRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UpdateRingRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    int getRingCount();
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    boolean containsRing(
+        java.lang.String key);
+    /**
+     * Use {@link #getRingMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+    getRing();
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+    getRingMap();
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+
+    /* nullable */
+de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
+        java.lang.String key,
+        /* nullable */
+de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+
+    de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
+        java.lang.String key);
+  }
+  /**
+   * Protobuf type {@code UpdateRingRequest}
+   */
+  public static final class UpdateRingRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:UpdateRingRequest)
+      UpdateRingRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateRingRequest.newBuilder() to construct.
+    private UpdateRingRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateRingRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateRingRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_UpdateRingRequest_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetRing();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_UpdateRingRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.UpdateRingRequest.class, de.tum.grpc_api.ECSProto.UpdateRingRequest.Builder.class);
+    }
+
+    public static final int RING_FIELD_NUMBER = 1;
+    private static final class RingDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>newDefaultInstance(
+                  de.tum.grpc_api.ECSProto.internal_static_UpdateRingRequest_RingEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  de.tum.grpc_api.ECSProto.NodeMessage.getDefaultInstance());
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> ring_;
+    private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+    internalGetRing() {
+      if (ring_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            RingDefaultEntryHolder.defaultEntry);
+      }
+      return ring_;
+    }
+
+    public int getRingCount() {
+      return internalGetRing().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+
+    @java.lang.Override
+    public boolean containsRing(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetRing().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getRingMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRing() {
+      return getRingMap();
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    @java.lang.Override
+
+    public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRingMap() {
+      return internalGetRing().getMap();
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    @java.lang.Override
+
+    public de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
+        java.lang.String key,
+        de.tum.grpc_api.ECSProto.NodeMessage defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
+          internalGetRing().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    @java.lang.Override
+
+    public de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
+          internalGetRing().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetRing(),
+          RingDefaultEntryHolder.defaultEntry,
+          1);
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (java.util.Map.Entry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> entry
+           : internalGetRing().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+        ring__ = RingDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, ring__);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.UpdateRingRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.UpdateRingRequest other = (de.tum.grpc_api.ECSProto.UpdateRingRequest) obj;
+
+      if (!internalGetRing().equals(
+          other.internalGetRing())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (!internalGetRing().getMap().isEmpty()) {
+        hash = (37 * hash) + RING_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetRing().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.UpdateRingRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code UpdateRingRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:UpdateRingRequest)
+        de.tum.grpc_api.ECSProto.UpdateRingRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_UpdateRingRequest_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetRing();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMutableRing();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_UpdateRingRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.UpdateRingRequest.class, de.tum.grpc_api.ECSProto.UpdateRingRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.UpdateRingRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        internalGetMutableRing().clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_UpdateRingRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.UpdateRingRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.UpdateRingRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.UpdateRingRequest build() {
+        de.tum.grpc_api.ECSProto.UpdateRingRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.UpdateRingRequest buildPartial() {
+        de.tum.grpc_api.ECSProto.UpdateRingRequest result = new de.tum.grpc_api.ECSProto.UpdateRingRequest(this);
+        int from_bitField0_ = bitField0_;
+        result.ring_ = internalGetRing();
+        result.ring_.makeImmutable();
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.UpdateRingRequest) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.UpdateRingRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.UpdateRingRequest other) {
+        if (other == de.tum.grpc_api.ECSProto.UpdateRingRequest.getDefaultInstance()) return this;
+        internalGetMutableRing().mergeFrom(
+            other.internalGetRing());
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+                ring__ = input.readMessage(
+                    RingDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableRing().getMutableMap().put(
+                    ring__.getKey(), ring__.getValue());
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.MapField<
+          java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> ring_;
+      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+      internalGetRing() {
+        if (ring_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              RingDefaultEntryHolder.defaultEntry);
+        }
+        return ring_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+      internalGetMutableRing() {
+        onChanged();;
+        if (ring_ == null) {
+          ring_ = com.google.protobuf.MapField.newMapField(
+              RingDefaultEntryHolder.defaultEntry);
+        }
+        if (!ring_.isMutable()) {
+          ring_ = ring_.copy();
+        }
+        return ring_;
+      }
+
+      public int getRingCount() {
+        return internalGetRing().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+
+      @java.lang.Override
+      public boolean containsRing(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        return internalGetRing().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getRingMap()} instead.
+       */
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRing() {
+        return getRingMap();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      @java.lang.Override
+
+      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> getRingMap() {
+        return internalGetRing().getMap();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      @java.lang.Override
+
+      public de.tum.grpc_api.ECSProto.NodeMessage getRingOrDefault(
+          java.lang.String key,
+          de.tum.grpc_api.ECSProto.NodeMessage defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
+            internalGetRing().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      @java.lang.Override
+
+      public de.tum.grpc_api.ECSProto.NodeMessage getRingOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> map =
+            internalGetRing().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearRing() {
+        internalGetMutableRing().getMutableMap()
+            .clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+
+      public Builder removeRing(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        internalGetMutableRing().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage>
+      getMutableRing() {
+        return internalGetMutableRing().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      public Builder putRing(
+          java.lang.String key,
+          de.tum.grpc_api.ECSProto.NodeMessage value) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
+        internalGetMutableRing().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+
+      public Builder putAllRing(
+          java.util.Map<java.lang.String, de.tum.grpc_api.ECSProto.NodeMessage> values) {
+        internalGetMutableRing().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:UpdateRingRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:UpdateRingRequest)
+    private static final de.tum.grpc_api.ECSProto.UpdateRingRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.UpdateRingRequest();
+    }
+
+    public static de.tum.grpc_api.ECSProto.UpdateRingRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateRingRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateRingRequest>() {
+      @java.lang.Override
+      public UpdateRingRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateRingRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateRingRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.UpdateRingRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    java.lang.String getKey();
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    com.google.protobuf.ByteString
+        getKeyBytes();
+  }
+  /**
+   * Protobuf type {@code GetRequest}
+   */
+  public static final class GetRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetRequest)
+      GetRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetRequest.newBuilder() to construct.
+    private GetRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetRequest() {
+      key_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_GetRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_GetRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.GetRequest.class, de.tum.grpc_api.ECSProto.GetRequest.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object key_;
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    @java.lang.Override
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.GetRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.GetRequest other = (de.tum.grpc_api.ECSProto.GetRequest) obj;
+
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.GetRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.GetRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetRequest)
+        de.tum.grpc_api.ECSProto.GetRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_GetRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_GetRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.GetRequest.class, de.tum.grpc_api.ECSProto.GetRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.GetRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        key_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_GetRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.GetRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.GetRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.GetRequest build() {
+        de.tum.grpc_api.ECSProto.GetRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.GetRequest buildPartial() {
+        de.tum.grpc_api.ECSProto.GetRequest result = new de.tum.grpc_api.ECSProto.GetRequest(this);
+        result.key_ = key_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.GetRequest) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.GetRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.GetRequest other) {
+        if (other == de.tum.grpc_api.ECSProto.GetRequest.getDefaultInstance()) return this;
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object key_ = "";
+      /**
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetRequest)
+    private static final de.tum.grpc_api.ECSProto.GetRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.GetRequest();
+    }
+
+    public static de.tum.grpc_api.ECSProto.GetRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetRequest>() {
+      @java.lang.Override
+      public GetRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.GetRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.google.protobuf.Any Object = 1;</code>
+     * @return Whether the object field is set.
+     */
+    boolean hasObject();
+    /**
+     * <code>.google.protobuf.Any Object = 1;</code>
+     * @return The object.
+     */
+    com.google.protobuf.Any getObject();
+    /**
+     * <code>.google.protobuf.Any Object = 1;</code>
+     */
+    com.google.protobuf.AnyOrBuilder getObjectOrBuilder();
+  }
+  /**
+   * Protobuf type {@code GetResponse}
+   */
+  public static final class GetResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetResponse)
+      GetResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetResponse.newBuilder() to construct.
+    private GetResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_GetResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_GetResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.GetResponse.class, de.tum.grpc_api.ECSProto.GetResponse.Builder.class);
+    }
+
+    public static final int OBJECT_FIELD_NUMBER = 1;
+    private com.google.protobuf.Any object_;
+    /**
+     * <code>.google.protobuf.Any Object = 1;</code>
+     * @return Whether the object field is set.
+     */
+    @java.lang.Override
+    public boolean hasObject() {
+      return object_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Any Object = 1;</code>
+     * @return The object.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Any getObject() {
+      return object_ == null ? com.google.protobuf.Any.getDefaultInstance() : object_;
+    }
+    /**
+     * <code>.google.protobuf.Any Object = 1;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.AnyOrBuilder getObjectOrBuilder() {
+      return getObject();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (object_ != null) {
+        output.writeMessage(1, getObject());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (object_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getObject());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.GetResponse)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.GetResponse other = (de.tum.grpc_api.ECSProto.GetResponse) obj;
+
+      if (hasObject() != other.hasObject()) return false;
+      if (hasObject()) {
+        if (!getObject()
+            .equals(other.getObject())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasObject()) {
+        hash = (37 * hash) + OBJECT_FIELD_NUMBER;
+        hash = (53 * hash) + getObject().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.GetResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.GetResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetResponse)
+        de.tum.grpc_api.ECSProto.GetResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_GetResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_GetResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.GetResponse.class, de.tum.grpc_api.ECSProto.GetResponse.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.GetResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (objectBuilder_ == null) {
+          object_ = null;
+        } else {
+          object_ = null;
+          objectBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_GetResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.GetResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.GetResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.GetResponse build() {
+        de.tum.grpc_api.ECSProto.GetResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.GetResponse buildPartial() {
+        de.tum.grpc_api.ECSProto.GetResponse result = new de.tum.grpc_api.ECSProto.GetResponse(this);
+        if (objectBuilder_ == null) {
+          result.object_ = object_;
+        } else {
+          result.object_ = objectBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.GetResponse) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.GetResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.GetResponse other) {
+        if (other == de.tum.grpc_api.ECSProto.GetResponse.getDefaultInstance()) return this;
+        if (other.hasObject()) {
+          mergeObject(other.getObject());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getObjectFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private com.google.protobuf.Any object_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> objectBuilder_;
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       * @return Whether the object field is set.
+       */
+      public boolean hasObject() {
+        return objectBuilder_ != null || object_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       * @return The object.
+       */
+      public com.google.protobuf.Any getObject() {
+        if (objectBuilder_ == null) {
+          return object_ == null ? com.google.protobuf.Any.getDefaultInstance() : object_;
+        } else {
+          return objectBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      public Builder setObject(com.google.protobuf.Any value) {
+        if (objectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          object_ = value;
+          onChanged();
+        } else {
+          objectBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      public Builder setObject(
+          com.google.protobuf.Any.Builder builderForValue) {
+        if (objectBuilder_ == null) {
+          object_ = builderForValue.build();
+          onChanged();
+        } else {
+          objectBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      public Builder mergeObject(com.google.protobuf.Any value) {
+        if (objectBuilder_ == null) {
+          if (object_ != null) {
+            object_ =
+              com.google.protobuf.Any.newBuilder(object_).mergeFrom(value).buildPartial();
+          } else {
+            object_ = value;
+          }
+          onChanged();
+        } else {
+          objectBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      public Builder clearObject() {
+        if (objectBuilder_ == null) {
+          object_ = null;
+          onChanged();
+        } else {
+          object_ = null;
+          objectBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      public com.google.protobuf.Any.Builder getObjectBuilder() {
+        
+        onChanged();
+        return getObjectFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      public com.google.protobuf.AnyOrBuilder getObjectOrBuilder() {
+        if (objectBuilder_ != null) {
+          return objectBuilder_.getMessageOrBuilder();
+        } else {
+          return object_ == null ?
+              com.google.protobuf.Any.getDefaultInstance() : object_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Any Object = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+          getObjectFieldBuilder() {
+        if (objectBuilder_ == null) {
+          objectBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+                  getObject(),
+                  getParentForChildren(),
+                  isClean());
+          object_ = null;
+        }
+        return objectBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetResponse)
+    private static final de.tum.grpc_api.ECSProto.GetResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.GetResponse();
+    }
+
+    public static de.tum.grpc_api.ECSProto.GetResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetResponse>() {
+      @java.lang.Override
+      public GetResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.GetResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PutRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:PutRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    java.lang.String getKey();
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    com.google.protobuf.ByteString
+        getKeyBytes();
+
+    /**
+     * <code>string value = 2;</code>
+     * @return The value.
+     */
+    java.lang.String getValue();
+    /**
+     * <code>string value = 2;</code>
+     * @return The bytes for value.
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
+  }
+  /**
+   * Protobuf type {@code PutRequest}
+   */
+  public static final class PutRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:PutRequest)
+      PutRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PutRequest.newBuilder() to construct.
+    private PutRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PutRequest() {
+      key_ = "";
+      value_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PutRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_PutRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_PutRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.PutRequest.class, de.tum.grpc_api.ECSProto.PutRequest.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object key_;
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    @java.lang.Override
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object value_;
+    /**
+     * <code>string value = 2;</code>
+     * @return The value.
+     */
+    @java.lang.Override
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        value_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string value = 2;</code>
+     * @return The bytes for value.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        value_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.PutRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.PutRequest other = (de.tum.grpc_api.ECSProto.PutRequest) obj;
+
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getValue()
+          .equals(other.getValue())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.PutRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.PutRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code PutRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:PutRequest)
+        de.tum.grpc_api.ECSProto.PutRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_PutRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_PutRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.PutRequest.class, de.tum.grpc_api.ECSProto.PutRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.PutRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        key_ = "";
+
+        value_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_PutRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.PutRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.PutRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.PutRequest build() {
+        de.tum.grpc_api.ECSProto.PutRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.PutRequest buildPartial() {
+        de.tum.grpc_api.ECSProto.PutRequest result = new de.tum.grpc_api.ECSProto.PutRequest(this);
+        result.key_ = key_;
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.PutRequest) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.PutRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.PutRequest other) {
+        if (other == de.tum.grpc_api.ECSProto.PutRequest.getDefaultInstance()) return this;
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
+        if (!other.getValue().isEmpty()) {
+          value_ = other.value_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              case 18: {
+                value_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object key_ = "";
+      /**
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object value_ = "";
+      /**
+       * <code>string value = 2;</code>
+       * @return The value.
+       */
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          value_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @return The bytes for value.
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        java.lang.Object ref = value_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          value_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValue(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValue() {
+        
+        value_ = getDefaultInstance().getValue();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @param value The bytes for value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:PutRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:PutRequest)
+    private static final de.tum.grpc_api.ECSProto.PutRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.PutRequest();
+    }
+
+    public static de.tum.grpc_api.ECSProto.PutRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PutRequest>
+        PARSER = new com.google.protobuf.AbstractParser<PutRequest>() {
+      @java.lang.Override
+      public PutRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<PutRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PutRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.PutRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DeleteRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DeleteRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    java.lang.String getKey();
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    com.google.protobuf.ByteString
+        getKeyBytes();
+  }
+  /**
+   * Protobuf type {@code DeleteRequest}
+   */
+  public static final class DeleteRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:DeleteRequest)
+      DeleteRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DeleteRequest.newBuilder() to construct.
+    private DeleteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeleteRequest() {
+      key_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.ECSProto.internal_static_DeleteRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.ECSProto.internal_static_DeleteRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.ECSProto.DeleteRequest.class, de.tum.grpc_api.ECSProto.DeleteRequest.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object key_;
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    @java.lang.Override
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.ECSProto.DeleteRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.ECSProto.DeleteRequest other = (de.tum.grpc_api.ECSProto.DeleteRequest) obj;
+
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.ECSProto.DeleteRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.ECSProto.DeleteRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code DeleteRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:DeleteRequest)
+        de.tum.grpc_api.ECSProto.DeleteRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.ECSProto.internal_static_DeleteRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.ECSProto.internal_static_DeleteRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.ECSProto.DeleteRequest.class, de.tum.grpc_api.ECSProto.DeleteRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.ECSProto.DeleteRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        key_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.ECSProto.internal_static_DeleteRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.DeleteRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.ECSProto.DeleteRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.DeleteRequest build() {
+        de.tum.grpc_api.ECSProto.DeleteRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.ECSProto.DeleteRequest buildPartial() {
+        de.tum.grpc_api.ECSProto.DeleteRequest result = new de.tum.grpc_api.ECSProto.DeleteRequest(this);
+        result.key_ = key_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.ECSProto.DeleteRequest) {
+          return mergeFrom((de.tum.grpc_api.ECSProto.DeleteRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.ECSProto.DeleteRequest other) {
+        if (other == de.tum.grpc_api.ECSProto.DeleteRequest.getDefaultInstance()) return this;
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object key_ = "";
+      /**
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:DeleteRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:DeleteRequest)
+    private static final de.tum.grpc_api.ECSProto.DeleteRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.ECSProto.DeleteRequest();
+    }
+
+    public static de.tum.grpc_api.ECSProto.DeleteRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeleteRequest>
+        PARSER = new com.google.protobuf.AbstractParser<DeleteRequest>() {
+      @java.lang.Override
+      public DeleteRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeleteRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.ECSProto.DeleteRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3225,35 +7791,70 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_NodeMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Range_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Range_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HeartBeatResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HeartBeatResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_RegisterRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_RegisterRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RegisterResponse_descriptor;
+    internal_static_ToStringResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RegisterResponse_fieldAccessorTable;
+      internal_static_ToStringResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RegisterResponse_RingEntry_descriptor;
+    internal_static_IsResponsibleRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RegisterResponse_RingEntry_fieldAccessorTable;
+      internal_static_IsResponsibleRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateRequest_descriptor;
+    internal_static_IsResponsibleResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateRequest_fieldAccessorTable;
+      internal_static_IsResponsibleResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateRequest_RingEntry_descriptor;
+    internal_static_RecoverRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateRequest_RingEntry_fieldAccessorTable;
+      internal_static_RecoverRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateResponse_descriptor;
+    internal_static_UpdateRingRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateResponse_fieldAccessorTable;
+      internal_static_UpdateRingRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UpdateRingRequest_RingEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_PutRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_PutRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DeleteRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_DeleteRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3263,24 +7864,52 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tECS.proto\")\n\013NodeMessage\022\014\n\004host\030\001 \001(\t" +
-      "\022\014\n\004port\030\002 \001(\005\"/\n\017RegisterRequest\022\034\n\006IpP" +
-      "ort\030\001 \001(\0132\014.NodeMessage\"x\n\020RegisterRespo" +
-      "nse\022)\n\004ring\030\001 \003(\0132\033.RegisterResponse.Rin" +
-      "gEntry\0329\n\tRingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005valu" +
-      "e\030\002 \001(\0132\014.NodeMessage:\0028\001\"r\n\rUpdateReque" +
-      "st\022&\n\004ring\030\001 \003(\0132\030.UpdateRequest.RingEnt" +
-      "ry\0329\n\tRingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 " +
-      "\001(\0132\014.NodeMessage:\0028\001\"#\n\016UpdateResponse\022" +
-      "\021\n\tisSuccess\030\001 \001(\0102h\n\nECSService\022/\n\010regi" +
-      "ster\022\020.RegisterRequest\032\021.RegisterRespons" +
-      "e\022)\n\006update\022\016.UpdateRequest\032\017.UpdateResp" +
-      "onseB\035\n\017de.tum.grpc_apiB\010ECSProtoP\000b\006pro" +
-      "to3"
+      "\n\tECS.proto\032\033google/protobuf/empty.proto" +
+      "\032\031google/protobuf/any.proto\")\n\013NodeMessa" +
+      "ge\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"!\n\005Range\022" +
+      "\014\n\004from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\"&\n\021HeartBeatRe" +
+      "sponse\022\021\n\ttimestamp\030\001 \001(\003\"-\n\017RegisterReq" +
+      "uest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\"$\n\020ToSt" +
+      "ringResponse\022\020\n\010HostPort\030\001 \001(\t\"#\n\024IsResp" +
+      "onsibleRequest\022\013\n\003key\030\001 \001(\t\".\n\025IsRespons" +
+      "ibleResponse\022\025\n\risResponsible\030\001 \001(\010\",\n\016R" +
+      "ecoverRequest\022\032\n\004node\030\001 \001(\0132\014.NodeMessag" +
+      "e\"z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003(\0132\034.U" +
+      "pdateRingRequest.RingEntry\0329\n\tRingEntry\022" +
+      "\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.NodeMessag" +
+      "e:\0028\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"3\n\013GetR" +
+      "esponse\022$\n\006Object\030\001 \001(\0132\024.google.protobu" +
+      "f.Any\"(\n\nPutRequest\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
+      "e\030\002 \001(\t\"\034\n\rDeleteRequest\022\013\n\003key\030\001 \001(\t* \n" +
+      "\010DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\210\006\n\tKVSe" +
+      "rvice\022<\n\014heartBeatRPC\022\026.google.protobuf." +
+      "Empty\032\022.HeartBeatResponse\"\000\022<\n\010getRange\022" +
+      "\026.google.protobuf.Empty\032\026.google.protobu" +
+      "f.Empty\"\000\022:\n\006equals\022\026.google.protobuf.Em" +
+      "pty\032\026.google.protobuf.Empty\"\000\022:\n\013toStrin" +
+      "gRPC\022\026.google.protobuf.Empty\032\021.ToStringR" +
+      "esponse\"\000\022C\n\020isResponsibleRPC\022\025.IsRespon" +
+      "sibleRequest\032\026.IsResponsibleResponse\"\000\022;" +
+      "\n\007initRPC\022\026.google.protobuf.Empty\032\026.goog" +
+      "le.protobuf.Empty\"\000\0227\n\nrecoverRPC\022\017.Reco" +
+      "verRequest\032\026.google.protobuf.Empty\"\000\022=\n\r" +
+      "updateRingRPC\022\022.UpdateRingRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022E\n\021deleteExpiredData" +
+      "\022\026.google.protobuf.Empty\032\026.google.protob" +
+      "uf.Empty\"\000\0228\n\004copy\022\026.google.protobuf.Emp" +
+      "ty\032\026.google.protobuf.Empty\"\000\022$\n\006getRPC\022\013" +
+      ".GetRequest\032\013.GetRequest\"\000\022/\n\006putRPC\022\013.P" +
+      "utRequest\032\026.google.protobuf.Empty\"\000\0225\n\td" +
+      "eleteRPC\022\016.DeleteRequest\032\026.google.protob" +
+      "uf.Empty\"\0002C\n\tECService\0226\n\010register\022\020.Re" +
+      "gisterRequest\032\026.google.protobuf.Empty\"\000B" +
+      "\035\n\017de.tum.grpc_apiB\010ECSProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.EmptyProto.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
         });
     internal_static_NodeMessage_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -3288,42 +7917,86 @@ de.tum.grpc_api.ECSProto.NodeMessage defaultValue);
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_NodeMessage_descriptor,
         new java.lang.String[] { "Host", "Port", });
-    internal_static_RegisterRequest_descriptor =
+    internal_static_Range_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_Range_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Range_descriptor,
+        new java.lang.String[] { "From", "To", });
+    internal_static_HeartBeatResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_HeartBeatResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HeartBeatResponse_descriptor,
+        new java.lang.String[] { "Timestamp", });
+    internal_static_RegisterRequest_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,
-        new java.lang.String[] { "IpPort", });
-    internal_static_RegisterResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_RegisterResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RegisterResponse_descriptor,
-        new java.lang.String[] { "Ring", });
-    internal_static_RegisterResponse_RingEntry_descriptor =
-      internal_static_RegisterResponse_descriptor.getNestedTypes().get(0);
-    internal_static_RegisterResponse_RingEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RegisterResponse_RingEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_UpdateRequest_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_UpdateRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateRequest_descriptor,
-        new java.lang.String[] { "Ring", });
-    internal_static_UpdateRequest_RingEntry_descriptor =
-      internal_static_UpdateRequest_descriptor.getNestedTypes().get(0);
-    internal_static_UpdateRequest_RingEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateRequest_RingEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_UpdateResponse_descriptor =
+        new java.lang.String[] { "Node", });
+    internal_static_ToStringResponse_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_UpdateResponse_fieldAccessorTable = new
+    internal_static_ToStringResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateResponse_descriptor,
-        new java.lang.String[] { "IsSuccess", });
+        internal_static_ToStringResponse_descriptor,
+        new java.lang.String[] { "HostPort", });
+    internal_static_IsResponsibleRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_IsResponsibleRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_IsResponsibleRequest_descriptor,
+        new java.lang.String[] { "Key", });
+    internal_static_IsResponsibleResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_IsResponsibleResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_IsResponsibleResponse_descriptor,
+        new java.lang.String[] { "IsResponsible", });
+    internal_static_RecoverRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_RecoverRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RecoverRequest_descriptor,
+        new java.lang.String[] { "Node", });
+    internal_static_UpdateRingRequest_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_UpdateRingRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateRingRequest_descriptor,
+        new java.lang.String[] { "Ring", });
+    internal_static_UpdateRingRequest_RingEntry_descriptor =
+      internal_static_UpdateRingRequest_descriptor.getNestedTypes().get(0);
+    internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateRingRequest_RingEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_GetRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_GetRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetRequest_descriptor,
+        new java.lang.String[] { "Key", });
+    internal_static_GetResponse_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_GetResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetResponse_descriptor,
+        new java.lang.String[] { "Object", });
+    internal_static_PutRequest_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_PutRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_PutRequest_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_DeleteRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_DeleteRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_DeleteRequest_descriptor,
+        new java.lang.String[] { "Key", });
+    com.google.protobuf.EmptyProto.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
