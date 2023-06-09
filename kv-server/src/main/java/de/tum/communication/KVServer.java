@@ -48,7 +48,9 @@ public class KVServer {
 	public void start(String address, int port) throws Exception {
 
 		//Now KVServer needs to provide RPC service for ECSService
-		ServerBuilder rpcServerBuilder = ServerBuilder.forPort(KV_LISTEN_ECS_PORT);
+		//ServerBuilder rpcServerBuilder = ServerBuilder.forPort(KV_LISTEN_ECS_PORT);
+		//ServerBuilder rpcServerBuilder = ServerBuilder.forPort(KV_LISTEN_ECS_PORT);
+		ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0);
 		rpcServerBuilder.addService(node);
 		Server rpcServer = rpcServerBuilder.build();
 		rpcServer.start();
