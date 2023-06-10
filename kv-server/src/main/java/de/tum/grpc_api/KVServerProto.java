@@ -1910,6 +1910,1109 @@ public final class KVServerProto {
 
   }
 
+  public interface GetRangeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetRangeRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
+     */
+    int getDataTypeValue();
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The dataType.
+     */
+    de.tum.grpc_api.KVServerProto.DataType getDataType();
+  }
+  /**
+   * Protobuf type {@code GetRangeRequest}
+   */
+  public static final class GetRangeRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetRangeRequest)
+      GetRangeRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetRangeRequest.newBuilder() to construct.
+    private GetRangeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetRangeRequest() {
+      dataType_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetRangeRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_GetRangeRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_GetRangeRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.GetRangeRequest.class, de.tum.grpc_api.KVServerProto.GetRangeRequest.Builder.class);
+    }
+
+    public static final int DATATYPE_FIELD_NUMBER = 1;
+    private int dataType_;
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
+     */
+    @java.lang.Override public int getDataTypeValue() {
+      return dataType_;
+    }
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The dataType.
+     */
+    @java.lang.Override public de.tum.grpc_api.KVServerProto.DataType getDataType() {
+      @SuppressWarnings("deprecation")
+      de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
+      return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        output.writeEnum(1, dataType_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, dataType_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.GetRangeRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.GetRangeRequest other = (de.tum.grpc_api.KVServerProto.GetRangeRequest) obj;
+
+      if (dataType_ != other.dataType_) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
+      hash = (53 * hash) + dataType_;
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.GetRangeRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetRangeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetRangeRequest)
+        de.tum.grpc_api.KVServerProto.GetRangeRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_GetRangeRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_GetRangeRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.GetRangeRequest.class, de.tum.grpc_api.KVServerProto.GetRangeRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.GetRangeRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        dataType_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_GetRangeRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.GetRangeRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.GetRangeRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.GetRangeRequest build() {
+        de.tum.grpc_api.KVServerProto.GetRangeRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.GetRangeRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.GetRangeRequest result = new de.tum.grpc_api.KVServerProto.GetRangeRequest(this);
+        result.dataType_ = dataType_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.GetRangeRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.GetRangeRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.GetRangeRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.GetRangeRequest.getDefaultInstance()) return this;
+        if (other.dataType_ != 0) {
+          setDataTypeValue(other.getDataTypeValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                dataType_ = input.readEnum();
+
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int dataType_ = 0;
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return The enum numeric value on the wire for dataType.
+       */
+      @java.lang.Override public int getDataTypeValue() {
+        return dataType_;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @param value The enum numeric value on the wire for dataType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataTypeValue(int value) {
+        
+        dataType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return The dataType.
+       */
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DataType getDataType() {
+        @SuppressWarnings("deprecation")
+        de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
+        return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @param value The dataType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataType(de.tum.grpc_api.KVServerProto.DataType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        dataType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDataType() {
+        
+        dataType_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetRangeRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetRangeRequest)
+    private static final de.tum.grpc_api.KVServerProto.GetRangeRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.GetRangeRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.GetRangeRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetRangeRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetRangeRequest>() {
+      @java.lang.Override
+      public GetRangeRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetRangeRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetRangeRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.GetRangeRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetRangeResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetRangeResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.Range range = 1;</code>
+     * @return Whether the range field is set.
+     */
+    boolean hasRange();
+    /**
+     * <code>.Range range = 1;</code>
+     * @return The range.
+     */
+    de.tum.grpc_api.KVServerProto.Range getRange();
+    /**
+     * <code>.Range range = 1;</code>
+     */
+    de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code GetRangeResponse}
+   */
+  public static final class GetRangeResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetRangeResponse)
+      GetRangeResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetRangeResponse.newBuilder() to construct.
+    private GetRangeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetRangeResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetRangeResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_GetRangeResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_GetRangeResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.GetRangeResponse.class, de.tum.grpc_api.KVServerProto.GetRangeResponse.Builder.class);
+    }
+
+    public static final int RANGE_FIELD_NUMBER = 1;
+    private de.tum.grpc_api.KVServerProto.Range range_;
+    /**
+     * <code>.Range range = 1;</code>
+     * @return Whether the range field is set.
+     */
+    @java.lang.Override
+    public boolean hasRange() {
+      return range_ != null;
+    }
+    /**
+     * <code>.Range range = 1;</code>
+     * @return The range.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.Range getRange() {
+      return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+    }
+    /**
+     * <code>.Range range = 1;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+      return getRange();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (range_ != null) {
+        output.writeMessage(1, getRange());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (range_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getRange());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.GetRangeResponse)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.GetRangeResponse other = (de.tum.grpc_api.KVServerProto.GetRangeResponse) obj;
+
+      if (hasRange() != other.hasRange()) return false;
+      if (hasRange()) {
+        if (!getRange()
+            .equals(other.getRange())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasRange()) {
+        hash = (37 * hash) + RANGE_FIELD_NUMBER;
+        hash = (53 * hash) + getRange().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.GetRangeResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetRangeResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetRangeResponse)
+        de.tum.grpc_api.KVServerProto.GetRangeResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_GetRangeResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_GetRangeResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.GetRangeResponse.class, de.tum.grpc_api.KVServerProto.GetRangeResponse.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.GetRangeResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (rangeBuilder_ == null) {
+          range_ = null;
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_GetRangeResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.GetRangeResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.GetRangeResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.GetRangeResponse build() {
+        de.tum.grpc_api.KVServerProto.GetRangeResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.GetRangeResponse buildPartial() {
+        de.tum.grpc_api.KVServerProto.GetRangeResponse result = new de.tum.grpc_api.KVServerProto.GetRangeResponse(this);
+        if (rangeBuilder_ == null) {
+          result.range_ = range_;
+        } else {
+          result.range_ = rangeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.GetRangeResponse) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.GetRangeResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.GetRangeResponse other) {
+        if (other == de.tum.grpc_api.KVServerProto.GetRangeResponse.getDefaultInstance()) return this;
+        if (other.hasRange()) {
+          mergeRange(other.getRange());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRangeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private de.tum.grpc_api.KVServerProto.Range range_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> rangeBuilder_;
+      /**
+       * <code>.Range range = 1;</code>
+       * @return Whether the range field is set.
+       */
+      public boolean hasRange() {
+        return rangeBuilder_ != null || range_ != null;
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       * @return The range.
+       */
+      public de.tum.grpc_api.KVServerProto.Range getRange() {
+        if (rangeBuilder_ == null) {
+          return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        } else {
+          return rangeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      public Builder setRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          range_ = value;
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      public Builder setRange(
+          de.tum.grpc_api.KVServerProto.Range.Builder builderForValue) {
+        if (rangeBuilder_ == null) {
+          range_ = builderForValue.build();
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      public Builder mergeRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (range_ != null) {
+            range_ =
+              de.tum.grpc_api.KVServerProto.Range.newBuilder(range_).mergeFrom(value).buildPartial();
+          } else {
+            range_ = value;
+          }
+          onChanged();
+        } else {
+          rangeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      public Builder clearRange() {
+        if (rangeBuilder_ == null) {
+          range_ = null;
+          onChanged();
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.Range.Builder getRangeBuilder() {
+        
+        onChanged();
+        return getRangeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+        if (rangeBuilder_ != null) {
+          return rangeBuilder_.getMessageOrBuilder();
+        } else {
+          return range_ == null ?
+              de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        }
+      }
+      /**
+       * <code>.Range range = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> 
+          getRangeFieldBuilder() {
+        if (rangeBuilder_ == null) {
+          rangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder>(
+                  getRange(),
+                  getParentForChildren(),
+                  isClean());
+          range_ = null;
+        }
+        return rangeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetRangeResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetRangeResponse)
+    private static final de.tum.grpc_api.KVServerProto.GetRangeResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.GetRangeResponse();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.GetRangeResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetRangeResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetRangeResponse>() {
+      @java.lang.Override
+      public GetRangeResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetRangeResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetRangeResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.GetRangeResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RegisterRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:RegisterRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -5462,6 +6565,2131 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
 
   }
 
+  public interface DeleteExpiredDataRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DeleteExpiredDataRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
+     */
+    int getDataTypeValue();
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The dataType.
+     */
+    de.tum.grpc_api.KVServerProto.DataType getDataType();
+
+    /**
+     * <code>.Range range = 2;</code>
+     * @return Whether the range field is set.
+     */
+    boolean hasRange();
+    /**
+     * <code>.Range range = 2;</code>
+     * @return The range.
+     */
+    de.tum.grpc_api.KVServerProto.Range getRange();
+    /**
+     * <code>.Range range = 2;</code>
+     */
+    de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code DeleteExpiredDataRequest}
+   */
+  public static final class DeleteExpiredDataRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:DeleteExpiredDataRequest)
+      DeleteExpiredDataRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DeleteExpiredDataRequest.newBuilder() to construct.
+    private DeleteExpiredDataRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeleteExpiredDataRequest() {
+      dataType_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteExpiredDataRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class, de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.Builder.class);
+    }
+
+    public static final int DATATYPE_FIELD_NUMBER = 1;
+    private int dataType_;
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
+     */
+    @java.lang.Override public int getDataTypeValue() {
+      return dataType_;
+    }
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The dataType.
+     */
+    @java.lang.Override public de.tum.grpc_api.KVServerProto.DataType getDataType() {
+      @SuppressWarnings("deprecation")
+      de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
+      return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+    }
+
+    public static final int RANGE_FIELD_NUMBER = 2;
+    private de.tum.grpc_api.KVServerProto.Range range_;
+    /**
+     * <code>.Range range = 2;</code>
+     * @return Whether the range field is set.
+     */
+    @java.lang.Override
+    public boolean hasRange() {
+      return range_ != null;
+    }
+    /**
+     * <code>.Range range = 2;</code>
+     * @return The range.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.Range getRange() {
+      return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+    }
+    /**
+     * <code>.Range range = 2;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+      return getRange();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        output.writeEnum(1, dataType_);
+      }
+      if (range_ != null) {
+        output.writeMessage(2, getRange());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, dataType_);
+      }
+      if (range_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getRange());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest other = (de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) obj;
+
+      if (dataType_ != other.dataType_) return false;
+      if (hasRange() != other.hasRange()) return false;
+      if (hasRange()) {
+        if (!getRange()
+            .equals(other.getRange())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
+      hash = (53 * hash) + dataType_;
+      if (hasRange()) {
+        hash = (37 * hash) + RANGE_FIELD_NUMBER;
+        hash = (53 * hash) + getRange().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code DeleteExpiredDataRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:DeleteExpiredDataRequest)
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class, de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        dataType_ = 0;
+
+        if (rangeBuilder_ == null) {
+          range_ = null;
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest build() {
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest result = new de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest(this);
+        result.dataType_ = dataType_;
+        if (rangeBuilder_ == null) {
+          result.range_ = range_;
+        } else {
+          result.range_ = rangeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance()) return this;
+        if (other.dataType_ != 0) {
+          setDataTypeValue(other.getDataTypeValue());
+        }
+        if (other.hasRange()) {
+          mergeRange(other.getRange());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                dataType_ = input.readEnum();
+
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getRangeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int dataType_ = 0;
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return The enum numeric value on the wire for dataType.
+       */
+      @java.lang.Override public int getDataTypeValue() {
+        return dataType_;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @param value The enum numeric value on the wire for dataType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataTypeValue(int value) {
+        
+        dataType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return The dataType.
+       */
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DataType getDataType() {
+        @SuppressWarnings("deprecation")
+        de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
+        return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @param value The dataType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataType(de.tum.grpc_api.KVServerProto.DataType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        dataType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDataType() {
+        
+        dataType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private de.tum.grpc_api.KVServerProto.Range range_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> rangeBuilder_;
+      /**
+       * <code>.Range range = 2;</code>
+       * @return Whether the range field is set.
+       */
+      public boolean hasRange() {
+        return rangeBuilder_ != null || range_ != null;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       * @return The range.
+       */
+      public de.tum.grpc_api.KVServerProto.Range getRange() {
+        if (rangeBuilder_ == null) {
+          return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        } else {
+          return rangeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder setRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          range_ = value;
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder setRange(
+          de.tum.grpc_api.KVServerProto.Range.Builder builderForValue) {
+        if (rangeBuilder_ == null) {
+          range_ = builderForValue.build();
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder mergeRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (range_ != null) {
+            range_ =
+              de.tum.grpc_api.KVServerProto.Range.newBuilder(range_).mergeFrom(value).buildPartial();
+          } else {
+            range_ = value;
+          }
+          onChanged();
+        } else {
+          rangeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder clearRange() {
+        if (rangeBuilder_ == null) {
+          range_ = null;
+          onChanged();
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.Range.Builder getRangeBuilder() {
+        
+        onChanged();
+        return getRangeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+        if (rangeBuilder_ != null) {
+          return rangeBuilder_.getMessageOrBuilder();
+        } else {
+          return range_ == null ?
+              de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        }
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> 
+          getRangeFieldBuilder() {
+        if (rangeBuilder_ == null) {
+          rangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder>(
+                  getRange(),
+                  getParentForChildren(),
+                  isClean());
+          range_ = null;
+        }
+        return rangeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:DeleteExpiredDataRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:DeleteExpiredDataRequest)
+    private static final de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeleteExpiredDataRequest>
+        PARSER = new com.google.protobuf.AbstractParser<DeleteExpiredDataRequest>() {
+      @java.lang.Override
+      public DeleteExpiredDataRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeleteExpiredDataRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteExpiredDataRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CopyRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:CopyRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.DataType where = 1;</code>
+     * @return The enum numeric value on the wire for where.
+     */
+    int getWhereValue();
+    /**
+     * <code>.DataType where = 1;</code>
+     * @return The where.
+     */
+    de.tum.grpc_api.KVServerProto.DataType getWhere();
+
+    /**
+     * <code>.Range range = 2;</code>
+     * @return Whether the range field is set.
+     */
+    boolean hasRange();
+    /**
+     * <code>.Range range = 2;</code>
+     * @return The range.
+     */
+    de.tum.grpc_api.KVServerProto.Range getRange();
+    /**
+     * <code>.Range range = 2;</code>
+     */
+    de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code CopyRequest}
+   */
+  public static final class CopyRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:CopyRequest)
+      CopyRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CopyRequest.newBuilder() to construct.
+    private CopyRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CopyRequest() {
+      where_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CopyRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_CopyRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_CopyRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.CopyRequest.class, de.tum.grpc_api.KVServerProto.CopyRequest.Builder.class);
+    }
+
+    public static final int WHERE_FIELD_NUMBER = 1;
+    private int where_;
+    /**
+     * <code>.DataType where = 1;</code>
+     * @return The enum numeric value on the wire for where.
+     */
+    @java.lang.Override public int getWhereValue() {
+      return where_;
+    }
+    /**
+     * <code>.DataType where = 1;</code>
+     * @return The where.
+     */
+    @java.lang.Override public de.tum.grpc_api.KVServerProto.DataType getWhere() {
+      @SuppressWarnings("deprecation")
+      de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(where_);
+      return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+    }
+
+    public static final int RANGE_FIELD_NUMBER = 2;
+    private de.tum.grpc_api.KVServerProto.Range range_;
+    /**
+     * <code>.Range range = 2;</code>
+     * @return Whether the range field is set.
+     */
+    @java.lang.Override
+    public boolean hasRange() {
+      return range_ != null;
+    }
+    /**
+     * <code>.Range range = 2;</code>
+     * @return The range.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.Range getRange() {
+      return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+    }
+    /**
+     * <code>.Range range = 2;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+      return getRange();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (where_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        output.writeEnum(1, where_);
+      }
+      if (range_ != null) {
+        output.writeMessage(2, getRange());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (where_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, where_);
+      }
+      if (range_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getRange());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.CopyRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.CopyRequest other = (de.tum.grpc_api.KVServerProto.CopyRequest) obj;
+
+      if (where_ != other.where_) return false;
+      if (hasRange() != other.hasRange()) return false;
+      if (hasRange()) {
+        if (!getRange()
+            .equals(other.getRange())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + WHERE_FIELD_NUMBER;
+      hash = (53 * hash) + where_;
+      if (hasRange()) {
+        hash = (37 * hash) + RANGE_FIELD_NUMBER;
+        hash = (53 * hash) + getRange().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.CopyRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CopyRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:CopyRequest)
+        de.tum.grpc_api.KVServerProto.CopyRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_CopyRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_CopyRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.CopyRequest.class, de.tum.grpc_api.KVServerProto.CopyRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.CopyRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        where_ = 0;
+
+        if (rangeBuilder_ == null) {
+          range_ = null;
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_CopyRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.CopyRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.CopyRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.CopyRequest build() {
+        de.tum.grpc_api.KVServerProto.CopyRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.CopyRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.CopyRequest result = new de.tum.grpc_api.KVServerProto.CopyRequest(this);
+        result.where_ = where_;
+        if (rangeBuilder_ == null) {
+          result.range_ = range_;
+        } else {
+          result.range_ = rangeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.CopyRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.CopyRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.CopyRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.CopyRequest.getDefaultInstance()) return this;
+        if (other.where_ != 0) {
+          setWhereValue(other.getWhereValue());
+        }
+        if (other.hasRange()) {
+          mergeRange(other.getRange());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                where_ = input.readEnum();
+
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getRangeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int where_ = 0;
+      /**
+       * <code>.DataType where = 1;</code>
+       * @return The enum numeric value on the wire for where.
+       */
+      @java.lang.Override public int getWhereValue() {
+        return where_;
+      }
+      /**
+       * <code>.DataType where = 1;</code>
+       * @param value The enum numeric value on the wire for where to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWhereValue(int value) {
+        
+        where_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType where = 1;</code>
+       * @return The where.
+       */
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DataType getWhere() {
+        @SuppressWarnings("deprecation")
+        de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(where_);
+        return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DataType where = 1;</code>
+       * @param value The where to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWhere(de.tum.grpc_api.KVServerProto.DataType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        where_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType where = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWhere() {
+        
+        where_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private de.tum.grpc_api.KVServerProto.Range range_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> rangeBuilder_;
+      /**
+       * <code>.Range range = 2;</code>
+       * @return Whether the range field is set.
+       */
+      public boolean hasRange() {
+        return rangeBuilder_ != null || range_ != null;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       * @return The range.
+       */
+      public de.tum.grpc_api.KVServerProto.Range getRange() {
+        if (rangeBuilder_ == null) {
+          return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        } else {
+          return rangeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder setRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          range_ = value;
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder setRange(
+          de.tum.grpc_api.KVServerProto.Range.Builder builderForValue) {
+        if (rangeBuilder_ == null) {
+          range_ = builderForValue.build();
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder mergeRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (range_ != null) {
+            range_ =
+              de.tum.grpc_api.KVServerProto.Range.newBuilder(range_).mergeFrom(value).buildPartial();
+          } else {
+            range_ = value;
+          }
+          onChanged();
+        } else {
+          rangeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder clearRange() {
+        if (rangeBuilder_ == null) {
+          range_ = null;
+          onChanged();
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.Range.Builder getRangeBuilder() {
+        
+        onChanged();
+        return getRangeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+        if (rangeBuilder_ != null) {
+          return rangeBuilder_.getMessageOrBuilder();
+        } else {
+          return range_ == null ?
+              de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        }
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> 
+          getRangeFieldBuilder() {
+        if (rangeBuilder_ == null) {
+          rangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder>(
+                  getRange(),
+                  getParentForChildren(),
+                  isClean());
+          range_ = null;
+        }
+        return rangeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:CopyRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:CopyRequest)
+    private static final de.tum.grpc_api.KVServerProto.CopyRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.CopyRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.CopyRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CopyRequest>
+        PARSER = new com.google.protobuf.AbstractParser<CopyRequest>() {
+      @java.lang.Override
+      public CopyRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<CopyRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CopyRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.CopyRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CopyResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:CopyResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+    int getDataCount();
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+    boolean containsData(
+        java.lang.String key);
+    /**
+     * Use {@link #getDataMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getData();
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getDataMap();
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+
+    /* nullable */
+java.lang.String getDataOrDefault(
+        java.lang.String key,
+        /* nullable */
+java.lang.String defaultValue);
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+
+    java.lang.String getDataOrThrow(
+        java.lang.String key);
+  }
+  /**
+   * Protobuf type {@code CopyResponse}
+   */
+  public static final class CopyResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:CopyResponse)
+      CopyResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CopyResponse.newBuilder() to construct.
+    private CopyResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CopyResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CopyResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_CopyResponse_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetData();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_CopyResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.CopyResponse.class, de.tum.grpc_api.KVServerProto.CopyResponse.Builder.class);
+    }
+
+    public static final int DATA_FIELD_NUMBER = 1;
+    private static final class DataDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  de.tum.grpc_api.KVServerProto.internal_static_CopyResponse_DataEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> data_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetData() {
+      if (data_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            DataDefaultEntryHolder.defaultEntry);
+      }
+      return data_;
+    }
+
+    public int getDataCount() {
+      return internalGetData().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+
+    @java.lang.Override
+    public boolean containsData(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetData().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getDataMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getData() {
+      return getDataMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+    @java.lang.Override
+
+    public java.util.Map<java.lang.String, java.lang.String> getDataMap() {
+      return internalGetData().getMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+    @java.lang.Override
+
+    public java.lang.String getDataOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetData().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 1;</code>
+     */
+    @java.lang.Override
+
+    public java.lang.String getDataOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetData().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetData(),
+          DataDefaultEntryHolder.defaultEntry,
+          1);
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetData().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        data__ = DataDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, data__);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.CopyResponse)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.CopyResponse other = (de.tum.grpc_api.KVServerProto.CopyResponse) obj;
+
+      if (!internalGetData().equals(
+          other.internalGetData())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (!internalGetData().getMap().isEmpty()) {
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetData().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.CopyResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.CopyResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CopyResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:CopyResponse)
+        de.tum.grpc_api.KVServerProto.CopyResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_CopyResponse_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetData();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMutableData();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_CopyResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.CopyResponse.class, de.tum.grpc_api.KVServerProto.CopyResponse.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.CopyResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        internalGetMutableData().clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_CopyResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.CopyResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.CopyResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.CopyResponse build() {
+        de.tum.grpc_api.KVServerProto.CopyResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.CopyResponse buildPartial() {
+        de.tum.grpc_api.KVServerProto.CopyResponse result = new de.tum.grpc_api.KVServerProto.CopyResponse(this);
+        int from_bitField0_ = bitField0_;
+        result.data_ = internalGetData();
+        result.data_.makeImmutable();
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.CopyResponse) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.CopyResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.CopyResponse other) {
+        if (other == de.tum.grpc_api.KVServerProto.CopyResponse.getDefaultInstance()) return this;
+        internalGetMutableData().mergeFrom(
+            other.internalGetData());
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+                data__ = input.readMessage(
+                    DataDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableData().getMutableMap().put(
+                    data__.getKey(), data__.getValue());
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.MapField<
+          java.lang.String, java.lang.String> data_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetData() {
+        if (data_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              DataDefaultEntryHolder.defaultEntry);
+        }
+        return data_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetMutableData() {
+        onChanged();;
+        if (data_ == null) {
+          data_ = com.google.protobuf.MapField.newMapField(
+              DataDefaultEntryHolder.defaultEntry);
+        }
+        if (!data_.isMutable()) {
+          data_ = data_.copy();
+        }
+        return data_;
+      }
+
+      public int getDataCount() {
+        return internalGetData().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+
+      @java.lang.Override
+      public boolean containsData(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        return internalGetData().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getDataMap()} instead.
+       */
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getData() {
+        return getDataMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+      @java.lang.Override
+
+      public java.util.Map<java.lang.String, java.lang.String> getDataMap() {
+        return internalGetData().getMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+      @java.lang.Override
+
+      public java.lang.String getDataOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetData().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+      @java.lang.Override
+
+      public java.lang.String getDataOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetData().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearData() {
+        internalGetMutableData().getMutableMap()
+            .clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+
+      public Builder removeData(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        internalGetMutableData().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String>
+      getMutableData() {
+        return internalGetMutableData().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+      public Builder putData(
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
+        internalGetMutableData().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 1;</code>
+       */
+
+      public Builder putAllData(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        internalGetMutableData().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:CopyResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:CopyResponse)
+    private static final de.tum.grpc_api.KVServerProto.CopyResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.CopyResponse();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.CopyResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CopyResponse>
+        PARSER = new com.google.protobuf.AbstractParser<CopyResponse>() {
+      @java.lang.Override
+      public CopyResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<CopyResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CopyResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.CopyResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface GetRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:GetRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -7859,6 +11087,16 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_HeartBeatResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetRangeRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetRangeRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetRangeResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetRangeResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_RegisterRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7894,6 +11132,26 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DeleteExpiredDataRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_DeleteExpiredDataRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CopyRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CopyRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CopyResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CopyResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CopyResponse_DataEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CopyResponse_DataEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_GetRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7926,43 +11184,50 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       "proto\032\031google/protobuf/any.proto\")\n\013Node" +
       "Message\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"!\n\005R" +
       "ange\022\014\n\004from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\"&\n\021HeartB" +
-      "eatResponse\022\021\n\ttimestamp\030\001 \001(\003\">\n\017Regist" +
-      "erRequest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\022\017\n" +
-      "\007rpcPort\030\002 \001(\005\"$\n\020ToStringResponse\022\020\n\010Ho" +
-      "stPort\030\001 \001(\t\"#\n\024IsResponsibleRequest\022\013\n\003" +
-      "key\030\001 \001(\t\".\n\025IsResponsibleResponse\022\025\n\ris" +
-      "Responsible\030\001 \001(\010\",\n\016RecoverRequest\022\032\n\004n" +
-      "ode\030\001 \001(\0132\014.NodeMessage\"z\n\021UpdateRingReq" +
-      "uest\022*\n\004ring\030\001 \003(\0132\034.UpdateRingRequest.R" +
-      "ingEntry\0329\n\tRingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005va" +
-      "lue\030\002 \001(\0132\014.NodeMessage:\0028\001\"\031\n\nGetReques" +
-      "t\022\013\n\003key\030\001 \001(\t\"\034\n\013GetResponse\022\r\n\005value\030\001" +
-      " \001(\t\"(\n\nPutRequest\022\013\n\003key\030\001 \001(\t\022\r\n\005value" +
-      "\030\002 \001(\t\"\034\n\rDeleteRequest\022\013\n\003key\030\001 \001(\t* \n\010" +
-      "DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\211\006\n\tKVSer" +
-      "vice\022<\n\014heartBeatRPC\022\026.google.protobuf.E" +
-      "mpty\032\022.HeartBeatResponse\"\000\022<\n\010getRange\022\026" +
-      ".google.protobuf.Empty\032\026.google.protobuf" +
-      ".Empty\"\000\022:\n\006equals\022\026.google.protobuf.Emp" +
-      "ty\032\026.google.protobuf.Empty\"\000\022:\n\013toString" +
-      "RPC\022\026.google.protobuf.Empty\032\021.ToStringRe" +
-      "sponse\"\000\022C\n\020isResponsibleRPC\022\025.IsRespons" +
-      "ibleRequest\032\026.IsResponsibleResponse\"\000\022;\n" +
-      "\007initRPC\022\026.google.protobuf.Empty\032\026.googl" +
-      "e.protobuf.Empty\"\000\0227\n\nrecoverRPC\022\017.Recov" +
-      "erRequest\032\026.google.protobuf.Empty\"\000\022=\n\ru" +
-      "pdateRingRPC\022\022.UpdateRingRequest\032\026.googl" +
-      "e.protobuf.Empty\"\000\022E\n\021deleteExpiredData\022" +
-      "\026.google.protobuf.Empty\032\026.google.protobu" +
-      "f.Empty\"\000\0228\n\004copy\022\026.google.protobuf.Empt" +
-      "y\032\026.google.protobuf.Empty\"\000\022%\n\006getRPC\022\013." +
-      "GetRequest\032\014.GetResponse\"\000\022/\n\006putRPC\022\013.P" +
-      "utRequest\032\026.google.protobuf.Empty\"\000\0225\n\td" +
-      "eleteRPC\022\016.DeleteRequest\032\026.google.protob" +
-      "uf.Empty\"\0002C\n\tECService\0226\n\010register\022\020.Re" +
-      "gisterRequest\032\026.google.protobuf.Empty\"\000B" +
-      "\"\n\017de.tum.grpc_apiB\rKVServerProtoP\000b\006pro" +
-      "to3"
+      "eatResponse\022\021\n\ttimestamp\030\001 \001(\003\".\n\017GetRan" +
+      "geRequest\022\033\n\010dataType\030\001 \001(\0162\t.DataType\")" +
+      "\n\020GetRangeResponse\022\025\n\005range\030\001 \001(\0132\006.Rang" +
+      "e\">\n\017RegisterRequest\022\032\n\004node\030\001 \001(\0132\014.Nod" +
+      "eMessage\022\017\n\007rpcPort\030\002 \001(\005\"$\n\020ToStringRes" +
+      "ponse\022\020\n\010HostPort\030\001 \001(\t\"#\n\024IsResponsible" +
+      "Request\022\013\n\003key\030\001 \001(\t\".\n\025IsResponsibleRes" +
+      "ponse\022\025\n\risResponsible\030\001 \001(\010\",\n\016RecoverR" +
+      "equest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\"z\n\021Up" +
+      "dateRingRequest\022*\n\004ring\030\001 \003(\0132\034.UpdateRi" +
+      "ngRequest.RingEntry\0329\n\tRingEntry\022\013\n\003key\030" +
+      "\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.NodeMessage:\0028\001\"N" +
+      "\n\030DeleteExpiredDataRequest\022\033\n\010dataType\030\001" +
+      " \001(\0162\t.DataType\022\025\n\005range\030\002 \001(\0132\006.Range\">" +
+      "\n\013CopyRequest\022\030\n\005where\030\001 \001(\0162\t.DataType\022" +
+      "\025\n\005range\030\002 \001(\0132\006.Range\"b\n\014CopyResponse\022%" +
+      "\n\004data\030\001 \003(\0132\027.CopyResponse.DataEntry\032+\n" +
+      "\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002" +
+      "8\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013GetResp" +
+      "onse\022\r\n\005value\030\001 \001(\t\"(\n\nPutRequest\022\013\n\003key" +
+      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rDeleteRequest\022\013" +
+      "\n\003key\030\001 \001(\t* \n\010DataType\022\010\n\004DATA\020\000\022\n\n\006BAC" +
+      "KUP\020\0012\323\005\n\tKVService\0229\n\theartBeat\022\026.googl" +
+      "e.protobuf.Empty\032\022.HeartBeatResponse\"\000\0221" +
+      "\n\010getRange\022\020.GetRangeRequest\032\021.GetRangeR" +
+      "esponse\"\000\022:\n\006equals\022\026.google.protobuf.Em" +
+      "pty\032\026.google.protobuf.Empty\"\000\0227\n\010toStrin" +
+      "g\022\026.google.protobuf.Empty\032\021.ToStringResp" +
+      "onse\"\000\022@\n\risResponsible\022\025.IsResponsibleR" +
+      "equest\032\026.IsResponsibleResponse\"\000\0228\n\004init" +
+      "\022\026.google.protobuf.Empty\032\026.google.protob" +
+      "uf.Empty\"\000\0224\n\007recover\022\017.RecoverRequest\032\026" +
+      ".google.protobuf.Empty\"\000\022:\n\nupdateRing\022\022" +
+      ".UpdateRingRequest\032\026.google.protobuf.Emp" +
+      "ty\"\000\022H\n\021deleteExpiredData\022\031.DeleteExpire" +
+      "dDataRequest\032\026.google.protobuf.Empty\"\000\022%" +
+      "\n\004copy\022\014.CopyRequest\032\r.CopyResponse\"\000\022\"\n" +
+      "\003get\022\013.GetRequest\032\014.GetResponse\"\000\022,\n\003put" +
+      "\022\013.PutRequest\032\026.google.protobuf.Empty\"\000\022" +
+      "2\n\006delete\022\016.DeleteRequest\032\026.google.proto" +
+      "buf.Empty\"\0002C\n\tECService\0226\n\010register\022\020.R" +
+      "egisterRequest\032\026.google.protobuf.Empty\"\000" +
+      "B\"\n\017de.tum.grpc_apiB\rKVServerProtoP\000b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7988,38 +11253,50 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HeartBeatResponse_descriptor,
         new java.lang.String[] { "Timestamp", });
-    internal_static_RegisterRequest_descriptor =
+    internal_static_GetRangeRequest_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_GetRangeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetRangeRequest_descriptor,
+        new java.lang.String[] { "DataType", });
+    internal_static_GetRangeResponse_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_GetRangeResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetRangeResponse_descriptor,
+        new java.lang.String[] { "Range", });
+    internal_static_RegisterRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,
         new java.lang.String[] { "Node", "RpcPort", });
     internal_static_ToStringResponse_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_ToStringResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ToStringResponse_descriptor,
         new java.lang.String[] { "HostPort", });
     internal_static_IsResponsibleRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_IsResponsibleRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_IsResponsibleRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_IsResponsibleResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_IsResponsibleResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_IsResponsibleResponse_descriptor,
         new java.lang.String[] { "IsResponsible", });
     internal_static_RecoverRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_RecoverRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RecoverRequest_descriptor,
         new java.lang.String[] { "Node", });
     internal_static_UpdateRingRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_UpdateRingRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateRingRequest_descriptor,
@@ -8030,26 +11307,50 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateRingRequest_RingEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
+    internal_static_DeleteExpiredDataRequest_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_DeleteExpiredDataRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_DeleteExpiredDataRequest_descriptor,
+        new java.lang.String[] { "DataType", "Range", });
+    internal_static_CopyRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_CopyRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CopyRequest_descriptor,
+        new java.lang.String[] { "Where", "Range", });
+    internal_static_CopyResponse_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_CopyResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CopyResponse_descriptor,
+        new java.lang.String[] { "Data", });
+    internal_static_CopyResponse_DataEntry_descriptor =
+      internal_static_CopyResponse_descriptor.getNestedTypes().get(0);
+    internal_static_CopyResponse_DataEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CopyResponse_DataEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_GetRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_GetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_GetResponse_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_GetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetResponse_descriptor,
         new java.lang.String[] { "Value", });
     internal_static_PutRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_PutRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PutRequest_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_DeleteRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_DeleteRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DeleteRequest_descriptor,

@@ -28,7 +28,6 @@ public class KVServer {
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
 	private Node node;
-	public static final int KV_LISTEN_ECS_PORT = 5200;
 
 	// detach read and write buffer
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
@@ -46,14 +45,6 @@ public class KVServer {
 	 * @throws Exception
 	 */
 	public void start(String address, int port) throws Exception {
-
-		//Now KVServer needs to provide RPC service for ECSService
-		//ServerBuilder rpcServerBuilder = ServerBuilder.forPort(KV_LISTEN_ECS_PORT);
-		//ServerBuilder rpcServerBuilder = ServerBuilder.forPort(KV_LISTEN_ECS_PORT);
-//		ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0);
-//		rpcServerBuilder.addService(node);
-//		Server rpcServer = rpcServerBuilder.build();
-//		rpcServer.start();
 
 		// open selector
 		ssChannel = ServerSocketChannel.open();
@@ -82,8 +73,6 @@ public class KVServer {
 				selectionKeyIterator.remove();
 			}
 		}
-
-//		rpcServer.awaitTermination();
 	}
 
 	/**
@@ -234,7 +223,7 @@ public class KVServer {
 		String[] tokens = request.trim().split("\\s+");
 		String key = tokens[1];
 		Node resopnsibleNode = this.node;
-		if (!node.isResponsibleLocal(key)) {
+		if (!node.isResponsible(key)) {
 			System.out.println("Not responsible for key: " + key);
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);
 		}

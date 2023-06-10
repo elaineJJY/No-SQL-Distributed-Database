@@ -20,7 +20,7 @@ public enum ConsistentHash {
 		return ring;
 	}
 
-	public void addNode(Node node) throws Exception {
+	public void addNode(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString());
 		// in case of hash collision
 		if (ring.containsKey(nodeHash)) {
@@ -29,16 +29,15 @@ public enum ConsistentHash {
 				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
 			}
 		}
-		ring.put(nodeHash, node); // add node to the ring //
-		// TODO: gRPC
+		ring.put(nodeHash, node);
 		node.updateRing(ring);
-		node.init(); // initialize node in the KV_Server
+		node.init();
 		updateRingForAllNodes();
 		getPreviousNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
 		getNextNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
 	}
 
-	public void removeNode(Node node) throws Exception {
+	public void removeNode(Node node) {
 
 		// if node still alive, set node to read-only
 		try {

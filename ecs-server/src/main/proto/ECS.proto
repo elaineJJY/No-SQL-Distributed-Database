@@ -26,9 +26,12 @@ message HeartBeatResponse {
     int64 timestamp = 1;
 }
 
-message RegisterRequest {
-    NodeMessage node = 1;
-    int32 rpcPort = 2;
+message GetRangeRequest {
+    DataType dataType = 1;
+}
+
+message GetRangeResponse {
+    Range range = 1;
 }
 
 message ToStringResponse {
@@ -43,12 +46,13 @@ message IsResponsibleResponse {
     bool isResponsible = 1;
 }
 
-message RecoverRequest {
-    NodeMessage node = 1;
+message CopyRequest{
+    DataType where = 1;
+    Range range = 2;
 }
 
-message UpdateRingRequest {
-    map<string, NodeMessage> ring = 1;
+message CopyResponse{
+    map<string, string> data = 1;
 }
 
 message GetRequest {
@@ -69,26 +73,44 @@ message DeleteRequest {
     string key = 1;
 }
 
+message RecoverRequest {
+    NodeMessage node = 1;
+}
+
+message UpdateRingRequest {
+    map<string, NodeMessage> ring = 1;
+}
+
+message DeleteExpiredDataRequest {
+    DataType dataType = 1;
+    Range range = 2;
+}
+
+message RegisterRequest {
+    NodeMessage node = 1;
+    int32 rpcPort = 2;
+}
+
 service KVService {
-    //  rpc getPort(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    //  rpc getHost(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc heartBeatRPC(google.protobuf.Empty) returns (HeartBeatResponse) {} // Server-streaming RPC
-    rpc getRange(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc heartBeat(google.protobuf.Empty) returns (HeartBeatResponse) {} // Server-streaming RPC
+    rpc getRange(GetRangeRequest) returns (GetRangeResponse) {}
     rpc equals(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc toStringRPC(google.protobuf.Empty) returns (ToStringResponse) {}
-    rpc isResponsibleRPC(IsResponsibleRequest) returns (IsResponsibleResponse) {}
-    rpc initRPC(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc recoverRPC(RecoverRequest) returns (google.protobuf.Empty) {}
-    rpc updateRingRPC(UpdateRingRequest) returns (google.protobuf.Empty) {}
-    rpc deleteExpiredData(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc copy(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc getRPC(GetRequest) returns (GetResponse) {}
-    rpc putRPC(PutRequest) returns (google.protobuf.Empty) {}
-    rpc deleteRPC(DeleteRequest) returns (google.protobuf.Empty) {}
+    rpc toString(google.protobuf.Empty) returns (ToStringResponse) {}
+
+    // isResponsible, copy, get, put, delete will only be called by other KVServer
+    rpc isResponsible(IsResponsibleRequest) returns (IsResponsibleResponse) {}
+    rpc copy(CopyRequest) returns (CopyResponse) {}
+    rpc get(GetRequest) returns (GetResponse) {}
+    rpc put(PutRequest) returns (google.protobuf.Empty) {}
+    rpc delete(DeleteRequest) returns (google.protobuf.Empty) {}
+
+    // init, recover, updateRing, deleteExpiredData will only be called by ECS
+    rpc init(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc recover(RecoverRequest) returns (google.protobuf.Empty) {}
+    rpc updateRing(UpdateRingRequest) returns (google.protobuf.Empty) {}
+    rpc deleteExpiredData(DeleteExpiredDataRequest) returns (google.protobuf.Empty) {}
 }
 
 service ECService {
     rpc register(RegisterRequest) returns (google.protobuf.Empty) {}
 }
-
-

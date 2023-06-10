@@ -15,18 +15,18 @@ import java.util.TreeMap;
 public enum ConsistentHash {
 	INSTANCE;
 	/**
-	 * ring: <hash, node>
+	 * ring: <hash, INode>
 	 */
-	private SortedMap<String, Node> ring = new TreeMap<>();
+	private SortedMap<String, INode> ring = new TreeMap<>();
 
-	public SortedMap<String, Node> getRing() { return ring; }
+	public SortedMap<String, INode> getRing() { return ring; }
 
 	/**
 	 * Get the node hash corresponding to the node
 	 * @param node
 	 * @return hash value
 	 */
-	public String getHash(Node node) {
+	public String getHash(INode node) {
 		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
 		int i = 1;
 		while (!ring.get(nodeHash).equals(node)) {
@@ -40,10 +40,10 @@ public enum ConsistentHash {
 	 * @param node
 	 * @return next node
 	 */
-	public Node getNextNode(Node node){
+	public INode getNextNode(INode node){
 		String nodeHash = getHash(node);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
-		SortedMap<String, Node> tailMap = ring.tailMap(nodeHash);
+		SortedMap<String, INode> tailMap = ring.tailMap(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);
 	}
@@ -53,9 +53,9 @@ public enum ConsistentHash {
 	 * @param node
 	 * @return previous node
 	 */
-	public Node getPreviousNode(Node node){
+	public INode getPreviousNode(INode node){
 		String nodeHash = getHash(node);
-		SortedMap<String, Node> headMap = ring.headMap(nodeHash);
+		SortedMap<String, INode> headMap = ring.headMap(nodeHash);
 		String previousHash = headMap.isEmpty() ? ring.lastKey() : headMap.lastKey();
 		return ring.get(previousHash);
 	}
@@ -69,20 +69,20 @@ public enum ConsistentHash {
 		// for each node: <kr-from>, <kr-to>, <ip:port>
 		String text = "";
 		for (String hash : ring.keySet()) {
-			Node node = ring.get(hash);
+			INode node = ring.get(hash);
 			//  <kr-from>, <kr-to>, <ip:port>
-			text += node.getRangeLocal(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
+			text += node.getRange(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
 		}
 		return text;
 	}
 
-	public void update(SortedMap<String, Node> ring) {
+	public void update(SortedMap<String, INode> ring) {
 		this.ring = ring;
 	}
 
-	public Node getResponsibleServerByKey(String key) {
+	public INode getResponsibleServerByKey(String key) {
 		String hash = MD5Hash.hash(key);
-		SortedMap<String, Node> tailMap = ring.tailMap(hash);
+		SortedMap<String, INode> tailMap = ring.tailMap(hash);
 		if (tailMap.isEmpty()) {
 			return ring.get(ring.firstKey());
 		}

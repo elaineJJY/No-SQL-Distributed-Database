@@ -16,59 +16,59 @@ public final class KVServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.tum.grpc_api.KVServerProto.HeartBeatResponse> getHeartBeatRPCMethod;
+      de.tum.grpc_api.KVServerProto.HeartBeatResponse> getHeartBeatMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "heartBeatRPC",
+      fullMethodName = SERVICE_NAME + '/' + "heartBeat",
       requestType = com.google.protobuf.Empty.class,
       responseType = de.tum.grpc_api.KVServerProto.HeartBeatResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.tum.grpc_api.KVServerProto.HeartBeatResponse> getHeartBeatRPCMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.tum.grpc_api.KVServerProto.HeartBeatResponse> getHeartBeatRPCMethod;
-    if ((getHeartBeatRPCMethod = KVServiceGrpc.getHeartBeatRPCMethod) == null) {
+      de.tum.grpc_api.KVServerProto.HeartBeatResponse> getHeartBeatMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.tum.grpc_api.KVServerProto.HeartBeatResponse> getHeartBeatMethod;
+    if ((getHeartBeatMethod = KVServiceGrpc.getHeartBeatMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getHeartBeatRPCMethod = KVServiceGrpc.getHeartBeatRPCMethod) == null) {
-          KVServiceGrpc.getHeartBeatRPCMethod = getHeartBeatRPCMethod =
+        if ((getHeartBeatMethod = KVServiceGrpc.getHeartBeatMethod) == null) {
+          KVServiceGrpc.getHeartBeatMethod = getHeartBeatMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, de.tum.grpc_api.KVServerProto.HeartBeatResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "heartBeatRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "heartBeat"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.HeartBeatResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("heartBeatRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("heartBeat"))
               .build();
         }
       }
     }
-    return getHeartBeatRPCMethod;
+    return getHeartBeatMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getGetRangeMethod;
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRangeRequest,
+      de.tum.grpc_api.KVServerProto.GetRangeResponse> getGetRangeMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getRange",
-      requestType = com.google.protobuf.Empty.class,
-      responseType = com.google.protobuf.Empty.class,
+      requestType = de.tum.grpc_api.KVServerProto.GetRangeRequest.class,
+      responseType = de.tum.grpc_api.KVServerProto.GetRangeResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getGetRangeMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getGetRangeMethod;
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRangeRequest,
+      de.tum.grpc_api.KVServerProto.GetRangeResponse> getGetRangeMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRangeRequest, de.tum.grpc_api.KVServerProto.GetRangeResponse> getGetRangeMethod;
     if ((getGetRangeMethod = KVServiceGrpc.getGetRangeMethod) == null) {
       synchronized (KVServiceGrpc.class) {
         if ((getGetRangeMethod = KVServiceGrpc.getGetRangeMethod) == null) {
           KVServiceGrpc.getGetRangeMethod = getGetRangeMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.GetRangeRequest, de.tum.grpc_api.KVServerProto.GetRangeResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getRange"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  de.tum.grpc_api.KVServerProto.GetRangeRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  de.tum.grpc_api.KVServerProto.GetRangeResponse.getDefaultInstance()))
               .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("getRange"))
               .build();
         }
@@ -109,181 +109,181 @@ public final class KVServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.tum.grpc_api.KVServerProto.ToStringResponse> getToStringRPCMethod;
+      de.tum.grpc_api.KVServerProto.ToStringResponse> getToStringMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "toStringRPC",
+      fullMethodName = SERVICE_NAME + '/' + "toString",
       requestType = com.google.protobuf.Empty.class,
       responseType = de.tum.grpc_api.KVServerProto.ToStringResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.tum.grpc_api.KVServerProto.ToStringResponse> getToStringRPCMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.tum.grpc_api.KVServerProto.ToStringResponse> getToStringRPCMethod;
-    if ((getToStringRPCMethod = KVServiceGrpc.getToStringRPCMethod) == null) {
+      de.tum.grpc_api.KVServerProto.ToStringResponse> getToStringMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.tum.grpc_api.KVServerProto.ToStringResponse> getToStringMethod;
+    if ((getToStringMethod = KVServiceGrpc.getToStringMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getToStringRPCMethod = KVServiceGrpc.getToStringRPCMethod) == null) {
-          KVServiceGrpc.getToStringRPCMethod = getToStringRPCMethod =
+        if ((getToStringMethod = KVServiceGrpc.getToStringMethod) == null) {
+          KVServiceGrpc.getToStringMethod = getToStringMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, de.tum.grpc_api.KVServerProto.ToStringResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "toStringRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "toString"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.ToStringResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("toStringRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("toString"))
               .build();
         }
       }
     }
-    return getToStringRPCMethod;
+    return getToStringMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.IsResponsibleRequest,
-      de.tum.grpc_api.KVServerProto.IsResponsibleResponse> getIsResponsibleRPCMethod;
+      de.tum.grpc_api.KVServerProto.IsResponsibleResponse> getIsResponsibleMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "isResponsibleRPC",
+      fullMethodName = SERVICE_NAME + '/' + "isResponsible",
       requestType = de.tum.grpc_api.KVServerProto.IsResponsibleRequest.class,
       responseType = de.tum.grpc_api.KVServerProto.IsResponsibleResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.IsResponsibleRequest,
-      de.tum.grpc_api.KVServerProto.IsResponsibleResponse> getIsResponsibleRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.IsResponsibleRequest, de.tum.grpc_api.KVServerProto.IsResponsibleResponse> getIsResponsibleRPCMethod;
-    if ((getIsResponsibleRPCMethod = KVServiceGrpc.getIsResponsibleRPCMethod) == null) {
+      de.tum.grpc_api.KVServerProto.IsResponsibleResponse> getIsResponsibleMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.IsResponsibleRequest, de.tum.grpc_api.KVServerProto.IsResponsibleResponse> getIsResponsibleMethod;
+    if ((getIsResponsibleMethod = KVServiceGrpc.getIsResponsibleMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getIsResponsibleRPCMethod = KVServiceGrpc.getIsResponsibleRPCMethod) == null) {
-          KVServiceGrpc.getIsResponsibleRPCMethod = getIsResponsibleRPCMethod =
+        if ((getIsResponsibleMethod = KVServiceGrpc.getIsResponsibleMethod) == null) {
+          KVServiceGrpc.getIsResponsibleMethod = getIsResponsibleMethod =
               io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.IsResponsibleRequest, de.tum.grpc_api.KVServerProto.IsResponsibleResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "isResponsibleRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "isResponsible"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.IsResponsibleRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.IsResponsibleResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("isResponsibleRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("isResponsible"))
               .build();
         }
       }
     }
-    return getIsResponsibleRPCMethod;
+    return getIsResponsibleMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getInitRPCMethod;
+      com.google.protobuf.Empty> getInitMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "initRPC",
+      fullMethodName = SERVICE_NAME + '/' + "init",
       requestType = com.google.protobuf.Empty.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getInitRPCMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getInitRPCMethod;
-    if ((getInitRPCMethod = KVServiceGrpc.getInitRPCMethod) == null) {
+      com.google.protobuf.Empty> getInitMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getInitMethod;
+    if ((getInitMethod = KVServiceGrpc.getInitMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getInitRPCMethod = KVServiceGrpc.getInitRPCMethod) == null) {
-          KVServiceGrpc.getInitRPCMethod = getInitRPCMethod =
+        if ((getInitMethod = KVServiceGrpc.getInitMethod) == null) {
+          KVServiceGrpc.getInitMethod = getInitMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "initRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "init"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("initRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("init"))
               .build();
         }
       }
     }
-    return getInitRPCMethod;
+    return getInitMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RecoverRequest,
-      com.google.protobuf.Empty> getRecoverRPCMethod;
+      com.google.protobuf.Empty> getRecoverMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "recoverRPC",
+      fullMethodName = SERVICE_NAME + '/' + "recover",
       requestType = de.tum.grpc_api.KVServerProto.RecoverRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RecoverRequest,
-      com.google.protobuf.Empty> getRecoverRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RecoverRequest, com.google.protobuf.Empty> getRecoverRPCMethod;
-    if ((getRecoverRPCMethod = KVServiceGrpc.getRecoverRPCMethod) == null) {
+      com.google.protobuf.Empty> getRecoverMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RecoverRequest, com.google.protobuf.Empty> getRecoverMethod;
+    if ((getRecoverMethod = KVServiceGrpc.getRecoverMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getRecoverRPCMethod = KVServiceGrpc.getRecoverRPCMethod) == null) {
-          KVServiceGrpc.getRecoverRPCMethod = getRecoverRPCMethod =
+        if ((getRecoverMethod = KVServiceGrpc.getRecoverMethod) == null) {
+          KVServiceGrpc.getRecoverMethod = getRecoverMethod =
               io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.RecoverRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "recoverRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "recover"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.RecoverRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("recoverRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("recover"))
               .build();
         }
       }
     }
-    return getRecoverRPCMethod;
+    return getRecoverMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.UpdateRingRequest,
-      com.google.protobuf.Empty> getUpdateRingRPCMethod;
+      com.google.protobuf.Empty> getUpdateRingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "updateRingRPC",
+      fullMethodName = SERVICE_NAME + '/' + "updateRing",
       requestType = de.tum.grpc_api.KVServerProto.UpdateRingRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.UpdateRingRequest,
-      com.google.protobuf.Empty> getUpdateRingRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.UpdateRingRequest, com.google.protobuf.Empty> getUpdateRingRPCMethod;
-    if ((getUpdateRingRPCMethod = KVServiceGrpc.getUpdateRingRPCMethod) == null) {
+      com.google.protobuf.Empty> getUpdateRingMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.UpdateRingRequest, com.google.protobuf.Empty> getUpdateRingMethod;
+    if ((getUpdateRingMethod = KVServiceGrpc.getUpdateRingMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getUpdateRingRPCMethod = KVServiceGrpc.getUpdateRingRPCMethod) == null) {
-          KVServiceGrpc.getUpdateRingRPCMethod = getUpdateRingRPCMethod =
+        if ((getUpdateRingMethod = KVServiceGrpc.getUpdateRingMethod) == null) {
+          KVServiceGrpc.getUpdateRingMethod = getUpdateRingMethod =
               io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.UpdateRingRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "updateRingRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "updateRing"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.UpdateRingRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("updateRingRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("updateRing"))
               .build();
         }
       }
     }
-    return getUpdateRingRPCMethod;
+    return getUpdateRingMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest,
       com.google.protobuf.Empty> getDeleteExpiredDataMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "deleteExpiredData",
-      requestType = com.google.protobuf.Empty.class,
+      requestType = de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest,
       com.google.protobuf.Empty> getDeleteExpiredDataMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getDeleteExpiredDataMethod;
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest, com.google.protobuf.Empty> getDeleteExpiredDataMethod;
     if ((getDeleteExpiredDataMethod = KVServiceGrpc.getDeleteExpiredDataMethod) == null) {
       synchronized (KVServiceGrpc.class) {
         if ((getDeleteExpiredDataMethod = KVServiceGrpc.getDeleteExpiredDataMethod) == null) {
           KVServiceGrpc.getDeleteExpiredDataMethod = getDeleteExpiredDataMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "deleteExpiredData"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("deleteExpiredData"))
@@ -294,29 +294,29 @@ public final class KVServiceGrpc {
     return getDeleteExpiredDataMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getCopyMethod;
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.CopyRequest,
+      de.tum.grpc_api.KVServerProto.CopyResponse> getCopyMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "copy",
-      requestType = com.google.protobuf.Empty.class,
-      responseType = com.google.protobuf.Empty.class,
+      requestType = de.tum.grpc_api.KVServerProto.CopyRequest.class,
+      responseType = de.tum.grpc_api.KVServerProto.CopyResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getCopyMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getCopyMethod;
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.CopyRequest,
+      de.tum.grpc_api.KVServerProto.CopyResponse> getCopyMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.CopyRequest, de.tum.grpc_api.KVServerProto.CopyResponse> getCopyMethod;
     if ((getCopyMethod = KVServiceGrpc.getCopyMethod) == null) {
       synchronized (KVServiceGrpc.class) {
         if ((getCopyMethod = KVServiceGrpc.getCopyMethod) == null) {
           KVServiceGrpc.getCopyMethod = getCopyMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.CopyRequest, de.tum.grpc_api.KVServerProto.CopyResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "copy"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  de.tum.grpc_api.KVServerProto.CopyRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  de.tum.grpc_api.KVServerProto.CopyResponse.getDefaultInstance()))
               .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("copy"))
               .build();
         }
@@ -326,96 +326,96 @@ public final class KVServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest,
-      de.tum.grpc_api.KVServerProto.GetResponse> getGetRPCMethod;
+      de.tum.grpc_api.KVServerProto.GetResponse> getGetMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getRPC",
+      fullMethodName = SERVICE_NAME + '/' + "get",
       requestType = de.tum.grpc_api.KVServerProto.GetRequest.class,
       responseType = de.tum.grpc_api.KVServerProto.GetResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest,
-      de.tum.grpc_api.KVServerProto.GetResponse> getGetRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetResponse> getGetRPCMethod;
-    if ((getGetRPCMethod = KVServiceGrpc.getGetRPCMethod) == null) {
+      de.tum.grpc_api.KVServerProto.GetResponse> getGetMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetResponse> getGetMethod;
+    if ((getGetMethod = KVServiceGrpc.getGetMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getGetRPCMethod = KVServiceGrpc.getGetRPCMethod) == null) {
-          KVServiceGrpc.getGetRPCMethod = getGetRPCMethod =
+        if ((getGetMethod = KVServiceGrpc.getGetMethod) == null) {
+          KVServiceGrpc.getGetMethod = getGetMethod =
               io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.GetRequest, de.tum.grpc_api.KVServerProto.GetResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "get"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.GetRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.GetResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("getRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("get"))
               .build();
         }
       }
     }
-    return getGetRPCMethod;
+    return getGetMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.PutRequest,
-      com.google.protobuf.Empty> getPutRPCMethod;
+      com.google.protobuf.Empty> getPutMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "putRPC",
+      fullMethodName = SERVICE_NAME + '/' + "put",
       requestType = de.tum.grpc_api.KVServerProto.PutRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.PutRequest,
-      com.google.protobuf.Empty> getPutRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.PutRequest, com.google.protobuf.Empty> getPutRPCMethod;
-    if ((getPutRPCMethod = KVServiceGrpc.getPutRPCMethod) == null) {
+      com.google.protobuf.Empty> getPutMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.PutRequest, com.google.protobuf.Empty> getPutMethod;
+    if ((getPutMethod = KVServiceGrpc.getPutMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getPutRPCMethod = KVServiceGrpc.getPutRPCMethod) == null) {
-          KVServiceGrpc.getPutRPCMethod = getPutRPCMethod =
+        if ((getPutMethod = KVServiceGrpc.getPutMethod) == null) {
+          KVServiceGrpc.getPutMethod = getPutMethod =
               io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.PutRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "putRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "put"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.PutRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("putRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("put"))
               .build();
         }
       }
     }
-    return getPutRPCMethod;
+    return getPutMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteRequest,
-      com.google.protobuf.Empty> getDeleteRPCMethod;
+      com.google.protobuf.Empty> getDeleteMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "deleteRPC",
+      fullMethodName = SERVICE_NAME + '/' + "delete",
       requestType = de.tum.grpc_api.KVServerProto.DeleteRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteRequest,
-      com.google.protobuf.Empty> getDeleteRPCMethod() {
-    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteRequest, com.google.protobuf.Empty> getDeleteRPCMethod;
-    if ((getDeleteRPCMethod = KVServiceGrpc.getDeleteRPCMethod) == null) {
+      com.google.protobuf.Empty> getDeleteMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.DeleteRequest, com.google.protobuf.Empty> getDeleteMethod;
+    if ((getDeleteMethod = KVServiceGrpc.getDeleteMethod) == null) {
       synchronized (KVServiceGrpc.class) {
-        if ((getDeleteRPCMethod = KVServiceGrpc.getDeleteRPCMethod) == null) {
-          KVServiceGrpc.getDeleteRPCMethod = getDeleteRPCMethod =
+        if ((getDeleteMethod = KVServiceGrpc.getDeleteMethod) == null) {
+          KVServiceGrpc.getDeleteMethod = getDeleteMethod =
               io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.DeleteRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "deleteRPC"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "delete"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   de.tum.grpc_api.KVServerProto.DeleteRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("deleteRPC"))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("delete"))
               .build();
         }
       }
     }
-    return getDeleteRPCMethod;
+    return getDeleteMethod;
   }
 
   /**
@@ -467,20 +467,16 @@ public final class KVServiceGrpc {
   public interface AsyncService {
 
     /**
-     * <pre>
-     *  rpc getPort(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     *  rpc getHost(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     * </pre>
      */
-    default void heartBeatRPC(com.google.protobuf.Empty request,
+    default void heartBeat(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.HeartBeatResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHeartBeatRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHeartBeatMethod(), responseObserver);
     }
 
     /**
      */
-    default void getRange(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+    default void getRange(de.tum.grpc_api.KVServerProto.GetRangeRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRangeResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetRangeMethod(), responseObserver);
     }
 
@@ -493,72 +489,72 @@ public final class KVServiceGrpc {
 
     /**
      */
-    default void toStringRPC(com.google.protobuf.Empty request,
+    default void toString(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ToStringResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getToStringRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getToStringMethod(), responseObserver);
     }
 
     /**
      */
-    default void isResponsibleRPC(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request,
+    default void isResponsible(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.IsResponsibleResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIsResponsibleRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIsResponsibleMethod(), responseObserver);
     }
 
     /**
      */
-    default void initRPC(com.google.protobuf.Empty request,
+    default void init(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getInitRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getInitMethod(), responseObserver);
     }
 
     /**
      */
-    default void recoverRPC(de.tum.grpc_api.KVServerProto.RecoverRequest request,
+    default void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRecoverRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRecoverMethod(), responseObserver);
     }
 
     /**
      */
-    default void updateRingRPC(de.tum.grpc_api.KVServerProto.UpdateRingRequest request,
+    default void updateRing(de.tum.grpc_api.KVServerProto.UpdateRingRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateRingRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateRingMethod(), responseObserver);
     }
 
     /**
      */
-    default void deleteExpiredData(com.google.protobuf.Empty request,
+    default void deleteExpiredData(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteExpiredDataMethod(), responseObserver);
     }
 
     /**
      */
-    default void copy(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+    default void copy(de.tum.grpc_api.KVServerProto.CopyRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.CopyResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCopyMethod(), responseObserver);
     }
 
     /**
      */
-    default void getRPC(de.tum.grpc_api.KVServerProto.GetRequest request,
+    default void get(de.tum.grpc_api.KVServerProto.GetRequest request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetMethod(), responseObserver);
     }
 
     /**
      */
-    default void putRPC(de.tum.grpc_api.KVServerProto.PutRequest request,
+    default void put(de.tum.grpc_api.KVServerProto.PutRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPutRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPutMethod(), responseObserver);
     }
 
     /**
      */
-    default void deleteRPC(de.tum.grpc_api.KVServerProto.DeleteRequest request,
+    default void delete(de.tum.grpc_api.KVServerProto.DeleteRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteRPCMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
     }
   }
 
@@ -590,21 +586,17 @@ public final class KVServiceGrpc {
     }
 
     /**
-     * <pre>
-     *  rpc getPort(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     *  rpc getHost(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     * </pre>
      */
-    public void heartBeatRPC(com.google.protobuf.Empty request,
+    public void heartBeat(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.HeartBeatResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getHeartBeatRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getHeartBeatMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getRange(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+    public void getRange(de.tum.grpc_api.KVServerProto.GetRangeRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRangeResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetRangeMethod(), getCallOptions()), request, responseObserver);
     }
@@ -619,47 +611,47 @@ public final class KVServiceGrpc {
 
     /**
      */
-    public void toStringRPC(com.google.protobuf.Empty request,
+    public void toString(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ToStringResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getToStringRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getToStringMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void isResponsibleRPC(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request,
+    public void isResponsible(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.IsResponsibleResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getIsResponsibleRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getIsResponsibleMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void initRPC(com.google.protobuf.Empty request,
+    public void init(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getInitRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getInitMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void recoverRPC(de.tum.grpc_api.KVServerProto.RecoverRequest request,
+    public void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getRecoverRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRecoverMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void updateRingRPC(de.tum.grpc_api.KVServerProto.UpdateRingRequest request,
+    public void updateRing(de.tum.grpc_api.KVServerProto.UpdateRingRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getUpdateRingRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateRingMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void deleteExpiredData(com.google.protobuf.Empty request,
+    public void deleteExpiredData(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeleteExpiredDataMethod(), getCallOptions()), request, responseObserver);
@@ -667,34 +659,34 @@ public final class KVServiceGrpc {
 
     /**
      */
-    public void copy(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+    public void copy(de.tum.grpc_api.KVServerProto.CopyRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.CopyResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCopyMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getRPC(de.tum.grpc_api.KVServerProto.GetRequest request,
+    public void get(de.tum.grpc_api.KVServerProto.GetRequest request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void putRPC(de.tum.grpc_api.KVServerProto.PutRequest request,
+    public void put(de.tum.grpc_api.KVServerProto.PutRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getPutRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getPutMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void deleteRPC(de.tum.grpc_api.KVServerProto.DeleteRequest request,
+    public void delete(de.tum.grpc_api.KVServerProto.DeleteRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getDeleteRPCMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -715,19 +707,15 @@ public final class KVServiceGrpc {
     }
 
     /**
-     * <pre>
-     *  rpc getPort(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     *  rpc getHost(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     * </pre>
      */
-    public de.tum.grpc_api.KVServerProto.HeartBeatResponse heartBeatRPC(com.google.protobuf.Empty request) {
+    public de.tum.grpc_api.KVServerProto.HeartBeatResponse heartBeat(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getHeartBeatRPCMethod(), getCallOptions(), request);
+          getChannel(), getHeartBeatMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty getRange(com.google.protobuf.Empty request) {
+    public de.tum.grpc_api.KVServerProto.GetRangeResponse getRange(de.tum.grpc_api.KVServerProto.GetRangeRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetRangeMethod(), getCallOptions(), request);
     }
@@ -741,72 +729,72 @@ public final class KVServiceGrpc {
 
     /**
      */
-    public de.tum.grpc_api.KVServerProto.ToStringResponse toStringRPC(com.google.protobuf.Empty request) {
+    public de.tum.grpc_api.KVServerProto.ToStringResponse toString(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getToStringRPCMethod(), getCallOptions(), request);
+          getChannel(), getToStringMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public de.tum.grpc_api.KVServerProto.IsResponsibleResponse isResponsibleRPC(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request) {
+    public de.tum.grpc_api.KVServerProto.IsResponsibleResponse isResponsible(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getIsResponsibleRPCMethod(), getCallOptions(), request);
+          getChannel(), getIsResponsibleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty initRPC(com.google.protobuf.Empty request) {
+    public com.google.protobuf.Empty init(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getInitRPCMethod(), getCallOptions(), request);
+          getChannel(), getInitMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty recoverRPC(de.tum.grpc_api.KVServerProto.RecoverRequest request) {
+    public com.google.protobuf.Empty recover(de.tum.grpc_api.KVServerProto.RecoverRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getRecoverRPCMethod(), getCallOptions(), request);
+          getChannel(), getRecoverMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty updateRingRPC(de.tum.grpc_api.KVServerProto.UpdateRingRequest request) {
+    public com.google.protobuf.Empty updateRing(de.tum.grpc_api.KVServerProto.UpdateRingRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getUpdateRingRPCMethod(), getCallOptions(), request);
+          getChannel(), getUpdateRingMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteExpiredData(com.google.protobuf.Empty request) {
+    public com.google.protobuf.Empty deleteExpiredData(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteExpiredDataMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty copy(com.google.protobuf.Empty request) {
+    public de.tum.grpc_api.KVServerProto.CopyResponse copy(de.tum.grpc_api.KVServerProto.CopyRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCopyMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public de.tum.grpc_api.KVServerProto.GetResponse getRPC(de.tum.grpc_api.KVServerProto.GetRequest request) {
+    public de.tum.grpc_api.KVServerProto.GetResponse get(de.tum.grpc_api.KVServerProto.GetRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetRPCMethod(), getCallOptions(), request);
+          getChannel(), getGetMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty putRPC(de.tum.grpc_api.KVServerProto.PutRequest request) {
+    public com.google.protobuf.Empty put(de.tum.grpc_api.KVServerProto.PutRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getPutRPCMethod(), getCallOptions(), request);
+          getChannel(), getPutMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteRPC(de.tum.grpc_api.KVServerProto.DeleteRequest request) {
+    public com.google.protobuf.Empty delete(de.tum.grpc_api.KVServerProto.DeleteRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getDeleteRPCMethod(), getCallOptions(), request);
+          getChannel(), getDeleteMethod(), getCallOptions(), request);
     }
   }
 
@@ -827,21 +815,17 @@ public final class KVServiceGrpc {
     }
 
     /**
-     * <pre>
-     *  rpc getPort(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     *  rpc getHost(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-     * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.HeartBeatResponse> heartBeatRPC(
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.HeartBeatResponse> heartBeat(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getHeartBeatRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getHeartBeatMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> getRange(
-        com.google.protobuf.Empty request) {
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.GetRangeResponse> getRange(
+        de.tum.grpc_api.KVServerProto.GetRangeRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetRangeMethod(), getCallOptions()), request);
     }
@@ -856,98 +840,98 @@ public final class KVServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.ToStringResponse> toStringRPC(
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.ToStringResponse> toString(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getToStringRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getToStringMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.IsResponsibleResponse> isResponsibleRPC(
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.IsResponsibleResponse> isResponsible(
         de.tum.grpc_api.KVServerProto.IsResponsibleRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getIsResponsibleRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getIsResponsibleMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> initRPC(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> init(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getInitRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getInitMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> recoverRPC(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> recover(
         de.tum.grpc_api.KVServerProto.RecoverRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getRecoverRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getRecoverMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> updateRingRPC(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> updateRing(
         de.tum.grpc_api.KVServerProto.UpdateRingRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getUpdateRingRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getUpdateRingMethod(), getCallOptions()), request);
     }
 
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteExpiredData(
-        com.google.protobuf.Empty request) {
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteExpiredDataMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> copy(
-        com.google.protobuf.Empty request) {
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.CopyResponse> copy(
+        de.tum.grpc_api.KVServerProto.CopyRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCopyMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.GetResponse> getRPC(
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.GetResponse> get(
         de.tum.grpc_api.KVServerProto.GetRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> putRPC(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> put(
         de.tum.grpc_api.KVServerProto.PutRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getPutRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getPutMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteRPC(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> delete(
         de.tum.grpc_api.KVServerProto.DeleteRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getDeleteRPCMethod(), getCallOptions()), request);
+          getChannel().newCall(getDeleteMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_HEART_BEAT_RPC = 0;
+  private static final int METHODID_HEART_BEAT = 0;
   private static final int METHODID_GET_RANGE = 1;
   private static final int METHODID_EQUALS = 2;
-  private static final int METHODID_TO_STRING_RPC = 3;
-  private static final int METHODID_IS_RESPONSIBLE_RPC = 4;
-  private static final int METHODID_INIT_RPC = 5;
-  private static final int METHODID_RECOVER_RPC = 6;
-  private static final int METHODID_UPDATE_RING_RPC = 7;
+  private static final int METHODID_TO_STRING = 3;
+  private static final int METHODID_IS_RESPONSIBLE = 4;
+  private static final int METHODID_INIT = 5;
+  private static final int METHODID_RECOVER = 6;
+  private static final int METHODID_UPDATE_RING = 7;
   private static final int METHODID_DELETE_EXPIRED_DATA = 8;
   private static final int METHODID_COPY = 9;
-  private static final int METHODID_GET_RPC = 10;
-  private static final int METHODID_PUT_RPC = 11;
-  private static final int METHODID_DELETE_RPC = 12;
+  private static final int METHODID_GET = 10;
+  private static final int METHODID_PUT = 11;
+  private static final int METHODID_DELETE = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -966,56 +950,56 @@ public final class KVServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_HEART_BEAT_RPC:
-          serviceImpl.heartBeatRPC((com.google.protobuf.Empty) request,
+        case METHODID_HEART_BEAT:
+          serviceImpl.heartBeat((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.HeartBeatResponse>) responseObserver);
           break;
         case METHODID_GET_RANGE:
-          serviceImpl.getRange((com.google.protobuf.Empty) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          serviceImpl.getRange((de.tum.grpc_api.KVServerProto.GetRangeRequest) request,
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetRangeResponse>) responseObserver);
           break;
         case METHODID_EQUALS:
           serviceImpl.equals((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
-        case METHODID_TO_STRING_RPC:
-          serviceImpl.toStringRPC((com.google.protobuf.Empty) request,
+        case METHODID_TO_STRING:
+          serviceImpl.toString((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ToStringResponse>) responseObserver);
           break;
-        case METHODID_IS_RESPONSIBLE_RPC:
-          serviceImpl.isResponsibleRPC((de.tum.grpc_api.KVServerProto.IsResponsibleRequest) request,
+        case METHODID_IS_RESPONSIBLE:
+          serviceImpl.isResponsible((de.tum.grpc_api.KVServerProto.IsResponsibleRequest) request,
               (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.IsResponsibleResponse>) responseObserver);
           break;
-        case METHODID_INIT_RPC:
-          serviceImpl.initRPC((com.google.protobuf.Empty) request,
+        case METHODID_INIT:
+          serviceImpl.init((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
-        case METHODID_RECOVER_RPC:
-          serviceImpl.recoverRPC((de.tum.grpc_api.KVServerProto.RecoverRequest) request,
+        case METHODID_RECOVER:
+          serviceImpl.recover((de.tum.grpc_api.KVServerProto.RecoverRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
-        case METHODID_UPDATE_RING_RPC:
-          serviceImpl.updateRingRPC((de.tum.grpc_api.KVServerProto.UpdateRingRequest) request,
+        case METHODID_UPDATE_RING:
+          serviceImpl.updateRing((de.tum.grpc_api.KVServerProto.UpdateRingRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_DELETE_EXPIRED_DATA:
-          serviceImpl.deleteExpiredData((com.google.protobuf.Empty) request,
+          serviceImpl.deleteExpiredData((de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_COPY:
-          serviceImpl.copy((com.google.protobuf.Empty) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          serviceImpl.copy((de.tum.grpc_api.KVServerProto.CopyRequest) request,
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.CopyResponse>) responseObserver);
           break;
-        case METHODID_GET_RPC:
-          serviceImpl.getRPC((de.tum.grpc_api.KVServerProto.GetRequest) request,
+        case METHODID_GET:
+          serviceImpl.get((de.tum.grpc_api.KVServerProto.GetRequest) request,
               (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse>) responseObserver);
           break;
-        case METHODID_PUT_RPC:
-          serviceImpl.putRPC((de.tum.grpc_api.KVServerProto.PutRequest) request,
+        case METHODID_PUT:
+          serviceImpl.put((de.tum.grpc_api.KVServerProto.PutRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
-        case METHODID_DELETE_RPC:
-          serviceImpl.deleteRPC((de.tum.grpc_api.KVServerProto.DeleteRequest) request,
+        case METHODID_DELETE:
+          serviceImpl.delete((de.tum.grpc_api.KVServerProto.DeleteRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -1037,18 +1021,18 @@ public final class KVServiceGrpc {
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
-          getHeartBeatRPCMethod(),
+          getHeartBeatMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               com.google.protobuf.Empty,
               de.tum.grpc_api.KVServerProto.HeartBeatResponse>(
-                service, METHODID_HEART_BEAT_RPC)))
+                service, METHODID_HEART_BEAT)))
         .addMethod(
           getGetRangeMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.google.protobuf.Empty,
-              com.google.protobuf.Empty>(
+              de.tum.grpc_api.KVServerProto.GetRangeRequest,
+              de.tum.grpc_api.KVServerProto.GetRangeResponse>(
                 service, METHODID_GET_RANGE)))
         .addMethod(
           getEqualsMethod(),
@@ -1058,75 +1042,75 @@ public final class KVServiceGrpc {
               com.google.protobuf.Empty>(
                 service, METHODID_EQUALS)))
         .addMethod(
-          getToStringRPCMethod(),
+          getToStringMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               com.google.protobuf.Empty,
               de.tum.grpc_api.KVServerProto.ToStringResponse>(
-                service, METHODID_TO_STRING_RPC)))
+                service, METHODID_TO_STRING)))
         .addMethod(
-          getIsResponsibleRPCMethod(),
+          getIsResponsibleMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.IsResponsibleRequest,
               de.tum.grpc_api.KVServerProto.IsResponsibleResponse>(
-                service, METHODID_IS_RESPONSIBLE_RPC)))
+                service, METHODID_IS_RESPONSIBLE)))
         .addMethod(
-          getInitRPCMethod(),
+          getInitMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               com.google.protobuf.Empty,
               com.google.protobuf.Empty>(
-                service, METHODID_INIT_RPC)))
+                service, METHODID_INIT)))
         .addMethod(
-          getRecoverRPCMethod(),
+          getRecoverMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.RecoverRequest,
               com.google.protobuf.Empty>(
-                service, METHODID_RECOVER_RPC)))
+                service, METHODID_RECOVER)))
         .addMethod(
-          getUpdateRingRPCMethod(),
+          getUpdateRingMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.UpdateRingRequest,
               com.google.protobuf.Empty>(
-                service, METHODID_UPDATE_RING_RPC)))
+                service, METHODID_UPDATE_RING)))
         .addMethod(
           getDeleteExpiredDataMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.google.protobuf.Empty,
+              de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest,
               com.google.protobuf.Empty>(
                 service, METHODID_DELETE_EXPIRED_DATA)))
         .addMethod(
           getCopyMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.google.protobuf.Empty,
-              com.google.protobuf.Empty>(
+              de.tum.grpc_api.KVServerProto.CopyRequest,
+              de.tum.grpc_api.KVServerProto.CopyResponse>(
                 service, METHODID_COPY)))
         .addMethod(
-          getGetRPCMethod(),
+          getGetMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.GetRequest,
               de.tum.grpc_api.KVServerProto.GetResponse>(
-                service, METHODID_GET_RPC)))
+                service, METHODID_GET)))
         .addMethod(
-          getPutRPCMethod(),
+          getPutMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.PutRequest,
               com.google.protobuf.Empty>(
-                service, METHODID_PUT_RPC)))
+                service, METHODID_PUT)))
         .addMethod(
-          getDeleteRPCMethod(),
+          getDeleteMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               de.tum.grpc_api.KVServerProto.DeleteRequest,
               com.google.protobuf.Empty>(
-                service, METHODID_DELETE_RPC)))
+                service, METHODID_DELETE)))
         .build();
   }
 
@@ -1175,19 +1159,19 @@ public final class KVServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new KVServiceFileDescriptorSupplier())
-              .addMethod(getHeartBeatRPCMethod())
+              .addMethod(getHeartBeatMethod())
               .addMethod(getGetRangeMethod())
               .addMethod(getEqualsMethod())
-              .addMethod(getToStringRPCMethod())
-              .addMethod(getIsResponsibleRPCMethod())
-              .addMethod(getInitRPCMethod())
-              .addMethod(getRecoverRPCMethod())
-              .addMethod(getUpdateRingRPCMethod())
+              .addMethod(getToStringMethod())
+              .addMethod(getIsResponsibleMethod())
+              .addMethod(getInitMethod())
+              .addMethod(getRecoverMethod())
+              .addMethod(getUpdateRingMethod())
               .addMethod(getDeleteExpiredDataMethod())
               .addMethod(getCopyMethod())
-              .addMethod(getGetRPCMethod())
-              .addMethod(getPutRPCMethod())
-              .addMethod(getDeleteRPCMethod())
+              .addMethod(getGetMethod())
+              .addMethod(getPutMethod())
+              .addMethod(getDeleteMethod())
               .build();
         }
       }

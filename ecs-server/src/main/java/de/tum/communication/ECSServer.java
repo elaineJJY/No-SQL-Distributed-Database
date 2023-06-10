@@ -4,6 +4,7 @@ import com.google.protobuf.Empty;
 import de.tum.grpc_api.ECSProto;
 import de.tum.grpc_api.ECServiceGrpc;
 import de.tum.grpc_api.KVServiceGrpc;
+import de.tum.node.ConsistentHash;
 import de.tum.node.Node;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -55,8 +56,6 @@ public class ECSServer {
                 System.err.println("*** ECS server shut down ***");
             }
         });
-
-//        ecsServer.awaitTermination();
     }
 
     public void stop() {
@@ -90,30 +89,22 @@ public class ECSServer {
                 int rpcPort = request.getRpcPort();
                 System.out.println(
                         "ECS receive register request form KVServer: <" + Host + ":" + Port + ">");
-                // Build and send the response
 
                 Empty response = Empty.newBuilder().build();
                 responseObserver.onNext(response);
                 responseObserver.onCompleted();
 
-                System.out.println("start init");
-
+                System.out.println("start adding new KVServer");
 
                 // new Thread?
-//                ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(Host, KV_LISTEN_ECS_PORT).usePlaintext().build();
-//                KVServiceGrpc.KVServiceBlockingStub kvServiceStub = KVServiceGrpc.newBlockingStub(managedChannel);
                 Node node = new Node(Host, rpcPort);
                 try {
-                    //ConsistentHash.INSTANCE.addNode(nodeStub);
-                    // 心跳
-//                    while (nodeStub.heartbeat()) {
-//                        Thread.sleep(1000);
-//                    }
-//                    removeNode(nodeStub);
-                    //System.out.println(node.heartbeat());
-                    Thread.sleep(20000);
-                    System.out.println(node.get("1"));
-//                    managedChannel.shutdown();
+                    ConsistentHash.INSTANCE.addNode(node);
+                    // Heartbeat
+                    while (node.heartbeat() > 0) {
+                        System.out.println(node.heartbeat());
+                    }
+                    ConsistentHash.INSTANCE.removeNode(node);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

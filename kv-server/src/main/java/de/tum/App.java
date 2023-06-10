@@ -10,6 +10,7 @@ import de.tum.database.MainDatabase;
 import de.tum.grpc_api.ECServiceGrpc;
 import de.tum.grpc_api.KVServerProto;
 import de.tum.node.Node;
+import de.tum.node.NodeProxy;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
@@ -56,7 +57,7 @@ public class App
             BackupDatabase backupDatabase = new BackupDatabase();
             Node node = new Node(address, port, database, backupDatabase);
 
-            ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0);
+            ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0); // dynamic port
             rpcServerBuilder.addService(node);
             Server rpcServer = rpcServerBuilder.build();
             rpcServer.start();
@@ -92,9 +93,6 @@ public class App
         KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
                 .setHost(address)
                 .setPort(port);
-
-//        KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
-//                .setNode(nodeMessageBuilder.build()).build();
 
         KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
                 .setNode(nodeMessageBuilder.build())

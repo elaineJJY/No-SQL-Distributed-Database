@@ -28,22 +28,23 @@ public class App {
 
 		ecsServer.blockUntilShutdown();
 	}
-
-
-
-	public void test() {
-		ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 5200).usePlaintext().build();
-		KVServiceGrpc.KVServiceBlockingStub kvServiceStub = KVServiceGrpc.newBlockingStub(managedChannel);
-		Node node = new Node("localhost", 5151);
-		try {
-			kvServiceStub.toStringRPC(Empty.newBuilder().build());
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		} finally {
-			managedChannel.shutdown();
-		}
-	}
 }
+
+
+
+
+//	public void test() {
+//		ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 5200).usePlaintext().build();
+//		KVServiceGrpc.KVServiceBlockingStub kvServiceStub = KVServiceGrpc.newBlockingStub(managedChannel);
+//		Node node = new Node("localhost", 5151);
+//		try {
+//			kvServiceStub.toString(Empty.newBuilder().build());
+//		} catch (Exception e) {
+//			throw new RuntimeException(e);
+//		} finally {
+//			managedChannel.shutdown();
+//		}
+//	}
 
 
 
