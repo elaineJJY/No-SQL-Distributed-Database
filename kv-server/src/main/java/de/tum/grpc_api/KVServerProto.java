@@ -12237,7 +12237,7 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       "\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005range\030\002 " +
       "\001(\0132\006.Range\">\n\017RegisterRequest\022\032\n\004node\030\001" +
       " \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* \n\010D" +
-      "ataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\200\006\n\tKVServ" +
+      "ataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\303\006\n\tKVServ" +
       "ice\0229\n\theartBeat\022\026.google.protobuf.Empty" +
       "\032\022.HeartBeatResponse\"\000\0221\n\010getRange\022\020.Get" +
       "RangeRequest\032\021.GetRangeResponse\"\000\022:\n\006equ" +
@@ -12252,14 +12252,16 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       "est\032\026.google.protobuf.Empty\"\000\022+\n\006hasKey\022" +
       "\016.HasKeyRequest\032\017.HasKeyResponse\"\000\0228\n\004in" +
       "it\022\026.google.protobuf.Empty\032\026.google.prot" +
-      "obuf.Empty\"\000\0224\n\007recover\022\017.RecoverRequest" +
-      "\032\026.google.protobuf.Empty\"\000\022:\n\nupdateRing" +
-      "\022\022.UpdateRingRequest\032\026.google.protobuf.E" +
-      "mpty\"\000\022H\n\021deleteExpiredData\022\031.DeleteExpi" +
-      "redDataRequest\032\026.google.protobuf.Empty\"\000" +
-      "2C\n\tECService\0226\n\010register\022\020.RegisterRequ" +
-      "est\032\026.google.protobuf.Empty\"\000B\"\n\017de.tum." +
-      "grpc_apiB\rKVServerProtoP\000b\006proto3"
+      "obuf.Empty\"\000\022A\n\rstartKVServer\022\026.google.p" +
+      "rotobuf.Empty\032\026.google.protobuf.Empty\"\000\022" +
+      "4\n\007recover\022\017.RecoverRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\022:\n\nupdateRing\022\022.UpdateRing" +
+      "Request\032\026.google.protobuf.Empty\"\000\022H\n\021del" +
+      "eteExpiredData\022\031.DeleteExpiredDataReques" +
+      "t\032\026.google.protobuf.Empty\"\0002C\n\tECService" +
+      "\0226\n\010register\022\020.RegisterRequest\032\026.google." +
+      "protobuf.Empty\"\000B\"\n\017de.tum.grpc_apiB\rKVS" +
+      "erverProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

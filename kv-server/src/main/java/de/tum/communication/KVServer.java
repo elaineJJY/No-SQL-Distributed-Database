@@ -226,6 +226,7 @@ public class KVServer {
 		INode resopnsibleNode = this.node;
 		if (!node.isResponsible(key)) {
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);
+			// TODO: Print Port is not correct
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
 			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
 		}

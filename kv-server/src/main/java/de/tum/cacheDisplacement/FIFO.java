@@ -29,12 +29,17 @@ public class FIFO extends Cache {
     @Override
     public void put(String key, String value) throws Exception {
         if (keys.size() >= capacity) {
-            String oldKey = keys.removeFirst();
-            getPersistentStorage().storeToDisk(oldKey, value);
+            keys.removeFirst();
             values.removeFirst();
+        }
+        if (keys.contains(key)) {
+            int index = keys.indexOf(key);
+            keys.remove(index);
+            values.remove(index);
         }
         keys.addLast(key);
         values.addLast(value);
+        getPersistentStorage().storeToDisk(key, value);
     }
 
     @Override
@@ -46,7 +51,6 @@ public class FIFO extends Cache {
             String value = getPersistentStorage().readFromDisk(key);
             if (value!= null) {
                 this.put(key, value);
-                getPersistentStorage().deleteFromDisk(key);
             }
             return value;
         }
@@ -59,8 +63,7 @@ public class FIFO extends Cache {
         if (index >= 0) {
             keys.remove(index);
             values.remove(index);
-        } else {
-            getPersistentStorage().deleteFromDisk(key);
         }
+        getPersistentStorage().deleteFromDisk(key);
     }
 }

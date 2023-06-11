@@ -3276,3 +3276,227 @@ SM
 信息: Register read event for client: /127.0.0.1:58757
 6月 11, 2023 10:04:02 下午 de.tum.communication.KVServer read
 信息: Received request:put hangzhou666 3
+6月 11, 2023 10:29:42 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:29:42 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:29:44 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:29:44 下午 de.tum.App main
+信息: RPC service published on port: 59269, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:29:45 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5156, ready to receive data from KVClient
+6月 11, 2023 10:31:00 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:31:00 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:31:01 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:31:01 下午 de.tum.App main
+信息: RPC service published on port: 59322, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:31:02 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:31:36 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:59354
+6月 11, 2023 10:31:42 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:59354
+6月 11, 2023 10:31:42 下午 de.tum.communication.KVServer read
+信息: Received request:put tum 1
+6月 11, 2023 10:31:47 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:59354
+6月 11, 2023 10:31:47 下午 de.tum.communication.KVServer read
+信息: Received request:put hangzhou666 2
+6月 11, 2023 10:31:52 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:59354
+6月 11, 2023 10:31:52 下午 de.tum.communication.KVServer read
+信息: Received request:put lmu 3
+6月 11, 2023 10:33:03 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:33:04 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:33:06 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:33:06 下午 de.tum.App main
+信息: RPC service published on port: 59389, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:33:08 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:39:27 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:39:27 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:39:28 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:39:28 下午 de.tum.App main
+信息: RPC service published on port: 59502, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:39:29 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:42:44 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:42:44 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:42:46 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:42:46 下午 de.tum.App main
+信息: RPC service published on port: 59561, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:42:47 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:43:17 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:43:17 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:43:19 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:43:19 下午 de.tum.App main
+信息: RPC service published on port: 59586, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:43:47 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:43:47 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:43:49 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:43:49 下午 de.tum.App main
+信息: RPC service published on port: 59602, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:44:33 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:46:19 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:46:19 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:46:20 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 11, 2023 10:46:35 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:46:35 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:46:37 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:46:37 下午 de.tum.App main
+信息: RPC service published on port: 59688, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:46:46 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:48:19 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:48:19 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:48:22 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:48:22 下午 de.tum.App main
+信息: RPC service published on port: 59729, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:48:23 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:52:43 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:52:43 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:52:46 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:52:46 下午 de.tum.App main
+信息: RPC service published on port: 59815, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:56:05 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:56:05 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:56:07 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:56:07 下午 de.tum.App main
+信息: RPC service published on port: 59895, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:56:07 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 10:58:30 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:58:30 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 10:58:31 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 10:58:31 下午 de.tum.App main
+信息: RPC service published on port: 59945, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 10:58:31 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 11:02:20 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 11:02:20 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 11:03:06 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 11:03:06 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 11:03:07 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 11:03:07 下午 de.tum.App main
+信息: RPC service published on port: 60034, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 11:03:08 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 11:05:15 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 11:05:15 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 11:05:16 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 11:05:16 下午 de.tum.App main
+信息: RPC service published on port: 60092, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 11:05:17 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 11:06:02 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 11:06:02 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 11:06:03 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 11:06:03 下午 de.tum.App main
+信息: RPC service published on port: 60129, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 11:06:04 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 11:09:07 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 11:09:07 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 11:09:09 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 11:09:09 下午 de.tum.App main
+信息: RPC service published on port: 60195, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 11:09:10 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 11:31:13 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 11:31:13 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 11, 2023 11:31:14 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 11, 2023 11:31:14 下午 de.tum.App main
+信息: RPC service published on port: 60574, waiting to receive heartbeat from ECS/Other Servers
+6月 11, 2023 11:31:15 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 11, 2023 11:32:01 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:60616
+6月 11, 2023 11:32:09 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:32:09 下午 de.tum.communication.KVServer read
+信息: Received request:put tum 1
+6月 11, 2023 11:32:14 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:32:14 下午 de.tum.communication.KVServer read
+信息: Received request:put tum hangzhou666
+6月 11, 2023 11:32:22 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:32:22 下午 de.tum.communication.KVServer read
+信息: Received request:put hangzhou666
+6月 11, 2023 11:32:27 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:32:27 下午 de.tum.communication.KVServer read
+信息: Received request:put lmu hello
+6月 11, 2023 11:33:07 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:33:07 下午 de.tum.communication.KVServer read
+信息: Received request:get tum
+6月 11, 2023 11:33:12 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:33:12 下午 de.tum.communication.KVServer read
+信息: Received request:get hangzhou666
+6月 11, 2023 11:33:22 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:33:22 下午 de.tum.communication.KVServer read
+信息: Received request:delete hangzhou666
+6月 11, 2023 11:33:30 下午 de.tum.communication.KVServer read
+信息: Register read event for client: /127.0.0.1:60616
+6月 11, 2023 11:33:30 下午 de.tum.communication.KVServer read
+信息: Received request:get hangzhou666

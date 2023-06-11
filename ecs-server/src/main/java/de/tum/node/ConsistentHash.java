@@ -37,6 +37,7 @@ public enum ConsistentHash {
 			getPreviousNode(nodeProxy).deleteExpiredData(DataType.DATA, nodeProxy.getRange(DataType.DATA));
 			getNextNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
 		}
+		nodeProxy.startKVServer();
 	}
 
 	public void removeNode(NodeProxy nodeProxy) {

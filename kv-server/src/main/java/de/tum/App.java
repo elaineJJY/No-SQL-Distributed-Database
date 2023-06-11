@@ -74,10 +74,8 @@ public class App
 //                throw new Exception("Register to ECS failed");
 //            }
 
-            // Start KVServer
-            LOGGER.info("KVServer is starting...");
-            KVServer kvServer = new KVServer(node);
-            kvServer.start(address, port);
+//            KVServer kvServer = new KVServer(node);
+//            kvServer.start(address, port);
 
             rpcServer.awaitTermination();
         }

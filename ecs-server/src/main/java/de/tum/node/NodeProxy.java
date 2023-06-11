@@ -65,6 +65,10 @@ public class NodeProxy {
         this.stub.init(emptyRequest);
     }
 
+    public void startKVServer() {
+        this.stub.startKVServer(emptyRequest);
+    }
+
     public void recover(NodeProxy removedNodeProxy) {
         ECSProto.RecoverRequest request = ECSProto.RecoverRequest.newBuilder()
                 .setNode(ECSProto.NodeMessage.newBuilder()

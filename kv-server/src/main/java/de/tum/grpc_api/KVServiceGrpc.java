@@ -356,6 +356,37 @@ public final class KVServiceGrpc {
     return getInitMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.google.protobuf.Empty> getStartKVServerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "startKVServer",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.google.protobuf.Empty> getStartKVServerMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getStartKVServerMethod;
+    if ((getStartKVServerMethod = KVServiceGrpc.getStartKVServerMethod) == null) {
+      synchronized (KVServiceGrpc.class) {
+        if ((getStartKVServerMethod = KVServiceGrpc.getStartKVServerMethod) == null) {
+          KVServiceGrpc.getStartKVServerMethod = getStartKVServerMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "startKVServer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("startKVServer"))
+              .build();
+        }
+      }
+    }
+    return getStartKVServerMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RecoverRequest,
       com.google.protobuf.Empty> getRecoverMethod;
 
@@ -582,6 +613,13 @@ public final class KVServiceGrpc {
 
     /**
      */
+    default void startKVServer(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getStartKVServerMethod(), responseObserver);
+    }
+
+    /**
+     */
     default void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRecoverMethod(), responseObserver);
@@ -725,6 +763,14 @@ public final class KVServiceGrpc {
 
     /**
      */
+    public void startKVServer(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getStartKVServerMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -845,6 +891,13 @@ public final class KVServiceGrpc {
     public com.google.protobuf.Empty init(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getInitMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty startKVServer(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getStartKVServerMethod(), getCallOptions(), request);
     }
 
     /**
@@ -981,6 +1034,14 @@ public final class KVServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> startKVServer(
+        com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getStartKVServerMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> recover(
         de.tum.grpc_api.KVServerProto.RecoverRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -1015,9 +1076,10 @@ public final class KVServiceGrpc {
   private static final int METHODID_DELETE = 8;
   private static final int METHODID_HAS_KEY = 9;
   private static final int METHODID_INIT = 10;
-  private static final int METHODID_RECOVER = 11;
-  private static final int METHODID_UPDATE_RING = 12;
-  private static final int METHODID_DELETE_EXPIRED_DATA = 13;
+  private static final int METHODID_START_KVSERVER = 11;
+  private static final int METHODID_RECOVER = 12;
+  private static final int METHODID_UPDATE_RING = 13;
+  private static final int METHODID_DELETE_EXPIRED_DATA = 14;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1078,6 +1140,10 @@ public final class KVServiceGrpc {
           break;
         case METHODID_INIT:
           serviceImpl.init((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_START_KVSERVER:
+          serviceImpl.startKVServer((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_RECOVER:
@@ -1188,6 +1254,13 @@ public final class KVServiceGrpc {
               com.google.protobuf.Empty>(
                 service, METHODID_INIT)))
         .addMethod(
+          getStartKVServerMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.Empty,
+              com.google.protobuf.Empty>(
+                service, METHODID_START_KVSERVER)))
+        .addMethod(
           getRecoverMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1267,6 +1340,7 @@ public final class KVServiceGrpc {
               .addMethod(getDeleteMethod())
               .addMethod(getHasKeyMethod())
               .addMethod(getInitMethod())
+              .addMethod(getStartKVServerMethod())
               .addMethod(getRecoverMethod())
               .addMethod(getUpdateRingMethod())
               .addMethod(getDeleteExpiredDataMethod())

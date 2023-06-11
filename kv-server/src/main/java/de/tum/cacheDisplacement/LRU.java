@@ -27,11 +27,10 @@ public class LRU extends Cache {
     public synchronized void put(String key, String value) throws Exception {
         if (cache.size() >= capacity) {
             String oldKey = cache.keySet().iterator().next();
-            String oldValue = cache.get(oldKey);
-            getPersistentStorage().storeToDisk(oldKey, oldValue);
             cache.remove(oldKey);
         }
         cache.put(key, value);
+        getPersistentStorage().storeToDisk(key, value);
     }
 
     @Override
@@ -42,7 +41,6 @@ public class LRU extends Cache {
             value = getPersistentStorage().readFromDisk(key);
             if (value != null) {
                 this.put(key, value);
-                getPersistentStorage().deleteFromDisk(key);
             }
         }
         return value;
@@ -50,18 +48,18 @@ public class LRU extends Cache {
 
     @Override
     public synchronized void delete(String key) throws Exception {
-        if (cache.remove(key) == null) {
-            getPersistentStorage().deleteFromDisk(key);
-        }
+        cache.remove(key);
+        getPersistentStorage().deleteFromDisk(key);
     }
 
     public static void main(String[] args) {
-        LRU lru = new LRU(2, "src/main/java/de/tum/database/data/mainData");
+        FIFO lru = new FIFO(2, "src/main/java/de/tum/database/data/mainData");
         try {
             lru.put("1", "a");
             lru.put("1", "b");
             lru.put("3", "c");
             lru.put("4", "d");
+            lru.delete("4");
             System.out.println(lru.get("1"));
             System.out.println(lru.get("3"));
             System.out.println(lru.get("4"));

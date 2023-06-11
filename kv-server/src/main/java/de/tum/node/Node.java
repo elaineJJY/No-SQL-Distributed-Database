@@ -297,7 +297,8 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 //			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
 //			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
 		}
-        server = new KVServer(this);
+		// Start KVServer
+		System.out.println("Start KVServer: " + this.host + ":" + this.port);
 	}
 
 	@Override
@@ -312,6 +313,24 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
+
+	public void startKVServer() throws Exception {
+		server = new KVServer(this);
+		server.start(host, port);
+	}
+
+	public void startKVServer(com.google.protobuf.Empty request,
+							  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+		try {
+			startKVServer();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Empty response = Empty.newBuilder().build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
+
 
 	public void recover(INode removedNode) throws Exception {
 
@@ -383,8 +402,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 				ring.put(key, new Node(host, this.port, this.mainDatabase, this.backupDatabase));
 			}
 			ring.put(key, new NodeProxy(host, rpcPort, this.port));
-
-			System.out.println("Key: " + key + ", Host: " + host + ", Port: " + port);
+//			System.out.println("Key: " + key + ", Host: " + host + ", Port: " + this.port);
 		}
 		System.out.println("Update ring: " + ring);
 		updateRing(ring);

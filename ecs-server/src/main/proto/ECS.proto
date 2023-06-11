@@ -115,6 +115,7 @@ service KVService {
 
     // init, recover, updateRing, deleteExpiredData will only be called by ECS
     rpc init(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc startKVServer(google.protobuf.Empty) returns (google.protobuf.Empty) {}
     rpc recover(RecoverRequest) returns (google.protobuf.Empty) {}
     rpc updateRing(UpdateRingRequest) returns (google.protobuf.Empty) {}
     rpc deleteExpiredData(DeleteExpiredDataRequest) returns (google.protobuf.Empty) {}
