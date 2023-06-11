@@ -20,19 +20,22 @@ import java.util.Map;
  */
 public class NodeProxy implements INode {
     private String host;
-    private int port;
+    private int rpcPort;
+    private int portForClient;
     private final KVServiceGrpc.KVServiceBlockingStub stub;
     static Empty emptyRequest = Empty.newBuilder().build();
 
-    public NodeProxy(String host, int port) {
+    public NodeProxy(String host, int rpcPort, int portForClient) {
         this.host = host;
-        this.port = port;
-        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, port).usePlaintext().build());
+        this.rpcPort = rpcPort;
+        this.portForClient = portForClient;
+        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, rpcPort).usePlaintext().build());
     }
 
     public String getHost() { return host; }
 
-    public int getPort() { return port; }
+    public int getPort() { return rpcPort; } // actually getRpcPort
+    public int getPortForClient() { return portForClient; }
 
     public long heartbeat() {
         KVServerProto.HeartBeatResponse heartBeatResponse = this.stub.heartBeat(emptyRequest);

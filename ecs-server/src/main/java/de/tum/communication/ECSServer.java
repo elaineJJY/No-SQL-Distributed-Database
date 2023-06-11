@@ -5,11 +5,12 @@ import de.tum.grpc_api.ECSProto;
 import de.tum.grpc_api.ECServiceGrpc;
 import de.tum.grpc_api.KVServiceGrpc;
 import de.tum.node.ConsistentHash;
-import de.tum.node.Node;
+import de.tum.node.NodeProxy;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.netty.NettyServerBuilder;
+import org.w3c.dom.Node;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -84,11 +85,11 @@ public class ECSServer {
             //ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(() -> {
                 System.out.println("test register starts");
-                String Host = request.getNode().getHost();
-                int Port = request.getNode().getPort();
+                String host = request.getNode().getHost();
+                int portForClient = request.getNode().getPort();
                 int rpcPort = request.getRpcPort();
                 System.out.println(
-                        "ECS receive register request form KVServer: <" + Host + ":" + Port + ">");
+                        "ECS receive register request form KVServer: <" + host + ":" + portForClient + ">");
 
                 Empty response = Empty.newBuilder().build();
                 responseObserver.onNext(response);
@@ -97,7 +98,8 @@ public class ECSServer {
                 System.out.println("start adding new KVServer");
 
                 // new Thread?
-                Node node = new Node(Host, rpcPort);
+//                Node node = new Node(Host, rpcPort);
+                NodeProxy node = new NodeProxy(host, rpcPort, portForClient);
                 try {
 //                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);

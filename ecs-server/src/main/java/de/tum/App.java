@@ -1,14 +1,9 @@
 package de.tum;
 
-import com.google.protobuf.Empty;
 import de.tum.communication.ECSServer;
 import de.tum.communication.ServerLogger;
 
 import de.tum.communication.ParseCommand;
-import de.tum.grpc_api.KVServiceGrpc;
-import de.tum.node.Node;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 
 import java.util.logging.Logger;
 

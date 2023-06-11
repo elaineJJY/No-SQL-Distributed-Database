@@ -5,7 +5,6 @@ import de.tum.grpc_api.ECSProto;
 import de.tum.grpc_api.KVServiceGrpc;
 import io.grpc.ManagedChannelBuilder;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 
@@ -19,22 +18,25 @@ import java.util.SortedMap;
  * @Version 1.0
  */
 
-public class Node {
+public class NodeProxy {
     private String host;
-    private int port;
+    private int rpcPort;
+    private int portForClient;
     static Empty emptyRequest = Empty.newBuilder().build();
     //public io.grpc.stub.AbstractBlockingStub stub;
     private final KVServiceGrpc.KVServiceBlockingStub stub;
 
-    public Node(String host, int port) {
+    public NodeProxy(String host, int rpcPort, int portForClient) {
         this.host = host;
-        this.port = port;
-        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, port).usePlaintext().build());
+        this.rpcPort = rpcPort;
+        this.portForClient = portForClient;
+        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, rpcPort).usePlaintext().build());
     }
 
     public String getHost() { return host; }
 
-    public int getPort() { return port; }
+    public int getRpcPort() { return rpcPort; }
+    public int getPortForClient() { return portForClient; }
 
     public long heartbeat() {
         ECSProto.HeartBeatResponse heartBeatResponse = this.stub.heartBeat(emptyRequest);
@@ -63,22 +65,22 @@ public class Node {
         this.stub.init(emptyRequest);
     }
 
-    public void recover(Node removedNode) {
+    public void recover(NodeProxy removedNodeProxy) {
         ECSProto.RecoverRequest request = ECSProto.RecoverRequest.newBuilder()
                 .setNode(ECSProto.NodeMessage.newBuilder()
-                        .setHost(removedNode.getHost()).setPort(removedNode.getPort())
+                        .setHost(removedNodeProxy.getHost()).setPort(removedNodeProxy.getRpcPort())
                         .build())
                 .build();
         this.stub.recover(request);
     }
 
-    public void updateRing(SortedMap<String, Node> ring) {
+    public void updateRing(SortedMap<String, NodeProxy> ring) {
         ECSProto.UpdateRingRequest.Builder requestBuilder = ECSProto.UpdateRingRequest.newBuilder();
-        for (Map.Entry<String, Node> entry : ring.entrySet()) {
-            Node node = entry.getValue();
+        for (Map.Entry<String, NodeProxy> entry : ring.entrySet()) {
+            NodeProxy nodeProxy = entry.getValue();
             ECSProto.NodeMessage.Builder nodeMessageBuilder = ECSProto.NodeMessage.newBuilder()
-                    .setHost(node.getHost())
-                    .setPort(node.getPort());
+                    .setHost(nodeProxy.getHost())
+                    .setPort(nodeProxy.getRpcPort());
             requestBuilder.putRing(entry.getKey(), nodeMessageBuilder.build());
         }
 

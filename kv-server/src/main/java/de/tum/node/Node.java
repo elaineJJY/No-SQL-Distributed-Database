@@ -351,7 +351,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	public void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
 						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		KVServerProto.NodeMessage nodeProto = request.getNode();
-		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getPort());
+		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getPort(), this.port);
 		try {
 			recover(nodeProxy);
 		} catch (Exception e) {
@@ -378,11 +378,11 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 			String key = entry.getKey();
 			KVServerProto.NodeMessage nodeMessaage = entry.getValue();
 			String host = nodeMessaage.getHost();
-			int port = nodeMessaage.getPort();
+			int rpcPort = nodeMessaage.getPort();
 			if (host.equals(this.host)) {
-				ring.put(key, new Node(host, port, this.mainDatabase, this.backupDatabase));
+				ring.put(key, new Node(host, this.port, this.mainDatabase, this.backupDatabase));
 			}
-			ring.put(key, new NodeProxy(host, port));
+			ring.put(key, new NodeProxy(host, rpcPort, this.port));
 
 			System.out.println("Key: " + key + ", Host: " + host + ", Port: " + port);
 		}
