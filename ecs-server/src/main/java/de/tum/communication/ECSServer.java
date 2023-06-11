@@ -103,15 +103,15 @@ public class ECSServer {
                 try {
 //                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);
-                    // Heartbeat
-                    while (node.heartbeat() > 0) {
-                        //System.out.println(node.heartbeat());
-                        Thread.sleep(500);
-                    }
+//                    // Heartbeat
+//                    while (node.heartbeat() > 0) {
+//                        System.out.println(node.heartbeat());
+//                        Thread.sleep(500);
+//                    }
+                } catch (io.grpc.StatusRuntimeException e) {
                     ConsistentHash.INSTANCE.removeNode(node);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
                 }
+                System.out.println("test end");
             });
         }
     }

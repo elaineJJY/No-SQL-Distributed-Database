@@ -20,7 +20,7 @@ public enum ConsistentHash {
 		return ring;
 	}
 
-	public void addNode(NodeProxy nodeProxy) {
+	public void addNode(NodeProxy nodeProxy) throws io.grpc.StatusRuntimeException {
 		String nodeHash = MD5Hash.hash(nodeProxy.toString());
 		// in case of hash collision
 		if (ring.containsKey(nodeHash)) {

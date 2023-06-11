@@ -319,6 +319,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		server.start(host, port);
 	}
 
+	@Override
 	public void startKVServer(com.google.protobuf.Empty request,
 							  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		try {
