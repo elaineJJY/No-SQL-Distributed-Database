@@ -73,6 +73,14 @@ message DeleteRequest {
   string key = 1;
 }
 
+message HasKeyRequest {
+  string key = 1;
+}
+
+message HasKeyResponse {
+  bool hasKey = 1;
+}
+
 message RecoverRequest {
   NodeMessage node = 1;
 }
@@ -103,6 +111,7 @@ service KVService {
   rpc get(GetRequest) returns (GetResponse) {}
   rpc put(PutRequest) returns (google.protobuf.Empty) {}
   rpc delete(DeleteRequest) returns (google.protobuf.Empty) {}
+  rpc hasKey(HasKeyRequest) returns (HasKeyResponse) {}
 
   // init, recover, updateRing, deleteExpiredData will only be called by ECS
   rpc init(google.protobuf.Empty) returns (google.protobuf.Empty) {}

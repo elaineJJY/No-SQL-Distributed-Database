@@ -3013,673 +3013,6 @@ public final class KVServerProto {
 
   }
 
-  public interface RegisterRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RegisterRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return Whether the node field is set.
-     */
-    boolean hasNode();
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return The node.
-     */
-    de.tum.grpc_api.KVServerProto.NodeMessage getNode();
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     */
-    de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder();
-
-    /**
-     * <code>int32 rpcPort = 2;</code>
-     * @return The rpcPort.
-     */
-    int getRpcPort();
-  }
-  /**
-   * Protobuf type {@code RegisterRequest}
-   */
-  public static final class RegisterRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:RegisterRequest)
-      RegisterRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RegisterRequest.newBuilder() to construct.
-    private RegisterRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RegisterRequest() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RegisterRequest();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.KVServerProto.RegisterRequest.class, de.tum.grpc_api.KVServerProto.RegisterRequest.Builder.class);
-    }
-
-    public static final int NODE_FIELD_NUMBER = 1;
-    private de.tum.grpc_api.KVServerProto.NodeMessage node_;
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return Whether the node field is set.
-     */
-    @java.lang.Override
-    public boolean hasNode() {
-      return node_ != null;
-    }
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return The node.
-     */
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
-      return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
-    }
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     */
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
-      return getNode();
-    }
-
-    public static final int RPCPORT_FIELD_NUMBER = 2;
-    private int rpcPort_;
-    /**
-     * <code>int32 rpcPort = 2;</code>
-     * @return The rpcPort.
-     */
-    @java.lang.Override
-    public int getRpcPort() {
-      return rpcPort_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (node_ != null) {
-        output.writeMessage(1, getNode());
-      }
-      if (rpcPort_ != 0) {
-        output.writeInt32(2, rpcPort_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (node_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getNode());
-      }
-      if (rpcPort_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, rpcPort_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof de.tum.grpc_api.KVServerProto.RegisterRequest)) {
-        return super.equals(obj);
-      }
-      de.tum.grpc_api.KVServerProto.RegisterRequest other = (de.tum.grpc_api.KVServerProto.RegisterRequest) obj;
-
-      if (hasNode() != other.hasNode()) return false;
-      if (hasNode()) {
-        if (!getNode()
-            .equals(other.getNode())) return false;
-      }
-      if (getRpcPort()
-          != other.getRpcPort()) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasNode()) {
-        hash = (37 * hash) + NODE_FIELD_NUMBER;
-        hash = (53 * hash) + getNode().hashCode();
-      }
-      hash = (37 * hash) + RPCPORT_FIELD_NUMBER;
-      hash = (53 * hash) + getRpcPort();
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.RegisterRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code RegisterRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RegisterRequest)
-        de.tum.grpc_api.KVServerProto.RegisterRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.KVServerProto.RegisterRequest.class, de.tum.grpc_api.KVServerProto.RegisterRequest.Builder.class);
-      }
-
-      // Construct using de.tum.grpc_api.KVServerProto.RegisterRequest.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (nodeBuilder_ == null) {
-          node_ = null;
-        } else {
-          node_ = null;
-          nodeBuilder_ = null;
-        }
-        rpcPort_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.RegisterRequest getDefaultInstanceForType() {
-        return de.tum.grpc_api.KVServerProto.RegisterRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.RegisterRequest build() {
-        de.tum.grpc_api.KVServerProto.RegisterRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.RegisterRequest buildPartial() {
-        de.tum.grpc_api.KVServerProto.RegisterRequest result = new de.tum.grpc_api.KVServerProto.RegisterRequest(this);
-        if (nodeBuilder_ == null) {
-          result.node_ = node_;
-        } else {
-          result.node_ = nodeBuilder_.build();
-        }
-        result.rpcPort_ = rpcPort_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.KVServerProto.RegisterRequest) {
-          return mergeFrom((de.tum.grpc_api.KVServerProto.RegisterRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.RegisterRequest other) {
-        if (other == de.tum.grpc_api.KVServerProto.RegisterRequest.getDefaultInstance()) return this;
-        if (other.hasNode()) {
-          mergeNode(other.getNode());
-        }
-        if (other.getRpcPort() != 0) {
-          setRpcPort(other.getRpcPort());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                input.readMessage(
-                    getNodeFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
-                break;
-              } // case 10
-              case 16: {
-                rpcPort_ = input.readInt32();
-
-                break;
-              } // case 16
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-
-      private de.tum.grpc_api.KVServerProto.NodeMessage node_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> nodeBuilder_;
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       * @return Whether the node field is set.
-       */
-      public boolean hasNode() {
-        return nodeBuilder_ != null || node_ != null;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       * @return The node.
-       */
-      public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
-        if (nodeBuilder_ == null) {
-          return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
-        } else {
-          return nodeBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder setNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
-        if (nodeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          node_ = value;
-          onChanged();
-        } else {
-          nodeBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder setNode(
-          de.tum.grpc_api.KVServerProto.NodeMessage.Builder builderForValue) {
-        if (nodeBuilder_ == null) {
-          node_ = builderForValue.build();
-          onChanged();
-        } else {
-          nodeBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder mergeNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
-        if (nodeBuilder_ == null) {
-          if (node_ != null) {
-            node_ =
-              de.tum.grpc_api.KVServerProto.NodeMessage.newBuilder(node_).mergeFrom(value).buildPartial();
-          } else {
-            node_ = value;
-          }
-          onChanged();
-        } else {
-          nodeBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder clearNode() {
-        if (nodeBuilder_ == null) {
-          node_ = null;
-          onChanged();
-        } else {
-          node_ = null;
-          nodeBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public de.tum.grpc_api.KVServerProto.NodeMessage.Builder getNodeBuilder() {
-        
-        onChanged();
-        return getNodeFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
-        if (nodeBuilder_ != null) {
-          return nodeBuilder_.getMessageOrBuilder();
-        } else {
-          return node_ == null ?
-              de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
-        }
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> 
-          getNodeFieldBuilder() {
-        if (nodeBuilder_ == null) {
-          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder>(
-                  getNode(),
-                  getParentForChildren(),
-                  isClean());
-          node_ = null;
-        }
-        return nodeBuilder_;
-      }
-
-      private int rpcPort_ ;
-      /**
-       * <code>int32 rpcPort = 2;</code>
-       * @return The rpcPort.
-       */
-      @java.lang.Override
-      public int getRpcPort() {
-        return rpcPort_;
-      }
-      /**
-       * <code>int32 rpcPort = 2;</code>
-       * @param value The rpcPort to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRpcPort(int value) {
-        
-        rpcPort_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 rpcPort = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRpcPort() {
-        
-        rpcPort_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:RegisterRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:RegisterRequest)
-    private static final de.tum.grpc_api.KVServerProto.RegisterRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.RegisterRequest();
-    }
-
-    public static de.tum.grpc_api.KVServerProto.RegisterRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RegisterRequest>
-        PARSER = new com.google.protobuf.AbstractParser<RegisterRequest>() {
-      @java.lang.Override
-      public RegisterRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<RegisterRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RegisterRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.RegisterRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface ToStringResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ToStringResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -5244,2025 +4577,6 @@ public final class KVServerProto {
 
     @java.lang.Override
     public de.tum.grpc_api.KVServerProto.IsResponsibleResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RecoverRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RecoverRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return Whether the node field is set.
-     */
-    boolean hasNode();
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return The node.
-     */
-    de.tum.grpc_api.KVServerProto.NodeMessage getNode();
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     */
-    de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder();
-  }
-  /**
-   * Protobuf type {@code RecoverRequest}
-   */
-  public static final class RecoverRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:RecoverRequest)
-      RecoverRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RecoverRequest.newBuilder() to construct.
-    private RecoverRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RecoverRequest() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RecoverRequest();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.KVServerProto.RecoverRequest.class, de.tum.grpc_api.KVServerProto.RecoverRequest.Builder.class);
-    }
-
-    public static final int NODE_FIELD_NUMBER = 1;
-    private de.tum.grpc_api.KVServerProto.NodeMessage node_;
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return Whether the node field is set.
-     */
-    @java.lang.Override
-    public boolean hasNode() {
-      return node_ != null;
-    }
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     * @return The node.
-     */
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
-      return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
-    }
-    /**
-     * <code>.NodeMessage node = 1;</code>
-     */
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
-      return getNode();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (node_ != null) {
-        output.writeMessage(1, getNode());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (node_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getNode());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof de.tum.grpc_api.KVServerProto.RecoverRequest)) {
-        return super.equals(obj);
-      }
-      de.tum.grpc_api.KVServerProto.RecoverRequest other = (de.tum.grpc_api.KVServerProto.RecoverRequest) obj;
-
-      if (hasNode() != other.hasNode()) return false;
-      if (hasNode()) {
-        if (!getNode()
-            .equals(other.getNode())) return false;
-      }
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasNode()) {
-        hash = (37 * hash) + NODE_FIELD_NUMBER;
-        hash = (53 * hash) + getNode().hashCode();
-      }
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.RecoverRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code RecoverRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RecoverRequest)
-        de.tum.grpc_api.KVServerProto.RecoverRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.KVServerProto.RecoverRequest.class, de.tum.grpc_api.KVServerProto.RecoverRequest.Builder.class);
-      }
-
-      // Construct using de.tum.grpc_api.KVServerProto.RecoverRequest.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (nodeBuilder_ == null) {
-          node_ = null;
-        } else {
-          node_ = null;
-          nodeBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.RecoverRequest getDefaultInstanceForType() {
-        return de.tum.grpc_api.KVServerProto.RecoverRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.RecoverRequest build() {
-        de.tum.grpc_api.KVServerProto.RecoverRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.RecoverRequest buildPartial() {
-        de.tum.grpc_api.KVServerProto.RecoverRequest result = new de.tum.grpc_api.KVServerProto.RecoverRequest(this);
-        if (nodeBuilder_ == null) {
-          result.node_ = node_;
-        } else {
-          result.node_ = nodeBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.KVServerProto.RecoverRequest) {
-          return mergeFrom((de.tum.grpc_api.KVServerProto.RecoverRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.RecoverRequest other) {
-        if (other == de.tum.grpc_api.KVServerProto.RecoverRequest.getDefaultInstance()) return this;
-        if (other.hasNode()) {
-          mergeNode(other.getNode());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                input.readMessage(
-                    getNodeFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
-                break;
-              } // case 10
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-
-      private de.tum.grpc_api.KVServerProto.NodeMessage node_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> nodeBuilder_;
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       * @return Whether the node field is set.
-       */
-      public boolean hasNode() {
-        return nodeBuilder_ != null || node_ != null;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       * @return The node.
-       */
-      public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
-        if (nodeBuilder_ == null) {
-          return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
-        } else {
-          return nodeBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder setNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
-        if (nodeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          node_ = value;
-          onChanged();
-        } else {
-          nodeBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder setNode(
-          de.tum.grpc_api.KVServerProto.NodeMessage.Builder builderForValue) {
-        if (nodeBuilder_ == null) {
-          node_ = builderForValue.build();
-          onChanged();
-        } else {
-          nodeBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder mergeNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
-        if (nodeBuilder_ == null) {
-          if (node_ != null) {
-            node_ =
-              de.tum.grpc_api.KVServerProto.NodeMessage.newBuilder(node_).mergeFrom(value).buildPartial();
-          } else {
-            node_ = value;
-          }
-          onChanged();
-        } else {
-          nodeBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public Builder clearNode() {
-        if (nodeBuilder_ == null) {
-          node_ = null;
-          onChanged();
-        } else {
-          node_ = null;
-          nodeBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public de.tum.grpc_api.KVServerProto.NodeMessage.Builder getNodeBuilder() {
-        
-        onChanged();
-        return getNodeFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
-        if (nodeBuilder_ != null) {
-          return nodeBuilder_.getMessageOrBuilder();
-        } else {
-          return node_ == null ?
-              de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
-        }
-      }
-      /**
-       * <code>.NodeMessage node = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> 
-          getNodeFieldBuilder() {
-        if (nodeBuilder_ == null) {
-          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder>(
-                  getNode(),
-                  getParentForChildren(),
-                  isClean());
-          node_ = null;
-        }
-        return nodeBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:RecoverRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:RecoverRequest)
-    private static final de.tum.grpc_api.KVServerProto.RecoverRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.RecoverRequest();
-    }
-
-    public static de.tum.grpc_api.KVServerProto.RecoverRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RecoverRequest>
-        PARSER = new com.google.protobuf.AbstractParser<RecoverRequest>() {
-      @java.lang.Override
-      public RecoverRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<RecoverRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RecoverRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.RecoverRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface UpdateRingRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:UpdateRingRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    int getRingCount();
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    boolean containsRing(
-        java.lang.String key);
-    /**
-     * Use {@link #getRingMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-    getRing();
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-    getRingMap();
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    /* nullable */
-de.tum.grpc_api.KVServerProto.NodeMessage getRingOrDefault(
-        java.lang.String key,
-        /* nullable */
-de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    de.tum.grpc_api.KVServerProto.NodeMessage getRingOrThrow(
-        java.lang.String key);
-  }
-  /**
-   * Protobuf type {@code UpdateRingRequest}
-   */
-  public static final class UpdateRingRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:UpdateRingRequest)
-      UpdateRingRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use UpdateRingRequest.newBuilder() to construct.
-    private UpdateRingRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private UpdateRingRequest() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new UpdateRingRequest();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_descriptor;
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 1:
-          return internalGetRing();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.KVServerProto.UpdateRingRequest.class, de.tum.grpc_api.KVServerProto.UpdateRingRequest.Builder.class);
-    }
-
-    public static final int RING_FIELD_NUMBER = 1;
-    private static final class RingDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>newDefaultInstance(
-                  de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_RingEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance());
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> ring_;
-    private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-    internalGetRing() {
-      if (ring_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            RingDefaultEntryHolder.defaultEntry);
-      }
-      return ring_;
-    }
-
-    public int getRingCount() {
-      return internalGetRing().getMap().size();
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-
-    @java.lang.Override
-    public boolean containsRing(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      return internalGetRing().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getRingMap()} instead.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRing() {
-      return getRingMap();
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRingMap() {
-      return internalGetRing().getMap();
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrDefault(
-        java.lang.String key,
-        de.tum.grpc_api.KVServerProto.NodeMessage defaultValue) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
-          internalGetRing().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-     */
-    @java.lang.Override
-
-    public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
-          internalGetRing().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetRing(),
-          RingDefaultEntryHolder.defaultEntry,
-          1);
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (java.util.Map.Entry<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> entry
-           : internalGetRing().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-        ring__ = RingDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, ring__);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof de.tum.grpc_api.KVServerProto.UpdateRingRequest)) {
-        return super.equals(obj);
-      }
-      de.tum.grpc_api.KVServerProto.UpdateRingRequest other = (de.tum.grpc_api.KVServerProto.UpdateRingRequest) obj;
-
-      if (!internalGetRing().equals(
-          other.internalGetRing())) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (!internalGetRing().getMap().isEmpty()) {
-        hash = (37 * hash) + RING_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetRing().hashCode();
-      }
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.UpdateRingRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code UpdateRingRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:UpdateRingRequest)
-        de.tum.grpc_api.KVServerProto.UpdateRingRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_descriptor;
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetRing();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableRing();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.KVServerProto.UpdateRingRequest.class, de.tum.grpc_api.KVServerProto.UpdateRingRequest.Builder.class);
-      }
-
-      // Construct using de.tum.grpc_api.KVServerProto.UpdateRingRequest.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        internalGetMutableRing().clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.UpdateRingRequest getDefaultInstanceForType() {
-        return de.tum.grpc_api.KVServerProto.UpdateRingRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.UpdateRingRequest build() {
-        de.tum.grpc_api.KVServerProto.UpdateRingRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.UpdateRingRequest buildPartial() {
-        de.tum.grpc_api.KVServerProto.UpdateRingRequest result = new de.tum.grpc_api.KVServerProto.UpdateRingRequest(this);
-        int from_bitField0_ = bitField0_;
-        result.ring_ = internalGetRing();
-        result.ring_.makeImmutable();
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.KVServerProto.UpdateRingRequest) {
-          return mergeFrom((de.tum.grpc_api.KVServerProto.UpdateRingRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.UpdateRingRequest other) {
-        if (other == de.tum.grpc_api.KVServerProto.UpdateRingRequest.getDefaultInstance()) return this;
-        internalGetMutableRing().mergeFrom(
-            other.internalGetRing());
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-                ring__ = input.readMessage(
-                    RingDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-                internalGetMutableRing().getMutableMap().put(
-                    ring__.getKey(), ring__.getValue());
-                break;
-              } // case 10
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-      private int bitField0_;
-
-      private com.google.protobuf.MapField<
-          java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> ring_;
-      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-      internalGetRing() {
-        if (ring_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              RingDefaultEntryHolder.defaultEntry);
-        }
-        return ring_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-      internalGetMutableRing() {
-        onChanged();;
-        if (ring_ == null) {
-          ring_ = com.google.protobuf.MapField.newMapField(
-              RingDefaultEntryHolder.defaultEntry);
-        }
-        if (!ring_.isMutable()) {
-          ring_ = ring_.copy();
-        }
-        return ring_;
-      }
-
-      public int getRingCount() {
-        return internalGetRing().getMap().size();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-
-      @java.lang.Override
-      public boolean containsRing(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        return internalGetRing().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getRingMap()} instead.
-       */
-      @java.lang.Override
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRing() {
-        return getRingMap();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRingMap() {
-        return internalGetRing().getMap();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrDefault(
-          java.lang.String key,
-          de.tum.grpc_api.KVServerProto.NodeMessage defaultValue) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
-            internalGetRing().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      @java.lang.Override
-
-      public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
-            internalGetRing().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearRing() {
-        internalGetMutableRing().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-
-      public Builder removeRing(
-          java.lang.String key) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        internalGetMutableRing().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
-      getMutableRing() {
-        return internalGetMutableRing().getMutableMap();
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-      public Builder putRing(
-          java.lang.String key,
-          de.tum.grpc_api.KVServerProto.NodeMessage value) {
-        if (key == null) { throw new NullPointerException("map key"); }
-        if (value == null) {
-  throw new NullPointerException("map value");
-}
-
-        internalGetMutableRing().getMutableMap()
-            .put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
-       */
-
-      public Builder putAllRing(
-          java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> values) {
-        internalGetMutableRing().getMutableMap()
-            .putAll(values);
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:UpdateRingRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:UpdateRingRequest)
-    private static final de.tum.grpc_api.KVServerProto.UpdateRingRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.UpdateRingRequest();
-    }
-
-    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<UpdateRingRequest>
-        PARSER = new com.google.protobuf.AbstractParser<UpdateRingRequest>() {
-      @java.lang.Override
-      public UpdateRingRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<UpdateRingRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UpdateRingRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.UpdateRingRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface DeleteExpiredDataRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:DeleteExpiredDataRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.DataType dataType = 1;</code>
-     * @return The enum numeric value on the wire for dataType.
-     */
-    int getDataTypeValue();
-    /**
-     * <code>.DataType dataType = 1;</code>
-     * @return The dataType.
-     */
-    de.tum.grpc_api.KVServerProto.DataType getDataType();
-
-    /**
-     * <code>.Range range = 2;</code>
-     * @return Whether the range field is set.
-     */
-    boolean hasRange();
-    /**
-     * <code>.Range range = 2;</code>
-     * @return The range.
-     */
-    de.tum.grpc_api.KVServerProto.Range getRange();
-    /**
-     * <code>.Range range = 2;</code>
-     */
-    de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder();
-  }
-  /**
-   * Protobuf type {@code DeleteExpiredDataRequest}
-   */
-  public static final class DeleteExpiredDataRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:DeleteExpiredDataRequest)
-      DeleteExpiredDataRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use DeleteExpiredDataRequest.newBuilder() to construct.
-    private DeleteExpiredDataRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private DeleteExpiredDataRequest() {
-      dataType_ = 0;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new DeleteExpiredDataRequest();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class, de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.Builder.class);
-    }
-
-    public static final int DATATYPE_FIELD_NUMBER = 1;
-    private int dataType_;
-    /**
-     * <code>.DataType dataType = 1;</code>
-     * @return The enum numeric value on the wire for dataType.
-     */
-    @java.lang.Override public int getDataTypeValue() {
-      return dataType_;
-    }
-    /**
-     * <code>.DataType dataType = 1;</code>
-     * @return The dataType.
-     */
-    @java.lang.Override public de.tum.grpc_api.KVServerProto.DataType getDataType() {
-      @SuppressWarnings("deprecation")
-      de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
-      return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
-    }
-
-    public static final int RANGE_FIELD_NUMBER = 2;
-    private de.tum.grpc_api.KVServerProto.Range range_;
-    /**
-     * <code>.Range range = 2;</code>
-     * @return Whether the range field is set.
-     */
-    @java.lang.Override
-    public boolean hasRange() {
-      return range_ != null;
-    }
-    /**
-     * <code>.Range range = 2;</code>
-     * @return The range.
-     */
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.Range getRange() {
-      return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
-    }
-    /**
-     * <code>.Range range = 2;</code>
-     */
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
-      return getRange();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
-        output.writeEnum(1, dataType_);
-      }
-      if (range_ != null) {
-        output.writeMessage(2, getRange());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, dataType_);
-      }
-      if (range_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getRange());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest)) {
-        return super.equals(obj);
-      }
-      de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest other = (de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) obj;
-
-      if (dataType_ != other.dataType_) return false;
-      if (hasRange() != other.hasRange()) return false;
-      if (hasRange()) {
-        if (!getRange()
-            .equals(other.getRange())) return false;
-      }
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
-      hash = (53 * hash) + dataType_;
-      if (hasRange()) {
-        hash = (37 * hash) + RANGE_FIELD_NUMBER;
-        hash = (53 * hash) + getRange().hashCode();
-      }
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code DeleteExpiredDataRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:DeleteExpiredDataRequest)
-        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class, de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.Builder.class);
-      }
-
-      // Construct using de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        dataType_ = 0;
-
-        if (rangeBuilder_ == null) {
-          range_ = null;
-        } else {
-          range_ = null;
-          rangeBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstanceForType() {
-        return de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest build() {
-        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest buildPartial() {
-        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest result = new de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest(this);
-        result.dataType_ = dataType_;
-        if (rangeBuilder_ == null) {
-          result.range_ = range_;
-        } else {
-          result.range_ = rangeBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) {
-          return mergeFrom((de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest other) {
-        if (other == de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance()) return this;
-        if (other.dataType_ != 0) {
-          setDataTypeValue(other.getDataTypeValue());
-        }
-        if (other.hasRange()) {
-          mergeRange(other.getRange());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 8: {
-                dataType_ = input.readEnum();
-
-                break;
-              } // case 8
-              case 18: {
-                input.readMessage(
-                    getRangeFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
-                break;
-              } // case 18
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-
-      private int dataType_ = 0;
-      /**
-       * <code>.DataType dataType = 1;</code>
-       * @return The enum numeric value on the wire for dataType.
-       */
-      @java.lang.Override public int getDataTypeValue() {
-        return dataType_;
-      }
-      /**
-       * <code>.DataType dataType = 1;</code>
-       * @param value The enum numeric value on the wire for dataType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDataTypeValue(int value) {
-        
-        dataType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.DataType dataType = 1;</code>
-       * @return The dataType.
-       */
-      @java.lang.Override
-      public de.tum.grpc_api.KVServerProto.DataType getDataType() {
-        @SuppressWarnings("deprecation")
-        de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
-        return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.DataType dataType = 1;</code>
-       * @param value The dataType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDataType(de.tum.grpc_api.KVServerProto.DataType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        dataType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.DataType dataType = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDataType() {
-        
-        dataType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private de.tum.grpc_api.KVServerProto.Range range_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> rangeBuilder_;
-      /**
-       * <code>.Range range = 2;</code>
-       * @return Whether the range field is set.
-       */
-      public boolean hasRange() {
-        return rangeBuilder_ != null || range_ != null;
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       * @return The range.
-       */
-      public de.tum.grpc_api.KVServerProto.Range getRange() {
-        if (rangeBuilder_ == null) {
-          return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
-        } else {
-          return rangeBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      public Builder setRange(de.tum.grpc_api.KVServerProto.Range value) {
-        if (rangeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          range_ = value;
-          onChanged();
-        } else {
-          rangeBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      public Builder setRange(
-          de.tum.grpc_api.KVServerProto.Range.Builder builderForValue) {
-        if (rangeBuilder_ == null) {
-          range_ = builderForValue.build();
-          onChanged();
-        } else {
-          rangeBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      public Builder mergeRange(de.tum.grpc_api.KVServerProto.Range value) {
-        if (rangeBuilder_ == null) {
-          if (range_ != null) {
-            range_ =
-              de.tum.grpc_api.KVServerProto.Range.newBuilder(range_).mergeFrom(value).buildPartial();
-          } else {
-            range_ = value;
-          }
-          onChanged();
-        } else {
-          rangeBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      public Builder clearRange() {
-        if (rangeBuilder_ == null) {
-          range_ = null;
-          onChanged();
-        } else {
-          range_ = null;
-          rangeBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      public de.tum.grpc_api.KVServerProto.Range.Builder getRangeBuilder() {
-        
-        onChanged();
-        return getRangeFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
-        if (rangeBuilder_ != null) {
-          return rangeBuilder_.getMessageOrBuilder();
-        } else {
-          return range_ == null ?
-              de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
-        }
-      }
-      /**
-       * <code>.Range range = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> 
-          getRangeFieldBuilder() {
-        if (rangeBuilder_ == null) {
-          rangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder>(
-                  getRange(),
-                  getParentForChildren(),
-                  isClean());
-          range_ = null;
-        }
-        return rangeBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:DeleteExpiredDataRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:DeleteExpiredDataRequest)
-    private static final de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest();
-    }
-
-    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<DeleteExpiredDataRequest>
-        PARSER = new com.google.protobuf.AbstractParser<DeleteExpiredDataRequest>() {
-      @java.lang.Override
-      public DeleteExpiredDataRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<DeleteExpiredDataRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DeleteExpiredDataRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11071,6 +8385,3712 @@ java.lang.String defaultValue);
 
   }
 
+  public interface HasKeyRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HasKeyRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    java.lang.String getKey();
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    com.google.protobuf.ByteString
+        getKeyBytes();
+  }
+  /**
+   * Protobuf type {@code HasKeyRequest}
+   */
+  public static final class HasKeyRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HasKeyRequest)
+      HasKeyRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HasKeyRequest.newBuilder() to construct.
+    private HasKeyRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HasKeyRequest() {
+      key_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new HasKeyRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_HasKeyRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_HasKeyRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.HasKeyRequest.class, de.tum.grpc_api.KVServerProto.HasKeyRequest.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object key_;
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    @java.lang.Override
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.HasKeyRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.HasKeyRequest other = (de.tum.grpc_api.KVServerProto.HasKeyRequest) obj;
+
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.HasKeyRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HasKeyRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HasKeyRequest)
+        de.tum.grpc_api.KVServerProto.HasKeyRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_HasKeyRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_HasKeyRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.HasKeyRequest.class, de.tum.grpc_api.KVServerProto.HasKeyRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.HasKeyRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        key_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_HasKeyRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.HasKeyRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.HasKeyRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.HasKeyRequest build() {
+        de.tum.grpc_api.KVServerProto.HasKeyRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.HasKeyRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.HasKeyRequest result = new de.tum.grpc_api.KVServerProto.HasKeyRequest(this);
+        result.key_ = key_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.HasKeyRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.HasKeyRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.HasKeyRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.HasKeyRequest.getDefaultInstance()) return this;
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object key_ = "";
+      /**
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HasKeyRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:HasKeyRequest)
+    private static final de.tum.grpc_api.KVServerProto.HasKeyRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.HasKeyRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.HasKeyRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HasKeyRequest>
+        PARSER = new com.google.protobuf.AbstractParser<HasKeyRequest>() {
+      @java.lang.Override
+      public HasKeyRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<HasKeyRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HasKeyRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.HasKeyRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HasKeyResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HasKeyResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool hasKey = 1;</code>
+     * @return The hasKey.
+     */
+    boolean getHasKey();
+  }
+  /**
+   * Protobuf type {@code HasKeyResponse}
+   */
+  public static final class HasKeyResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:HasKeyResponse)
+      HasKeyResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HasKeyResponse.newBuilder() to construct.
+    private HasKeyResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HasKeyResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new HasKeyResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_HasKeyResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_HasKeyResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.HasKeyResponse.class, de.tum.grpc_api.KVServerProto.HasKeyResponse.Builder.class);
+    }
+
+    public static final int HASKEY_FIELD_NUMBER = 1;
+    private boolean hasKey_;
+    /**
+     * <code>bool hasKey = 1;</code>
+     * @return The hasKey.
+     */
+    @java.lang.Override
+    public boolean getHasKey() {
+      return hasKey_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (hasKey_ != false) {
+        output.writeBool(1, hasKey_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (hasKey_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, hasKey_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.HasKeyResponse)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.HasKeyResponse other = (de.tum.grpc_api.KVServerProto.HasKeyResponse) obj;
+
+      if (getHasKey()
+          != other.getHasKey()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HASKEY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getHasKey());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.HasKeyResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HasKeyResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HasKeyResponse)
+        de.tum.grpc_api.KVServerProto.HasKeyResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_HasKeyResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_HasKeyResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.HasKeyResponse.class, de.tum.grpc_api.KVServerProto.HasKeyResponse.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.HasKeyResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        hasKey_ = false;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_HasKeyResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.HasKeyResponse getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.HasKeyResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.HasKeyResponse build() {
+        de.tum.grpc_api.KVServerProto.HasKeyResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.HasKeyResponse buildPartial() {
+        de.tum.grpc_api.KVServerProto.HasKeyResponse result = new de.tum.grpc_api.KVServerProto.HasKeyResponse(this);
+        result.hasKey_ = hasKey_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.HasKeyResponse) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.HasKeyResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.HasKeyResponse other) {
+        if (other == de.tum.grpc_api.KVServerProto.HasKeyResponse.getDefaultInstance()) return this;
+        if (other.getHasKey() != false) {
+          setHasKey(other.getHasKey());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                hasKey_ = input.readBool();
+
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private boolean hasKey_ ;
+      /**
+       * <code>bool hasKey = 1;</code>
+       * @return The hasKey.
+       */
+      @java.lang.Override
+      public boolean getHasKey() {
+        return hasKey_;
+      }
+      /**
+       * <code>bool hasKey = 1;</code>
+       * @param value The hasKey to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHasKey(boolean value) {
+        
+        hasKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool hasKey = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHasKey() {
+        
+        hasKey_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HasKeyResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:HasKeyResponse)
+    private static final de.tum.grpc_api.KVServerProto.HasKeyResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.HasKeyResponse();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.HasKeyResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HasKeyResponse>
+        PARSER = new com.google.protobuf.AbstractParser<HasKeyResponse>() {
+      @java.lang.Override
+      public HasKeyResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<HasKeyResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HasKeyResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.HasKeyResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RecoverRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:RecoverRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
+     */
+    boolean hasNode();
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
+     */
+    de.tum.grpc_api.KVServerProto.NodeMessage getNode();
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     */
+    de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code RecoverRequest}
+   */
+  public static final class RecoverRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:RecoverRequest)
+      RecoverRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RecoverRequest.newBuilder() to construct.
+    private RecoverRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RecoverRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RecoverRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.RecoverRequest.class, de.tum.grpc_api.KVServerProto.RecoverRequest.Builder.class);
+    }
+
+    public static final int NODE_FIELD_NUMBER = 1;
+    private de.tum.grpc_api.KVServerProto.NodeMessage node_;
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
+     */
+    @java.lang.Override
+    public boolean hasNode() {
+      return node_ != null;
+    }
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
+      return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
+    }
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
+      return getNode();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (node_ != null) {
+        output.writeMessage(1, getNode());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (node_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getNode());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.RecoverRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.RecoverRequest other = (de.tum.grpc_api.KVServerProto.RecoverRequest) obj;
+
+      if (hasNode() != other.hasNode()) return false;
+      if (hasNode()) {
+        if (!getNode()
+            .equals(other.getNode())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasNode()) {
+        hash = (37 * hash) + NODE_FIELD_NUMBER;
+        hash = (53 * hash) + getNode().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.RecoverRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code RecoverRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:RecoverRequest)
+        de.tum.grpc_api.KVServerProto.RecoverRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.RecoverRequest.class, de.tum.grpc_api.KVServerProto.RecoverRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.RecoverRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (nodeBuilder_ == null) {
+          node_ = null;
+        } else {
+          node_ = null;
+          nodeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_RecoverRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.RecoverRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.RecoverRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.RecoverRequest build() {
+        de.tum.grpc_api.KVServerProto.RecoverRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.RecoverRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.RecoverRequest result = new de.tum.grpc_api.KVServerProto.RecoverRequest(this);
+        if (nodeBuilder_ == null) {
+          result.node_ = node_;
+        } else {
+          result.node_ = nodeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.RecoverRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.RecoverRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.RecoverRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.RecoverRequest.getDefaultInstance()) return this;
+        if (other.hasNode()) {
+          mergeNode(other.getNode());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getNodeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private de.tum.grpc_api.KVServerProto.NodeMessage node_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> nodeBuilder_;
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       * @return Whether the node field is set.
+       */
+      public boolean hasNode() {
+        return nodeBuilder_ != null || node_ != null;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       * @return The node.
+       */
+      public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
+        if (nodeBuilder_ == null) {
+          return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
+        } else {
+          return nodeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder setNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          node_ = value;
+          onChanged();
+        } else {
+          nodeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder setNode(
+          de.tum.grpc_api.KVServerProto.NodeMessage.Builder builderForValue) {
+        if (nodeBuilder_ == null) {
+          node_ = builderForValue.build();
+          onChanged();
+        } else {
+          nodeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder mergeNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (node_ != null) {
+            node_ =
+              de.tum.grpc_api.KVServerProto.NodeMessage.newBuilder(node_).mergeFrom(value).buildPartial();
+          } else {
+            node_ = value;
+          }
+          onChanged();
+        } else {
+          nodeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder clearNode() {
+        if (nodeBuilder_ == null) {
+          node_ = null;
+          onChanged();
+        } else {
+          node_ = null;
+          nodeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.NodeMessage.Builder getNodeBuilder() {
+        
+        onChanged();
+        return getNodeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
+        if (nodeBuilder_ != null) {
+          return nodeBuilder_.getMessageOrBuilder();
+        } else {
+          return node_ == null ?
+              de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
+        }
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> 
+          getNodeFieldBuilder() {
+        if (nodeBuilder_ == null) {
+          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder>(
+                  getNode(),
+                  getParentForChildren(),
+                  isClean());
+          node_ = null;
+        }
+        return nodeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:RecoverRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:RecoverRequest)
+    private static final de.tum.grpc_api.KVServerProto.RecoverRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.RecoverRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.RecoverRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RecoverRequest>
+        PARSER = new com.google.protobuf.AbstractParser<RecoverRequest>() {
+      @java.lang.Override
+      public RecoverRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<RecoverRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RecoverRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.RecoverRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateRingRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UpdateRingRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    int getRingCount();
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    boolean containsRing(
+        java.lang.String key);
+    /**
+     * Use {@link #getRingMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+    getRing();
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+    getRingMap();
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+
+    /* nullable */
+de.tum.grpc_api.KVServerProto.NodeMessage getRingOrDefault(
+        java.lang.String key,
+        /* nullable */
+de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+
+    de.tum.grpc_api.KVServerProto.NodeMessage getRingOrThrow(
+        java.lang.String key);
+  }
+  /**
+   * Protobuf type {@code UpdateRingRequest}
+   */
+  public static final class UpdateRingRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:UpdateRingRequest)
+      UpdateRingRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateRingRequest.newBuilder() to construct.
+    private UpdateRingRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateRingRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateRingRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetRing();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.UpdateRingRequest.class, de.tum.grpc_api.KVServerProto.UpdateRingRequest.Builder.class);
+    }
+
+    public static final int RING_FIELD_NUMBER = 1;
+    private static final class RingDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>newDefaultInstance(
+                  de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_RingEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance());
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> ring_;
+    private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+    internalGetRing() {
+      if (ring_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            RingDefaultEntryHolder.defaultEntry);
+      }
+      return ring_;
+    }
+
+    public int getRingCount() {
+      return internalGetRing().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+
+    @java.lang.Override
+    public boolean containsRing(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetRing().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getRingMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRing() {
+      return getRingMap();
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    @java.lang.Override
+
+    public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRingMap() {
+      return internalGetRing().getMap();
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    @java.lang.Override
+
+    public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrDefault(
+        java.lang.String key,
+        de.tum.grpc_api.KVServerProto.NodeMessage defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
+          internalGetRing().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+     */
+    @java.lang.Override
+
+    public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
+          internalGetRing().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetRing(),
+          RingDefaultEntryHolder.defaultEntry,
+          1);
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (java.util.Map.Entry<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> entry
+           : internalGetRing().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+        ring__ = RingDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, ring__);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.UpdateRingRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.UpdateRingRequest other = (de.tum.grpc_api.KVServerProto.UpdateRingRequest) obj;
+
+      if (!internalGetRing().equals(
+          other.internalGetRing())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (!internalGetRing().getMap().isEmpty()) {
+        hash = (37 * hash) + RING_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetRing().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.UpdateRingRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code UpdateRingRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:UpdateRingRequest)
+        de.tum.grpc_api.KVServerProto.UpdateRingRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetRing();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMutableRing();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.UpdateRingRequest.class, de.tum.grpc_api.KVServerProto.UpdateRingRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.UpdateRingRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        internalGetMutableRing().clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_UpdateRingRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.UpdateRingRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.UpdateRingRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.UpdateRingRequest build() {
+        de.tum.grpc_api.KVServerProto.UpdateRingRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.UpdateRingRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.UpdateRingRequest result = new de.tum.grpc_api.KVServerProto.UpdateRingRequest(this);
+        int from_bitField0_ = bitField0_;
+        result.ring_ = internalGetRing();
+        result.ring_.makeImmutable();
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.UpdateRingRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.UpdateRingRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.UpdateRingRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.UpdateRingRequest.getDefaultInstance()) return this;
+        internalGetMutableRing().mergeFrom(
+            other.internalGetRing());
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.MapEntry<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+                ring__ = input.readMessage(
+                    RingDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableRing().getMutableMap().put(
+                    ring__.getKey(), ring__.getValue());
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.MapField<
+          java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> ring_;
+      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+      internalGetRing() {
+        if (ring_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              RingDefaultEntryHolder.defaultEntry);
+        }
+        return ring_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+      internalGetMutableRing() {
+        onChanged();;
+        if (ring_ == null) {
+          ring_ = com.google.protobuf.MapField.newMapField(
+              RingDefaultEntryHolder.defaultEntry);
+        }
+        if (!ring_.isMutable()) {
+          ring_ = ring_.copy();
+        }
+        return ring_;
+      }
+
+      public int getRingCount() {
+        return internalGetRing().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+
+      @java.lang.Override
+      public boolean containsRing(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        return internalGetRing().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getRingMap()} instead.
+       */
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRing() {
+        return getRingMap();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      @java.lang.Override
+
+      public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> getRingMap() {
+        return internalGetRing().getMap();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      @java.lang.Override
+
+      public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrDefault(
+          java.lang.String key,
+          de.tum.grpc_api.KVServerProto.NodeMessage defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
+            internalGetRing().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      @java.lang.Override
+
+      public de.tum.grpc_api.KVServerProto.NodeMessage getRingOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> map =
+            internalGetRing().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearRing() {
+        internalGetMutableRing().getMutableMap()
+            .clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+
+      public Builder removeRing(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        internalGetMutableRing().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage>
+      getMutableRing() {
+        return internalGetMutableRing().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+      public Builder putRing(
+          java.lang.String key,
+          de.tum.grpc_api.KVServerProto.NodeMessage value) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
+        internalGetMutableRing().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .NodeMessage&gt; ring = 1;</code>
+       */
+
+      public Builder putAllRing(
+          java.util.Map<java.lang.String, de.tum.grpc_api.KVServerProto.NodeMessage> values) {
+        internalGetMutableRing().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:UpdateRingRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:UpdateRingRequest)
+    private static final de.tum.grpc_api.KVServerProto.UpdateRingRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.UpdateRingRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.UpdateRingRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateRingRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateRingRequest>() {
+      @java.lang.Override
+      public UpdateRingRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateRingRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateRingRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.UpdateRingRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DeleteExpiredDataRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DeleteExpiredDataRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
+     */
+    int getDataTypeValue();
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The dataType.
+     */
+    de.tum.grpc_api.KVServerProto.DataType getDataType();
+
+    /**
+     * <code>.Range range = 2;</code>
+     * @return Whether the range field is set.
+     */
+    boolean hasRange();
+    /**
+     * <code>.Range range = 2;</code>
+     * @return The range.
+     */
+    de.tum.grpc_api.KVServerProto.Range getRange();
+    /**
+     * <code>.Range range = 2;</code>
+     */
+    de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code DeleteExpiredDataRequest}
+   */
+  public static final class DeleteExpiredDataRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:DeleteExpiredDataRequest)
+      DeleteExpiredDataRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DeleteExpiredDataRequest.newBuilder() to construct.
+    private DeleteExpiredDataRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeleteExpiredDataRequest() {
+      dataType_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteExpiredDataRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class, de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.Builder.class);
+    }
+
+    public static final int DATATYPE_FIELD_NUMBER = 1;
+    private int dataType_;
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
+     */
+    @java.lang.Override public int getDataTypeValue() {
+      return dataType_;
+    }
+    /**
+     * <code>.DataType dataType = 1;</code>
+     * @return The dataType.
+     */
+    @java.lang.Override public de.tum.grpc_api.KVServerProto.DataType getDataType() {
+      @SuppressWarnings("deprecation")
+      de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
+      return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+    }
+
+    public static final int RANGE_FIELD_NUMBER = 2;
+    private de.tum.grpc_api.KVServerProto.Range range_;
+    /**
+     * <code>.Range range = 2;</code>
+     * @return Whether the range field is set.
+     */
+    @java.lang.Override
+    public boolean hasRange() {
+      return range_ != null;
+    }
+    /**
+     * <code>.Range range = 2;</code>
+     * @return The range.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.Range getRange() {
+      return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+    }
+    /**
+     * <code>.Range range = 2;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+      return getRange();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        output.writeEnum(1, dataType_);
+      }
+      if (range_ != null) {
+        output.writeMessage(2, getRange());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (dataType_ != de.tum.grpc_api.KVServerProto.DataType.DATA.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, dataType_);
+      }
+      if (range_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getRange());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest other = (de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) obj;
+
+      if (dataType_ != other.dataType_) return false;
+      if (hasRange() != other.hasRange()) return false;
+      if (hasRange()) {
+        if (!getRange()
+            .equals(other.getRange())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
+      hash = (53 * hash) + dataType_;
+      if (hasRange()) {
+        hash = (37 * hash) + RANGE_FIELD_NUMBER;
+        hash = (53 * hash) + getRange().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code DeleteExpiredDataRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:DeleteExpiredDataRequest)
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.class, de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        dataType_ = 0;
+
+        if (rangeBuilder_ == null) {
+          range_ = null;
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_DeleteExpiredDataRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest build() {
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest result = new de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest(this);
+        result.dataType_ = dataType_;
+        if (rangeBuilder_ == null) {
+          result.range_ = range_;
+        } else {
+          result.range_ = rangeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest.getDefaultInstance()) return this;
+        if (other.dataType_ != 0) {
+          setDataTypeValue(other.getDataTypeValue());
+        }
+        if (other.hasRange()) {
+          mergeRange(other.getRange());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                dataType_ = input.readEnum();
+
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getRangeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int dataType_ = 0;
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return The enum numeric value on the wire for dataType.
+       */
+      @java.lang.Override public int getDataTypeValue() {
+        return dataType_;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @param value The enum numeric value on the wire for dataType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataTypeValue(int value) {
+        
+        dataType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return The dataType.
+       */
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.DataType getDataType() {
+        @SuppressWarnings("deprecation")
+        de.tum.grpc_api.KVServerProto.DataType result = de.tum.grpc_api.KVServerProto.DataType.valueOf(dataType_);
+        return result == null ? de.tum.grpc_api.KVServerProto.DataType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @param value The dataType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataType(de.tum.grpc_api.KVServerProto.DataType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        dataType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataType dataType = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDataType() {
+        
+        dataType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private de.tum.grpc_api.KVServerProto.Range range_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> rangeBuilder_;
+      /**
+       * <code>.Range range = 2;</code>
+       * @return Whether the range field is set.
+       */
+      public boolean hasRange() {
+        return rangeBuilder_ != null || range_ != null;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       * @return The range.
+       */
+      public de.tum.grpc_api.KVServerProto.Range getRange() {
+        if (rangeBuilder_ == null) {
+          return range_ == null ? de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        } else {
+          return rangeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder setRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          range_ = value;
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder setRange(
+          de.tum.grpc_api.KVServerProto.Range.Builder builderForValue) {
+        if (rangeBuilder_ == null) {
+          range_ = builderForValue.build();
+          onChanged();
+        } else {
+          rangeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder mergeRange(de.tum.grpc_api.KVServerProto.Range value) {
+        if (rangeBuilder_ == null) {
+          if (range_ != null) {
+            range_ =
+              de.tum.grpc_api.KVServerProto.Range.newBuilder(range_).mergeFrom(value).buildPartial();
+          } else {
+            range_ = value;
+          }
+          onChanged();
+        } else {
+          rangeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public Builder clearRange() {
+        if (rangeBuilder_ == null) {
+          range_ = null;
+          onChanged();
+        } else {
+          range_ = null;
+          rangeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.Range.Builder getRangeBuilder() {
+        
+        onChanged();
+        return getRangeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.RangeOrBuilder getRangeOrBuilder() {
+        if (rangeBuilder_ != null) {
+          return rangeBuilder_.getMessageOrBuilder();
+        } else {
+          return range_ == null ?
+              de.tum.grpc_api.KVServerProto.Range.getDefaultInstance() : range_;
+        }
+      }
+      /**
+       * <code>.Range range = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder> 
+          getRangeFieldBuilder() {
+        if (rangeBuilder_ == null) {
+          rangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.KVServerProto.Range, de.tum.grpc_api.KVServerProto.Range.Builder, de.tum.grpc_api.KVServerProto.RangeOrBuilder>(
+                  getRange(),
+                  getParentForChildren(),
+                  isClean());
+          range_ = null;
+        }
+        return rangeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:DeleteExpiredDataRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:DeleteExpiredDataRequest)
+    private static final de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeleteExpiredDataRequest>
+        PARSER = new com.google.protobuf.AbstractParser<DeleteExpiredDataRequest>() {
+      @java.lang.Override
+      public DeleteExpiredDataRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeleteExpiredDataRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteExpiredDataRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.DeleteExpiredDataRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RegisterRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:RegisterRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
+     */
+    boolean hasNode();
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
+     */
+    de.tum.grpc_api.KVServerProto.NodeMessage getNode();
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     */
+    de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder();
+
+    /**
+     * <code>int32 rpcPort = 2;</code>
+     * @return The rpcPort.
+     */
+    int getRpcPort();
+  }
+  /**
+   * Protobuf type {@code RegisterRequest}
+   */
+  public static final class RegisterRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:RegisterRequest)
+      RegisterRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RegisterRequest.newBuilder() to construct.
+    private RegisterRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RegisterRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RegisterRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.RegisterRequest.class, de.tum.grpc_api.KVServerProto.RegisterRequest.Builder.class);
+    }
+
+    public static final int NODE_FIELD_NUMBER = 1;
+    private de.tum.grpc_api.KVServerProto.NodeMessage node_;
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return Whether the node field is set.
+     */
+    @java.lang.Override
+    public boolean hasNode() {
+      return node_ != null;
+    }
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     * @return The node.
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
+      return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
+    }
+    /**
+     * <code>.NodeMessage node = 1;</code>
+     */
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
+      return getNode();
+    }
+
+    public static final int RPCPORT_FIELD_NUMBER = 2;
+    private int rpcPort_;
+    /**
+     * <code>int32 rpcPort = 2;</code>
+     * @return The rpcPort.
+     */
+    @java.lang.Override
+    public int getRpcPort() {
+      return rpcPort_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (node_ != null) {
+        output.writeMessage(1, getNode());
+      }
+      if (rpcPort_ != 0) {
+        output.writeInt32(2, rpcPort_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (node_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getNode());
+      }
+      if (rpcPort_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, rpcPort_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.RegisterRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.RegisterRequest other = (de.tum.grpc_api.KVServerProto.RegisterRequest) obj;
+
+      if (hasNode() != other.hasNode()) return false;
+      if (hasNode()) {
+        if (!getNode()
+            .equals(other.getNode())) return false;
+      }
+      if (getRpcPort()
+          != other.getRpcPort()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasNode()) {
+        hash = (37 * hash) + NODE_FIELD_NUMBER;
+        hash = (53 * hash) + getNode().hashCode();
+      }
+      hash = (37 * hash) + RPCPORT_FIELD_NUMBER;
+      hash = (53 * hash) + getRpcPort();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.RegisterRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code RegisterRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:RegisterRequest)
+        de.tum.grpc_api.KVServerProto.RegisterRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.RegisterRequest.class, de.tum.grpc_api.KVServerProto.RegisterRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.RegisterRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (nodeBuilder_ == null) {
+          node_ = null;
+        } else {
+          node_ = null;
+          nodeBuilder_ = null;
+        }
+        rpcPort_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_RegisterRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.RegisterRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.RegisterRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.RegisterRequest build() {
+        de.tum.grpc_api.KVServerProto.RegisterRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.RegisterRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.RegisterRequest result = new de.tum.grpc_api.KVServerProto.RegisterRequest(this);
+        if (nodeBuilder_ == null) {
+          result.node_ = node_;
+        } else {
+          result.node_ = nodeBuilder_.build();
+        }
+        result.rpcPort_ = rpcPort_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.RegisterRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.RegisterRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.RegisterRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.RegisterRequest.getDefaultInstance()) return this;
+        if (other.hasNode()) {
+          mergeNode(other.getNode());
+        }
+        if (other.getRpcPort() != 0) {
+          setRpcPort(other.getRpcPort());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getNodeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 10
+              case 16: {
+                rpcPort_ = input.readInt32();
+
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private de.tum.grpc_api.KVServerProto.NodeMessage node_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> nodeBuilder_;
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       * @return Whether the node field is set.
+       */
+      public boolean hasNode() {
+        return nodeBuilder_ != null || node_ != null;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       * @return The node.
+       */
+      public de.tum.grpc_api.KVServerProto.NodeMessage getNode() {
+        if (nodeBuilder_ == null) {
+          return node_ == null ? de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
+        } else {
+          return nodeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder setNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          node_ = value;
+          onChanged();
+        } else {
+          nodeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder setNode(
+          de.tum.grpc_api.KVServerProto.NodeMessage.Builder builderForValue) {
+        if (nodeBuilder_ == null) {
+          node_ = builderForValue.build();
+          onChanged();
+        } else {
+          nodeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder mergeNode(de.tum.grpc_api.KVServerProto.NodeMessage value) {
+        if (nodeBuilder_ == null) {
+          if (node_ != null) {
+            node_ =
+              de.tum.grpc_api.KVServerProto.NodeMessage.newBuilder(node_).mergeFrom(value).buildPartial();
+          } else {
+            node_ = value;
+          }
+          onChanged();
+        } else {
+          nodeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public Builder clearNode() {
+        if (nodeBuilder_ == null) {
+          node_ = null;
+          onChanged();
+        } else {
+          node_ = null;
+          nodeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.NodeMessage.Builder getNodeBuilder() {
+        
+        onChanged();
+        return getNodeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      public de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder getNodeOrBuilder() {
+        if (nodeBuilder_ != null) {
+          return nodeBuilder_.getMessageOrBuilder();
+        } else {
+          return node_ == null ?
+              de.tum.grpc_api.KVServerProto.NodeMessage.getDefaultInstance() : node_;
+        }
+      }
+      /**
+       * <code>.NodeMessage node = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder> 
+          getNodeFieldBuilder() {
+        if (nodeBuilder_ == null) {
+          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              de.tum.grpc_api.KVServerProto.NodeMessage, de.tum.grpc_api.KVServerProto.NodeMessage.Builder, de.tum.grpc_api.KVServerProto.NodeMessageOrBuilder>(
+                  getNode(),
+                  getParentForChildren(),
+                  isClean());
+          node_ = null;
+        }
+        return nodeBuilder_;
+      }
+
+      private int rpcPort_ ;
+      /**
+       * <code>int32 rpcPort = 2;</code>
+       * @return The rpcPort.
+       */
+      @java.lang.Override
+      public int getRpcPort() {
+        return rpcPort_;
+      }
+      /**
+       * <code>int32 rpcPort = 2;</code>
+       * @param value The rpcPort to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRpcPort(int value) {
+        
+        rpcPort_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 rpcPort = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRpcPort() {
+        
+        rpcPort_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:RegisterRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:RegisterRequest)
+    private static final de.tum.grpc_api.KVServerProto.RegisterRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.RegisterRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.RegisterRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RegisterRequest>
+        PARSER = new com.google.protobuf.AbstractParser<RegisterRequest>() {
+      @java.lang.Override
+      public RegisterRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<RegisterRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RegisterRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.RegisterRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_NodeMessage_descriptor;
   private static final 
@@ -11097,11 +12117,6 @@ java.lang.String defaultValue);
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GetRangeResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RegisterRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RegisterRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ToStringResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -11116,26 +12131,6 @@ java.lang.String defaultValue);
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_IsResponsibleResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RecoverRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RecoverRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateRingRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateRingRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateRingRequest_RingEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_DeleteExpiredDataRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_DeleteExpiredDataRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_CopyRequest_descriptor;
   private static final 
@@ -11171,6 +12166,41 @@ java.lang.String defaultValue);
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_DeleteRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HasKeyRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HasKeyRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HasKeyResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HasKeyResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RecoverRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RecoverRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UpdateRingRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UpdateRingRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UpdateRingRequest_RingEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DeleteExpiredDataRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_DeleteExpiredDataRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RegisterRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RegisterRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -11187,47 +12217,49 @@ java.lang.String defaultValue);
       "eatResponse\022\021\n\ttimestamp\030\001 \001(\003\".\n\017GetRan" +
       "geRequest\022\033\n\010dataType\030\001 \001(\0162\t.DataType\")" +
       "\n\020GetRangeResponse\022\025\n\005range\030\001 \001(\0132\006.Rang" +
-      "e\">\n\017RegisterRequest\022\032\n\004node\030\001 \001(\0132\014.Nod" +
-      "eMessage\022\017\n\007rpcPort\030\002 \001(\005\"$\n\020ToStringRes" +
-      "ponse\022\020\n\010HostPort\030\001 \001(\t\"#\n\024IsResponsible" +
-      "Request\022\013\n\003key\030\001 \001(\t\".\n\025IsResponsibleRes" +
-      "ponse\022\025\n\risResponsible\030\001 \001(\010\",\n\016RecoverR" +
-      "equest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\"z\n\021Up" +
-      "dateRingRequest\022*\n\004ring\030\001 \003(\0132\034.UpdateRi" +
-      "ngRequest.RingEntry\0329\n\tRingEntry\022\013\n\003key\030" +
-      "\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.NodeMessage:\0028\001\"N" +
-      "\n\030DeleteExpiredDataRequest\022\033\n\010dataType\030\001" +
-      " \001(\0162\t.DataType\022\025\n\005range\030\002 \001(\0132\006.Range\">" +
-      "\n\013CopyRequest\022\030\n\005where\030\001 \001(\0162\t.DataType\022" +
-      "\025\n\005range\030\002 \001(\0132\006.Range\"b\n\014CopyResponse\022%" +
-      "\n\004data\030\001 \003(\0132\027.CopyResponse.DataEntry\032+\n" +
-      "\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002" +
-      "8\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013GetResp" +
-      "onse\022\r\n\005value\030\001 \001(\t\"(\n\nPutRequest\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rDeleteRequest\022\013" +
-      "\n\003key\030\001 \001(\t* \n\010DataType\022\010\n\004DATA\020\000\022\n\n\006BAC" +
-      "KUP\020\0012\323\005\n\tKVService\0229\n\theartBeat\022\026.googl" +
-      "e.protobuf.Empty\032\022.HeartBeatResponse\"\000\0221" +
-      "\n\010getRange\022\020.GetRangeRequest\032\021.GetRangeR" +
-      "esponse\"\000\022:\n\006equals\022\026.google.protobuf.Em" +
-      "pty\032\026.google.protobuf.Empty\"\000\0227\n\010toStrin" +
-      "g\022\026.google.protobuf.Empty\032\021.ToStringResp" +
-      "onse\"\000\022@\n\risResponsible\022\025.IsResponsibleR" +
-      "equest\032\026.IsResponsibleResponse\"\000\0228\n\004init" +
-      "\022\026.google.protobuf.Empty\032\026.google.protob" +
-      "uf.Empty\"\000\0224\n\007recover\022\017.RecoverRequest\032\026" +
-      ".google.protobuf.Empty\"\000\022:\n\nupdateRing\022\022" +
-      ".UpdateRingRequest\032\026.google.protobuf.Emp" +
-      "ty\"\000\022H\n\021deleteExpiredData\022\031.DeleteExpire" +
-      "dDataRequest\032\026.google.protobuf.Empty\"\000\022%" +
-      "\n\004copy\022\014.CopyRequest\032\r.CopyResponse\"\000\022\"\n" +
-      "\003get\022\013.GetRequest\032\014.GetResponse\"\000\022,\n\003put" +
-      "\022\013.PutRequest\032\026.google.protobuf.Empty\"\000\022" +
-      "2\n\006delete\022\016.DeleteRequest\032\026.google.proto" +
-      "buf.Empty\"\0002C\n\tECService\0226\n\010register\022\020.R" +
-      "egisterRequest\032\026.google.protobuf.Empty\"\000" +
-      "B\"\n\017de.tum.grpc_apiB\rKVServerProtoP\000b\006pr" +
-      "oto3"
+      "e\"$\n\020ToStringResponse\022\020\n\010HostPort\030\001 \001(\t\"" +
+      "#\n\024IsResponsibleRequest\022\013\n\003key\030\001 \001(\t\".\n\025" +
+      "IsResponsibleResponse\022\025\n\risResponsible\030\001" +
+      " \001(\010\">\n\013CopyRequest\022\030\n\005where\030\001 \001(\0162\t.Dat" +
+      "aType\022\025\n\005range\030\002 \001(\0132\006.Range\"b\n\014CopyResp" +
+      "onse\022%\n\004data\030\001 \003(\0132\027.CopyResponse.DataEn" +
+      "try\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002" +
+      " \001(\t:\0028\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013G" +
+      "etResponse\022\r\n\005value\030\001 \001(\t\"(\n\nPutRequest\022" +
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rDeleteReq" +
+      "uest\022\013\n\003key\030\001 \001(\t\"\034\n\rHasKeyRequest\022\013\n\003ke" +
+      "y\030\001 \001(\t\" \n\016HasKeyResponse\022\016\n\006hasKey\030\001 \001(" +
+      "\010\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(\0132\014.Node" +
+      "Message\"z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003" +
+      "(\0132\034.UpdateRingRequest.RingEntry\0329\n\tRing" +
+      "Entry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.Node" +
+      "Message:\0028\001\"N\n\030DeleteExpiredDataRequest\022" +
+      "\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005range\030\002 " +
+      "\001(\0132\006.Range\">\n\017RegisterRequest\022\032\n\004node\030\001" +
+      " \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* \n\010D" +
+      "ataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\200\006\n\tKVServ" +
+      "ice\0229\n\theartBeat\022\026.google.protobuf.Empty" +
+      "\032\022.HeartBeatResponse\"\000\0221\n\010getRange\022\020.Get" +
+      "RangeRequest\032\021.GetRangeResponse\"\000\022:\n\006equ" +
+      "als\022\026.google.protobuf.Empty\032\026.google.pro" +
+      "tobuf.Empty\"\000\0227\n\010toString\022\026.google.proto" +
+      "buf.Empty\032\021.ToStringResponse\"\000\022@\n\risResp" +
+      "onsible\022\025.IsResponsibleRequest\032\026.IsRespo" +
+      "nsibleResponse\"\000\022%\n\004copy\022\014.CopyRequest\032\r" +
+      ".CopyResponse\"\000\022\"\n\003get\022\013.GetRequest\032\014.Ge" +
+      "tResponse\"\000\022,\n\003put\022\013.PutRequest\032\026.google" +
+      ".protobuf.Empty\"\000\0222\n\006delete\022\016.DeleteRequ" +
+      "est\032\026.google.protobuf.Empty\"\000\022+\n\006hasKey\022" +
+      "\016.HasKeyRequest\032\017.HasKeyResponse\"\000\0228\n\004in" +
+      "it\022\026.google.protobuf.Empty\032\026.google.prot" +
+      "obuf.Empty\"\000\0224\n\007recover\022\017.RecoverRequest" +
+      "\032\026.google.protobuf.Empty\"\000\022:\n\nupdateRing" +
+      "\022\022.UpdateRingRequest\032\026.google.protobuf.E" +
+      "mpty\"\000\022H\n\021deleteExpiredData\022\031.DeleteExpi" +
+      "redDataRequest\032\026.google.protobuf.Empty\"\000" +
+      "2C\n\tECService\0226\n\010register\022\020.RegisterRequ" +
+      "est\032\026.google.protobuf.Empty\"\000B\"\n\017de.tum." +
+      "grpc_apiB\rKVServerProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -11265,62 +12297,32 @@ java.lang.String defaultValue);
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetRangeResponse_descriptor,
         new java.lang.String[] { "Range", });
-    internal_static_RegisterRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_RegisterRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RegisterRequest_descriptor,
-        new java.lang.String[] { "Node", "RpcPort", });
     internal_static_ToStringResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_ToStringResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ToStringResponse_descriptor,
         new java.lang.String[] { "HostPort", });
     internal_static_IsResponsibleRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_IsResponsibleRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_IsResponsibleRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_IsResponsibleResponse_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_IsResponsibleResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_IsResponsibleResponse_descriptor,
         new java.lang.String[] { "IsResponsible", });
-    internal_static_RecoverRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_RecoverRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RecoverRequest_descriptor,
-        new java.lang.String[] { "Node", });
-    internal_static_UpdateRingRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_UpdateRingRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateRingRequest_descriptor,
-        new java.lang.String[] { "Ring", });
-    internal_static_UpdateRingRequest_RingEntry_descriptor =
-      internal_static_UpdateRingRequest_descriptor.getNestedTypes().get(0);
-    internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateRingRequest_RingEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_DeleteExpiredDataRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
-    internal_static_DeleteExpiredDataRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_DeleteExpiredDataRequest_descriptor,
-        new java.lang.String[] { "DataType", "Range", });
     internal_static_CopyRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_CopyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CopyRequest_descriptor,
         new java.lang.String[] { "Where", "Range", });
     internal_static_CopyResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_CopyResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CopyResponse_descriptor,
@@ -11332,29 +12334,71 @@ java.lang.String defaultValue);
         internal_static_CopyResponse_DataEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_GetRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_GetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_GetResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_GetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetResponse_descriptor,
         new java.lang.String[] { "Value", });
     internal_static_PutRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_PutRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PutRequest_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_DeleteRequest_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_DeleteRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DeleteRequest_descriptor,
         new java.lang.String[] { "Key", });
+    internal_static_HasKeyRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_HasKeyRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HasKeyRequest_descriptor,
+        new java.lang.String[] { "Key", });
+    internal_static_HasKeyResponse_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_HasKeyResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HasKeyResponse_descriptor,
+        new java.lang.String[] { "HasKey", });
+    internal_static_RecoverRequest_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_RecoverRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RecoverRequest_descriptor,
+        new java.lang.String[] { "Node", });
+    internal_static_UpdateRingRequest_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_UpdateRingRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateRingRequest_descriptor,
+        new java.lang.String[] { "Ring", });
+    internal_static_UpdateRingRequest_RingEntry_descriptor =
+      internal_static_UpdateRingRequest_descriptor.getNestedTypes().get(0);
+    internal_static_UpdateRingRequest_RingEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateRingRequest_RingEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_DeleteExpiredDataRequest_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_DeleteExpiredDataRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_DeleteExpiredDataRequest_descriptor,
+        new java.lang.String[] { "DataType", "Range", });
+    internal_static_RegisterRequest_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_RegisterRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RegisterRequest_descriptor,
+        new java.lang.String[] { "Node", "RpcPort", });
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.AnyProto.getDescriptor();
   }

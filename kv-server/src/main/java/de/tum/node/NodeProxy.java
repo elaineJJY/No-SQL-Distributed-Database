@@ -98,4 +98,9 @@ public class NodeProxy implements INode {
         KVServerProto.DeleteRequest request = KVServerProto.DeleteRequest.newBuilder().setKey(key).build();
         this.stub.delete(request);
     }
+
+    public boolean hasKey(String key) throws Exception {
+        KVServerProto.HasKeyRequest request = KVServerProto.HasKeyRequest.newBuilder().setKey(key).build();
+        return this.stub.hasKey(request).getHasKey();
+    }
 }

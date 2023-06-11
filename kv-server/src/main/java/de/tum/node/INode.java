@@ -24,7 +24,7 @@ public interface INode {
     public String get(String key) throws Exception;
     public void put(String key, String value) throws Exception;
     public void delete(String key) throws Exception;
-
+    public boolean hasKey(String key) throws Exception;
 
     // Only called by ECS
     //public void init() throws Exception;

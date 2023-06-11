@@ -149,7 +149,7 @@ public class KVServer {
 				sb.append(tokens[i]);
 			}
 			String value = sb.toString();
-			if (responsibleNode.get(tokens[1]) != null) {
+			if (responsibleNode.hasKey(tokens[1])) {
 				responsibleNode.put(tokens[1], value);
 				String msg = "put_update " + tokens[1];
 				send(msg, socketChannel);
@@ -225,8 +225,9 @@ public class KVServer {
 		String key = tokens[1];
 		INode resopnsibleNode = this.node;
 		if (!node.isResponsible(key)) {
-			System.out.println("Not responsible for key: " + key);
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);
+			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
+			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
 		}
 		switch(tokens[0]) {
 			case "put": putCommandHandler(resopnsibleNode, tokens, socketChannel); break;

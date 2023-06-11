@@ -294,6 +294,37 @@ public final class KVServiceGrpc {
     return getDeleteMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.HasKeyRequest,
+      de.tum.grpc_api.ECSProto.HasKeyResponse> getHasKeyMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "hasKey",
+      requestType = de.tum.grpc_api.ECSProto.HasKeyRequest.class,
+      responseType = de.tum.grpc_api.ECSProto.HasKeyResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.HasKeyRequest,
+      de.tum.grpc_api.ECSProto.HasKeyResponse> getHasKeyMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.HasKeyRequest, de.tum.grpc_api.ECSProto.HasKeyResponse> getHasKeyMethod;
+    if ((getHasKeyMethod = KVServiceGrpc.getHasKeyMethod) == null) {
+      synchronized (KVServiceGrpc.class) {
+        if ((getHasKeyMethod = KVServiceGrpc.getHasKeyMethod) == null) {
+          KVServiceGrpc.getHasKeyMethod = getHasKeyMethod =
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.ECSProto.HasKeyRequest, de.tum.grpc_api.ECSProto.HasKeyResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "hasKey"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  de.tum.grpc_api.ECSProto.HasKeyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  de.tum.grpc_api.ECSProto.HasKeyResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("hasKey"))
+              .build();
+        }
+      }
+    }
+    return getHasKeyMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.google.protobuf.Empty> getInitMethod;
 
@@ -467,9 +498,6 @@ public final class KVServiceGrpc {
   public interface AsyncService {
 
     /**
-     * <pre>
-     * only called by Other KVServer
-     * </pre>
      */
     default void heartBeat(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.HeartBeatResponse> responseObserver) {
@@ -498,6 +526,9 @@ public final class KVServiceGrpc {
     }
 
     /**
+     * <pre>
+     * isResponsible, copy, get, put, delete will only be called by other KVServer
+     * </pre>
      */
     default void isResponsible(de.tum.grpc_api.ECSProto.IsResponsibleRequest request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.IsResponsibleResponse> responseObserver) {
@@ -530,6 +561,13 @@ public final class KVServiceGrpc {
     default void delete(de.tum.grpc_api.ECSProto.DeleteRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void hasKey(de.tum.grpc_api.ECSProto.HasKeyRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.HasKeyResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHasKeyMethod(), responseObserver);
     }
 
     /**
@@ -592,9 +630,6 @@ public final class KVServiceGrpc {
     }
 
     /**
-     * <pre>
-     * only called by Other KVServer
-     * </pre>
      */
     public void heartBeat(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.HeartBeatResponse> responseObserver) {
@@ -627,6 +662,9 @@ public final class KVServiceGrpc {
     }
 
     /**
+     * <pre>
+     * isResponsible, copy, get, put, delete will only be called by other KVServer
+     * </pre>
      */
     public void isResponsible(de.tum.grpc_api.ECSProto.IsResponsibleRequest request,
         io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.IsResponsibleResponse> responseObserver) {
@@ -664,6 +702,14 @@ public final class KVServiceGrpc {
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeleteMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void hasKey(de.tum.grpc_api.ECSProto.HasKeyRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.HasKeyResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getHasKeyMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -719,9 +765,6 @@ public final class KVServiceGrpc {
     }
 
     /**
-     * <pre>
-     * only called by Other KVServer
-     * </pre>
      */
     public de.tum.grpc_api.ECSProto.HeartBeatResponse heartBeat(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -750,6 +793,9 @@ public final class KVServiceGrpc {
     }
 
     /**
+     * <pre>
+     * isResponsible, copy, get, put, delete will only be called by other KVServer
+     * </pre>
      */
     public de.tum.grpc_api.ECSProto.IsResponsibleResponse isResponsible(de.tum.grpc_api.ECSProto.IsResponsibleRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -782,6 +828,13 @@ public final class KVServiceGrpc {
     public com.google.protobuf.Empty delete(de.tum.grpc_api.ECSProto.DeleteRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public de.tum.grpc_api.ECSProto.HasKeyResponse hasKey(de.tum.grpc_api.ECSProto.HasKeyRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getHasKeyMethod(), getCallOptions(), request);
     }
 
     /**
@@ -833,9 +886,6 @@ public final class KVServiceGrpc {
     }
 
     /**
-     * <pre>
-     * only called by Other KVServer
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.ECSProto.HeartBeatResponse> heartBeat(
         com.google.protobuf.Empty request) {
@@ -868,6 +918,9 @@ public final class KVServiceGrpc {
     }
 
     /**
+     * <pre>
+     * isResponsible, copy, get, put, delete will only be called by other KVServer
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.ECSProto.IsResponsibleResponse> isResponsible(
         de.tum.grpc_api.ECSProto.IsResponsibleRequest request) {
@@ -905,6 +958,14 @@ public final class KVServiceGrpc {
         de.tum.grpc_api.ECSProto.DeleteRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.ECSProto.HasKeyResponse> hasKey(
+        de.tum.grpc_api.ECSProto.HasKeyRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getHasKeyMethod(), getCallOptions()), request);
     }
 
     /**
@@ -952,10 +1013,11 @@ public final class KVServiceGrpc {
   private static final int METHODID_GET = 6;
   private static final int METHODID_PUT = 7;
   private static final int METHODID_DELETE = 8;
-  private static final int METHODID_INIT = 9;
-  private static final int METHODID_RECOVER = 10;
-  private static final int METHODID_UPDATE_RING = 11;
-  private static final int METHODID_DELETE_EXPIRED_DATA = 12;
+  private static final int METHODID_HAS_KEY = 9;
+  private static final int METHODID_INIT = 10;
+  private static final int METHODID_RECOVER = 11;
+  private static final int METHODID_UPDATE_RING = 12;
+  private static final int METHODID_DELETE_EXPIRED_DATA = 13;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1009,6 +1071,10 @@ public final class KVServiceGrpc {
         case METHODID_DELETE:
           serviceImpl.delete((de.tum.grpc_api.ECSProto.DeleteRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_HAS_KEY:
+          serviceImpl.hasKey((de.tum.grpc_api.ECSProto.HasKeyRequest) request,
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.ECSProto.HasKeyResponse>) responseObserver);
           break;
         case METHODID_INIT:
           serviceImpl.init((com.google.protobuf.Empty) request,
@@ -1108,6 +1174,13 @@ public final class KVServiceGrpc {
               com.google.protobuf.Empty>(
                 service, METHODID_DELETE)))
         .addMethod(
+          getHasKeyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              de.tum.grpc_api.ECSProto.HasKeyRequest,
+              de.tum.grpc_api.ECSProto.HasKeyResponse>(
+                service, METHODID_HAS_KEY)))
+        .addMethod(
           getInitMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1192,6 +1265,7 @@ public final class KVServiceGrpc {
               .addMethod(getGetMethod())
               .addMethod(getPutMethod())
               .addMethod(getDeleteMethod())
+              .addMethod(getHasKeyMethod())
               .addMethod(getInitMethod())
               .addMethod(getRecoverMethod())
               .addMethod(getUpdateRingMethod())

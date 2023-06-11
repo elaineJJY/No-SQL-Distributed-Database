@@ -18,5 +18,5 @@ public interface IDatabase {
 	void saveAllData(HashMap<String, String> map) throws Exception;// Map<K, V> = HashMap<String, Object>
 
 	void deleteDataByRange(Range range) throws Exception;
-
+	boolean hasKey(String key) throws Exception;
 }

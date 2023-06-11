@@ -42,6 +42,13 @@ public class BackupDatabase implements IDatabase {
 		persistentStorage.deleteFromDisk(key);
 	}
 
+	public boolean hasKey(String key) throws Exception {
+		if (persistentStorage.readFromDisk(key) == null) {
+			return true;
+		}
+		return false;
+	}
+
 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
 		HashMap<String, String> data = new HashMap<>();
 

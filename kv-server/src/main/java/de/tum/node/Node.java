@@ -145,21 +145,23 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		if (ConsistentHash.INSTANCE.getRing().size() == 1) {
 			return true;
 		}
-		String keyHash = ConsistentHash.INSTANCE.getHash(this);
-		INode prevNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-		String prevHash = ConsistentHash.INSTANCE.getHash(prevNode);
-		return (keyHash.compareTo(key) >= 0 && prevHash.compareTo(key) < 0);
+		String keyHash = MD5Hash.hash(key);	//get hash of key
+
+		String currNodeHash = ConsistentHash.INSTANCE.getHash(this);	//get hash of this node
+
+		SortedMap<String, INode> tailMap = ConsistentHash.INSTANCE.getRing().tailMap(keyHash);
+		if (tailMap.isEmpty()) {
+			return ConsistentHash.INSTANCE.getRing().firstKey().equals(currNodeHash);
+		} else {
+			return tailMap.firstKey().equals(currNodeHash);
+		}
 	}
 
 	@Override
 	public void isResponsible(de.tum.grpc_api.KVServerProto.IsResponsibleRequest request,
 							  io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.IsResponsibleResponse> responseObserver) {
 		String key = request.getKey();
-
-		String keyHash = ConsistentHash.INSTANCE.getHash(this);
-		INode prevNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-		String prevHash = ConsistentHash.INSTANCE.getHash(prevNode);
-		boolean result =  (keyHash.compareTo(key) >= 0 && prevHash.compareTo(key) < 0);
+		boolean result = isResponsible(key);
 
 		KVServerProto.IsResponsibleResponse response = KVServerProto.IsResponsibleResponse.newBuilder()
 				.setIsResponsible(result)
@@ -222,6 +224,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 	public void put(String key, String value) throws Exception {
 		mainDatabase.put(key, value);
+		System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
 	}
 
 	@Override
@@ -232,6 +235,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 		try {
 			mainDatabase.put(key, value);
+			System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -242,6 +246,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 	public void delete(String key) throws Exception {
 		mainDatabase.delete(key);
+		System.out.println("Delete data on database " + this.port + ": " + key );
 	}
 
 	@Override
@@ -250,10 +255,30 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		String key = request.getKey();
 		try {
 			mainDatabase.delete(key);
+			System.out.println("Delete data on database " + this.port + ": " + key );
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		Empty response = Empty.newBuilder().build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
+
+	public boolean hasKey(String key) throws Exception {
+		return mainDatabase.hasKey(key);
+	}
+
+	public void hasKey(de.tum.grpc_api.KVServerProto.HasKeyRequest request,
+					   io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.HasKeyResponse> responseObserver) {
+		String key = request.getKey();
+		KVServerProto.HasKeyResponse response;
+		try {
+			response = KVServerProto.HasKeyResponse.newBuilder()
+					.setHasKey(mainDatabase.hasKey(key))
+					.build();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}

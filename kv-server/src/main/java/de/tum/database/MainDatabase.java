@@ -58,7 +58,14 @@ public class MainDatabase implements IDatabase {
 		cache.delete(key);
 	}
 
-	public HashMap<String, String> getDataByRange(Range range) throws Exception {
+	public boolean hasKey(String key) throws Exception {
+		if (get(key) == null) {
+			return false;
+		}
+		return true;
+	}
+
+ 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
 		HashMap<String, String> data = new HashMap<>();
 
 		SortedMap<String, String> keysInRange;
