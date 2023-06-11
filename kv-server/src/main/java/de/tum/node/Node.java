@@ -186,9 +186,14 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		IDatabase database = request.getWhere() == KVServerProto.DataType.DATA ? mainDatabase : backupDatabase;
 		KVServerProto.CopyResponse response;
 		try {
+			Range range = new Range(request.getRange().getFrom(), request.getRange().getTo());
+			HashMap<String, String> data = database.getDataByRange(range);
 			response = KVServerProto.CopyResponse.newBuilder()
-					.putAllData(database.getDataByRange(new Range(request.getRange().getFrom(), request.getRange().getTo())))
+					.putAllData(data)
 					.build();
+//			response = KVServerProto.CopyResponse.newBuilder()
+//					.putAllData(database.getDataByRange(new Range(request.getRange().getFrom(), request.getRange().getTo())))
+//					.build();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -259,10 +264,13 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		if (ConsistentHash.INSTANCE.getRing().size() != 1) {
 			INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
 			INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-			HashMap<String, String> data = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
-			mainDatabase.saveAllData(data);
+			HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
+			mainDatabase.saveAllData(mainData);
+			HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.DATA));
+			mainDatabase.saveAllData(backup);
+			System.out.println("test");
 //			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
-			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
+//			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
 		}
         server = new KVServer(this);
 	}

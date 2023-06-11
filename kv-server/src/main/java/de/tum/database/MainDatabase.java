@@ -84,13 +84,15 @@ public class MainDatabase implements IDatabase {
 	}
 
 	public void saveAllData(HashMap<String, String> data) throws Exception {
-		for (Map.Entry<String, String> entry : data.entrySet()) {
-			// Store each key and hash
-			String hash = MD5Hash.hash(entry.getKey());
-			hashToKeyMap.put(hash, entry.getKey());
+		if (data != null) {
+			for (Map.Entry<String, String> entry : data.entrySet()) {
+				// Store each key and hash
+				String hash = MD5Hash.hash(entry.getKey());
+				hashToKeyMap.put(hash, entry.getKey());
 
-			// Store key and value to cache
-			cache.put(entry.getKey(), entry.getValue());
+				// Store key and value to cache
+				cache.put(entry.getKey(), entry.getValue());
+			}
 		}
 	}
 
