@@ -60,16 +60,15 @@ public class MainDatabase implements IDatabase {
 
 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
 		HashMap<String, String> data = new HashMap<>();
+
+		SortedMap<String, String> keysInRange;
 		if (range.getTo().compareTo(range.getFrom()) < 0) {
-			for (String key : hashToKeyMap.subMap(range.getFrom(), hashToKeyMap.lastKey()).values()) {
-				data.put(key, cache.get(key));
-			}
-			for (String key : hashToKeyMap.subMap(hashToKeyMap.firstKey(), range.getTo()).values()) {
-				data.put(key, cache.get(key));
-			}
-			return data;
+			keysInRange = hashToKeyMap.tailMap(range.getFrom());
+			keysInRange.putAll(hashToKeyMap.headMap(range.getTo()));
+		} else {
+			keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
 		}
-		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+
 		for (String key : keysInRange.values()) {
 			data.put(key, cache.get(key));
 		}
@@ -96,7 +95,14 @@ public class MainDatabase implements IDatabase {
 	}
 
 	public void deleteDataByRange(Range range) throws Exception {
-		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		SortedMap<String, String> keysInRange;
+		if (range.getTo().compareTo(range.getFrom()) < 0) {
+			keysInRange = hashToKeyMap.tailMap(range.getFrom());
+			keysInRange.putAll(hashToKeyMap.headMap(range.getTo()));
+		} else {
+			keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		}
+
 		for (String key : keysInRange.values()) {
 			cache.delete(key);
 			hashToKeyMap.remove(key);

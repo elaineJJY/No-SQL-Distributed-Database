@@ -259,7 +259,9 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		if (ConsistentHash.INSTANCE.getRing().size() != 1) {
 			INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
 			INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
+			HashMap<String, String> data = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
+			mainDatabase.saveAllData(data);
+//			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
 			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
 		}
         server = new KVServer(this);

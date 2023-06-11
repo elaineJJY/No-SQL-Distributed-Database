@@ -44,7 +44,15 @@ public class BackupDatabase implements IDatabase {
 
 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
 		HashMap<String, String> data = new HashMap<>();
-		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+
+		SortedMap<String, String> keysInRange;
+		if (range.getTo().compareTo(range.getFrom()) < 0) {
+			keysInRange = hashToKeyMap.tailMap(range.getFrom());
+			keysInRange.putAll(hashToKeyMap.headMap(range.getTo()));
+		} else {
+			keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		}
+
 		for (String key : keysInRange.values()) {
 			data.put(key, persistentStorage.readFromDisk(key));
 		}
@@ -71,7 +79,14 @@ public class BackupDatabase implements IDatabase {
 	}
 
 	public void deleteDataByRange(Range range) throws Exception {
-		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		SortedMap<String, String> keysInRange;
+		if (range.getTo().compareTo(range.getFrom()) < 0) {
+			keysInRange = hashToKeyMap.tailMap(range.getFrom());
+			keysInRange.putAll(hashToKeyMap.headMap(range.getTo()));
+		} else {
+			keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		}
+
 		for (String key : keysInRange.values()) {
 			persistentStorage.deleteFromDisk(key);
 			hashToKeyMap.remove(key);

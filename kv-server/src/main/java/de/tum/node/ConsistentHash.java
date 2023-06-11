@@ -27,8 +27,7 @@ public enum ConsistentHash {
 	 * @return hash value
 	 */
 	public String getHash(INode node) {
-		String string = node.toString();
-		String nodeHash = MD5Hash.hash(string); // hash value of the node, key is string <ip:port>
+		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
 ////		int i = 1;
 //		while (!ring.get(nodeHash).equals(node)) {
 //			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
@@ -45,6 +44,7 @@ public enum ConsistentHash {
 		String nodeHash = getHash(node);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
 		SortedMap<String, INode> tailMap = ring.tailMap(nodeHash);
+		// The node we need is next node of the first node in the tailMap
 		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);
