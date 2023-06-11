@@ -4,6 +4,7 @@ import de.tum.common.Help;
 import de.tum.common.ServerLogger;
 import de.tum.node.ConsistentHash;
 
+import de.tum.node.INode;
 import de.tum.node.Node;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +28,7 @@ public class KVServer {
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
-	private Node node;
+	private INode node;
 
 	// detach read and write buffer
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
@@ -138,7 +139,7 @@ public class KVServer {
 	 * @param socketChannel
 	 * @throws IOException
 	 */
-	private void putCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void putCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 2; i < tokens.length; i++) {
@@ -170,7 +171,7 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void getCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void getCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			Object value = responsibleNode.get(tokens[1]);
 			if (value != null) {
@@ -195,7 +196,7 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void deleteCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void deleteCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			Object value = node.get(tokens[1]);
 			if (value != null) {
@@ -222,7 +223,7 @@ public class KVServer {
 	private void process(String request, SocketChannel socketChannel) throws Exception {
 		String[] tokens = request.trim().split("\\s+");
 		String key = tokens[1];
-		Node resopnsibleNode = this.node;
+		INode resopnsibleNode = this.node;
 		if (!node.isResponsible(key)) {
 			System.out.println("Not responsible for key: " + key);
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);

@@ -99,10 +99,12 @@ public class ECSServer {
                 // new Thread?
                 Node node = new Node(Host, rpcPort);
                 try {
+//                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);
                     // Heartbeat
                     while (node.heartbeat() > 0) {
                         System.out.println(node.heartbeat());
+                        Thread.sleep(500);
                     }
                     ConsistentHash.INSTANCE.removeNode(node);
                 } catch (Exception e) {

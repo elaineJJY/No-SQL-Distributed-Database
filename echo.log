@@ -14,3 +14,7 @@ INFO: Init Cache with strategy LRU
 INFO: Server is starting...
 6月 07, 2023 7:44:22 下午 de.tum.App main
 INFO: Server is shutting down...
+6月 11, 2023 10:42:16 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 11, 2023 10:42:16 上午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU

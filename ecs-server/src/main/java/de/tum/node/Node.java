@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.SortedMap;
 
 /**
- * ClassName: NodeStub
+ * ClassName: NodeProxy
  * Package: de.tum.node
  * Description:
  *

@@ -62,6 +62,7 @@ public class App
             Server rpcServer = rpcServerBuilder.build();
             rpcServer.start();
             int rpcPort = rpcServer.getPort();
+
             // register to ECS
             registerHandler(bootStrapServerIP, bootStrapServerPort, address, port, rpcPort);
 
