@@ -27,11 +27,12 @@ public enum ConsistentHash {
 	 * @return hash value
 	 */
 	public String getHash(INode node) {
-		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
-		int i = 1;
-		while (!ring.get(nodeHash).equals(node)) {
-			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
-		}
+		String string = node.toString();
+		String nodeHash = MD5Hash.hash(string); // hash value of the node, key is string <ip:port>
+////		int i = 1;
+//		while (!ring.get(nodeHash).equals(node)) {
+//			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
+//		}
 		return nodeHash;
 	}
 
@@ -40,10 +41,11 @@ public enum ConsistentHash {
 	 * @param node
 	 * @return next node
 	 */
-	public INode getNextNode(INode node){
+	public INode getNextNode(INode node) {
 		String nodeHash = getHash(node);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
 		SortedMap<String, INode> tailMap = ring.tailMap(nodeHash);
+		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);
 	}

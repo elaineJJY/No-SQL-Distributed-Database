@@ -13,14 +13,13 @@ import de.tum.database.PersistentStorage;
  * @version 1.0
  */
 public class FIFO extends Cache {
-    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private final int capacity;
     private final LinkedList<String> keys;
     private final LinkedList<String> values;
 
 
-    public FIFO(int capacity) {
-        super();
+    public FIFO(int capacity, String directory) {
+        super(directory);
         this.capacity = capacity;
         this.keys = new LinkedList<>();
         this.values = new LinkedList<>();

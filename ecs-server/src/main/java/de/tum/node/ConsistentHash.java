@@ -32,9 +32,11 @@ public enum ConsistentHash {
 		ring.put(nodeHash, node);
 		node.updateRing(ring);
 		node.init();
-		updateRingForAllNodes();
-		getPreviousNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
-		getNextNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
+		updateRingForAllNodes(node);
+		if (ring.size() > 1) {
+			getPreviousNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
+			getNextNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
+		}
 	}
 
 	public void removeNode(Node node) {
@@ -53,7 +55,7 @@ public enum ConsistentHash {
 
 		previousNode.recover(node);
 		nextNode.recover(node);
-		updateRingForAllNodes();
+		updateRingForAllNodes(node);
 	}
 
 	/**
@@ -65,10 +67,10 @@ public enum ConsistentHash {
 	public String getHash(Node node) {
 		String nodeHash = MD5Hash.hash(
 				node.toString()); // hash value of the node, key is string <ip:port>
-		int i = 1;
-		while (!ring.get(nodeHash).equals(node)) {
-			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
-		}
+//		int i = 1;
+//		while (!ring.get(nodeHash).equals(node)) {
+//			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
+//		}
 		return nodeHash;
 	}
 
@@ -99,8 +101,11 @@ public enum ConsistentHash {
 		return ring.get(previousHash);
 	}
 
-	private void updateRingForAllNodes() {
+	private void updateRingForAllNodes(Node except) {
 		for (Node node : ring.values()) {
+			if (node.equals(except)) {
+				continue;
+			}
 			node.updateRing(ring);
 		}
 	}

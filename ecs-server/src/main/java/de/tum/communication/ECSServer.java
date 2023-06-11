@@ -46,7 +46,7 @@ public class ECSServer {
         SocketAddress IpPort = new InetSocketAddress(this.address, this.port);
         ecsServer = NettyServerBuilder.forAddress(IpPort).addService(new ECSServiceImpl()).build();
         ecsServer.start();
-        System.out.println("Server is listening on port " + port);
+        System.out.println("ECS is listening on port " + port);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -103,7 +103,7 @@ public class ECSServer {
                     ConsistentHash.INSTANCE.addNode(node);
                     // Heartbeat
                     while (node.heartbeat() > 0) {
-                        System.out.println(node.heartbeat());
+                        //System.out.println(node.heartbeat());
                         Thread.sleep(500);
                     }
                     ConsistentHash.INSTANCE.removeNode(node);

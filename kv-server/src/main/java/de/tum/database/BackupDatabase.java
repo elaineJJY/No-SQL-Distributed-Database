@@ -1,5 +1,6 @@
 package de.tum.database;
 
+import de.tum.cacheDisplacement.LRU;
 import de.tum.node.MD5Hash;
 import de.tum.node.Range;
 
@@ -12,7 +13,7 @@ import java.util.concurrent.Executors;
 
 public class BackupDatabase implements IDatabase {
 	private PersistentStorage persistentStorage;
-	private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
+	private static final String DEFAULT_DIR = "src/main/java/de/tum/database/data/backupData";
 	private SortedMap<String, String> hashToKeyMap;   // Store <Hash, Key>
 
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -74,6 +75,21 @@ public class BackupDatabase implements IDatabase {
 		for (String key : keysInRange.values()) {
 			persistentStorage.deleteFromDisk(key);
 			hashToKeyMap.remove(key);
+		}
+	}
+
+	public static void main(String[] args) {
+		BackupDatabase lru = new BackupDatabase();
+		try {
+			lru.put("1", "a");
+			lru.put("1", "b");
+			lru.put("3", "c");
+			lru.put("4", "d");
+			System.out.println(lru.get("1"));
+			System.out.println(lru.get("3"));
+			System.out.println(lru.get("4"));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

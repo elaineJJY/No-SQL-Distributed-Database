@@ -10,6 +10,7 @@ import de.tum.database.MainDatabase;
 import de.tum.grpc_api.KVServerProto;
 import de.tum.grpc_api.KVServiceGrpc;
 import io.grpc.ManagedChannelBuilder;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.xml.crypto.Data;
 import java.io.Serializable;
@@ -141,6 +142,9 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	 */
 	// isResponsible, copy, get, put, delete will only be called by other KVServer
 	public boolean isResponsible(String key) throws NullPointerException {
+		if (ConsistentHash.INSTANCE.getRing().size() == 1) {
+			return true;
+		}
 		String keyHash = ConsistentHash.INSTANCE.getHash(this);
 		INode prevNode = ConsistentHash.INSTANCE.getPreviousNode(this);
 		String prevHash = ConsistentHash.INSTANCE.getHash(prevNode);
@@ -251,13 +255,14 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
 	public void init() throws Exception {
-		if (!ConsistentHash.INSTANCE.getRing().isEmpty()) {
+        // Data transfer
+		if (ConsistentHash.INSTANCE.getRing().size() != 1) {
 			INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
 			INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
 			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
 			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
-			server = new KVServer(this);
 		}
+        server = new KVServer(this);
 	}
 
 	@Override

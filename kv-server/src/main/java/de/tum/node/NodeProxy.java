@@ -7,6 +7,7 @@ import io.grpc.ManagedChannelBuilder;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName: NodeProxy
@@ -74,7 +75,12 @@ public class NodeProxy implements INode {
         KVServerProto.CopyRequest request = KVServerProto.CopyRequest.newBuilder()
                 .setWhere(whereProto).setRange(rangeProto).build();
         //TODO: Check if cast into HashMap<String, String> is safe
-        return (HashMap<String, String>) this.stub.copy(request).getData();
+        Map<String, String> returnMap = this.stub.copy(request).getDataMap();
+        HashMap<String, String> returnHashMap = null;
+        for (Map.Entry<String, String> entry : returnMap.entrySet()) {
+            returnHashMap.put(entry.getKey(), entry.getValue());
+        }
+        return returnHashMap;
     }
 
     public String get(String key) throws Exception {

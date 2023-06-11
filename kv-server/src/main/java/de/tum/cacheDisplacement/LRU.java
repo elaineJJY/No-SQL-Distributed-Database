@@ -13,12 +13,11 @@ import java.util.Map;
  * @version 2.0 Test passed
  */
 public class LRU extends Cache {
-    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private Map<String, String> cache;
     private final int capacity;
 
-    public LRU(int capacity) {
-        super();
+    public LRU(int capacity, String directory) {
+        super(directory);
         this.capacity = capacity;
         this.cache = new LinkedHashMap<>(capacity, 0.75f, true);
         getLOGGER().info("Init Cache with strategy LRU");
@@ -57,7 +56,7 @@ public class LRU extends Cache {
     }
 
     public static void main(String[] args) {
-        LRU lru = new LRU(2);
+        LRU lru = new LRU(2, "src/main/java/de/tum/database/data/mainData");
         try {
             lru.put("1", "a");
             lru.put("1", "b");
@@ -70,5 +69,4 @@ public class LRU extends Cache {
             e.printStackTrace();
         }
     }
-
 }
