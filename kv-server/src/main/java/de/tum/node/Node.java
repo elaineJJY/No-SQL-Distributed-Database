@@ -313,7 +313,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 			HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
 			mainDatabase.saveAllData(mainData);
 
-			HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.DATA));
+			HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
 			backupDatabase.saveAllData(backup);
 //			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
 //			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));

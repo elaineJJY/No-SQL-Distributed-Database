@@ -71,18 +71,10 @@ public class App
 
             // register to ECS
             registerHandler(bootStrapServerIP, bootStrapServerPort, address, port, rpcPort);
-
             LOGGER.info("RPC service published on port: " + rpcPort + ", waiting to receive heartbeat from ECS/Other Servers");
-
-//            if (registerResponse) {}
-//            else {
-//                LOGGER.severe("Register to ECS failed");
-//                throw new Exception("Register to ECS failed");
-//            }
 
 //            KVServer kvServer = new KVServer(node);
 //            kvServer.start(address, port);
-
             rpcServer.awaitTermination();
         }
         catch (Exception e) {

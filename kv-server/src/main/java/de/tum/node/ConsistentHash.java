@@ -44,9 +44,8 @@ public enum ConsistentHash {
 	public INode getNextNode(INode node) {
 		String nodeHash = getHash(node);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
-		SortedMap<String, INode> tailMap = ring.tailMap(nodeHash);
+		SortedMap<String, INode> tailMap = ring.tailMap(nodeHash + 1);
 		// The node we need is next node of the first node in the tailMap
-		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);
 	}
