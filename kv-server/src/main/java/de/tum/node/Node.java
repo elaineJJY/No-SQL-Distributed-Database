@@ -354,6 +354,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 
+	// TODO: Exception
 	public void recover(NodeProxy removedNode) throws Exception {
 
 		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
@@ -361,7 +362,8 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 		// recover data from the removed node
 		// If the removed node is the previous node of this node
-		if (ConsistentHash.INSTANCE.getPreviousNode(this).equals(removedNode)) {
+		INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+		if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
 			INode newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
 			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
 //			try {
@@ -380,7 +382,8 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 		// recover backup from the removed node
 		// If the removed node is the next node of this node
-		if (ConsistentHash.INSTANCE.getNextNode(this).equals(removedNode)) {
+		INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
+		if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
 			INode newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
 			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
 //			try {

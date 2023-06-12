@@ -34,10 +34,8 @@ public enum ConsistentHash {
 		nodeProxy.init();
 		updateRingForAllNodes(nodeProxy);
 		if (ring.size() > 1) {
-			getPreviousNode(nodeProxy).deleteExpiredData(DataType.DATA, nodeProxy.getRange(DataType.DATA));
-//			getNextNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
-			NodeProxy nextNodeProxy = getNextNode(nodeProxy);
-			nextNodeProxy.deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
+			getPreviousNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
+			getNextNode(nodeProxy).deleteExpiredData(DataType.DATA, nodeProxy.getRange(DataType.DATA));
 		}
 		nodeProxy.startKVServer();
 	}
@@ -58,10 +56,8 @@ public enum ConsistentHash {
 		nodeProxy.closeRpcChannel();
 		System.out.println("Channel of ECS to KVServer<"
 				+ nodeProxy.getHost() + ":" + nodeProxy.getPortForClient() + "> is closed");
-
 		previousNodeProxy.recover(nodeProxy);
 		nextNodeProxy.recover(nodeProxy);
-
 		updateRingForAllNodes(nodeProxy);
 	}
 
