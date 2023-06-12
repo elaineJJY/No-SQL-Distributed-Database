@@ -4832,3 +4832,91 @@ SM
 信息: Register read event for client: /127.0.0.1:62980
 6月 12, 2023 7:11:58 下午 de.tum.communication.KVServer read
 信息: Received request:put lmu 3
+6月 12, 2023 10:01:48 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:01:48 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:01:50 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 12, 2023 10:01:50 下午 de.tum.App main
+信息: RPC service published on port: 50031, waiting to receive heartbeat from ECS/Other Servers
+6月 12, 2023 10:01:50 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 12, 2023 10:19:23 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:19:23 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:19:24 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 12, 2023 10:19:24 下午 de.tum.App main
+信息: RPC service published on port: 50307, waiting to receive heartbeat from ECS/Other Servers
+6月 12, 2023 10:19:37 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:19:38 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:19:39 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 12, 2023 10:19:39 下午 de.tum.App main
+信息: RPC service published on port: 50327, waiting to receive heartbeat from ECS/Other Servers
+6月 12, 2023 10:33:06 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:33:06 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:33:07 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 12, 2023 10:33:07 下午 de.tum.App main
+信息: RPC service published on port: 50577, waiting to receive heartbeat from ECS/Other Servers
+6月 12, 2023 10:33:08 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 12, 2023 10:43:22 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:43:22 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:43:23 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 12, 2023 10:46:42 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:46:42 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:46:43 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 12, 2023 10:46:57 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:46:57 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:46:58 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 12, 2023 10:48:40 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:48:40 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:48:42 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 12, 2023 10:48:50 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:48:50 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:48:52 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 12, 2023 10:48:52 下午 de.tum.App main
+信息: RPC service published on port: 50832, waiting to receive heartbeat from ECS/Other Servers
+6月 12, 2023 10:48:52 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 12, 2023 10:52:35 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:52:35 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:52:37 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 12, 2023 10:52:43 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:52:43 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:52:45 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 12, 2023 10:59:12 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 12, 2023 10:59:12 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 12, 2023 10:59:14 下午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
