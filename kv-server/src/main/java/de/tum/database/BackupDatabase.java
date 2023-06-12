@@ -83,6 +83,7 @@ public class BackupDatabase implements IDatabase {
 
 				// Store key and value
 				persistentStorage.storeToDisk(entry.getKey(), entry.getValue());
+				System.out.println("save key: " + entry.getKey() + " to backup database");
 			}
 		}
 	}
@@ -99,6 +100,7 @@ public class BackupDatabase implements IDatabase {
 		for (String key : keysInRange.values()) {
 			persistentStorage.deleteFromDisk(key);
 			hashToKeyMap.remove(key);
+			System.out.println("delete key: " + key + " from backup database");
 		}
 	}
 

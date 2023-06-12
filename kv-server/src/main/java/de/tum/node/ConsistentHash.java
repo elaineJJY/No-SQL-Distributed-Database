@@ -27,12 +27,13 @@ public enum ConsistentHash {
 	 * @return hash value
 	 */
 	public String getHash(INode node) {
-		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
+//		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
 ////		int i = 1;
 //		while (!ring.get(nodeHash).equals(node)) {
 //			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
 //		}
-		return nodeHash;
+
+		return MD5Hash.hash(node.getHost() + ":" + node.getPort());
 	}
 
 	/**
@@ -89,5 +90,9 @@ public enum ConsistentHash {
 			return ring.get(ring.firstKey());
 		}
 		return tailMap.get(tailMap.firstKey());
+	}
+
+	public INode getBackupNodeByKey(String key) {
+		return getPreviousNode(getResponsibleServerByKey(key));
 	}
 }

@@ -43,6 +43,10 @@ public class MainDatabase implements IDatabase {
 		}
 	}
 
+	public void setDirectory(String directory) {
+		cache.setDirectory(directory);
+	}
+
 	public String get(String key) throws Exception {
 		return cache.get(key);
 	}
@@ -99,6 +103,7 @@ public class MainDatabase implements IDatabase {
 
 				// Store key and value to cache
 				cache.put(entry.getKey(), entry.getValue());
+				System.out.println("save key: " + entry.getKey() + " to database");
 			}
 		}
 	}
@@ -115,6 +120,7 @@ public class MainDatabase implements IDatabase {
 		for (String key : keysInRange.values()) {
 			cache.delete(key);
 			hashToKeyMap.remove(key);
+			System.out.println("delete key: " + key + " from database");
 		}
 	}
 }

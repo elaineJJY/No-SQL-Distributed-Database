@@ -5,6 +5,7 @@ import com.google.protobuf.Empty;
 import de.tum.common.Help;
 import de.tum.common.ServerLogger;
 import de.tum.communication.KVServer;
+import de.tum.communication.ParseCommand;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
 import de.tum.grpc_api.ECServiceGrpc;
@@ -34,7 +35,7 @@ public class App
     public static void main( String[] args )
 
     {
-        de.tum.server.communication.ParseCommand parseCommand = new de.tum.server.communication.ParseCommand(args);
+        ParseCommand parseCommand = new ParseCommand(args);
         
         // CLI parse args
         int port = parseCommand.getPort();
@@ -42,7 +43,7 @@ public class App
         String bootStrapServerAddress = parseCommand.getBootstrapServerAddress();
         String bootStrapServerIP = bootStrapServerAddress.split(":")[0];
         int bootStrapServerPort = Integer.parseInt(bootStrapServerAddress.split(":")[1]);
-        String directory = parseCommand.getDirectory();
+        String directory = parseCommand.getDirectory(); //not used yet
         String logFile = parseCommand.getLogFile();
         String logLevel = parseCommand.getLogLevel();
         int cacheSize = parseCommand.getCacheSize();
@@ -53,8 +54,13 @@ public class App
         try {
             // prepare for server
             ServerLogger.INSTANCE.init(logLevel,logFile, LOGGER);
+
             MainDatabase database = new MainDatabase(cacheSize, cacheStrategy);
+            String mainDatabaseDir = "src/main/java/de/tum/database/data/" + port + "/mainData";
+            database.setDirectory(mainDatabaseDir);
+            String backupDatabaseDir = "src/main/java/de/tum/database/data/" + port + "/backupDatabase";
             BackupDatabase backupDatabase = new BackupDatabase();
+            backupDatabase.setDirectory(backupDatabaseDir);
             Node node = new Node(address, port, database, backupDatabase);
 
             ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0); // dynamic port

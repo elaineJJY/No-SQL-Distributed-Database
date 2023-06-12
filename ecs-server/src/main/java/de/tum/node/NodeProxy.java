@@ -3,6 +3,7 @@ package de.tum.node;
 import com.google.protobuf.Empty;
 import de.tum.grpc_api.ECSProto;
 import de.tum.grpc_api.KVServiceGrpc;
+import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import java.util.Map;
@@ -24,13 +25,15 @@ public class NodeProxy {
     private int portForClient;
     static Empty emptyRequest = Empty.newBuilder().build();
     //public io.grpc.stub.AbstractBlockingStub stub;
+    private final ManagedChannel managedChannel;
     private final KVServiceGrpc.KVServiceBlockingStub stub;
 
     public NodeProxy(String host, int rpcPort, int portForClient) {
         this.host = host;
         this.rpcPort = rpcPort;
         this.portForClient = portForClient;
-        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, rpcPort).usePlaintext().build());
+        this.managedChannel = ManagedChannelBuilder.forAddress(host, rpcPort).usePlaintext().build();
+        this.stub = KVServiceGrpc.newBlockingStub(managedChannel);
     }
 
     public String getHost() { return host; }
@@ -108,5 +111,7 @@ public class NodeProxy {
         this.stub.deleteExpiredData(request);
     }
 
-    public void stop() {}
+    public void closeRpcChannel() {
+        this.managedChannel.shutdown();
+    }
 }

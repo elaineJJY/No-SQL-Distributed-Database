@@ -263,6 +263,37 @@ public final class KVServiceGrpc {
     return getPutMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.PutBackupRequest,
+      com.google.protobuf.Empty> getPutBackupMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "putBackup",
+      requestType = de.tum.grpc_api.ECSProto.PutBackupRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.PutBackupRequest,
+      com.google.protobuf.Empty> getPutBackupMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.PutBackupRequest, com.google.protobuf.Empty> getPutBackupMethod;
+    if ((getPutBackupMethod = KVServiceGrpc.getPutBackupMethod) == null) {
+      synchronized (KVServiceGrpc.class) {
+        if ((getPutBackupMethod = KVServiceGrpc.getPutBackupMethod) == null) {
+          KVServiceGrpc.getPutBackupMethod = getPutBackupMethod =
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.ECSProto.PutBackupRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "putBackup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  de.tum.grpc_api.ECSProto.PutBackupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("putBackup"))
+              .build();
+        }
+      }
+    }
+    return getPutBackupMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.ECSProto.DeleteRequest,
       com.google.protobuf.Empty> getDeleteMethod;
 
@@ -589,6 +620,13 @@ public final class KVServiceGrpc {
 
     /**
      */
+    default void putBackup(de.tum.grpc_api.ECSProto.PutBackupRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPutBackupMethod(), responseObserver);
+    }
+
+    /**
+     */
     default void delete(de.tum.grpc_api.ECSProto.DeleteRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
@@ -736,6 +774,14 @@ public final class KVServiceGrpc {
 
     /**
      */
+    public void putBackup(de.tum.grpc_api.ECSProto.PutBackupRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getPutBackupMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void delete(de.tum.grpc_api.ECSProto.DeleteRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -867,6 +913,13 @@ public final class KVServiceGrpc {
     public com.google.protobuf.Empty put(de.tum.grpc_api.ECSProto.PutRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getPutMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty putBackup(de.tum.grpc_api.ECSProto.PutBackupRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getPutBackupMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1007,6 +1060,14 @@ public final class KVServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> putBackup(
+        de.tum.grpc_api.ECSProto.PutBackupRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getPutBackupMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> delete(
         de.tum.grpc_api.ECSProto.DeleteRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -1073,13 +1134,14 @@ public final class KVServiceGrpc {
   private static final int METHODID_COPY = 5;
   private static final int METHODID_GET = 6;
   private static final int METHODID_PUT = 7;
-  private static final int METHODID_DELETE = 8;
-  private static final int METHODID_HAS_KEY = 9;
-  private static final int METHODID_INIT = 10;
-  private static final int METHODID_START_KVSERVER = 11;
-  private static final int METHODID_RECOVER = 12;
-  private static final int METHODID_UPDATE_RING = 13;
-  private static final int METHODID_DELETE_EXPIRED_DATA = 14;
+  private static final int METHODID_PUT_BACKUP = 8;
+  private static final int METHODID_DELETE = 9;
+  private static final int METHODID_HAS_KEY = 10;
+  private static final int METHODID_INIT = 11;
+  private static final int METHODID_START_KVSERVER = 12;
+  private static final int METHODID_RECOVER = 13;
+  private static final int METHODID_UPDATE_RING = 14;
+  private static final int METHODID_DELETE_EXPIRED_DATA = 15;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1128,6 +1190,10 @@ public final class KVServiceGrpc {
           break;
         case METHODID_PUT:
           serviceImpl.put((de.tum.grpc_api.ECSProto.PutRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_PUT_BACKUP:
+          serviceImpl.putBackup((de.tum.grpc_api.ECSProto.PutBackupRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_DELETE:
@@ -1233,6 +1299,13 @@ public final class KVServiceGrpc {
               com.google.protobuf.Empty>(
                 service, METHODID_PUT)))
         .addMethod(
+          getPutBackupMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              de.tum.grpc_api.ECSProto.PutBackupRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_PUT_BACKUP)))
+        .addMethod(
           getDeleteMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1337,6 +1410,7 @@ public final class KVServiceGrpc {
               .addMethod(getCopyMethod())
               .addMethod(getGetMethod())
               .addMethod(getPutMethod())
+              .addMethod(getPutBackupMethod())
               .addMethod(getDeleteMethod())
               .addMethod(getHasKeyMethod())
               .addMethod(getInitMethod())

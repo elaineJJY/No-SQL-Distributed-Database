@@ -1,4 +1,4 @@
-package de.tum.server.communication;
+package de.tum.communication;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLOutput;

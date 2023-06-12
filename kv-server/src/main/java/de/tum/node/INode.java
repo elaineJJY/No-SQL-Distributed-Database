@@ -22,6 +22,7 @@ public interface INode {
     public HashMap<String, String> copy(DataType where, Range range) throws Exception;
     public String get(String key) throws Exception;
     public void put(String key, String value) throws Exception;
+    public void putBackup(String key, String value) throws Exception;
     public void delete(String key) throws Exception;
     public boolean hasKey(String key) throws Exception;
 

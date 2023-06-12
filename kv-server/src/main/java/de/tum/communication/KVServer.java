@@ -139,7 +139,7 @@ public class KVServer {
 	 * @param socketChannel
 	 * @throws IOException
 	 */
-	private void putCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void putCommandHandler(INode responsibleNode, INode backupNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 2; i < tokens.length; i++) {
@@ -150,11 +150,13 @@ public class KVServer {
 			}
 			String value = sb.toString();
 			if (responsibleNode.hasKey(tokens[1])) {
+				backupNode.putBackup(tokens[1], value);
 				responsibleNode.put(tokens[1], value);
 				String msg = "put_update " + tokens[1];
 				send(msg, socketChannel);
 			} else {
 				responsibleNode.put(tokens[1], value);
+				backupNode.putBackup(tokens[1], value);
 				String msg = "put_success " + tokens[1];
 				send(msg, socketChannel);
 			}
@@ -173,7 +175,7 @@ public class KVServer {
 
 	private void getCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
-			Object value = responsibleNode.get(tokens[1]);
+			String value = responsibleNode.get(tokens[1]);
 			if (value != null) {
 				String msg = "get_success " + tokens[1] + " " + value;
 				send(msg, socketChannel);
@@ -196,11 +198,11 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void deleteCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void deleteCommandHandler(INode responsibleNode, INode backupNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
-			Object value = node.get(tokens[1]);
+			String value = responsibleNode.get(tokens[1]);
 			if (value != null) {
-				node.delete(tokens[1]);
+				responsibleNode.delete(tokens[1]);
 				String msg = "delete_success " + tokens[1];
 				send(msg, socketChannel);
 			}
@@ -228,12 +230,16 @@ public class KVServer {
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);
 			// TODO: Print Port is not correct
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
+			// Actually get rpcPort
 			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
 		}
+		INode backupNode = metaData.getBackupNodeByKey(key);
+		System.out.println("Backup Node: " + backupNode.getPort());
+
 		switch(tokens[0]) {
-			case "put": putCommandHandler(resopnsibleNode, tokens, socketChannel); break;
+			case "put": putCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel); break;
 			case "get": getCommandHandler(resopnsibleNode, tokens, socketChannel); break;
-			case "delete": deleteCommandHandler(resopnsibleNode, tokens, socketChannel); break;
+			case "delete": deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel); break;
 			case "quit": socketChannel.close(); break;
 			default: send("error Unknown Command", socketChannel);
 		}

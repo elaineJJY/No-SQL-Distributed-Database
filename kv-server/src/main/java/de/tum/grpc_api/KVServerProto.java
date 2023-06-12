@@ -7836,6 +7836,704 @@ java.lang.String defaultValue);
 
   }
 
+  public interface PutBackupRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:PutBackupRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    java.lang.String getKey();
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    com.google.protobuf.ByteString
+        getKeyBytes();
+
+    /**
+     * <code>string value = 2;</code>
+     * @return The value.
+     */
+    java.lang.String getValue();
+    /**
+     * <code>string value = 2;</code>
+     * @return The bytes for value.
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
+  }
+  /**
+   * Protobuf type {@code PutBackupRequest}
+   */
+  public static final class PutBackupRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:PutBackupRequest)
+      PutBackupRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PutBackupRequest.newBuilder() to construct.
+    private PutBackupRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PutBackupRequest() {
+      key_ = "";
+      value_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PutBackupRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_PutBackupRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_PutBackupRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.PutBackupRequest.class, de.tum.grpc_api.KVServerProto.PutBackupRequest.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object key_;
+    /**
+     * <code>string key = 1;</code>
+     * @return The key.
+     */
+    @java.lang.Override
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string key = 1;</code>
+     * @return The bytes for key.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object value_;
+    /**
+     * <code>string value = 2;</code>
+     * @return The value.
+     */
+    @java.lang.Override
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        value_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string value = 2;</code>
+     * @return The bytes for value.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        value_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.PutBackupRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.PutBackupRequest other = (de.tum.grpc_api.KVServerProto.PutBackupRequest) obj;
+
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getValue()
+          .equals(other.getValue())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.PutBackupRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code PutBackupRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:PutBackupRequest)
+        de.tum.grpc_api.KVServerProto.PutBackupRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_PutBackupRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_PutBackupRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.PutBackupRequest.class, de.tum.grpc_api.KVServerProto.PutBackupRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.PutBackupRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        key_ = "";
+
+        value_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_PutBackupRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.PutBackupRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.PutBackupRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.PutBackupRequest build() {
+        de.tum.grpc_api.KVServerProto.PutBackupRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.PutBackupRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.PutBackupRequest result = new de.tum.grpc_api.KVServerProto.PutBackupRequest(this);
+        result.key_ = key_;
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.PutBackupRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.PutBackupRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.PutBackupRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.PutBackupRequest.getDefaultInstance()) return this;
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
+        if (!other.getValue().isEmpty()) {
+          value_ = other.value_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              case 18: {
+                value_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object key_ = "";
+      /**
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object value_ = "";
+      /**
+       * <code>string value = 2;</code>
+       * @return The value.
+       */
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          value_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @return The bytes for value.
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        java.lang.Object ref = value_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          value_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValue(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValue() {
+        
+        value_ = getDefaultInstance().getValue();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string value = 2;</code>
+       * @param value The bytes for value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:PutBackupRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:PutBackupRequest)
+    private static final de.tum.grpc_api.KVServerProto.PutBackupRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.PutBackupRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.PutBackupRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PutBackupRequest>
+        PARSER = new com.google.protobuf.AbstractParser<PutBackupRequest>() {
+      @java.lang.Override
+      public PutBackupRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<PutBackupRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PutBackupRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.PutBackupRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface DeleteRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:DeleteRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -12162,6 +12860,11 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PutRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_PutBackupRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_PutBackupRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_DeleteRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -12226,42 +12929,45 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       "try\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002" +
       " \001(\t:\0028\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013G" +
       "etResponse\022\r\n\005value\030\001 \001(\t\"(\n\nPutRequest\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rDeleteReq" +
-      "uest\022\013\n\003key\030\001 \001(\t\"\034\n\rHasKeyRequest\022\013\n\003ke" +
-      "y\030\001 \001(\t\" \n\016HasKeyResponse\022\016\n\006hasKey\030\001 \001(" +
-      "\010\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(\0132\014.Node" +
-      "Message\"z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003" +
-      "(\0132\034.UpdateRingRequest.RingEntry\0329\n\tRing" +
-      "Entry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.Node" +
-      "Message:\0028\001\"N\n\030DeleteExpiredDataRequest\022" +
-      "\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005range\030\002 " +
-      "\001(\0132\006.Range\">\n\017RegisterRequest\022\032\n\004node\030\001" +
-      " \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* \n\010D" +
-      "ataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\303\006\n\tKVServ" +
-      "ice\0229\n\theartBeat\022\026.google.protobuf.Empty" +
-      "\032\022.HeartBeatResponse\"\000\0221\n\010getRange\022\020.Get" +
-      "RangeRequest\032\021.GetRangeResponse\"\000\022:\n\006equ" +
-      "als\022\026.google.protobuf.Empty\032\026.google.pro" +
-      "tobuf.Empty\"\000\0227\n\010toString\022\026.google.proto" +
-      "buf.Empty\032\021.ToStringResponse\"\000\022@\n\risResp" +
-      "onsible\022\025.IsResponsibleRequest\032\026.IsRespo" +
-      "nsibleResponse\"\000\022%\n\004copy\022\014.CopyRequest\032\r" +
-      ".CopyResponse\"\000\022\"\n\003get\022\013.GetRequest\032\014.Ge" +
-      "tResponse\"\000\022,\n\003put\022\013.PutRequest\032\026.google" +
-      ".protobuf.Empty\"\000\0222\n\006delete\022\016.DeleteRequ" +
-      "est\032\026.google.protobuf.Empty\"\000\022+\n\006hasKey\022" +
-      "\016.HasKeyRequest\032\017.HasKeyResponse\"\000\0228\n\004in" +
-      "it\022\026.google.protobuf.Empty\032\026.google.prot" +
-      "obuf.Empty\"\000\022A\n\rstartKVServer\022\026.google.p" +
-      "rotobuf.Empty\032\026.google.protobuf.Empty\"\000\022" +
-      "4\n\007recover\022\017.RecoverRequest\032\026.google.pro" +
-      "tobuf.Empty\"\000\022:\n\nupdateRing\022\022.UpdateRing" +
-      "Request\032\026.google.protobuf.Empty\"\000\022H\n\021del" +
-      "eteExpiredData\022\031.DeleteExpiredDataReques" +
-      "t\032\026.google.protobuf.Empty\"\0002C\n\tECService" +
-      "\0226\n\010register\022\020.RegisterRequest\032\026.google." +
-      "protobuf.Empty\"\000B\"\n\017de.tum.grpc_apiB\rKVS" +
-      "erverProtoP\000b\006proto3"
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\".\n\020PutBackup" +
+      "Request\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rD" +
+      "eleteRequest\022\013\n\003key\030\001 \001(\t\"\034\n\rHasKeyReque" +
+      "st\022\013\n\003key\030\001 \001(\t\" \n\016HasKeyResponse\022\016\n\006has" +
+      "Key\030\001 \001(\010\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(" +
+      "\0132\014.NodeMessage\"z\n\021UpdateRingRequest\022*\n\004" +
+      "ring\030\001 \003(\0132\034.UpdateRingRequest.RingEntry" +
+      "\0329\n\tRingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(" +
+      "\0132\014.NodeMessage:\0028\001\"N\n\030DeleteExpiredData" +
+      "Request\022\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005" +
+      "range\030\002 \001(\0132\006.Range\">\n\017RegisterRequest\022\032" +
+      "\n\004node\030\001 \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 " +
+      "\001(\005* \n\010DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\375\006" +
+      "\n\tKVService\0229\n\theartBeat\022\026.google.protob" +
+      "uf.Empty\032\022.HeartBeatResponse\"\000\0221\n\010getRan" +
+      "ge\022\020.GetRangeRequest\032\021.GetRangeResponse\"" +
+      "\000\022:\n\006equals\022\026.google.protobuf.Empty\032\026.go" +
+      "ogle.protobuf.Empty\"\000\0227\n\010toString\022\026.goog" +
+      "le.protobuf.Empty\032\021.ToStringResponse\"\000\022@" +
+      "\n\risResponsible\022\025.IsResponsibleRequest\032\026" +
+      ".IsResponsibleResponse\"\000\022%\n\004copy\022\014.CopyR" +
+      "equest\032\r.CopyResponse\"\000\022\"\n\003get\022\013.GetRequ" +
+      "est\032\014.GetResponse\"\000\022,\n\003put\022\013.PutRequest\032" +
+      "\026.google.protobuf.Empty\"\000\0228\n\tputBackup\022\021" +
+      ".PutBackupRequest\032\026.google.protobuf.Empt" +
+      "y\"\000\0222\n\006delete\022\016.DeleteRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022+\n\006hasKey\022\016.HasKeyReques" +
+      "t\032\017.HasKeyResponse\"\000\0228\n\004init\022\026.google.pr" +
+      "otobuf.Empty\032\026.google.protobuf.Empty\"\000\022A" +
+      "\n\rstartKVServer\022\026.google.protobuf.Empty\032" +
+      "\026.google.protobuf.Empty\"\000\0224\n\007recover\022\017.R" +
+      "ecoverRequest\032\026.google.protobuf.Empty\"\000\022" +
+      ":\n\nupdateRing\022\022.UpdateRingRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022H\n\021deleteExpiredData" +
+      "\022\031.DeleteExpiredDataRequest\032\026.google.pro" +
+      "tobuf.Empty\"\0002C\n\tECService\0226\n\010register\022\020" +
+      ".RegisterRequest\032\026.google.protobuf.Empty" +
+      "\"\000B\"\n\017de.tum.grpc_apiB\rKVServerProtoP\000b\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -12353,32 +13059,38 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PutRequest_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_DeleteRequest_descriptor =
+    internal_static_PutBackupRequest_descriptor =
       getDescriptor().getMessageTypes().get(13);
+    internal_static_PutBackupRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_PutBackupRequest_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_DeleteRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
     internal_static_DeleteRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DeleteRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_HasKeyRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_HasKeyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HasKeyRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_HasKeyResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_HasKeyResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HasKeyResponse_descriptor,
         new java.lang.String[] { "HasKey", });
     internal_static_RecoverRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_RecoverRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RecoverRequest_descriptor,
         new java.lang.String[] { "Node", });
     internal_static_UpdateRingRequest_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_UpdateRingRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateRingRequest_descriptor,
@@ -12390,13 +13102,13 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
         internal_static_UpdateRingRequest_RingEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_DeleteExpiredDataRequest_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_DeleteExpiredDataRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DeleteExpiredDataRequest_descriptor,
         new java.lang.String[] { "DataType", "Range", });
     internal_static_RegisterRequest_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,

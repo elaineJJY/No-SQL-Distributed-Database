@@ -21,7 +21,7 @@ public enum ConsistentHash {
 	}
 
 	public void addNode(NodeProxy nodeProxy) throws io.grpc.StatusRuntimeException {
-		String nodeHash = MD5Hash.hash(nodeProxy.toString());
+		String nodeHash = getHash(nodeProxy);
 		// in case of hash collision
 		if (ring.containsKey(nodeHash)) {
 			int i = 1;
@@ -48,14 +48,18 @@ public enum ConsistentHash {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		String nodeHash = getHash(nodeProxy);
+
 		NodeProxy previousNodeProxy = getPreviousNode(nodeProxy);
 		NodeProxy nextNodeProxy = getNextNode(nodeProxy);
 		ring.remove(nodeHash);
+		nodeProxy.closeRpcChannel();
+		System.out.println("Channel of ECS to KVServer<"
+				+ nodeProxy.getHost() + ":" + nodeProxy.getPortForClient() + "> is closed");
 
 		previousNodeProxy.recover(nodeProxy);
 		nextNodeProxy.recover(nodeProxy);
+
 		updateRingForAllNodes(nodeProxy);
 	}
 
@@ -66,13 +70,13 @@ public enum ConsistentHash {
 	 * @return hash value
 	 */
 	public String getHash(NodeProxy nodeProxy) {
-		String nodeHash = MD5Hash.hash(
-				nodeProxy.toString()); // hash value of the node, key is string <ip:port>
+//		String nodeHash = MD5Hash.hash(
+//				nodeProxy.toString()); // hash value of the node, key is string <ip:port>
 //		int i = 1;
 //		while (!ring.get(nodeHash).equals(node)) {
 //			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
 //		}
-		return nodeHash;
+		return MD5Hash.hash(nodeProxy.getHost() + ":" + nodeProxy.getPortForClient());
 	}
 
 	/**
@@ -85,6 +89,7 @@ public enum ConsistentHash {
 		String nodeHash = getHash(nodeProxy);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
 		SortedMap<String, NodeProxy> tailMap = ring.tailMap(nodeHash);
+		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);
 	}

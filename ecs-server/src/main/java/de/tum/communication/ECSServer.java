@@ -40,7 +40,7 @@ public class ECSServer {
         this.executorService = Executors.newCachedThreadPool();
     }
 
-    public void start(boolean helpUsage) throws IOException, InterruptedException {
+    public void start(boolean helpUsage) throws IOException {
         if (helpUsage) Help.helpDisplay();
         executorService = Executors.newFixedThreadPool(15);
         // Start ECS as an RCP server
@@ -89,29 +89,22 @@ public class ECSServer {
                 int portForClient = request.getNode().getPort();
                 int rpcPort = request.getRpcPort();
                 System.out.println(
-                        "ECS receive register request form KVServer: <" + host + ":" + portForClient + ">");
+                        "ECS receive register request form KVServer<" + host + ":" + portForClient + ">");
 
                 Empty response = Empty.newBuilder().build();
                 responseObserver.onNext(response);
                 responseObserver.onCompleted();
 
-                System.out.println("start adding new KVServer");
+                System.out.println("Adding new KVServer<" + host + ":" + portForClient + "> to consistent hash ring");
 
                 // new Thread?
-//                Node node = new Node(Host, rpcPort);
                 NodeProxy node = new NodeProxy(host, rpcPort, portForClient);
                 try {
 //                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);
-//                    // Heartbeat
-//                    while (node.heartbeat() > 0) {
-//                        System.out.println(node.heartbeat());
-//                        Thread.sleep(500);
-//                    }
                 } catch (io.grpc.StatusRuntimeException e) {
                     ConsistentHash.INSTANCE.removeNode(node);
                 }
-                System.out.println("test end");
             });
         }
     }

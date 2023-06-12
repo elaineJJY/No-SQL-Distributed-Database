@@ -234,8 +234,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		String value = request.getValue();
 
 		try {
-			mainDatabase.put(key, value);
-			System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
+			put(key, value);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -243,6 +242,27 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
+
+	public void putBackup(String key, String value) throws Exception {
+		backupDatabase.put(key, value);
+		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
+	}
+
+	@Override
+	public void putBackup(de.tum.grpc_api.KVServerProto.PutBackupRequest request,
+						  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+		String key = request.getKey();
+		String value = request.getValue();
+		try {
+			putBackup(key, value);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		Empty response = Empty.newBuilder().build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
+
 
 	public void delete(String key) throws Exception {
 		mainDatabase.delete(key);
@@ -254,8 +274,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 						  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		String key = request.getKey();
 		try {
-			mainDatabase.delete(key);
-			System.out.println("Delete data on database " + this.port + ": " + key );
+			delete(key);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -286,14 +305,16 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
 	public void init() throws Exception {
         // Data transfer
+		System.out.println("Start Data Transfer");
 		if (ConsistentHash.INSTANCE.getRing().size() != 1) {
 			INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
 			INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+
 			HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
 			mainDatabase.saveAllData(mainData);
+
 			HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.DATA));
-			mainDatabase.saveAllData(backup);
-			System.out.println("test");
+			backupDatabase.saveAllData(backup);
 //			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
 //			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
 		}
@@ -333,37 +354,46 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 
-	public void recover(INode removedNode) throws Exception {
+	public void recover(NodeProxy removedNode) throws Exception {
 
 		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
 
 		// recover data from the removed node
+		// If the removed node is the previous node of this node
 		if (ConsistentHash.INSTANCE.getPreviousNode(this).equals(removedNode)) {
 			INode newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
 			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
-			try {
-				removedNode.heartbeat(); // check whether the removed node is alive
-				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
-			}
-			catch (Exception e) {
-				System.out.println("Node " + removedNode + " is dead");
-				// recover data from the backup
-				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
-			}
+//			try {
+//				removedNode.heartbeat(); // check whether the removed node is alive
+//				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
+//			}
+//			catch (Exception e) {
+//				System.out.println("Node " + removedNode + " is dead");
+//				// recover data from the backup
+//				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+//			}
+			// if work flow goes here, it means the removed node is dead, and we should also close
+			// form this node to the removed node
+			removedNode.closeRpcChannel();
+			mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 		}
+
 		// recover backup from the removed node
+		// If the removed node is the next node of this node
 		if (ConsistentHash.INSTANCE.getNextNode(this).equals(removedNode)) {
 			INode newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
 			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
-			try {
-				removedNode.heartbeat(); // check whether the removed node is alive
-				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
-			}
-			catch (Exception e) {
-				System.out.println("Node " + removedNode + " is dead");
-				// recover data from the backup
-				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
-			}
+//			try {
+//				removedNode.heartbeat(); // check whether the removed node is alive
+//				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
+//			}
+//			catch (Exception e) {
+//				System.out.println("Node " + removedNode + " is dead");
+//				// recover data from the backup
+//				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+//			}
+			removedNode.closeRpcChannel();
+			backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
 		}
 	}
 

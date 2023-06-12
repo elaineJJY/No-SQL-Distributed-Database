@@ -3,6 +3,7 @@ package de.tum.node;
 import com.google.protobuf.Empty;
 import de.tum.grpc_api.KVServerProto;
 import de.tum.grpc_api.KVServiceGrpc;
+import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import java.util.Date;
@@ -22,6 +23,7 @@ public class NodeProxy implements INode {
     private String host;
     private int rpcPort;
     private int portForClient;
+    private final ManagedChannel managedChannel;
     private final KVServiceGrpc.KVServiceBlockingStub stub;
     static Empty emptyRequest = Empty.newBuilder().build();
 
@@ -29,13 +31,14 @@ public class NodeProxy implements INode {
         this.host = host;
         this.rpcPort = rpcPort;
         this.portForClient = portForClient;
-        this.stub = KVServiceGrpc.newBlockingStub(ManagedChannelBuilder.forAddress(host, rpcPort).usePlaintext().build());
+        this.managedChannel = ManagedChannelBuilder.forAddress(host, rpcPort).usePlaintext().build();
+        this.stub = KVServiceGrpc.newBlockingStub(managedChannel);
     }
 
     public String getHost() { return host; }
 
-    public int getPort() { return rpcPort; } // actually getRpcPort
-    public int getPortForClient() { return portForClient; }
+    public int getRpcPort() { return rpcPort; } // actually getRpcPort
+    public int getPort() { return portForClient; }
 
     public long heartbeat() {
         KVServerProto.HeartBeatResponse heartBeatResponse = this.stub.heartBeat(emptyRequest);
@@ -79,7 +82,7 @@ public class NodeProxy implements INode {
                 .setWhere(whereProto).setRange(rangeProto).build();
         //TODO: Check if cast into HashMap<String, String> is safe
         Map<String, String> returnMap = this.stub.copy(request).getDataMap();
-        HashMap<String, String> returnHashMap = null;
+        HashMap<String, String> returnHashMap = new HashMap<>();
         for (Map.Entry<String, String> entry : returnMap.entrySet()) {
             returnHashMap.put(entry.getKey(), entry.getValue());
         }
@@ -97,6 +100,11 @@ public class NodeProxy implements INode {
         this.stub.put(request);
     }
 
+    public void putBackup(String key, String value) throws Exception {
+        KVServerProto.PutBackupRequest request = KVServerProto.PutBackupRequest.newBuilder().setKey(key).setValue(value).build();
+        this.stub.putBackup(request);
+    }
+
     public void delete(String key) throws Exception {
         KVServerProto.DeleteRequest request = KVServerProto.DeleteRequest.newBuilder().setKey(key).build();
         this.stub.delete(request);
@@ -105,5 +113,9 @@ public class NodeProxy implements INode {
     public boolean hasKey(String key) throws Exception {
         KVServerProto.HasKeyRequest request = KVServerProto.HasKeyRequest.newBuilder().setKey(key).build();
         return this.stub.hasKey(request).getHasKey();
+    }
+
+    public void closeRpcChannel() {
+        this.managedChannel.shutdown();
     }
 }
