@@ -9,7 +9,8 @@ import "google/protobuf/any.proto";
 
 message NodeMessage {
   string host = 1;
-  int32 port = 2;
+  int32 rpcPort = 2;
+  int32 portForClient = 3;
 }
 
 message Range {

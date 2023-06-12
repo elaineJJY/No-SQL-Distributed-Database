@@ -75,7 +75,9 @@ public class NodeProxy {
     public void recover(NodeProxy removedNodeProxy) {
         ECSProto.RecoverRequest request = ECSProto.RecoverRequest.newBuilder()
                 .setNode(ECSProto.NodeMessage.newBuilder()
-                        .setHost(removedNodeProxy.getHost()).setPort(removedNodeProxy.getRpcPort())
+                        .setHost(removedNodeProxy.getHost())
+                        .setRpcPort(removedNodeProxy.getRpcPort())
+                        .setPortForClient(removedNodeProxy.getPortForClient())
                         .build())
                 .build();
         this.stub.recover(request);
@@ -87,7 +89,8 @@ public class NodeProxy {
             NodeProxy nodeProxy = entry.getValue();
             ECSProto.NodeMessage.Builder nodeMessageBuilder = ECSProto.NodeMessage.newBuilder()
                     .setHost(nodeProxy.getHost())
-                    .setPort(nodeProxy.getRpcPort());
+                    .setRpcPort(nodeProxy.getRpcPort())
+                    .setPortForClient(nodeProxy.getPortForClient());
             requestBuilder.putRing(entry.getKey(), nodeMessageBuilder.build());
         }
 

@@ -86,8 +86,8 @@ public class ECSServer {
             executorService.execute(() -> {
                 System.out.println("test register starts");
                 String host = request.getNode().getHost();
-                int portForClient = request.getNode().getPort();
                 int rpcPort = request.getRpcPort();
+                int portForClient = request.getNode().getPortForClient();
                 System.out.println(
                         "ECS receive register request form KVServer<" + host + ":" + portForClient + ">");
 
@@ -103,7 +103,9 @@ public class ECSServer {
 //                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);
                 } catch (io.grpc.StatusRuntimeException e) {
-                    ConsistentHash.INSTANCE.removeNode(node);
+                    if (ConsistentHash.INSTANCE.getRing().size() > 1) {
+                        ConsistentHash.INSTANCE.removeNode(node);
+                    }
                 }
             });
         }

@@ -97,7 +97,8 @@ public class App
 
         KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
                 .setHost(address)
-                .setPort(port);
+                .setRpcPort(rpcPort)
+                .setPortForClient(port);
 
         KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
                 .setNode(nodeMessageBuilder.build())

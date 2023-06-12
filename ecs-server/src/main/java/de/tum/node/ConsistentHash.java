@@ -35,7 +35,9 @@ public enum ConsistentHash {
 		updateRingForAllNodes(nodeProxy);
 		if (ring.size() > 1) {
 			getPreviousNode(nodeProxy).deleteExpiredData(DataType.DATA, nodeProxy.getRange(DataType.DATA));
-			getNextNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
+//			getNextNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
+			NodeProxy nextNodeProxy = getNextNode(nodeProxy);
+			nextNodeProxy.deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
 		}
 		nodeProxy.startKVServer();
 	}
@@ -88,7 +90,8 @@ public enum ConsistentHash {
 	public NodeProxy getNextNode(NodeProxy nodeProxy) {
 		String nodeHash = getHash(nodeProxy);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
-		SortedMap<String, NodeProxy> tailMap = ring.tailMap(nodeHash);
+		// TODO: can we copy tailmap
+		SortedMap<String, NodeProxy> tailMap = ring.tailMap(nodeHash + 1);
 		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);

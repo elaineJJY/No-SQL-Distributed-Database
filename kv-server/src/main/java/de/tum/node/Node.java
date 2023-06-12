@@ -357,6 +357,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	public void recover(NodeProxy removedNode) throws Exception {
 
 		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
+		removedNode.closeRpcChannel();
 
 		// recover data from the removed node
 		// If the removed node is the previous node of this node
@@ -374,7 +375,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 //			}
 			// if work flow goes here, it means the removed node is dead, and we should also close
 			// form this node to the removed node
-			removedNode.closeRpcChannel();
 			mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 		}
 
@@ -392,7 +392,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 //				// recover data from the backup
 //				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
 //			}
-			removedNode.closeRpcChannel();
 			backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
 		}
 	}
@@ -401,7 +400,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	public void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
 						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		KVServerProto.NodeMessage nodeProto = request.getNode();
-		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getPort(), this.port);
+		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getRpcPort(), nodeProto.getPortForClient());
 		try {
 			recover(nodeProxy);
 		} catch (Exception e) {
@@ -426,13 +425,14 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		// TODO: NEEDS TO BE IMPROVED
 		for (Map.Entry<String, KVServerProto.NodeMessage> entry : ringNodeMessage.entrySet()) {
 			String key = entry.getKey();
-			KVServerProto.NodeMessage nodeMessaage = entry.getValue();
-			String host = nodeMessaage.getHost();
-			int rpcPort = nodeMessaage.getPort();
-			if (host.equals(this.host)) {
-				ring.put(key, new Node(host, this.port, this.mainDatabase, this.backupDatabase));
+			KVServerProto.NodeMessage nodeMessage = entry.getValue();
+			String host = nodeMessage.getHost();
+			int rpcPort = nodeMessage.getRpcPort();
+			int portForClient = nodeMessage.getPortForClient();
+			if (key == MD5Hash.hash(this.host + ":" + this.port)) {
+				ring.put(key, new Node(host, portForClient, this.mainDatabase, this.backupDatabase));
 			}
-			ring.put(key, new NodeProxy(host, rpcPort, this.port));
+			ring.put(key, new NodeProxy(host, rpcPort, portForClient));
 //			System.out.println("Key: " + key + ", Host: " + host + ", Port: " + this.port);
 		}
 		System.out.println("Update ring: " + ring);

@@ -139,10 +139,16 @@ public final class KVServerProto {
         getHostBytes();
 
     /**
-     * <code>int32 port = 2;</code>
-     * @return The port.
+     * <code>int32 rpcPort = 2;</code>
+     * @return The rpcPort.
      */
-    int getPort();
+    int getRpcPort();
+
+    /**
+     * <code>int32 portForClient = 3;</code>
+     * @return The portForClient.
+     */
+    int getPortForClient();
   }
   /**
    * Protobuf type {@code NodeMessage}
@@ -223,15 +229,26 @@ public final class KVServerProto {
       }
     }
 
-    public static final int PORT_FIELD_NUMBER = 2;
-    private int port_;
+    public static final int RPCPORT_FIELD_NUMBER = 2;
+    private int rpcPort_;
     /**
-     * <code>int32 port = 2;</code>
-     * @return The port.
+     * <code>int32 rpcPort = 2;</code>
+     * @return The rpcPort.
      */
     @java.lang.Override
-    public int getPort() {
-      return port_;
+    public int getRpcPort() {
+      return rpcPort_;
+    }
+
+    public static final int PORTFORCLIENT_FIELD_NUMBER = 3;
+    private int portForClient_;
+    /**
+     * <code>int32 portForClient = 3;</code>
+     * @return The portForClient.
+     */
+    @java.lang.Override
+    public int getPortForClient() {
+      return portForClient_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -251,8 +268,11 @@ public final class KVServerProto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(host_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
       }
-      if (port_ != 0) {
-        output.writeInt32(2, port_);
+      if (rpcPort_ != 0) {
+        output.writeInt32(2, rpcPort_);
+      }
+      if (portForClient_ != 0) {
+        output.writeInt32(3, portForClient_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -266,9 +286,13 @@ public final class KVServerProto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(host_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
       }
-      if (port_ != 0) {
+      if (rpcPort_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, port_);
+          .computeInt32Size(2, rpcPort_);
+      }
+      if (portForClient_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, portForClient_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -287,8 +311,10 @@ public final class KVServerProto {
 
       if (!getHost()
           .equals(other.getHost())) return false;
-      if (getPort()
-          != other.getPort()) return false;
+      if (getRpcPort()
+          != other.getRpcPort()) return false;
+      if (getPortForClient()
+          != other.getPortForClient()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -302,8 +328,10 @@ public final class KVServerProto {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + HOST_FIELD_NUMBER;
       hash = (53 * hash) + getHost().hashCode();
-      hash = (37 * hash) + PORT_FIELD_NUMBER;
-      hash = (53 * hash) + getPort();
+      hash = (37 * hash) + RPCPORT_FIELD_NUMBER;
+      hash = (53 * hash) + getRpcPort();
+      hash = (37 * hash) + PORTFORCLIENT_FIELD_NUMBER;
+      hash = (53 * hash) + getPortForClient();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -434,7 +462,9 @@ public final class KVServerProto {
         super.clear();
         host_ = "";
 
-        port_ = 0;
+        rpcPort_ = 0;
+
+        portForClient_ = 0;
 
         return this;
       }
@@ -463,7 +493,8 @@ public final class KVServerProto {
       public de.tum.grpc_api.KVServerProto.NodeMessage buildPartial() {
         de.tum.grpc_api.KVServerProto.NodeMessage result = new de.tum.grpc_api.KVServerProto.NodeMessage(this);
         result.host_ = host_;
-        result.port_ = port_;
+        result.rpcPort_ = rpcPort_;
+        result.portForClient_ = portForClient_;
         onBuilt();
         return result;
       }
@@ -516,8 +547,11 @@ public final class KVServerProto {
           host_ = other.host_;
           onChanged();
         }
-        if (other.getPort() != 0) {
-          setPort(other.getPort());
+        if (other.getRpcPort() != 0) {
+          setRpcPort(other.getRpcPort());
+        }
+        if (other.getPortForClient() != 0) {
+          setPortForClient(other.getPortForClient());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -551,10 +585,15 @@ public final class KVServerProto {
                 break;
               } // case 10
               case 16: {
-                port_ = input.readInt32();
+                rpcPort_ = input.readInt32();
 
                 break;
               } // case 16
+              case 24: {
+                portForClient_ = input.readInt32();
+
+                break;
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -647,33 +686,64 @@ public final class KVServerProto {
         return this;
       }
 
-      private int port_ ;
+      private int rpcPort_ ;
       /**
-       * <code>int32 port = 2;</code>
-       * @return The port.
+       * <code>int32 rpcPort = 2;</code>
+       * @return The rpcPort.
        */
       @java.lang.Override
-      public int getPort() {
-        return port_;
+      public int getRpcPort() {
+        return rpcPort_;
       }
       /**
-       * <code>int32 port = 2;</code>
-       * @param value The port to set.
+       * <code>int32 rpcPort = 2;</code>
+       * @param value The rpcPort to set.
        * @return This builder for chaining.
        */
-      public Builder setPort(int value) {
+      public Builder setRpcPort(int value) {
         
-        port_ = value;
+        rpcPort_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 port = 2;</code>
+       * <code>int32 rpcPort = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPort() {
+      public Builder clearRpcPort() {
         
-        port_ = 0;
+        rpcPort_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int portForClient_ ;
+      /**
+       * <code>int32 portForClient = 3;</code>
+       * @return The portForClient.
+       */
+      @java.lang.Override
+      public int getPortForClient() {
+        return portForClient_;
+      }
+      /**
+       * <code>int32 portForClient = 3;</code>
+       * @param value The portForClient to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPortForClient(int value) {
+        
+        portForClient_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 portForClient = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPortForClient() {
+        
+        portForClient_ = 0;
         onChanged();
         return this;
       }
@@ -12914,60 +12984,60 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
   static {
     java.lang.String[] descriptorData = {
       "\n\016KVServer.proto\032\033google/protobuf/empty." +
-      "proto\032\031google/protobuf/any.proto\")\n\013Node" +
-      "Message\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"!\n\005R" +
-      "ange\022\014\n\004from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\"&\n\021HeartB" +
-      "eatResponse\022\021\n\ttimestamp\030\001 \001(\003\".\n\017GetRan" +
-      "geRequest\022\033\n\010dataType\030\001 \001(\0162\t.DataType\")" +
-      "\n\020GetRangeResponse\022\025\n\005range\030\001 \001(\0132\006.Rang" +
-      "e\"$\n\020ToStringResponse\022\020\n\010HostPort\030\001 \001(\t\"" +
-      "#\n\024IsResponsibleRequest\022\013\n\003key\030\001 \001(\t\".\n\025" +
-      "IsResponsibleResponse\022\025\n\risResponsible\030\001" +
-      " \001(\010\">\n\013CopyRequest\022\030\n\005where\030\001 \001(\0162\t.Dat" +
-      "aType\022\025\n\005range\030\002 \001(\0132\006.Range\"b\n\014CopyResp" +
-      "onse\022%\n\004data\030\001 \003(\0132\027.CopyResponse.DataEn" +
-      "try\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002" +
-      " \001(\t:\0028\001\"\031\n\nGetRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013G" +
-      "etResponse\022\r\n\005value\030\001 \001(\t\"(\n\nPutRequest\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\".\n\020PutBackup" +
-      "Request\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rD" +
-      "eleteRequest\022\013\n\003key\030\001 \001(\t\"\034\n\rHasKeyReque" +
-      "st\022\013\n\003key\030\001 \001(\t\" \n\016HasKeyResponse\022\016\n\006has" +
-      "Key\030\001 \001(\010\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(" +
-      "\0132\014.NodeMessage\"z\n\021UpdateRingRequest\022*\n\004" +
-      "ring\030\001 \003(\0132\034.UpdateRingRequest.RingEntry" +
-      "\0329\n\tRingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(" +
-      "\0132\014.NodeMessage:\0028\001\"N\n\030DeleteExpiredData" +
-      "Request\022\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005" +
-      "range\030\002 \001(\0132\006.Range\">\n\017RegisterRequest\022\032" +
-      "\n\004node\030\001 \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 " +
-      "\001(\005* \n\010DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\375\006" +
-      "\n\tKVService\0229\n\theartBeat\022\026.google.protob" +
-      "uf.Empty\032\022.HeartBeatResponse\"\000\0221\n\010getRan" +
-      "ge\022\020.GetRangeRequest\032\021.GetRangeResponse\"" +
-      "\000\022:\n\006equals\022\026.google.protobuf.Empty\032\026.go" +
-      "ogle.protobuf.Empty\"\000\0227\n\010toString\022\026.goog" +
-      "le.protobuf.Empty\032\021.ToStringResponse\"\000\022@" +
-      "\n\risResponsible\022\025.IsResponsibleRequest\032\026" +
-      ".IsResponsibleResponse\"\000\022%\n\004copy\022\014.CopyR" +
-      "equest\032\r.CopyResponse\"\000\022\"\n\003get\022\013.GetRequ" +
-      "est\032\014.GetResponse\"\000\022,\n\003put\022\013.PutRequest\032" +
-      "\026.google.protobuf.Empty\"\000\0228\n\tputBackup\022\021" +
-      ".PutBackupRequest\032\026.google.protobuf.Empt" +
-      "y\"\000\0222\n\006delete\022\016.DeleteRequest\032\026.google.p" +
-      "rotobuf.Empty\"\000\022+\n\006hasKey\022\016.HasKeyReques" +
-      "t\032\017.HasKeyResponse\"\000\0228\n\004init\022\026.google.pr" +
-      "otobuf.Empty\032\026.google.protobuf.Empty\"\000\022A" +
-      "\n\rstartKVServer\022\026.google.protobuf.Empty\032" +
-      "\026.google.protobuf.Empty\"\000\0224\n\007recover\022\017.R" +
-      "ecoverRequest\032\026.google.protobuf.Empty\"\000\022" +
-      ":\n\nupdateRing\022\022.UpdateRingRequest\032\026.goog" +
-      "le.protobuf.Empty\"\000\022H\n\021deleteExpiredData" +
-      "\022\031.DeleteExpiredDataRequest\032\026.google.pro" +
-      "tobuf.Empty\"\0002C\n\tECService\0226\n\010register\022\020" +
-      ".RegisterRequest\032\026.google.protobuf.Empty" +
-      "\"\000B\"\n\017de.tum.grpc_apiB\rKVServerProtoP\000b\006" +
-      "proto3"
+      "proto\032\031google/protobuf/any.proto\"C\n\013Node" +
+      "Message\022\014\n\004host\030\001 \001(\t\022\017\n\007rpcPort\030\002 \001(\005\022\025" +
+      "\n\rportForClient\030\003 \001(\005\"!\n\005Range\022\014\n\004from\030\001" +
+      " \001(\t\022\n\n\002to\030\002 \001(\t\"&\n\021HeartBeatResponse\022\021\n" +
+      "\ttimestamp\030\001 \001(\003\".\n\017GetRangeRequest\022\033\n\010d" +
+      "ataType\030\001 \001(\0162\t.DataType\")\n\020GetRangeResp" +
+      "onse\022\025\n\005range\030\001 \001(\0132\006.Range\"$\n\020ToStringR" +
+      "esponse\022\020\n\010HostPort\030\001 \001(\t\"#\n\024IsResponsib" +
+      "leRequest\022\013\n\003key\030\001 \001(\t\".\n\025IsResponsibleR" +
+      "esponse\022\025\n\risResponsible\030\001 \001(\010\">\n\013CopyRe" +
+      "quest\022\030\n\005where\030\001 \001(\0162\t.DataType\022\025\n\005range" +
+      "\030\002 \001(\0132\006.Range\"b\n\014CopyResponse\022%\n\004data\030\001" +
+      " \003(\0132\027.CopyResponse.DataEntry\032+\n\tDataEnt" +
+      "ry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\031\n\nGe" +
+      "tRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013GetResponse\022\r\n\005" +
+      "value\030\001 \001(\t\"(\n\nPutRequest\022\013\n\003key\030\001 \001(\t\022\r" +
+      "\n\005value\030\002 \001(\t\".\n\020PutBackupRequest\022\013\n\003key" +
+      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rDeleteRequest\022\013" +
+      "\n\003key\030\001 \001(\t\"\034\n\rHasKeyRequest\022\013\n\003key\030\001 \001(" +
+      "\t\" \n\016HasKeyResponse\022\016\n\006hasKey\030\001 \001(\010\",\n\016R" +
+      "ecoverRequest\022\032\n\004node\030\001 \001(\0132\014.NodeMessag" +
+      "e\"z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003(\0132\034.U" +
+      "pdateRingRequest.RingEntry\0329\n\tRingEntry\022" +
+      "\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.NodeMessag" +
+      "e:\0028\001\"N\n\030DeleteExpiredDataRequest\022\033\n\010dat" +
+      "aType\030\001 \001(\0162\t.DataType\022\025\n\005range\030\002 \001(\0132\006." +
+      "Range\">\n\017RegisterRequest\022\032\n\004node\030\001 \001(\0132\014" +
+      ".NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* \n\010DataTyp" +
+      "e\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\375\006\n\tKVService\0229\n" +
+      "\theartBeat\022\026.google.protobuf.Empty\032\022.Hea" +
+      "rtBeatResponse\"\000\0221\n\010getRange\022\020.GetRangeR" +
+      "equest\032\021.GetRangeResponse\"\000\022:\n\006equals\022\026." +
+      "google.protobuf.Empty\032\026.google.protobuf." +
+      "Empty\"\000\0227\n\010toString\022\026.google.protobuf.Em" +
+      "pty\032\021.ToStringResponse\"\000\022@\n\risResponsibl" +
+      "e\022\025.IsResponsibleRequest\032\026.IsResponsible" +
+      "Response\"\000\022%\n\004copy\022\014.CopyRequest\032\r.CopyR" +
+      "esponse\"\000\022\"\n\003get\022\013.GetRequest\032\014.GetRespo" +
+      "nse\"\000\022,\n\003put\022\013.PutRequest\032\026.google.proto" +
+      "buf.Empty\"\000\0228\n\tputBackup\022\021.PutBackupRequ" +
+      "est\032\026.google.protobuf.Empty\"\000\0222\n\006delete\022" +
+      "\016.DeleteRequest\032\026.google.protobuf.Empty\"" +
+      "\000\022+\n\006hasKey\022\016.HasKeyRequest\032\017.HasKeyResp" +
+      "onse\"\000\0228\n\004init\022\026.google.protobuf.Empty\032\026" +
+      ".google.protobuf.Empty\"\000\022A\n\rstartKVServe" +
+      "r\022\026.google.protobuf.Empty\032\026.google.proto" +
+      "buf.Empty\"\000\0224\n\007recover\022\017.RecoverRequest\032" +
+      "\026.google.protobuf.Empty\"\000\022:\n\nupdateRing\022" +
+      "\022.UpdateRingRequest\032\026.google.protobuf.Em" +
+      "pty\"\000\022H\n\021deleteExpiredData\022\031.DeleteExpir" +
+      "edDataRequest\032\026.google.protobuf.Empty\"\0002" +
+      "C\n\tECService\0226\n\010register\022\020.RegisterReque" +
+      "st\032\026.google.protobuf.Empty\"\000B\"\n\017de.tum.g" +
+      "rpc_apiB\rKVServerProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -12980,7 +13050,7 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     internal_static_NodeMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_NodeMessage_descriptor,
-        new java.lang.String[] { "Host", "Port", });
+        new java.lang.String[] { "Host", "RpcPort", "PortForClient", });
     internal_static_Range_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Range_fieldAccessorTable = new
