@@ -3,14 +3,11 @@ package de.tum.node;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
-import de.tum.common.MessageBuilder;
-import de.tum.common.ServerLogger;
+import de.tum.common.KVMessageBuilder;
+import de.tum.common.StatusCode;
 import de.tum.communication.KVServer;
 import de.tum.database.IDatabase;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,7 +23,7 @@ public class Node {
 	private IDatabase backupDatabase;
 	private SocketChannel socketChannel;
 
-	// remmote Node
+	// remote Node
 	public Node (String host, int port, SocketChannel socketChannel) {
 		this.host = host;
 		this.port = port;
@@ -46,6 +43,10 @@ public class Node {
 		return socketChannel;
 	}
 
+	public void setSocketChannel(SocketChannel socketChannel) {
+		this.socketChannel = socketChannel;
+	}
+
 	public String getHost() { return host; }
 
 	public int getPort() { return port; }
@@ -60,17 +61,17 @@ public class Node {
 		Node from = null;
 		Node to = null;
 		if (dataType == DataType.DATA) {
-			from = ConsistentHash.INSTANCE.getPreviousNode(this);
+			from = MetaData.INSTANCE.getPreviousNode(this);
 			to = this;
 		}
 		if (dataType == DataType.BACKUP) {
 			from = this;
-			to = ConsistentHash.INSTANCE.getNextNode(this);
+			to = MetaData.INSTANCE.getNextNode(this);
 		}
 		if (from == null || to == null) {
 			throw new NoSuchElementException("No such node");
 		}
-		return new Range(ConsistentHash.INSTANCE.getHash(from), ConsistentHash.INSTANCE.getHash(to));
+		return new Range(MetaData.INSTANCE.getHash(from), MetaData.INSTANCE.getHash(to));
 	}
 
 	/**
@@ -102,15 +103,15 @@ public class Node {
 	 */
 	// isResponsible, copy, get, put, delete will only be called by other KVServer
 	public boolean isResponsible(String key) throws NullPointerException {
-		if (ConsistentHash.INSTANCE.getRing().size() == 1) {
+		if (MetaData.INSTANCE.getRing().size() == 1) {
 			return true;
 		}
 		String keyHash = MD5Hash.hash(key);	//get hash of key
 
-		String currNodeHash = ConsistentHash.INSTANCE.getHash(this);	//get hash of this node
-		SortedMap<String, Node> tailMap = ConsistentHash.INSTANCE.getRing().tailMap(keyHash);
+		String currNodeHash = MetaData.INSTANCE.getHash(this);	//get hash of this node
+		SortedMap<String, Node> tailMap = MetaData.INSTANCE.getRing().tailMap(keyHash);
 		if (tailMap.isEmpty()) {
-			return ConsistentHash.INSTANCE.getRing().firstKey().equals(currNodeHash);
+			return MetaData.INSTANCE.getRing().firstKey().equals(currNodeHash);
 		} else {
 			return tailMap.firstKey().equals(currNodeHash);
 		}
@@ -124,8 +125,8 @@ public class Node {
 	 * @return the data that in this range
 	 */
 	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
-		String response = MessageBuilder.create()
-				.command(MessageBuilder.Command.COPY)
+		String response = KVMessageBuilder.create()
+				.command(KVMessageBuilder.Command.COPY)
 				.dataType(where)
 				.range(range)
 				.sendAndRespond(socketChannel);
@@ -142,9 +143,9 @@ public class Node {
 		System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
 
 		// put data into the backup Node
-		Node backUpNode = ConsistentHash.INSTANCE.getBackupNodeByKey(key);
-		MessageBuilder.create()
-				.command(MessageBuilder.Command.PUT)
+		Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
+		KVMessageBuilder.create()
+				.command(KVMessageBuilder.Command.PUT)
 				.key(key)
 				.value(value)
 				.dataType(DataType.BACKUP)
@@ -161,11 +162,11 @@ public class Node {
 		System.out.println("Delete data on database " + this.port + ": " + key );
 
 		// delete data from backup node
-		MessageBuilder.create()
-				.command(MessageBuilder.Command.DELETE)
+		KVMessageBuilder.create()
+				.command(KVMessageBuilder.Command.DELETE)
 				.key(key)
 				.dataType(DataType.BACKUP)
-				.sendAndRespond(ConsistentHash.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+				.sendAndRespond(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
 	}
 
 	public boolean hasKey(String key) throws Exception {
@@ -176,9 +177,9 @@ public class Node {
 	public void init() throws Exception {
 		// Data transfer
 		System.out.println("Start Data Transfer");
-		if (ConsistentHash.INSTANCE.getRing().size() != 1) {
-			Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-			Node previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+		if (MetaData.INSTANCE.getRing().size() != 1) {
+			Node nextNode = MetaData.INSTANCE.getNextNode(this);
+			Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
 			if (!nextNode.equals(this)) {
 				HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
 				mainDatabase.saveAllData(mainData);
@@ -188,7 +189,11 @@ public class Node {
 				backupDatabase.saveAllData(backup);
 			}
 		}
+		//TODO: notify the ECS that the data transfer is done, and start to update the ring for all the nodes
 		// Start KVServer
+		KVMessageBuilder.create()
+				.statusCode(StatusCode.OK)
+				.sendAndRespond(socketChannel);
 		System.out.println("Start KVServer: " + this.host + ":" + this.port);
 		startKVServer();
 	}
@@ -201,14 +206,14 @@ public class Node {
 	// TODO: Exception
 	public void recover(Node removedNode) throws Exception {
 
-		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
+		String removedHash = MetaData.INSTANCE.getHash(removedNode);
 
 		// recover data from the removed node
 		// If the removed node is the previous node of this node
-		Node previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+		Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
 		if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
-			Node newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
-			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
+			Node newPreviousNode = MetaData.INSTANCE.getPreviousNode(removedNode);
+			Range dataRangeOfRemovedNode = new Range(MetaData.INSTANCE.getHash(newPreviousNode), removedHash);
 //			try {
 //				removedNode.heartbeat(); // check whether the removed node is alive
 //				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
@@ -227,10 +232,10 @@ public class Node {
 
 		// recover backup from the removed node
 		// If the removed node is the next node of this node
-		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
+		Node nextNode = MetaData.INSTANCE.getNextNode(this);
 		if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
-			Node newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
-			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
+			Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode);
+			Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(newNextNode));
 //			try {
 //				removedNode.heartbeat(); // check whether the removed node is alive
 //				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
@@ -246,8 +251,8 @@ public class Node {
 		}
 	}
 
-	public void updateRing(SortedMap<String, Node> ring) throws Exception {
-		ConsistentHash.INSTANCE.update(ring);
+	public void updateMetaData(HashMap<String, String> addrAndHash) throws Exception {
+		MetaData.INSTANCE.update(addrAndHash);
 	}
 
 	public void deleteExpiredData(DataType dataType, Range range) throws Exception {

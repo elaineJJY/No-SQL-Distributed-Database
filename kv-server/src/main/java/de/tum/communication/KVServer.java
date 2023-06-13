@@ -2,8 +2,9 @@ package de.tum.communication;
 
 import com.alibaba.fastjson2.JSON;
 import de.tum.common.KVMessage;
+import de.tum.common.KVMessageBuilder;
 import de.tum.common.ServerLogger;
-import de.tum.node.ConsistentHash;
+import de.tum.node.MetaData;
 import de.tum.node.Node;
 
 import java.io.IOException;
@@ -15,9 +16,11 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class KVServer {
-	private final ConsistentHash metaData;
+	private final MetaData metaData;
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
@@ -28,7 +31,7 @@ public class KVServer {
 	private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
 
 	public KVServer(Node node) {
-		this.metaData = ConsistentHash.INSTANCE;
+		this.metaData = MetaData.INSTANCE;
 		this.node = node;
 	}
 
@@ -79,46 +82,69 @@ public class KVServer {
 		SocketChannel socketChannel = ssChannel.accept();
 		socketChannel.configureBlocking(false);
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
+
 		String message = "Hello client\n";
-		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
-		writeBuffer.put(message.getBytes());
-		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
+		send(message, socketChannel);
+//		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
+//		writeBuffer.put(message.getBytes());
+//		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
 		LOGGER.info("Accept new client: " + socketChannel.getRemoteAddress());
 	}
 
-	private void read(SelectionKey selectionKey) throws Exception {
-		readBuffer.clear(); // clear buffer
-		SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-		int len = socketChannel.read(readBuffer);
-		if (len != -1) {
-			readBuffer.flip(); // reset position
-			byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
-			readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
-
-			String request = new String(bytes).trim();
-
-			String command = request.split(" ")[0];
-			String key = request.split(" ")[1];
-
-			KVMessage msg = JSON.parseObject(request, KVMessage.class);
-
-
-			socketChannel.configureBlocking(false);
-			//key.interestOps(SelectionKey.OP_READ); // 关心读事件?
-			LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
-
-			//String request =  new String(readBuffer.array());
-			LOGGER.info("Received request:" + request);
-			process(request, socketChannel);
-		}
-		else {
-			socketChannel.close(); // close channel
-			key.cancel(); // cancel key
+	public KVMessage requestToKVMessage(String request) {
+		String[] tokens = request.split(" ");
+		if (tokens.length < 3) {
+			String regex = "^(\\w+)\\s*(\\w*)$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(request);
+			if (matcher.find()) {
+				String command = matcher.group(1);
+				String key = matcher.group(2);
+			}
+			return KVMessageBuilder.create().command().key(key).build();
+		} else {
+			String regex = "^(\\w+)\\s+(\\w+)\\s+(.*)$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(request);
+			if (matcher.find()) {
+				String command = matcher.group(1);
+				String key = matcher.group(2);
+				String value = matcher.group(3);
+			}
 		}
 	}
 
-	private void send(KVMessage msg, SocketChannel socketChannel) throws IOException {
-		String newMsg = JSON.toJSONString(msg);
+	private void read(SelectionKey selectionKey) throws Exception {
+		readBuffer.clear();
+		SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
+		int len = socketChannel.read(readBuffer);
+		if (len != -1) {
+			readBuffer.flip();
+			byte[] bytes = new byte[readBuffer.remaining()];
+			readBuffer.get(bytes);
+			String request = new String(bytes);	//receive request from client.
+			socketChannel.configureBlocking(false);
+			LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
+
+			try {
+				LOGGER.info("Register read event from another server: " + socketChannel.getRemoteAddress());
+				LOGGER.info("Received request from another server:" + request);
+				KVMessage msg = JSON.parseObject(request, KVMessage.class);
+				process(msg, socketChannel);
+			} catch (Exception e) {
+				LOGGER.info("Register read event from client: " + socketChannel.getRemoteAddress());
+				LOGGER.info("Received request from Client:" + request);
+				process(requestToKVMessage(request), socketChannel);
+			}
+		}
+		else {
+			socketChannel.close(); // close channel
+			selectionKey.cancel(); // cancel key
+		}
+	}
+
+	private void send(String msg, SocketChannel socketChannel) throws IOException {
+		String newMsg = msg + "\n";
 		socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
 	}
 
@@ -199,12 +225,7 @@ public class KVServer {
 		}
 	}
 
-	/**
-	 * Process request from client which is distributed by read handler
-	 * @param request
-	 * @param socketChannel
-	 * @throws Exception
-	 */
+
 	private void process(KVMessage msg, SocketChannel socketChannel) throws Exception {
 		String command = msg.getCommand();
 		String key = msg.getKey();
@@ -212,7 +233,7 @@ public class KVServer {
 
 		if (!node.isResponsible(key)) {
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
-			send(msg, metaData.getSocketForNode(resopnsibleNode));
+			send(JSON.toJSONString(msg), metaData.getResponsibleNodeByKey(key).getSocketChannel());
 			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
 		}
 

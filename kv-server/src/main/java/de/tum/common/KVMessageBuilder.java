@@ -9,44 +9,48 @@ import java.nio.channels.SocketChannel;
 import de.tum.node.Range;
 
 
-public class MessageBuilder {
+public class KVMessageBuilder {
     private KVMessage message;
 
-    private MessageBuilder() {
+    private KVMessageBuilder() {
         message = new KVMessage();
     }
 
-    public static MessageBuilder create() {
-        return new MessageBuilder();
+    public KVMessage build() {
+        return message;
     }
 
-    public MessageBuilder command(Command command) {
+    public static KVMessageBuilder create() {
+        return new KVMessageBuilder();
+    }
+
+    public KVMessageBuilder command(Command command) {
         message.setCommand(command.toString());
         return this;
     }
 
-    public MessageBuilder key(String key) {
+    public KVMessageBuilder key(String key) {
         message.setKey(key);
         return this;
     }
 
-    public MessageBuilder value(String value) {
+    public KVMessageBuilder value(String value) {
         message.setValue(value);
         return this;
     }
 
-    public MessageBuilder dataType(DataType dataType) {
+    public KVMessageBuilder dataType(DataType dataType) {
         message.setDataType(dataType);
         return this;
     }
 
-    public MessageBuilder range(Range range){
+    public KVMessageBuilder range(Range range){
         message.setRange(range);
         return this;
     }
 
-    public MessageBuilder forwardCount(int forwardCount) {
-        message.setForwardCount(forwardCount);
+    public KVMessageBuilder statusCode(StatusCode statusCode) {
+        message.setStatusCode(statusCode);
         return this;
     }
 
@@ -107,7 +111,6 @@ public class MessageBuilder {
             if (!responseBuffer.hasRemaining()) {
                 responseBuffer = expandBuffer(responseBuffer);
             }
-
             responseBuffer.clear();
         }
 
@@ -123,7 +126,6 @@ public class MessageBuilder {
         newBuffer.put(buffer);
         return newBuffer;
     }
-
 
     public enum Command {
         PUT,

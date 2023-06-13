@@ -1,13 +1,11 @@
 package de.tum.communication;
 
 import de.tum.common.Help;
-import de.tum.grpc_api.ECSProto;
-import de.tum.grpc_api.ECServiceGrpc;
-import de.tum.grpc_api.KVServiceGrpc;
 import de.tum.node.ConsistentHash;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -16,6 +14,8 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.LinkedList;
+import de.tum.node.Node;
 
 /**
  * ClassName: ECSServer
@@ -33,7 +33,7 @@ public class ECSServer {
     private final String address;
     private Selector selector;
     private ServerSocketChannel ecsServerSocketChannel;
-    private LinkedList<SocketChannel>
+    private LinkedList<SocketChannel> closeQueue; // Used when close the queue to transfer data gradually
 
     public ECSServer(String address, int port) {
         this.port = port;
@@ -71,7 +71,7 @@ public class ECSServer {
     }
 
     // accept new server
-    private void accept() throws IOException {
+    private void accept() throws Exception {
         SocketChannel socketChannel = ecsServerSocketChannel.accept();
         socketChannel.configureBlocking(false);
         socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
@@ -82,9 +82,9 @@ public class ECSServer {
         String message = "ECS starts adding KVServer<" + remoteAddress + ":" + remotePort + "> to ring";
 
         send(message, socketChannel);
+        Node node = new Node(remoteAddress, remotePort, socketChannel);
         ConsistentHash.INSTANCE.addNode(node);
-        ConsistentHash.INSTANCE.updateRingForAll();
-        LOGGER.info("Accept new server: " + socketChannel.getRemoteAddress());
+        LOGGER.info("Accept new KVServer<" + remoteAddress + ":" + remotePort);
     }
 
     private void read(SelectionKey key) throws Exception {
@@ -92,26 +92,30 @@ public class ECSServer {
         readBuffer.clear(); // clear buffer
         SocketChannel socketChannel = (SocketChannel) key.channel();
         int len = socketChannel.read(readBuffer);
+        SocketAddress remoteAddress = socketChannel.getRemoteAddress();
+        String remoteHost = ((InetSocketAddress) remoteAddress).getHostString();
+        int remotePort = ((InetSocketAddress) remoteAddress).getPort();
+        String keyOfRing = remoteHost + ":" + remotePort;
+        Node nodeToBeProcessed = ConsistentHash.INSTANCE.getRing().get(keyOfRing);
+
         if (len != -1) {
-            ConsistentHash.INSTANCE.updateRing(node);
-
-            readBuffer.flip(); // reset position
-            byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
-            readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
-            String request = new String(bytes).trim();
-            System.out.println("ECS received: " + request);
-            socketChannel.configureBlocking(false);
-            //key.interestOps(SelectionKey.OP_READ); // 关心读事件?
-            LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
-
-            //String request =  new String(readBuffer.array());
-            LOGGER.info("Received request:" + request);
+            nodeToBeProcessed.updateRing(ConsistentHash.INSTANCE.getRing());
+//            readBuffer.flip(); // reset position
+//            byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
+//            readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
+//            String request = new String(bytes).trim();
+//            System.out.println("ECS received: " + request);
+//            socketChannel.configureBlocking(false);
+//            //key.interestOps(SelectionKey.OP_READ); // 关心读事件?
+//            LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
+//
+//            //String request =  new String(readBuffer.array());
+//            LOGGER.info("Received request:" + request);
         }
         else {
             // Connected KVServer is lost
             socketChannel.close(); // close channel
-            // TODO: how to know which node?
-            ConsistentHash.INSTANCE.removeNode(node);
+            ConsistentHash.INSTANCE.removeNode(nodeToBeProcessed);
             key.cancel(); // cancel key
         }
     }
@@ -126,5 +130,4 @@ public class ECSServer {
         String newMsg = msg + "\n";
         socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
     }
-
 }

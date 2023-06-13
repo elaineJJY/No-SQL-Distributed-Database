@@ -1,8 +1,15 @@
 package de.tum.node;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.TypeReference;
+import de.tum.common.ECSMessage;
+import de.tum.common.ECSMessageBuilder;
+import de.tum.common.StatusCode;
+
 import java.net.Socket;
 import java.nio.channels.SocketChannel;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.Date;
 import java.util.NoSuchElementException;
@@ -38,58 +45,42 @@ public class Node {
     @Override
     public String toString() { return host + ":" + port; }
 
-    public void init() {
-        // ECSMessage
+    public boolean init() throws Exception {
+        String response = ECSMessageBuilder.create()
+                .command(ECSMessage.Command.INIT)
+                .sendAndRespond(this.socketChannel);
+        StatusCode statusCode = JSON.parseObject(response, new TypeReference<StatusCode>() {});
+        return statusCode == StatusCode.OK;
     }
 
-    public void startKVServer() {
-        this.stub.startKVServer(emptyRequest);
+    public void recover(Node removedNode) throws Exception {
+        ECSMessageBuilder.create()
+                .command(ECSMessage.Command.RECOVER)
+                .removedNode(removedNode)
+                .sendAndRespond(this.socketChannel);
     }
 
-    public void recover(Node removedNode) {
-        ECSProto.RecoverRequest request = ECSProto.RecoverRequest.newBuilder()
-                .setNode(ECSProto.NodeMessage.newBuilder()
-                        .setHost(removedNode.getHost())
-                        .setRpcPort(removedNode.getRpcPort())
-                        .setPortForClient(removedNode.getPortForClient())
-                        .build())
-                .build();
-        this.stub.recover(request);
-    }
-
-    public void updateRing(SortedMap<String, Node> ring) {
-        ECSProto.UpdateRingRequest.Builder requestBuilder = ECSProto.UpdateRingRequest.newBuilder();
+    public void updateRing(SortedMap<String, Node> ring) throws Exception {
+        HashMap<String, String> sentRing = new HashMap<>();
         for (Map.Entry<String, Node> entry : ring.entrySet()) {
+            String key = entry.getKey();
             Node node = entry.getValue();
-            ECSProto.NodeMessage.Builder nodeMessageBuilder = ECSProto.NodeMessage.newBuilder()
-                    .setHost(node.getHost())
-                    .setRpcPort(node.getRpcPort())
-                    .setPortForClient(node.getPortForClient());
-            requestBuilder.putRing(entry.getKey(), nodeMessageBuilder.build());
+            String host = node.getHost();
+            int port = node.getPort();
+            sentRing.put(host + ":" + port, key);
         }
-
-        ECSProto.UpdateRingRequest request = requestBuilder.build();
-        this.stub.updateRing(request);
+        ECSMessageBuilder.create()
+                .command(ECSMessage.Command.UPDATE_RING)
+                .ring(sentRing)
+                .sendAndRespond(this.socketChannel);
     }
 
-    public void deleteExpiredData(DataType dataType, Range range) {
-        ECSProto.DeleteExpiredDataRequest.Builder requestBuilder = ECSProto.DeleteExpiredDataRequest.newBuilder();
-
-        ECSProto.DataType dataTypeProto = dataType == DataType.DATA ? ECSProto.DataType.DATA : ECSProto.DataType.BACKUP;
-
-        requestBuilder.setDataType(dataTypeProto)
-                .setRange(ECSProto.Range.newBuilder()
-                        .setFrom(range.getFrom())
-                        .setTo(range.getTo())
-                        .build())
-                .build();
-
-        ECSProto.DeleteExpiredDataRequest request = requestBuilder.build();
-        this.stub.deleteExpiredData(request);
-    }
-
-    public void closeRpcChannel() {
-        this.managedChannel.shutdown();
+    public void deleteExpiredData(DataType dataType, Range range) throws Exception {
+        ECSMessageBuilder.create()
+                .command(ECSMessage.Command.DELETE_EXPIRED_DATA)
+                .dataType(dataType)
+                .range(range)
+                .sendAndRespond(this.socketChannel);
     }
 
     /**

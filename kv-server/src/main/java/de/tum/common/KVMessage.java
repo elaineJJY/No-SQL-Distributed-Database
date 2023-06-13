@@ -6,12 +6,13 @@ import de.tum.node.Range;
 import java.io.Serializable;
 
 public class KVMessage implements Serializable {
+
     private String command;
     private String key;
     private String value;
     private DataType dataType;
-    private int forwardCount;
     private Range range;
+    private StatusCode statusCode;
 
     public Range getRange() {
         return range;
@@ -37,20 +38,20 @@ public class KVMessage implements Serializable {
         this.value = value;
     }
 
-    public DataType getDataType() {
-        return dataType;
-    }
-
     public void setDataType(DataType dataType) {
         this.dataType = dataType;
     }
 
-    public int getForwardCount() {
-        return forwardCount;
+    public DataType getDataType() {
+        return dataType;
     }
 
-    public void setForwardCount(int forwardCount) {
-        this.forwardCount = forwardCount;
+    public StatusCode getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(StatusCode statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getKey() {
@@ -60,6 +61,4 @@ public class KVMessage implements Serializable {
     public void setKey(String key) {
         this.key = key;
     }
-
-
 }

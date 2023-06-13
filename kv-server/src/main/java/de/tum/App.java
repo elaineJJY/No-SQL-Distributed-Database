@@ -58,6 +58,9 @@ public class App
             BackupDatabase backupDatabase = new BackupDatabase();
             backupDatabase.setDirectory(backupDatabaseDir);
             Node node = new Node(address, port, database, backupDatabase);
+
+            //TODO: create a socket channel to connect to ECS,
+            // after adding node and transfer the data, start KvServer, two threads
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());

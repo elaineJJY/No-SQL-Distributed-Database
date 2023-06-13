@@ -5,13 +5,9 @@ import de.tum.node.DataType;
 import de.tum.node.Node;
 import de.tum.node.Range;
 
-import javax.xml.crypto.Data;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.SortedMap;
+import java.util.HashMap;
 import java.nio.channels.SocketChannel;
 
 public class ECSMessageBuilder {
@@ -30,7 +26,7 @@ public class ECSMessageBuilder {
         return this;
     }
 
-    public ECSMessageBuilder ring(SortedMap<String, Node> ring) {
+    public ECSMessageBuilder ring(HashMap<String, String> ring) {
         message.ring = ring; // TODO
         return this;
     }
@@ -45,19 +41,58 @@ public class ECSMessageBuilder {
         return this;
     }
 
-    public ECSMessageBuilder DataType (DataType where){
+    public ECSMessageBuilder dataType (DataType where){
         message.dataType = where;
         return this;
     }
 
-    public ByteBuffer buildByteBuffer() throws IOException {
-        String messageString = JSON.toJSONString(message);
+//    public ByteBuffer buildByteBuffer() throws IOException {
+//        String messageString = JSON.toJSONString(message);
+//        byte[] byteMessage = messageString.getBytes(StandardCharsets.UTF_8);
+//        return ByteBuffer.wrap(byteMessage);
+//    }
+//
+//    public void send(SocketChannel socketChannel) throws IOException {
+//        ByteBuffer buffer = buildByteBuffer();
+//        socketChannel.write(buffer);
+//    }
+
+    public String sendAndRespond(SocketChannel socketChannel) throws Exception {
+        String messageString = JSON.toJSONString(this.message);
         byte[] byteMessage = messageString.getBytes(StandardCharsets.UTF_8);
-        return ByteBuffer.wrap(byteMessage);
+
+        ByteBuffer buffer = ByteBuffer.allocate(byteMessage.length);
+        buffer.put(byteMessage);
+        buffer.flip();
+
+        socketChannel.write(buffer);
+
+        ByteBuffer responseBuffer = ByteBuffer.allocate(1024);
+        StringBuilder responseBuilder = new StringBuilder();
+
+        int bytesRead;
+        while ((bytesRead = socketChannel.read(responseBuffer)) > 0) {
+            responseBuffer.flip();
+            byte[] bytes = new byte[bytesRead];
+            responseBuffer.get(bytes);
+            responseBuilder.append(new String(bytes, StandardCharsets.UTF_8));
+
+            if (!responseBuffer.hasRemaining()) {
+                responseBuffer = expandBuffer(responseBuffer);
+            }
+            responseBuffer.clear();
+        }
+
+        String response = responseBuilder.toString().trim();
+        System.out.println("Received response: " + response);
+
+        return response;
     }
 
-    public void send(SocketChannel socketChannel) throws IOException {
-        ByteBuffer buffer = buildByteBuffer();
-        socketChannel.write(buffer);
+    private ByteBuffer expandBuffer(ByteBuffer buffer) {
+        ByteBuffer newBuffer = ByteBuffer.allocate(buffer.capacity() * 2);
+        buffer.flip();
+        newBuffer.put(buffer);
+        return newBuffer;
     }
 }

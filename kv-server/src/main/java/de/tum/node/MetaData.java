@@ -1,9 +1,6 @@
 package de.tum.node;
 
-import de.tum.common.KVMessage;
-
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.SortedMap;
@@ -18,9 +15,9 @@ import java.util.TreeMap;
  * @Create 2023/6/2 23:37
  * @Version 1.0
  */
-public enum ConsistentHash {
+public enum MetaData {
 	INSTANCE;
-	private SortedMap<String, Node> ring = new TreeMap<>();
+	private SortedMap<String, Node> ring = new TreeMap<>(); // hash and node
 
 	private Node localNode;
 	private void setLocalNode(Node node) {
@@ -34,8 +31,8 @@ public enum ConsistentHash {
 		return ring;
 	}
 
-	public SocketChannel createSocketForNode(Node node) throws Exception {
-		return SocketChannel.open(new InetSocketAddress(node.getHost(), node.getPort()));
+	public SocketChannel createSocket(String host, int port) throws Exception {
+		return SocketChannel.open(new InetSocketAddress(host, port));
 	}
 
 	public String getHash(Node node) {
@@ -47,7 +44,6 @@ public enum ConsistentHash {
 
 		return MD5Hash.hash(node.getHost() + ":" + node.getPort());
 	}
-
 
 	public Node getNextNode(Node node) {
 		String nodeHash = getHash(node);
@@ -86,17 +82,34 @@ public enum ConsistentHash {
 		return text;
 	}
 
-	public void update(SortedMap<String, Node> newRing) throws Exception {
-		// update the socket channel for each node
+	//newRing: <ip:port, hash>
+	public void update(HashMap<String, String> addrAndHash) throws Exception {
+
 		if (ring.isEmpty()) {
-			for (Node node : )
+			for (String address : addrAndHash.keySet()) {
+				String[] hostPort = address.split(":");
+				String host = hostPort[0];
+				int port = Integer.parseInt(hostPort[1]);
+				// create socket channel for each node
+				SocketChannel socketChannel = createSocket(host, port);
+
+				Node node = new Node(host, port, socketChannel);
+				ring.put(getHash(node), node);
+			}
 		}
-		for (Node nodeInNewRing : newRing.values()) {
-			for (Node node : ring.values()) {
-				if (!nodeInNewRing.equals(node)) {
-					ring.remove(getHash(node));
-					ring.put(getHash(nodeInNewRing), nodeInNewRing);
+		for (String address : addrAndHash.keySet()) {
+			for (String addrOfNodesInOldRing : ring.keySet()) {
+				if (address.equals(addrOfNodesInOldRing)) {
+					continue;
 				}
+				String[] hostPort = address.split(":");
+				String host = hostPort[0];
+				int port = Integer.parseInt(hostPort[1]);
+				// create socket channel for each node
+				SocketChannel socketChannel = createSocket(host, port);
+
+				Node node = new Node(host, port, socketChannel);
+				ring.put(getHash(node), node);
 			}
 		}
 	}
@@ -114,9 +127,4 @@ public enum ConsistentHash {
 	public Node getBackupNodeByKey(String key) {
 		return getPreviousNode(getResponsibleNodeByKey(key));
 	}
-
-	public SocketChannel getServerSocketByNode(Node node) {
-		return serverSockets.get(node);
-	}
-
 }

@@ -19,50 +19,61 @@ import java.util.TreeMap;
 public enum ConsistentHash {
 	INSTANCE;
 	private SortedMap<String, Node> ring = new TreeMap<>();
-	private HashMap<Node, SocketChannel> serverSockets = new HashMap<>();
 
-	public SortedMap<String, Node> getRing() {
-		return ring;
-	}
+	public SortedMap<String, Node> getRing() { return ring; }
 
-	public void addNode(NodeProxy nodeProxy) throws io.grpc.StatusRuntimeException {
-		String nodeHash = getHash(nodeProxy);
+	public void addNode(Node node) throws Exception {
+		String nodeHash = getHash(node);
 		// in case of hash collision
 		if (ring.containsKey(nodeHash)) {
 			int i = 1;
 			while (ring.containsKey(nodeHash)) {
-				nodeHash = MD5Hash.hash(nodeProxy.toString() + String.valueOf(i++));
+				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
 			}
 		}
-		ring.put(nodeHash, nodeProxy);
-		nodeProxy.updateRing(ring);
-		nodeProxy.init();
-		updateRingForAllNodes(nodeProxy);
-		if (ring.size() > 1) {
-			getPreviousNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
-			getNextNode(nodeProxy).deleteExpiredData(DataType.DATA, nodeProxy.getRange(DataType.DATA));
+		ring.put(nodeHash, node);
+		node.updateRing(ring);
+		if (node.init()) {
+			updateRingForAllNodes(node);
+			if (ring.size() > 1) {
+				getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
+				getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
+			}
 		}
-		nodeProxy.startKVServer();
+		else {
+			System.out.println("Initialization of KVServer<" + node.getHost() + "> failed");
+			ring.remove(nodeHash);
+		}
 	}
 
-	public SocketChannel createSocketForNode(Node node) throws Exception {
-		return SocketChannel.open(new InetSocketAddress(node.getHost(), node.getPort()));
+	public void removeNode(Node node) throws Exception {
+
+		// if node still alive, set node to read-only
+		try {
+			//TODO
+			// node.setReadOnly();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String nodeHash = getHash(node);
+
+		Node previousNode = getPreviousNode(node);
+		Node nextNode = getNextNode(node);
+		ring.remove(nodeHash);
+		previousNode.recover(node);
+		nextNode.recover(node);
+		updateRingForAllNodes(node);
 	}
 
-	public SocketChannel getSocketForNode(Node node) {
-		return serverSockets.get(node);
-	}
 
 	public String getHash(Node node) {
-//		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
-////		int i = 1;
-//		while (!ring.get(nodeHash).equals(node)) {
-//			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
-//		}
-
-		return MD5Hash.hash(node.getHost() + ":" + node.getPort());
+		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
+		int i = 1;
+		while (!ring.get(nodeHash).equals(node)) {
+			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
+		}
+		return nodeHash;
 	}
-
 
 	public Node getNextNode(Node node) {
 		String nodeHash = getHash(node);
@@ -101,45 +112,12 @@ public enum ConsistentHash {
 		return text;
 	}
 
-	public void update(SortedMap<String, Node> newRing) throws Exception {
-		// update the socket channel for each node
-		if (serverSockets.isEmpty()) {
-			for (Node node: newRing.values()) {
-				SocketChannel socketChannel = createSocketForNode(node);
-				serverSockets.put(node, socketChannel);
+	private void updateRingForAllNodes(Node except) throws Exception {
+		for (Node node : ring.values()) {
+			if (node.equals(except)) {
+				continue;
 			}
-		} else {
-			for (Node node: serverSockets.keySet()) {
-				for (Node nodeInNewRing: newRing.values(
-				)) {
-					if (!node.equals(nodeInNewRing)) {
-						serverSockets.remove(node);
-						SocketChannel socketChannel = createSocketForNode(nodeInNewRing);
-						serverSockets.put(nodeInNewRing, socketChannel);
-					}
-				}
-			}
+			node.updateRing(ring);
 		}
-		// update the ring
-		this.ring = newRing;
 	}
-
-	public Node getResponsibleNodeByKey(String key) {
-		String hash = MD5Hash.hash(key);
-		SortedMap<String, Node> tailMap = ring.tailMap(hash);
-		Node responsibleNode = tailMap.get(tailMap.firstKey());
-		if (tailMap.isEmpty()) {
-			responsibleNode = ring.get(ring.firstKey());
-		}
-		return responsibleNode;
-	}
-
-	public Node getBackupNodeByKey(String key) {
-		return getPreviousNode(getResponsibleNodeByKey(key));
-	}
-
-	public SocketChannel getServerSocketByNode(Node node) {
-		return serverSockets.get(node);
-	}
-
 }
