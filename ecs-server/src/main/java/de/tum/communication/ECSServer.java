@@ -14,9 +14,18 @@ import org.w3c.dom.Node;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.SocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 /**
  * ClassName: ECSServer
@@ -29,85 +38,90 @@ import java.util.concurrent.Executors;
  */
 
 public class ECSServer {
+    private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
     private int port;
     private String address;
-    private Server ecsServer;
-    private ExecutorService executorService;
+    private Selector selector;
+    private ServerSocketChannel ecsServerSocketChannel;
+    private ConsistentHash ring;
 
     public ECSServer(String address, int port) {
         this.port = port;
         this.address = address;
-        this.executorService = Executors.newCachedThreadPool();
     }
 
     public void start(boolean helpUsage) throws IOException {
         if (helpUsage) Help.helpDisplay();
-        executorService = Executors.newFixedThreadPool(15);
-        // Start ECS as an RCP server
-        SocketAddress IpPort = new InetSocketAddress(this.address, this.port);
-        ecsServer = NettyServerBuilder.forAddress(IpPort).addService(new ECSServiceImpl()).build();
-        ecsServer.start();
-        System.out.println("ECS is listening on port " + port);
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                System.err.println("*** Shutting down ECS server since JVM is shutting down ***");
-                ECSServer.this.stop();
-                System.err.println("*** ECS server shut down ***");
-            }
-        });
-    }
+        this.ecsServerSocketChannel = ServerSocketChannel.open();
+        this.ecsServerSocketChannel.configureBlocking(false);
+        ecsServerSocketChannel.bind(new InetSocketAddress(address, port));
+        this.selector = Selector.open();
 
-    public void stop() {
-        if (ecsServer != null) {
-            ecsServer.shutdown();
-        }
-        if (executorService != null) {
-            executorService.shutdown();
-        }
-    }
+        ecsServerSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        LOGGER.info("ECSServer is listening on port " + port + ", ready to receive data from KVServers");
 
-    public void blockUntilShutdown() throws InterruptedException {
-        if (ecsServer != null) {
-            ecsServer.awaitTermination();
-        }
-        if (executorService != null) {
-            executorService.shutdown();
-        }
-    }
-
-    public class ECSServiceImpl extends ECServiceGrpc.ECServiceImplBase {
-        public static final int KV_LISTEN_ECS_PORT = 5200;
-        @Override
-        public void register(de.tum.grpc_api.ECSProto.RegisterRequest request,
-                             io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-            //ExecutorService executorService = Executors.newSingleThreadExecutor();
-            executorService.execute(() -> {
-                System.out.println("test register starts");
-                String host = request.getNode().getHost();
-                int rpcPort = request.getRpcPort();
-                int portForClient = request.getNode().getPortForClient();
-                System.out.println(
-                        "ECS receive register request form KVServer<" + host + ":" + portForClient + ">");
-
-                Empty response = Empty.newBuilder().build();
-                responseObserver.onNext(response);
-                responseObserver.onCompleted();
-
-                System.out.println("Adding new KVServer<" + host + ":" + portForClient + "> to consistent hash ring");
-
-                // new Thread?
-                NodeProxy node = new NodeProxy(host, rpcPort, portForClient);
-                try {
-//                    System.out.println(node.heartbeat());
-                    ConsistentHash.INSTANCE.addNode(node);
-                } catch (io.grpc.StatusRuntimeException e) {
-                    if (ConsistentHash.INSTANCE.getRing().size() > 1) {
-                        ConsistentHash.INSTANCE.removeNode(node);
-                    }
+        while (selector.select() > 0) {
+            Set<SelectionKey> selectionKeys = selector.selectedKeys();
+            Iterator<SelectionKey> selectionKeyIterator = selectionKeys.iterator();
+            while (selectionKeyIterator.hasNext()) {
+                SelectionKey next = selectionKeyIterator.next();
+                if (next.isAcceptable()) {
+                    accept();
+                } else if (next.isReadable()) {
+//                  read();
                 }
-            });
+                selectionKeyIterator.remove();
+            }
         }
     }
+
+    // accept new server
+    private void accept() throws IOException {
+        SocketChannel socketChannel = ecsServerSocketChannel.accept();
+        socketChannel.configureBlocking(false);
+        socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
+
+        String message = "Hello Server, it's ECS here.\n";
+        send(message, socketChannel);
+        // addNode();
+        // MetaUpdate HashMap
+        LOGGER.info("Accept new server: " + socketChannel.getRemoteAddress());
+    }
+
+    private void read(SelectionKey key) throws Exception {
+        ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+        readBuffer.clear(); // clear buffer
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+        int len = socketChannel.read(readBuffer);
+        if (len != -1) {
+            readBuffer.flip(); // reset position
+            byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
+            readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
+            String request = new String(bytes).trim();
+            System.out.println("ECS received: " + request);
+            socketChannel.configureBlocking(false);
+            //key.interestOps(SelectionKey.OP_READ); // 关心读事件?
+            LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
+
+            //String request =  new String(readBuffer.array());
+            LOGGER.info("Received request:" + request);
+        }
+        else {
+            socketChannel.close(); // close channel
+            key.cancel(); // cancel key
+        }
+    }
+
+    /**
+     * Send message to client
+     * @param msg
+     * @param socketChannel
+     * @throws IOException
+     */
+    private void send(String msg, SocketChannel socketChannel) throws IOException {
+        String newMsg = msg + "\n";
+        socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
+    }
+
 }

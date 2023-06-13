@@ -1,16 +1,11 @@
 package de.tum.communication;
 
-import de.tum.common.Help;
 import de.tum.common.ServerLogger;
 import de.tum.node.ConsistentHash;
-
-import de.tum.node.INode;
 import de.tum.node.Node;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -18,17 +13,13 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 import java.util.logging.Logger;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
 
 public class KVServer {
 	private final ConsistentHash metaData;
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
-	private INode node;
+	private Node node;
 
 	// detach read and write buffer
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
@@ -98,6 +89,7 @@ public class KVServer {
 	 * @param key
 	 * @throws Exception
 	 */
+
 	private void read(SelectionKey key) throws Exception {
 		readBuffer.clear(); // clear buffer
 		SocketChannel socketChannel = (SocketChannel) key.channel();
@@ -132,14 +124,13 @@ public class KVServer {
 		String newMsg = msg + "\n";
 		socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
 	}
-
 	/**
 	 * Command Handler for put
 	 * @param tokens
 	 * @param socketChannel
 	 * @throws IOException
 	 */
-	private void putCommandHandler(INode responsibleNode, INode backupNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void putCommandHandler(Node responsibleNode, Node backupNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 2; i < tokens.length; i++) {
@@ -173,7 +164,7 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void getCommandHandler(INode responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void getCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			String value = responsibleNode.get(tokens[1]);
 			if (value != null) {
@@ -198,7 +189,7 @@ public class KVServer {
 	 * @throws IOException
 	 */
 
-	private void deleteCommandHandler(INode responsibleNode, INode backupNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+	private void deleteCommandHandler(Node responsibleNode, Node backupNode, String[] tokens, SocketChannel socketChannel) throws IOException {
 		try {
 			String value = responsibleNode.get(tokens[1]);
 			if (value != null) {
@@ -225,15 +216,15 @@ public class KVServer {
 	private void process(String request, SocketChannel socketChannel) throws Exception {
 		String[] tokens = request.trim().split("\\s+");
 		String key = tokens[1];
-		INode resopnsibleNode = this.node;
+		Node resopnsibleNode = this.node;
 		if (!node.isResponsible(key)) {
-			resopnsibleNode = metaData.getResponsibleServerByKey(key);
+			send(request, socketChannel);
 			// TODO: Print Port is not correct
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
 			// Actually get rpcPort
 			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
 		}
-		INode backupNode = metaData.getBackupNodeByKey(key);
+		Node backupNode = metaData.getBackupNodeByKey(key);
 		System.out.println("Backup Node: " + backupNode.getPort());
 
 		switch(tokens[0]) {

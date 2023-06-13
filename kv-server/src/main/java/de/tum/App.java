@@ -1,17 +1,13 @@
 package de.tum;
 
-import com.google.protobuf.CodedOutputStream;
-import com.google.protobuf.Empty;
 import de.tum.common.Help;
 import de.tum.common.ServerLogger;
-import de.tum.communication.KVServer;
 import de.tum.communication.ParseCommand;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
 import de.tum.grpc_api.ECServiceGrpc;
 import de.tum.grpc_api.KVServerProto;
 import de.tum.node.Node;
-import de.tum.node.NodeProxy;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;

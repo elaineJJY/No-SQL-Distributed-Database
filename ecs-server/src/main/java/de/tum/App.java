@@ -13,14 +13,15 @@ public class App {
 	public static void main(String[] args) throws Exception {
 		// parse args
 		ParseCommand parseCommand = new ParseCommand(args);
-		int port = parseCommand.getPort();
-		String address = parseCommand.getAddress();
+		String bootStrapServerAddress = parseCommand.getBootstrapServerAddress();
 		boolean helpUsage = parseCommand.getHelpUsage();
 		ServerLogger.INSTANCE.init(parseCommand.getLogLevel(), parseCommand.getLogFile(), logger);
 
-		ECSServer ecsServer = new ECSServer(address, port);
+		// start ecs server
+		String ecsHost = bootStrapServerAddress.split(":")[0];
+		int ecsPort = Integer.parseInt(bootStrapServerAddress.split(":")[1]);
+		ECSServer ecsServer = new ECSServer(ecsHost,ecsPort);
 		ecsServer.start(helpUsage);
-		ecsServer.blockUntilShutdown();
 	}
 }
 
