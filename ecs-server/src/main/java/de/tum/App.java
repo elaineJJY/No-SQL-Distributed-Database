@@ -20,7 +20,6 @@ public class App {
 
 		ECSServer ecsServer = new ECSServer(address, port);
 		ecsServer.start(helpUsage);
-
 		ecsServer.blockUntilShutdown();
 	}
 }
