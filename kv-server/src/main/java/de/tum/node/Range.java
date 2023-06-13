@@ -1,6 +1,8 @@
 package de.tum.node;
 
-public class Range {
+import java.io.Serializable;
+
+public class Range implements Serializable {
 	private String from;
 	private String to;
 

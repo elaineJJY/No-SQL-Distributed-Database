@@ -1,4 +1,4 @@
-package de.tum.communication;
+package de.tum.common;
 
 /**
  * ClassName: Help

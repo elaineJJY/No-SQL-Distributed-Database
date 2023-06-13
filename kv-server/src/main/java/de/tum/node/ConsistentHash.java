@@ -1,5 +1,11 @@
 package de.tum.node;
 
+import de.tum.common.KVMessage;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.nio.channels.SocketChannel;
+import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -14,18 +20,24 @@ import java.util.TreeMap;
  */
 public enum ConsistentHash {
 	INSTANCE;
-	/**
-	 * ring: <hash, Node>
-	 */
 	private SortedMap<String, Node> ring = new TreeMap<>();
 
-	public SortedMap<String, Node> getRing() { return ring; }
+	private Node localNode;
+	private void setLocalNode(Node node) {
+		this.localNode = node;
+	}
 
-	/**
-	 * Get the node hash corresponding to the node
-	 * @param node
-	 * @return hash value
-	 */
+	private Node getLocalNode() {
+		return this.localNode;
+	}
+	public SortedMap<String, Node> getRing() {
+		return ring;
+	}
+
+	public SocketChannel createSocketForNode(Node node) throws Exception {
+		return SocketChannel.open(new InetSocketAddress(node.getHost(), node.getPort()));
+	}
+
 	public String getHash(Node node) {
 //		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
 ////		int i = 1;
@@ -36,11 +48,7 @@ public enum ConsistentHash {
 		return MD5Hash.hash(node.getHost() + ":" + node.getPort());
 	}
 
-	/**
-	 * Get the next node given the current node
-	 * @param node
-	 * @return next node
-	 */
+
 	public Node getNextNode(Node node) {
 		String nodeHash = getHash(node);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
@@ -78,20 +86,37 @@ public enum ConsistentHash {
 		return text;
 	}
 
-	public void update(SortedMap<String, Node> ring) {
-		this.ring = ring;
+	public void update(SortedMap<String, Node> newRing) throws Exception {
+		// update the socket channel for each node
+		if (ring.isEmpty()) {
+			for (Node node : )
+		}
+		for (Node nodeInNewRing : newRing.values()) {
+			for (Node node : ring.values()) {
+				if (!nodeInNewRing.equals(node)) {
+					ring.remove(getHash(node));
+					ring.put(getHash(nodeInNewRing), nodeInNewRing);
+				}
+			}
+		}
 	}
 
-	public Node getResponsibleServerByKey(String key) {
+	public Node getResponsibleNodeByKey(String key) {
 		String hash = MD5Hash.hash(key);
 		SortedMap<String, Node> tailMap = ring.tailMap(hash);
+		Node responsibleNode = tailMap.get(tailMap.firstKey());
 		if (tailMap.isEmpty()) {
-			return ring.get(ring.firstKey());
+			responsibleNode = ring.get(ring.firstKey());
 		}
-		return tailMap.get(tailMap.firstKey());
+		return responsibleNode;
 	}
 
 	public Node getBackupNodeByKey(String key) {
-		return getPreviousNode(getResponsibleServerByKey(key));
+		return getPreviousNode(getResponsibleNodeByKey(key));
 	}
+
+	public SocketChannel getServerSocketByNode(Node node) {
+		return serverSockets.get(node);
+	}
+
 }

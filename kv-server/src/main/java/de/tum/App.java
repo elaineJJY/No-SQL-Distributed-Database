@@ -58,63 +58,10 @@ public class App
             BackupDatabase backupDatabase = new BackupDatabase();
             backupDatabase.setDirectory(backupDatabaseDir);
             Node node = new Node(address, port, database, backupDatabase);
-            System.out.println("test before rpc server");
-
-            ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0); // dynamic port
-
-            rpcServerBuilder.addService(node);
-            Server rpcServer = rpcServerBuilder.build();
-            rpcServer.start();
-
-            System.out.println("test after rpc server");
-            int rpcPort = rpcServer.getPort();
-            System.out.println(rpcPort);
-
-            // register to ECS
-            registerHandler(bootStrapServerIP, bootStrapServerPort, address, port, rpcPort);
-            System.out.println("test after register");
-            LOGGER.info("RPC service published on port: " + rpcPort + ", waiting to receive heartbeat from ECS/Other Servers");
-
-//            KVServer kvServer = new KVServer(node);
-//            kvServer.start(address, port);
-            rpcServer.awaitTermination();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
-    }
-
-    public static void registerHandler(String bootStrapServerIP, int bootStrapServerPort, String address, int port, int rpcPort) throws InterruptedException{
-
-        System.out.println("test in registerHandler" + bootStrapServerIP + ":" + bootStrapServerPort + ":"
-                +  ":" + address + ":" + port + ":" +  rpcPort);
-
-        // Register to ECS
-        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(bootStrapServerIP, bootStrapServerPort).usePlaintext().build();
-
-        System.out.println("test in registerHandler" + managedChannel);
-        ECServiceGrpc.ECServiceBlockingStub ecsService = ECServiceGrpc.newBlockingStub(managedChannel);
-        System.out.println("test in registerHandler" + ecsService);
-
-        KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
-                .setHost(address)
-                .setRpcPort(rpcPort)
-                .setPortForClient(port);
-        System.out.println("test in registerHandler" + nodeMessageBuilder);
-
-        KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
-                .setNode(nodeMessageBuilder.build())
-                .setRpcPort(rpcPort)
-                .build();
-
-        System.out.println("test in registerHandler" + registerRequest);
-
-        ecsService.register(registerRequest);
-
-        System.out.println("test register");
-
-        managedChannel.shutdown();
-        LOGGER.info("Register to ECS successfully");
     }
 }
 

@@ -1,21 +1,13 @@
 package de.tum.communication;
 
-import com.google.protobuf.Empty;
+import de.tum.common.Help;
 import de.tum.grpc_api.ECSProto;
 import de.tum.grpc_api.ECServiceGrpc;
 import de.tum.grpc_api.KVServiceGrpc;
 import de.tum.node.ConsistentHash;
-import de.tum.node.NodeProxy;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.Server;
-import io.grpc.netty.NettyServerBuilder;
-import org.w3c.dom.Node;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -23,8 +15,6 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 /**
@@ -39,18 +29,22 @@ import java.util.logging.Logger;
 
 public class ECSServer {
     private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
-    private int port;
-    private String address;
+    private final int port;
+    private final String address;
     private Selector selector;
     private ServerSocketChannel ecsServerSocketChannel;
-    private ConsistentHash ring;
+    private LinkedList<SocketChannel>
 
     public ECSServer(String address, int port) {
         this.port = port;
         this.address = address;
     }
 
-    public void start(boolean helpUsage) throws IOException {
+    public int getPort () { return this.port; }
+
+    public String getAddress() { return this.address; }
+
+    public void start(boolean helpUsage) throws IOException, Exception {
         if (helpUsage) Help.helpDisplay();
 
         this.ecsServerSocketChannel = ServerSocketChannel.open();
@@ -59,7 +53,7 @@ public class ECSServer {
         this.selector = Selector.open();
 
         ecsServerSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-        LOGGER.info("ECSServer is listening on port " + port + ", ready to receive data from KVServers");
+        LOGGER.info("ECSServer is listening on port " + port);
 
         while (selector.select() > 0) {
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
@@ -69,7 +63,7 @@ public class ECSServer {
                 if (next.isAcceptable()) {
                     accept();
                 } else if (next.isReadable()) {
-//                  read();
+                  read(next);
                 }
                 selectionKeyIterator.remove();
             }
@@ -82,10 +76,14 @@ public class ECSServer {
         socketChannel.configureBlocking(false);
         socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
-        String message = "Hello Server, it's ECS here.\n";
+        String remoteAddress = String.valueOf(socketChannel.getRemoteAddress());
+        int remotePort = socketChannel.socket().getPort();
+
+        String message = "ECS starts adding KVServer<" + remoteAddress + ":" + remotePort + "> to ring";
+
         send(message, socketChannel);
-        // addNode();
-        // MetaUpdate HashMap
+        ConsistentHash.INSTANCE.addNode(node);
+        ConsistentHash.INSTANCE.updateRingForAll();
         LOGGER.info("Accept new server: " + socketChannel.getRemoteAddress());
     }
 
@@ -95,6 +93,8 @@ public class ECSServer {
         SocketChannel socketChannel = (SocketChannel) key.channel();
         int len = socketChannel.read(readBuffer);
         if (len != -1) {
+            ConsistentHash.INSTANCE.updateRing(node);
+
             readBuffer.flip(); // reset position
             byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
             readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
@@ -108,7 +108,10 @@ public class ECSServer {
             LOGGER.info("Received request:" + request);
         }
         else {
+            // Connected KVServer is lost
             socketChannel.close(); // close channel
+            // TODO: how to know which node?
+            ConsistentHash.INSTANCE.removeNode(node);
             key.cancel(); // cancel key
         }
     }
