@@ -2,12 +2,13 @@ package de.tum.common;
 
 import de.tum.node.DataType;
 import de.tum.node.Range;
+import org.checkerframework.checker.units.qual.C;
 
 import java.io.Serializable;
 
 public class KVMessage implements Serializable {
 
-    private String command;
+    private Command command;
     private String key;
     private String value;
     private DataType dataType;
@@ -22,12 +23,16 @@ public class KVMessage implements Serializable {
         this.range = range;
     }
 
-    public String getCommand() {
+    public Command getCommand() {
         return command;
     }
 
     public void setCommand(String command) {
-        this.command = command;
+        switch(command) {
+            case "put": this.command = Command.PUT; break;
+            case "get": this.command = Command.GET; break;
+            case "delete": this.command = Command.DELETE; break;
+        }
     }
 
     public String getValue() {
@@ -61,4 +66,13 @@ public class KVMessage implements Serializable {
     public void setKey(String key) {
         this.key = key;
     }
+
+    public enum Command {
+        PUT,
+        GET,
+        COPY,
+        DELETE,
+    }
+
+
 }

@@ -1,10 +1,14 @@
 package de.tum.common;
 
 import com.alibaba.fastjson.JSON;
+import de.tum.communication.ServerLogger;
 import de.tum.node.DataType;
 import de.tum.node.Node;
 import de.tum.node.Range;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -67,6 +71,7 @@ public class ECSMessageBuilder {
 
         socketChannel.write(buffer);
 
+        //Read
         ByteBuffer responseBuffer = ByteBuffer.allocate(1024);
         StringBuilder responseBuilder = new StringBuilder();
 
@@ -95,4 +100,5 @@ public class ECSMessageBuilder {
         newBuffer.put(buffer);
         return newBuffer;
     }
+
 }

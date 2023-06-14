@@ -24,8 +24,12 @@ public class KVMessageBuilder {
         return new KVMessageBuilder();
     }
 
-    public KVMessageBuilder command(Command command) {
+    public KVMessageBuilder command(KVMessage.Command command) {
         message.setCommand(command.toString());
+        return this;
+    }
+    public KVMessageBuilder command(String command) {
+        message.setCommand(command);
         return this;
     }
 
@@ -53,40 +57,6 @@ public class KVMessageBuilder {
         message.setStatusCode(statusCode);
         return this;
     }
-
-//    private String buildMessageString() {
-//        StringBuilder builder = new StringBuilder();
-//        builder.append(message.getCommand()).append(" ");
-//
-//        if (message.getKey() != null) {
-//            builder.append(message.getKey()).append(" ");
-//        }
-//
-//        if (message.getValue() != null) {
-//            builder.append(message.getValue()).append(" ");
-//        }
-//
-//        if (message.getDataType() != null) {
-//            builder.append(message.getDataType().toString()).append(" ");
-//        }
-//
-//        builder.append(message.getForwardCount());
-//
-//        return builder.toString().trim();
-//    }
-
-//    public KVMessage send(SocketChannel socketChannel) throws Exception {
-//        String messageString = buildMessageString();
-//        byte[] byteMessage = messageString.getBytes(StandardCharsets.UTF_8);
-//
-//        ByteBuffer buffer = ByteBuffer.allocate(byteMessage.length);
-//        buffer.put(byteMessage);
-//        buffer.flip();
-//
-//        socketChannel.write(buffer);
-//        
-//        return message;
-//    }
 
     public String sendAndRespond(SocketChannel socketChannel) throws Exception {
         String messageString = JSON.toJSONString(this.message);
@@ -127,10 +97,40 @@ public class KVMessageBuilder {
         return newBuffer;
     }
 
-    public enum Command {
-        PUT,
-        GET,
-        COPY,
-        DELETE,
-    }
+
 }
+
+
+//    private String buildMessageString() {
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(message.getCommand()).append(" ");
+//
+//        if (message.getKey() != null) {
+//            builder.append(message.getKey()).append(" ");
+//        }
+//
+//        if (message.getValue() != null) {
+//            builder.append(message.getValue()).append(" ");
+//        }
+//
+//        if (message.getDataType() != null) {
+//            builder.append(message.getDataType().toString()).append(" ");
+//        }
+//
+//        builder.append(message.getForwardCount());
+//
+//        return builder.toString().trim();
+//    }
+
+//    public KVMessage send(SocketChannel socketChannel) throws Exception {
+//        String messageString = buildMessageString();
+//        byte[] byteMessage = messageString.getBytes(StandardCharsets.UTF_8);
+//
+//        ByteBuffer buffer = ByteBuffer.allocate(byteMessage.length);
+//        buffer.put(byteMessage);
+//        buffer.flip();
+//
+//        socketChannel.write(buffer);
+//
+//        return message;
+//    }

@@ -3,19 +3,20 @@ package de.tum.communication;
 import de.tum.common.Help;
 import de.tum.node.ConsistentHash;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
+import java.io.*;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
+import java.util.concurrent.ExecutorService;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Set;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.LinkedList;
+
 import de.tum.node.Node;
+
 
 /**
  * ClassName: ECSServer
@@ -29,105 +30,113 @@ import de.tum.node.Node;
 
 public class ECSServer {
     private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
-    private final int port;
-    private final String address;
-    private Selector selector;
-    private ServerSocketChannel ecsServerSocketChannel;
-    private LinkedList<SocketChannel> closeQueue; // Used when close the queue to transfer data gradually
+    private final int ecsPort;
+    private final String ecsAddress;
+
+    private static ExecutorService executorService;
+    public static ServerSocket ecsServerSocket;
+    private LinkedList<Socket> closeQueue; // Used when close the queue to transfer data gradually
 
     public ECSServer(String address, int port) {
-        this.port = port;
-        this.address = address;
+        this.ecsPort = port;
+        this.ecsAddress = address;
+        this.executorService = Executors.newFixedThreadPool(15);
     }
 
-    public int getPort () { return this.port; }
+    public int getPort () { return this.ecsPort; }
 
-    public String getAddress() { return this.address; }
+    public String getAddress() { return this.ecsAddress; }
 
-    public void start(boolean helpUsage) throws IOException, Exception {
+    public void start(boolean helpUsage) throws Exception {
         if (helpUsage) Help.helpDisplay();
+        // Start ECS as a server for registering KVServer
+        InetSocketAddress socketAddress = new InetSocketAddress(this.ecsAddress, this.ecsPort);
+        ecsServerSocket = new ServerSocket();
+        ecsServerSocket.bind(socketAddress);
+        System.out.println("ECS is listening on port " + ecsPort);
 
-        this.ecsServerSocketChannel = ServerSocketChannel.open();
-        this.ecsServerSocketChannel.configureBlocking(false);
-        ecsServerSocketChannel.bind(new InetSocketAddress(this.address, this.port));
-        this.selector = Selector.open();
+        Runtime.getRuntime().addShutdownHook(new Thread(ECSServer::shutdown));
 
-        ecsServerSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-        LOGGER.info("ECSServer is listening on port " + port);
+        while (true) {
+            // accept socket from KVServer
+            Socket clientSocket = ecsServerSocket.accept();
+//            String message = "ECS starts adding KVServer<" + remoteAddress + ":" + remotePort + "> to ring";
+            byte[] buffer = new byte[1024];
+            int bytesRead = clientSocket.getInputStream().read(buffer);
+            byte[] address = new byte[bytesRead];
+            System.arraycopy(buffer, 0, address, 0, bytesRead);
 
-        while (selector.select() > 0) {
-            Set<SelectionKey> selectionKeys = selector.selectedKeys();
-            Iterator<SelectionKey> selectionKeyIterator = selectionKeys.iterator();
-            while (selectionKeyIterator.hasNext()) {
-                SelectionKey next = selectionKeyIterator.next();
-                if (next.isAcceptable()) {
-                    accept();
-                } else if (next.isReadable()) {
-                  read(next);
+            String addressString = new String(address);
+            String remoteAddress = addressString.split(":")[0];
+            int remotePort = Integer.parseInt(addressString.split(":")[1]);
+
+//            String remoteAddress = String.valueOf(clientSocket.getInetAddress());
+//            int remotePort = clientSocket.getPort();
+            LOGGER.info("Accept new KVServer <" + remoteAddress + ":" + remotePort + ">");
+
+            // Start to connect to corresponded KVServer
+            SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(remoteAddress, remotePort));
+            socketChannel.configureBlocking(false);
+            Node node = new Node(remoteAddress, remotePort, socketChannel);
+            ConsistentHash.INSTANCE.addNode(node);
+            readKVServer(node);
+        }
+    }
+
+    // Read message from KVServer (Using NIO)
+    private void readKVServer(Node node) throws Exception {
+        executorService.execute(() -> {
+            ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+            readBuffer.clear(); // clear buffer
+            try {
+                int len = node.getSocketChannel().read(readBuffer);
+
+                if (len != -1) {
+                    node.updateRing(ConsistentHash.INSTANCE.getRing());
+                } else {
+                    // Connected KVServer is lost
+                    node.getSocketChannel().close(); // close channel
+                    ConsistentHash.INSTANCE.removeNode(node);
+//            key.cancel(); // cancel key
                 }
-                selectionKeyIterator.remove();
             }
-        }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    // accept new server
-    private void accept() throws Exception {
-        SocketChannel socketChannel = ecsServerSocketChannel.accept();
-        socketChannel.configureBlocking(false);
-        socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
-
-        String remoteAddress = String.valueOf(socketChannel.getRemoteAddress());
-        int remotePort = socketChannel.socket().getPort();
-
-        String message = "ECS starts adding KVServer<" + remoteAddress + ":" + remotePort + "> to ring";
-
-        send(message, socketChannel);
-        Node node = new Node(remoteAddress, remotePort, socketChannel);
-        ConsistentHash.INSTANCE.addNode(node);
-        LOGGER.info("Accept new KVServer<" + remoteAddress + ":" + remotePort);
-    }
-
-    private void read(SelectionKey key) throws Exception {
-        ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-        readBuffer.clear(); // clear buffer
-        SocketChannel socketChannel = (SocketChannel) key.channel();
-        int len = socketChannel.read(readBuffer);
-        SocketAddress remoteAddress = socketChannel.getRemoteAddress();
-        String remoteHost = ((InetSocketAddress) remoteAddress).getHostString();
-        int remotePort = ((InetSocketAddress) remoteAddress).getPort();
-        String keyOfRing = remoteHost + ":" + remotePort;
-        Node nodeToBeProcessed = ConsistentHash.INSTANCE.getRing().get(keyOfRing);
-
-        if (len != -1) {
-            nodeToBeProcessed.updateRing(ConsistentHash.INSTANCE.getRing());
-//            readBuffer.flip(); // reset position
-//            byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
-//            readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
-//            String request = new String(bytes).trim();
-//            System.out.println("ECS received: " + request);
-//            socketChannel.configureBlocking(false);
-//            //key.interestOps(SelectionKey.OP_READ); // 关心读事件?
-//            LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
+//    private void clientHandler(Node node) {
+//        executorService.execute(() -> {
+//            try {
 //
-//            //String request =  new String(readBuffer.array());
-//            LOGGER.info("Received request:" + request);
-        }
-        else {
-            // Connected KVServer is lost
-            socketChannel.close(); // close channel
-            ConsistentHash.INSTANCE.removeNode(nodeToBeProcessed);
-            key.cancel(); // cancel key
-        }
-    }
+//
+//                String message;
+//                while ((message = reader.readLine()) != null) {
+//                    System.out.println("Received message from client: " + message);
+//                    node.updateRing(ConsistentHash.INSTANCE.getRing());
+//                    writer.flush();
+//                }
+//                // Connected KVServer is lost
+//                ConsistentHash.INSTANCE.removeNode(node);
+//                node.getClientSocket().close();
+//            }
+//            catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+//    }
 
-    /**
-     * Send message to client
-     * @param msg
-     * @param socketChannel
-     * @throws IOException
-     */
-    private void send(String msg, SocketChannel socketChannel) throws IOException {
-        String newMsg = msg + "\n";
-        socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
+    private static void shutdown() {
+        // close thread pool
+        executorService.shutdown();
+
+        try {
+            // 等待所有线程完成任务的最长时间
+            executorService.awaitTermination(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("ECS shutdowns complete.");
     }
 }

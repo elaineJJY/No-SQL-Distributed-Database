@@ -25,12 +25,12 @@ public enum ConsistentHash {
 	public void addNode(Node node) throws Exception {
 		String nodeHash = getHash(node);
 		// in case of hash collision
-		if (ring.containsKey(nodeHash)) {
-			int i = 1;
-			while (ring.containsKey(nodeHash)) {
-				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
-			}
-		}
+//		if (ring.containsKey(nodeHash)) {
+//			int i = 1;
+//			while (ring.containsKey(nodeHash)) {
+//				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
+//			}
+//		}
 		ring.put(nodeHash, node);
 		node.updateRing(ring);
 		if (node.init()) {
@@ -68,10 +68,10 @@ public enum ConsistentHash {
 
 	public String getHash(Node node) {
 		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
-		int i = 1;
-		while (!ring.get(nodeHash).equals(node)) {
-			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
-		}
+//		int i = 1;
+//		while (!ring.get(nodeHash).equals(node)) {
+//			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
+//		}
 		return nodeHash;
 	}
 

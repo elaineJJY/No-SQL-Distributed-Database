@@ -9,29 +9,24 @@ public class ECSMessageParser {
         return message;
     }
 
-    public static void processMessage(ECSMessage message, Node localNode) throws Exception {
+    public static StatusCode processMessage(ECSMessage message, Node localNode) throws Exception {
         ECSMessage.Command command = message.command;
-
+        ServerLogger.INSTANCE.getLogger().info("Received Message:" + message.toString());
         switch (command) {
             case UPDATE_RING:
-                localNode.updateMetaData(message.ring);
-                break;
+                return localNode.updateMetaData(message.ring);
 
             case DELETE_EXPIRED_DATA:
-                localNode.deleteExpiredData(message.dataType, message.range);
-                break;
+                return localNode.deleteExpiredData(message.dataType, message.range);
 
             case INIT:
-                localNode.init();
-                break;
+                return localNode.init();
 
             case RECOVER:
-                localNode.recover(message.removedNode);
-                break;
+                return localNode.recover(message.removedNode);
 
             default:
                 throw new UnsupportedOperationException("Unsupported command: " + command);
         }
     }
-
 }

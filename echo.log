@@ -1,20 +1,352 @@
-6月 07, 2023 10:22:29 上午 de.tum.common.ServerLogger init
-INFO: Already initialized loggers using Level INFO
-6月 07, 2023 10:22:30 上午 de.tum.server.cacheDisplacement.LRU <init>
-INFO: Init Cache with strategy LRU
-6月 07, 2023 10:22:30 上午 de.tum.App main
-INFO: Server is starting...
-6月 07, 2023 7:41:19 下午 de.tum.communication.ServerLogger init
-INFO: Already initialized loggers using Level INFO
-6月 07, 2023 7:44:22 下午 de.tum.common.ServerLogger init
-INFO: Already initialized loggers using Level INFO
-6月 07, 2023 7:44:22 下午 de.tum.cacheDisplacement.LRU <init>
-INFO: Init Cache with strategy LRU
-6月 07, 2023 7:44:22 下午 de.tum.App main
-INFO: Server is starting...
-6月 07, 2023 7:44:22 下午 de.tum.App main
-INFO: Server is shutting down...
-6月 11, 2023 10:42:16 上午 de.tum.common.ServerLogger init
+6月 14, 2023 12:21:26 下午 de.tum.communication.ServerLogger init
 信息: Already initialized loggers using Level INFO
-6月 11, 2023 10:42:16 上午 de.tum.cacheDisplacement.LRU <init>
+6月 14, 2023 12:21:27 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:23:21 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:23:21 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:23:42 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:23:42 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:24:12 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:24:12 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:24:28 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:57256:57256
+6月 14, 2023 12:25:40 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:25:40 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:25:45 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:57367>
+6月 14, 2023 12:25:58 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:57387>
+6月 14, 2023 12:31:00 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:31:00 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:31:08 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:31:09 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:39:15 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:57794>
+6月 14, 2023 12:41:30 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:41:30 下午 de.tum.cacheDisplacement.LRU <init>
 信息: Init Cache with strategy LRU
+6月 14, 2023 12:41:30 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 12:41:37 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:41:37 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:41:41 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:58586>
+6月 14, 2023 12:42:02 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:42:02 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:42:54 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:42:55 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:43:16 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:58692>
+6月 14, 2023 12:57:15 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:57:15 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:57:21 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:59788>
+6月 14, 2023 12:57:56 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:57:57 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:58:21 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:59846>
+6月 14, 2023 12:58:39 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:58:39 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 12:58:49 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:59912>
+6月 14, 2023 12:59:37 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 12:59:38 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:00:20 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:59983>
+6月 14, 2023 1:01:06 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:01:06 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:01:16 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:60111>
+6月 14, 2023 1:01:47 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:01:47 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:01:53 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:60163>
+6月 14, 2023 1:02:33 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:02:33 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:03:38 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:03:38 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:03:49 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:03:50 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 1:03:50 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 1:04:03 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:04:03 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:04:12 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:60357>
+6月 14, 2023 1:06:12 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:06:12 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 1:06:12 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 1:06:23 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:06:23 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:09:39 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:61165>
+6月 14, 2023 1:11:44 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:11:44 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:11:49 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:61569>
+6月 14, 2023 1:18:59 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:18:59 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:20:41 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:20:41 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:20:49 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:20:49 下午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152
+6月 14, 2023 1:20:58 下午 de.tum.common.ECSMessageBuilder sendAndRespond
+信息: Build Message{"command":"UPDATE_RING","ring":{"/127.0.0.1:62262:62262":"a9f9ab53f0cb57865fbd666200e4a259"}}
+6月 14, 2023 1:20:58 下午 de.tum.common.ECSMessageBuilder sendAndRespond
+信息: Build Message{"command":"INIT"}
+6月 14, 2023 1:20:58 下午 de.tum.communication.ECSServer accept
+信息: Accept new KVServer</127.0.0.1:62262>
+6月 14, 2023 4:21:14 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:21:14 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 4:21:14 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 14, 2023 4:21:24 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:22:09 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:22:41 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:27:57 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:30:31 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:30:52 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:31:23 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:31:29 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:61917>
+6月 14, 2023 4:32:30 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:32:35 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:62011>
+6月 14, 2023 4:35:38 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:35:47 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:62285>
+6月 14, 2023 4:36:48 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:36:56 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:37:02 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:62393>
+6月 14, 2023 4:42:41 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:42:50 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:62899>
+6月 14, 2023 4:44:43 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:44:43 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 4:44:43 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 4:44:49 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:44:49 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 4:44:49 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 4:44:55 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:44:58 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63117>
+6月 14, 2023 4:44:58 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63117>
+6月 14, 2023 4:45:32 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:45:32 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 4:45:32 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 4:45:37 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:45:41 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63204>
+6月 14, 2023 4:46:05 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:46:05 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 4:46:05 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 14, 2023 4:46:08 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:46:13 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63266>
+6月 14, 2023 4:46:13 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63266>
+6月 14, 2023 4:48:02 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:48:07 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:48:15 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63483>
+6月 14, 2023 4:48:15 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63483>
+6月 14, 2023 4:51:38 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:51:48 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63782>
+6月 14, 2023 4:52:22 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 4:52:26 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63843>
+6月 14, 2023 4:52:26 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:63843>
+6月 14, 2023 5:04:22 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:04:53 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:06:26 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:06:59 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:64985>
+6月 14, 2023 5:07:18 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:10:10 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:14:46 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:14:56 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:14:57 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 14, 2023 5:15:09 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:15:14 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49362>
+6月 14, 2023 5:15:14 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49362>
+6月 14, 2023 5:17:10 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:17:13 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49532>
+6月 14, 2023 5:17:34 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:17:38 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49574>
+6月 14, 2023 5:17:38 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49574>
+6月 14, 2023 5:17:50 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:19:28 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49616>
+6月 14, 2023 5:19:28 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49616>
+6月 14, 2023 5:20:43 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:20:50 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49863>
+6月 14, 2023 5:20:50 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer </127.0.0.1:49863>
+6月 14, 2023 5:22:40 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:22:47 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5152>
+6月 14, 2023 5:22:47 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5152>
+6月 14, 2023 5:23:12 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:23:16 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5152>
+6月 14, 2023 5:23:16 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5152>
+6月 14, 2023 5:24:27 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:24:31 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5152>
+6月 14, 2023 5:27:41 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:27:48 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 14, 2023 5:28:08 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:28:13 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 14, 2023 5:29:39 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:29:42 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 14, 2023 5:31:12 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:31:16 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>
+6月 14, 2023 5:32:35 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:32:45 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>
+6月 14, 2023 5:32:45 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>
+6月 14, 2023 5:39:15 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:39:22 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>
+6月 14, 2023 5:40:33 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:40:41 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:40:55 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:41:02 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>
+6月 14, 2023 5:41:46 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:41:55 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>
+6月 14, 2023 5:43:01 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 5:43:11 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:51530>

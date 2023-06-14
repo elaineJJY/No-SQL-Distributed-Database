@@ -3,6 +3,7 @@ package de.tum.node;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
+import de.tum.common.KVMessage;
 import de.tum.common.KVMessageBuilder;
 import de.tum.common.StatusCode;
 import de.tum.communication.KVServer;
@@ -22,6 +23,7 @@ public class Node {
 	private IDatabase mainDatabase;
 	private IDatabase backupDatabase;
 	private SocketChannel socketChannel;
+	private SocketChannel ecsSocketChannel; //Only for local node
 
 	// remote Node
 	public Node (String host, int port, SocketChannel socketChannel) {
@@ -31,20 +33,22 @@ public class Node {
 	}
 
 	// local Node
-	public Node(String host, int port, IDatabase mainDatabase, IDatabase backupDatabase){
+	public Node(String host, int port, IDatabase mainDatabase, IDatabase backupDatabase) throws Exception {
 		this.host = host;
 		this.port = port;
 		this.mainDatabase = mainDatabase;
 		this.backupDatabase = backupDatabase;
 		socketChannel = null;
+		server = new KVServer(this);
+		server.start(host, port);
 	}
 
 	public SocketChannel getSocketChannel() {
 		return socketChannel;
 	}
 
-	public void setSocketChannel(SocketChannel socketChannel) {
-		this.socketChannel = socketChannel;
+	public void setECSSocketChannel(SocketChannel ecsSocketChannel) {
+		this.ecsSocketChannel = ecsSocketChannel;
 	}
 
 	public String getHost() { return host; }
@@ -126,7 +130,7 @@ public class Node {
 	 */
 	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
 		String response = KVMessageBuilder.create()
-				.command(KVMessageBuilder.Command.COPY)
+				.command(KVMessage.Command.COPY)
 				.dataType(where)
 				.range(range)
 				.sendAndRespond(socketChannel);
@@ -134,39 +138,64 @@ public class Node {
 		return data;
 	}
 
-	public void get(String key) throws Exception {
-		mainDatabase.get(key);
+	public String get(String key) throws Exception {
+		if (isResponsible(key)){
+			return mainDatabase.get(key);
+		}
+		return "";
 	}
 
-	public void put(String key, String value) throws Exception {
-		mainDatabase.put(key, value);
-		System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
+	public StatusCode put(String key, String value) throws Exception {
+		StatusCode code = StatusCode.SERVER_ERROR;
+		try {
+			if (isResponsible(key)){
+				code = mainDatabase.hasKey(key) ? StatusCode.put_update : StatusCode.put_success;
+				mainDatabase.put(key, value);
+				System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
 
-		// put data into the backup Node
-		Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
-		KVMessageBuilder.create()
-				.command(KVMessageBuilder.Command.PUT)
-				.key(key)
-				.value(value)
-				.dataType(DataType.BACKUP)
-				.sendAndRespond(backUpNode.getSocketChannel());
+				// put data into the backup Node
+				Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
+				KVMessageBuilder.create()
+						.command(KVMessage.Command.PUT)
+						.key(key)
+						.value(value)
+						.dataType(DataType.BACKUP)
+						.sendAndRespond(backUpNode.getSocketChannel());
+			}
+		}
+		finally {
+			return code;
+		}
+
 	}
 
-//	public void putBackup(String key, String value) throws Exception {
-//		backupDatabase.put(key, value);
-//		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
-//	}
+	public void putBackup(String key, String value) throws Exception {
+		backupDatabase.put(key, value);
+		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
+	}
+	public void deleteBackup(String key) throws Exception {
+		backupDatabase.delete(key);
+	}
 
-	public void delete(String key) throws Exception {
-		mainDatabase.delete(key);
-		System.out.println("Delete data on database " + this.port + ": " + key );
+	public StatusCode delete(String key) throws Exception {
+		StatusCode code = StatusCode.SERVER_ERROR;
+		try {
+			if (isResponsible(key)){
+				code = mainDatabase.hasKey(key) ? StatusCode.OK : StatusCode.NOT_FOUND;
+				mainDatabase.delete(key);
+				System.out.println("Delete data on database " + this.port + ": " + key );
 
-		// delete data from backup node
-		KVMessageBuilder.create()
-				.command(KVMessageBuilder.Command.DELETE)
-				.key(key)
-				.dataType(DataType.BACKUP)
-				.sendAndRespond(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+				// delete data from backup node
+				KVMessageBuilder.create()
+						.command(KVMessage.Command.DELETE)
+						.key(key)
+						.dataType(DataType.BACKUP)
+						.sendAndRespond(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+			}
+		}
+		finally {
+			return code;
+		}
 	}
 
 	public boolean hasKey(String key) throws Exception {
@@ -174,46 +203,41 @@ public class Node {
 	}
 
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
-	public void init() throws Exception {
-		// Data transfer
-		System.out.println("Start Data Transfer");
-		if (MetaData.INSTANCE.getRing().size() != 1) {
-			Node nextNode = MetaData.INSTANCE.getNextNode(this);
-			Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
-			if (!nextNode.equals(this)) {
-				HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
-				mainDatabase.saveAllData(mainData);
+	public StatusCode init() {
+		try{
+			System.out.println("Start Data Transfer");
+			if (MetaData.INSTANCE.getRing().size() != 1) {
+				Node nextNode = MetaData.INSTANCE.getNextNode(this);
+				Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
+				if (!nextNode.equals(this)) {
+					HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
+					mainDatabase.saveAllData(mainData);
+				}
+				if (!previousNode.equals(this)) {
+					HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
+					backupDatabase.saveAllData(backup);
+				}
 			}
-			if (!previousNode.equals(this)) {
-				HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
-				backupDatabase.saveAllData(backup);
-			}
+			System.out.println("Start KVServer: " + this.host + ":" + this.port);
+			return StatusCode.OK;
+		} catch(Exception e) {
+			System.out.println("Data transfer fail");
+			return StatusCode.SERVER_ERROR;
 		}
-		//TODO: notify the ECS that the data transfer is done, and start to update the ring for all the nodes
-		// Start KVServer
-		KVMessageBuilder.create()
-				.statusCode(StatusCode.OK)
-				.sendAndRespond(socketChannel);
-		System.out.println("Start KVServer: " + this.host + ":" + this.port);
-		startKVServer();
 	}
 
-	public void startKVServer() throws Exception {
-		server = new KVServer(this);
-		server.start(host, port);
-	}
 
 	// TODO: Exception
-	public void recover(Node removedNode) throws Exception {
+	public StatusCode recover(Node removedNode) {
+		try {
+			String removedHash = MetaData.INSTANCE.getHash(removedNode);
 
-		String removedHash = MetaData.INSTANCE.getHash(removedNode);
-
-		// recover data from the removed node
-		// If the removed node is the previous node of this node
-		Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
-		if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
-			Node newPreviousNode = MetaData.INSTANCE.getPreviousNode(removedNode);
-			Range dataRangeOfRemovedNode = new Range(MetaData.INSTANCE.getHash(newPreviousNode), removedHash);
+			// recover data from the removed node
+			// If the removed node is the previous node of this node
+			Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
+			if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
+				Node newPreviousNode = MetaData.INSTANCE.getPreviousNode(removedNode);
+				Range dataRangeOfRemovedNode = new Range(MetaData.INSTANCE.getHash(newPreviousNode), removedHash);
 //			try {
 //				removedNode.heartbeat(); // check whether the removed node is alive
 //				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
@@ -223,19 +247,19 @@ public class Node {
 //				// recover data from the backup
 //				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 //			}
-			// if work flow goes here, it means the removed node is dead, and we should also close
-			// form this node to the removed node
-			if(!newPreviousNode.equals(this)) {
-				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+				// if work flow goes here, it means the removed node is dead, and we should also close
+				// form this node to the removed node
+				if(!newPreviousNode.equals(this)) {
+					mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+				}
 			}
-		}
 
-		// recover backup from the removed node
-		// If the removed node is the next node of this node
-		Node nextNode = MetaData.INSTANCE.getNextNode(this);
-		if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
-			Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode);
-			Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(newNextNode));
+			// recover backup from the removed node
+			// If the removed node is the next node of this node
+			Node nextNode = MetaData.INSTANCE.getNextNode(this);
+			if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
+				Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode);
+				Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(newNextNode));
 //			try {
 //				removedNode.heartbeat(); // check whether the removed node is alive
 //				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
@@ -245,18 +269,32 @@ public class Node {
 //				// recover data from the backup
 //				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
 //			}
-			if (!newNextNode.equals(this)) {
-				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+				if (!newNextNode.equals(this)) {
+					backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+				}
 			}
+			return StatusCode.OK;
+		} catch (Exception e) {
+			return StatusCode.SERVER_ERROR;
 		}
 	}
 
-	public void updateMetaData(HashMap<String, String> addrAndHash) throws Exception {
-		MetaData.INSTANCE.update(addrAndHash);
+	public StatusCode updateMetaData(HashMap<String, String> addrAndHash) throws Exception {
+		try {
+			MetaData.INSTANCE.update(addrAndHash);
+			return StatusCode.OK;
+		} catch (Exception e) {
+			return StatusCode.SERVER_ERROR;
+		}
 	}
 
-	public void deleteExpiredData(DataType dataType, Range range) throws Exception {
-		IDatabase database = dataType == DataType.DATA ? mainDatabase : backupDatabase;
-		database.deleteDataByRange(range);
+	public StatusCode deleteExpiredData(DataType dataType, Range range) throws Exception {
+		try {
+			IDatabase database = dataType == DataType.DATA ? mainDatabase : backupDatabase;
+			database.deleteDataByRange(range);
+			return StatusCode.OK;
+		} catch (Exception e) {
+			return StatusCode.SERVER_ERROR;
+		}
 	}
 }

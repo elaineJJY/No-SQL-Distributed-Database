@@ -5,13 +5,21 @@ import de.tum.common.ServerLogger;
 import de.tum.communication.ParseCommand;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
-import de.tum.grpc_api.ECServiceGrpc;
-import de.tum.grpc_api.KVServerProto;
 import de.tum.node.Node;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 import java.util.logging.Logger;
 
 /**
@@ -57,10 +65,16 @@ public class App
             String backupDatabaseDir = "src/main/java/de/tum/database/data/" + port + "/backupDatabase";
             BackupDatabase backupDatabase = new BackupDatabase();
             backupDatabase.setDirectory(backupDatabaseDir);
-            Node node = new Node(address, port, database, backupDatabase);
 
-            //TODO: create a socket channel to connect to ECS,
-            // after adding node and transfer the data, start KvServer, two threads
+            // register to ECS and sent address of this node to it
+            Socket socket = new Socket(bootStrapServerIP, bootStrapServerPort);
+            OutputStream outputStream = socket.getOutputStream();
+            ByteBuffer byteBuffer = ByteBuffer.wrap((address + ":" + String.valueOf(port)).getBytes());
+            outputStream.write(byteBuffer.array());
+            outputStream.flush();
+
+            // init node and start serve，open NIO server for other client/server/ECS
+            new Node(address, port, database, backupDatabase);
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());

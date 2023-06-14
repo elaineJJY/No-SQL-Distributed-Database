@@ -6,6 +6,8 @@ import de.tum.common.ECSMessage;
 import de.tum.common.ECSMessageBuilder;
 import de.tum.common.StatusCode;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.net.Socket;
 import java.nio.channels.SocketChannel;
 import java.util.Map;
