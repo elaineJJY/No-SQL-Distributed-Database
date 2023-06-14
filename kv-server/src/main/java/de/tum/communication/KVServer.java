@@ -60,8 +60,9 @@ public class KVServer {
 			while (selectionKeyIterator.hasNext()) {
 				SelectionKey next = selectionKeyIterator.next();
 				if (next.isAcceptable()) {
-					System.out.println("Acceptable");
+//					System.out.println("Acceptable");
 					accept(next);
+//					selectionKeyIterator.remove();
 				} else if (next.isReadable()) {
 					read(next);
 				}
@@ -171,6 +172,7 @@ public class KVServer {
 	private void send(String msg, SocketChannel socketChannel) throws IOException {
 		String newMsg = msg + "\n";
 		socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
+		LOGGER.info("Sent:" + newMsg);
 	}
 
 	private void process(KVMessage msg, SocketChannel clientSocketChannel) throws Exception {

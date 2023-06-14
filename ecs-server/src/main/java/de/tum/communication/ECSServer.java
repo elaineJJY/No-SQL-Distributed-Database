@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.util.concurrent.ExecutorService;
 import java.nio.channels.SocketChannel;
 
@@ -16,6 +17,8 @@ import java.util.logging.Logger;
 import java.util.LinkedList;
 
 import de.tum.node.Node;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -40,7 +43,7 @@ public class ECSServer {
     public ECSServer(String address, int port) {
         this.ecsPort = port;
         this.ecsAddress = address;
-        this.executorService = Executors.newFixedThreadPool(15);
+        //this.executorService = Executors.newFixedThreadPool(15);
     }
 
     public int getPort () { return this.ecsPort; }
@@ -77,9 +80,11 @@ public class ECSServer {
             // Start to connect to corresponded KVServer
             SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(remoteAddress, remotePort));
             socketChannel.configureBlocking(false);
+
+
             Node node = new Node(remoteAddress, remotePort, socketChannel);
             ConsistentHash.INSTANCE.addNode(node);
-            readKVServer(node);
+            //readKVServer(node);
         }
     }
 

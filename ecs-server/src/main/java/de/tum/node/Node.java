@@ -5,6 +5,7 @@ import com.alibaba.fastjson2.TypeReference;
 import de.tum.common.ECSMessage;
 import de.tum.common.ECSMessageBuilder;
 import de.tum.common.StatusCode;
+import de.tum.communication.ServerLogger;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -50,7 +51,9 @@ public class Node {
     public boolean init() throws Exception {
         String response = ECSMessageBuilder.create()
                 .command(ECSMessage.Command.INIT)
-                .sendAndRespond(this.socketChannel);
+                .send(this.socketChannel)
+                .receive(this.socketChannel);
+//                .sendAndRespond(this.socketChannel);
         return response.trim().equals("OK");
     }
 
@@ -58,7 +61,9 @@ public class Node {
         ECSMessageBuilder.create()
                 .command(ECSMessage.Command.RECOVER)
                 .removedNode(removedNode)
-                .sendAndRespond(this.socketChannel);
+                .send(this.socketChannel)
+                .receive(this.socketChannel);
+//                .sendAndRespond(this.socketChannel);
     }
 
     public boolean updateRing(SortedMap<String, Node> ring) throws Exception {
@@ -73,7 +78,10 @@ public class Node {
         String response = ECSMessageBuilder.create()
                 .command(ECSMessage.Command.UPDATE_RING)
                 .ring(sentRing)
-                .sendAndRespond(this.socketChannel);
+                .send(this.socketChannel)
+                .receive(this.socketChannel);
+//                .sendAndRespond(this.socketChannel);
+        ServerLogger.INSTANCE.getLogger().info("Update Ring:" + response);
         return response.trim().equals("OK");
     }
 
@@ -82,7 +90,9 @@ public class Node {
                 .command(ECSMessage.Command.DELETE_EXPIRED_DATA)
                 .dataType(dataType)
                 .range(range)
-                .sendAndRespond(this.socketChannel);
+                .send(this.socketChannel)
+                .receive(this.socketChannel);
+//                .sendAndRespond(this.socketChannel);
     }
 
     /**
