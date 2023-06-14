@@ -135,21 +135,26 @@ public class KVServer {
 			readBuffer.get(bytes);
 			String request = new String(bytes);	//receive request from client.
 			socketChannel.configureBlocking(false);
-			LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
 
 			try {
-				LOGGER.info("Register read event from another server: " + socketChannel.getRemoteAddress());
-				LOGGER.info("Received request from another server:" + request);
 				KVMessage msg = JSON.parseObject(request, KVMessage.class);
+				if (msg.getCommand() == null) {
+					throw new Exception("NOT A KVMessage");
+				}
+				LOGGER.info("Received request from SERVER: " + socketChannel.getRemoteAddress() + " Request: " + request);
 				String responseTOKVServer = KVMessageParser.processMessage(msg, this.node);
 				send(responseTOKVServer, socketChannel); // socketChannel = KV-Server
 			} catch (Exception e) {
 				try {
 					ECSMessage msg = JSON.parseObject(request, ECSMessage.class);
+					if (msg.getCommand() == null) {
+						throw new Exception("NOT A ECSMessage");
+					}
+					LOGGER.info("Received request from ECS: " + socketChannel.getRemoteAddress() + " Request: " + request);
 					send(ECSMessageParser.processMessage(msg, this.node).toString(), socketChannel); // socketChannel = ECSServer
 				} catch (Exception exp) {
-					LOGGER.info("Register read event from client: " + socketChannel.getRemoteAddress());
-					LOGGER.info("Received request from Client:" + request);
+					exp.printStackTrace();
+					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
 					process(requestToKVMessage(request), socketChannel); // socketChannel = Client
 				}
 			}

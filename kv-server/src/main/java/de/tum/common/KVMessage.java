@@ -73,6 +73,4 @@ public class KVMessage implements Serializable {
         COPY,
         DELETE,
     }
-
-
 }

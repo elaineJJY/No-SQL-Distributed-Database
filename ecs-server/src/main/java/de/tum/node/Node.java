@@ -62,7 +62,7 @@ public class Node {
                 .sendAndRespond(this.socketChannel);
     }
 
-    public void updateRing(SortedMap<String, Node> ring) throws Exception {
+    public boolean updateRing(SortedMap<String, Node> ring) throws Exception {
         HashMap<String, String> sentRing = new HashMap<>();
         for (Map.Entry<String, Node> entry : ring.entrySet()) {
             String key = entry.getKey();
@@ -71,10 +71,12 @@ public class Node {
             int port = node.getPort();
             sentRing.put(host + ":" + port, key);
         }
-        ECSMessageBuilder.create()
+        String response = ECSMessageBuilder.create()
                 .command(ECSMessage.Command.UPDATE_RING)
                 .ring(sentRing)
                 .sendAndRespond(this.socketChannel);
+        StatusCode statusCode = JSON.parseObject(response, new TypeReference<StatusCode>() {});
+        return statusCode == StatusCode.OK;
     }
 
     public void deleteExpiredData(DataType dataType, Range range) throws Exception {

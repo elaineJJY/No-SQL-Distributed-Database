@@ -39,6 +39,9 @@ public class Node {
 		this.mainDatabase = mainDatabase;
 		this.backupDatabase = backupDatabase;
 		socketChannel = null;
+	}
+
+	public void startKVServer() throws Exception {
 		server = new KVServer(this);
 		server.start(host, port);
 	}

@@ -32,18 +32,35 @@ public enum ConsistentHash {
 //			}
 //		}
 		ring.put(nodeHash, node);
-		node.updateRing(ring);
-		if (node.init()) {
-			updateRingForAllNodes(node);
-			if (ring.size() > 1) {
-				getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
-				getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
-			}
-		}
-		else {
-			System.out.println("Initialization of KVServer<" + node.getHost() + "> failed");
+		boolean updateRingSuccess = node.updateRing(ring);
+		if (!updateRingSuccess) {
 			ring.remove(nodeHash);
+			throw new Exception("Update MetaData of KVServer<" + node.getHost() + "> failed");
 		}
+
+		boolean nodeInitSuccess = node.init();
+		if (!nodeInitSuccess) {
+			ring.remove(nodeHash);
+			throw new Exception("Initialization Node of KVServer<" + node.getHost() + "> failed");
+		}
+
+		updateRingForAllNodes(node);
+		if (ring.size() > 1) {
+			getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
+			getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
+		}
+
+//		if (node.init()) {
+//			updateRingForAllNodes(node);
+//			if (ring.size() > 1) {
+//				getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
+//				getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
+//			}
+//		}
+//		else {
+//			System.out.println("Initialization of KVServer<" + node.getHost() + "> failed");
+//			ring.remove(nodeHash);
+//		}
 	}
 
 	public void removeNode(Node node) throws Exception {

@@ -74,7 +74,8 @@ public class App
             outputStream.flush();
 
             // init node and start serve，open NIO server for other client/server/ECS
-            new Node(address, port, database, backupDatabase);
+            Node node = new Node(address, port, database, backupDatabase);
+            node.startKVServer();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
