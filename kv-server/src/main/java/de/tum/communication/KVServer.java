@@ -81,8 +81,8 @@ public class KVServer {
 		socketChannel.configureBlocking(false);
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
-		String message = "Hello client\n";
-		send(message, socketChannel);
+//		String message = "Hello client\n";
+//		send(message, socketChannel);
 //		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
 //		writeBuffer.put(message.getBytes());
 //		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
@@ -136,6 +136,7 @@ public class KVServer {
 			String request = new String(bytes);	//receive request from client.
 			socketChannel.configureBlocking(false);
 
+			//TODO: optimize the parse process
 			try {
 				KVMessage msg = JSON.parseObject(request, KVMessage.class);
 				if (msg.getCommand() == null) {
@@ -151,7 +152,8 @@ public class KVServer {
 						throw new Exception("NOT A ECSMessage");
 					}
 					LOGGER.info("Received request from ECS: " + socketChannel.getRemoteAddress() + " Request: " + request);
-					send(ECSMessageParser.processMessage(msg, this.node).toString(), socketChannel); // socketChannel = ECSServer
+					StatusCode returnCode = ECSMessageParser.processMessage(msg, this.node);
+					send(returnCode.toString(), socketChannel); // socketChannel = ECSServer
 				} catch (Exception exp) {
 					exp.printStackTrace();
 					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);

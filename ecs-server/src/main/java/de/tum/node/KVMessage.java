@@ -1,18 +1,36 @@
 package de.tum.node;
 
-public class KVMessage {
-    private String command;
+import de.tum.common.StatusCode;
+
+import java.io.Serializable;
+
+public class KVMessage implements Serializable {
+
+    private Command command;
     private String key;
     private String value;
     private DataType dataType;
-    private int forwardCount;
+    private Range range;
+    private StatusCode statusCode;
 
-    public String getCommand() {
+    public Range getRange() {
+        return range;
+    }
+
+    public void setRange(Range range) {
+        this.range = range;
+    }
+
+    public Command getCommand() {
         return command;
     }
 
     public void setCommand(String command) {
-        this.command = command;
+        switch(command) {
+            case "put": this.command = Command.PUT; break;
+            case "get": this.command = Command.GET; break;
+            case "delete": this.command = Command.DELETE; break;
+        }
     }
 
     public String getValue() {
@@ -23,20 +41,20 @@ public class KVMessage {
         this.value = value;
     }
 
-    public DataType getDataType() {
-        return dataType;
-    }
-
     public void setDataType(DataType dataType) {
         this.dataType = dataType;
     }
 
-    public int getForwardCount() {
-        return forwardCount;
+    public DataType getDataType() {
+        return dataType;
     }
 
-    public void setForwardCount(int forwardCount) {
-        this.forwardCount = forwardCount;
+    public StatusCode getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(StatusCode statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getKey() {
@@ -45,5 +63,12 @@ public class KVMessage {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public enum Command {
+        PUT,
+        GET,
+        COPY,
+        DELETE,
     }
 }

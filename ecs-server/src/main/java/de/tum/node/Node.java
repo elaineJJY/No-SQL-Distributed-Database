@@ -51,8 +51,7 @@ public class Node {
         String response = ECSMessageBuilder.create()
                 .command(ECSMessage.Command.INIT)
                 .sendAndRespond(this.socketChannel);
-        StatusCode statusCode = JSON.parseObject(response, new TypeReference<StatusCode>() {});
-        return statusCode == StatusCode.OK;
+        return response.trim().equals("OK");
     }
 
     public void recover(Node removedNode) throws Exception {
@@ -75,8 +74,7 @@ public class Node {
                 .command(ECSMessage.Command.UPDATE_RING)
                 .ring(sentRing)
                 .sendAndRespond(this.socketChannel);
-        StatusCode statusCode = JSON.parseObject(response, new TypeReference<StatusCode>() {});
-        return statusCode == StatusCode.OK;
+        return response.trim().equals("OK");
     }
 
     public void deleteExpiredData(DataType dataType, Range range) throws Exception {
@@ -107,5 +105,4 @@ public class Node {
         }
         return new Range(ConsistentHash.INSTANCE.getHash(from), ConsistentHash.INSTANCE.getHash(to));
     }
-
 }

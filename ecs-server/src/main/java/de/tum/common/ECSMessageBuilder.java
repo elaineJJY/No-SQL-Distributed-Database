@@ -72,26 +72,36 @@ public class ECSMessageBuilder {
         socketChannel.write(buffer);
 
         //Read
-        ByteBuffer responseBuffer = ByteBuffer.allocate(1024);
-        StringBuilder responseBuilder = new StringBuilder();
+//        ByteBuffer responseBuffer = ByteBuffer.allocate(1024);
+//        StringBuilder responseBuilder = new StringBuilder();
+//
+//        int bytesRead;
+//        while ((bytesRead = socketChannel.read(responseBuffer)) > 0) {
+//            responseBuffer.flip();
+//            byte[] bytes = new byte[bytesRead];
+//            responseBuffer.get(bytes);
+//            responseBuilder.append(new String(bytes, StandardCharsets.UTF_8));
+//
+//            if (!responseBuffer.hasRemaining()) {
+//                responseBuffer = expandBuffer(responseBuffer);
+//            }
+//            responseBuffer.clear();
+//        }
+//
+//        String response = responseBuilder.toString().trim();
+//        System.out.println("Received response: " + response);
+        ByteBuffer readbuffer = ByteBuffer.allocate(1024);
+        int bytesRead = 0;
+        do {
+            bytesRead = socketChannel.read(readbuffer);
+        } while (bytesRead == 0);
 
-        int bytesRead;
-        while ((bytesRead = socketChannel.read(responseBuffer)) > 0) {
-            responseBuffer.flip();
-            byte[] bytes = new byte[bytesRead];
-            responseBuffer.get(bytes);
-            responseBuilder.append(new String(bytes, StandardCharsets.UTF_8));
-
-            if (!responseBuffer.hasRemaining()) {
-                responseBuffer = expandBuffer(responseBuffer);
-            }
-            responseBuffer.clear();
-        }
-
-        String response = responseBuilder.toString().trim();
-        System.out.println("Received response: " + response);
-
-        return response;
+        // Read the received bytes into a byte[]
+        byte[] receivedMessage = new byte[bytesRead];
+        readbuffer.flip();
+        readbuffer.get(receivedMessage);
+        System.out.println("Received response: " + new String(receivedMessage, StandardCharsets.UTF_8).trim());
+        return new String(receivedMessage, StandardCharsets.UTF_8);
     }
 
     private ByteBuffer expandBuffer(ByteBuffer buffer) {
