@@ -716,3 +716,17 @@
 信息: Already initialized loggers using Level INFO
 6月 12, 2023 10:48:51 下午 de.tum.communication.ServerLogger init
 信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:49:31 上午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 1:50:05 上午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 10:01:33 上午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 10:02:43 上午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 10:03:11 上午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 10:05:08 上午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 14, 2023 10:05:08 上午 de.tum.communication.ECSServer start
+信息: ECSServer is listening on port 5152

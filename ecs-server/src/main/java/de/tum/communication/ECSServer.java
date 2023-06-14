@@ -49,7 +49,7 @@ public class ECSServer {
 
         this.ecsServerSocketChannel = ServerSocketChannel.open();
         this.ecsServerSocketChannel.configureBlocking(false);
-        ecsServerSocketChannel.bind(new InetSocketAddress(address, port));
+        ecsServerSocketChannel.bind(new InetSocketAddress(this.address, this.port));
         this.selector = Selector.open();
 
         ecsServerSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
