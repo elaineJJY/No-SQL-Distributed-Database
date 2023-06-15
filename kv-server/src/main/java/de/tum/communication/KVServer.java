@@ -1,6 +1,7 @@
 package de.tum.communication;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import de.tum.common.*;
 import de.tum.node.MetaData;
 import de.tum.node.Node;
@@ -84,18 +85,17 @@ public class KVServer {
 //		}
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
-		String message = "Hello client";
+		String message = "Hello client\n";
 		send(message, socketChannel);
 //		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
 //		writeBuffer.put(message.getBytes());
 //		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
-		LOGGER.info("Accept new client: " + socketChannel.getRemoteAddress());
 	}
 
 	public KVMessage requestToKVMessage(String request) {
 		String[] tokens = request.split(" ");
 		if (tokens.length < 3) {
-			String regex = "^(\\w+)\\s*(\\w*)$";
+			String regex = "^(\\w+)\\s+(.*)$";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(request);
 			String command = null;
@@ -109,7 +109,7 @@ public class KVServer {
 			message.setKey(key);
 			return message;
 		} else {
-			String regex = "^(\\w+)\\s+(\\w+)\\s+(.*)$";
+			String regex = "^([a-zA-Z]+)\\s+([^\\s]+)\\s+(.*)$";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(request);
 			String command = null;
@@ -120,10 +120,14 @@ public class KVServer {
 				key = matcher.group(2);
 				value = matcher.group(3);
 			}
+			System.out.println(command);
+			System.out.println(key);
+			System.out.println(value);
 			KVMessage message = new KVMessage();
 			message.parserCommand(command);
 			message.setKey(key);
 			message.setValue(value);
+			System.out.println(JSONObject.toJSONString(message));
 			return message;
 		}
 	}
@@ -159,17 +163,16 @@ public class KVServer {
 					StatusCode returnCode = ECSMessageParser.processMessage(msg, this.node);
 					send(returnCode.toString(), socketChannel); // socketChannel = ECSServer
 				} catch (Exception exp) {
-//					exp.printStackTrace();
-					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
-
+////					exp.printStackTrace();
+//					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
 					// handle keyrange request from client
-					String command = request.split(" ")[0];
-					if (command.equals("keyrange")) {
-						String repsonse = "keyrange_success " + metaData.toString();
+					if (request.contains("keyrange")) {
+						String repsonse = "keyrange_success " + metaData.toString() ;
+						repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
 						send(repsonse, socketChannel);
-						return;// socketChannel = Client
+						LOGGER.info(repsonse);
+						return;
 					}
-
 					process(requestToKVMessage(request), socketChannel); // socketChannel = Client
 				}
 			}
@@ -208,8 +211,10 @@ public class KVServer {
 		}
 		String response = KVMessageParser.processMessage(msg, this.node);
 		send(response, clientSocketChannel);
+	}
+}
 
-		// local command from client
+	// local command from client
 //		switch (command) {
 //			case "put":
 //				putCommandHandler(msg, clientSocketChannel);
@@ -226,7 +231,6 @@ public class KVServer {
 //			default:
 //				send("error Unknown Command", clientSocketChannel);
 //		}
-	}
 
 //	private void putCommandHandler(KVMessage message, SocketChannel socketChannel) throws Exception {
 //		try {
@@ -296,4 +300,3 @@ public class KVServer {
 //		}
 //	}
 
-}

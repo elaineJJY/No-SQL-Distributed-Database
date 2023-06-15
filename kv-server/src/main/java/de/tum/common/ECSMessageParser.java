@@ -11,7 +11,6 @@ public class ECSMessageParser {
 
     public static StatusCode processMessage(ECSMessage message, Node localNode) throws Exception {
         ECSMessage.Command command = message.command;
-        ServerLogger.INSTANCE.getLogger().info("Received Message:" + message.toString());
         switch (command) {
             case UPDATE_RING:
                 return localNode.updateMetaData(message.ring);

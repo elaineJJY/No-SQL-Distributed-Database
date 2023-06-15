@@ -21,7 +21,6 @@ public class KVMessageParser {
     public static String processMessage(KVMessage message, Node localNode) throws Exception {
         KVMessage.Command command = message.getCommand();
         String response = "";
-        ServerLogger.INSTANCE.getLogger().info("Received Command Type:" + command);
         switch (command) {
             case PUT:
                 if (message.getDataType() == DataType.BACKUP) {
@@ -41,7 +40,7 @@ public class KVMessageParser {
 
             case GET:
                 String value = localNode.get(message.getKey());
-                if(value != null || value.equals("") ) {
+                if(value != null) {
                     response = "get_success " + message.getKey() + " " + value;
                 }
                 else{
@@ -70,7 +69,6 @@ public class KVMessageParser {
                 break;
             default:
                 throw new UnsupportedOperationException("Unsupported command: " + command);
-
         }
         return response + "\n";
     }

@@ -1,0 +1,44 @@
+6月 15, 2023 11:52:03 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:52:03 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:52:03 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5156, ready to receive data from KVClient
+6月 15, 2023 11:52:04 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56548 Request: {"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56548 Request: {"command":"INIT"}
+6月 15, 2023 11:52:06 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{}
+6月 15, 2023 11:52:06 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{}
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:52:07 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:52:22 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56552 Request: {"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 11:52:22 下午 de.tum.node.Node putBackup
+信息: Put backup data on database 5156 <tum:1>
+6月 15, 2023 11:52:22 下午 de.tum.communication.KVServer send
+信息: Sent:updated Backup
+
+6月 15, 2023 11:52:32 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56552 Request: {"command":"PUT","key":"sunday","statusCode":"REDIRECT","value":"4"}
+6月 15, 2023 11:52:32 下午 de.tum.node.Node put
+信息: Put data on database 5156 <sunday:4>
+6月 15, 2023 11:52:32 下午 de.tum.communication.KVServer send
+信息: Sent:put_success sunday
+

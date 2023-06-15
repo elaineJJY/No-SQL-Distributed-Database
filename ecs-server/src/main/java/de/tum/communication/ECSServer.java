@@ -104,13 +104,16 @@ public class ECSServer {
                 ByteBuffer readBuffer = ByteBuffer.allocate(1024);
                 readBuffer.clear(); // clear buffer
                 try {
+                    Thread.sleep(1000);
                     int len = node.getSocketChannel().read(readBuffer);
                     if (len == -1) {
                         System.out.println("KVServer<" + node.getHost() + ":" + node.getPort() + "> is closed");
                         node.getSocketChannel().close(); // close channel
                         ConsistentHash.INSTANCE.removeNode(node);
+                        Thread.currentThread().interrupt();
                     }
-                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
                 catch (Exception e) {
                     throw new RuntimeException(e);

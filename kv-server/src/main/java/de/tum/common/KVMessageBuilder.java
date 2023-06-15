@@ -75,7 +75,6 @@ public class KVMessageBuilder {
         do {
             bytesWritten = socketChannel.write(byteBuffer);
         } while (bytesWritten > 0 && byteBuffer.hasRemaining());
-        LOGGER.info("Sent:" + messageString.trim());
         return this;
     }
 
@@ -91,41 +90,7 @@ public class KVMessageBuilder {
         byte[] receivedMessage = new byte[bytesRead];
         buffer.flip();
         buffer.get(receivedMessage);
-        LOGGER.info( "For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage).trim());
         return new String(receivedMessage);
-    }
-
-
-    public String sendAndRespond(SocketChannel socketChannel) throws Exception {
-        String messageString = JSON.toJSONString(this.message);
-        byte[] byteMessage = messageString.getBytes(StandardCharsets.UTF_8);
-
-        ByteBuffer buffer = ByteBuffer.allocate(byteMessage.length);
-        buffer.put(byteMessage);
-        buffer.flip();
-
-        socketChannel.write(buffer);
-        
-        ByteBuffer responseBuffer = ByteBuffer.allocate(1024); 
-        StringBuilder responseBuilder = new StringBuilder();
-
-        int bytesRead;
-        while ((bytesRead = socketChannel.read(responseBuffer)) > 0) {
-            responseBuffer.flip();
-            byte[] bytes = new byte[bytesRead];
-            responseBuffer.get(bytes);
-            responseBuilder.append(new String(bytes, StandardCharsets.UTF_8));
-            
-            if (!responseBuffer.hasRemaining()) {
-                responseBuffer = expandBuffer(responseBuffer);
-            }
-            responseBuffer.clear();
-        }
-
-        String response = responseBuilder.toString().trim();
-        System.out.println("Received response: " + response);
-
-        return response;
     }
 
     private ByteBuffer expandBuffer(ByteBuffer buffer) {
@@ -135,40 +100,4 @@ public class KVMessageBuilder {
         return newBuffer;
     }
 
-
 }
-
-
-//    private String buildMessageString() {
-//        StringBuilder builder = new StringBuilder();
-//        builder.append(message.getCommand()).append(" ");
-//
-//        if (message.getKey() != null) {
-//            builder.append(message.getKey()).append(" ");
-//        }
-//
-//        if (message.getValue() != null) {
-//            builder.append(message.getValue()).append(" ");
-//        }
-//
-//        if (message.getDataType() != null) {
-//            builder.append(message.getDataType().toString()).append(" ");
-//        }
-//
-//        builder.append(message.getForwardCount());
-//
-//        return builder.toString().trim();
-//    }
-
-//    public KVMessage send(SocketChannel socketChannel) throws Exception {
-//        String messageString = buildMessageString();
-//        byte[] byteMessage = messageString.getBytes(StandardCharsets.UTF_8);
-//
-//        ByteBuffer buffer = ByteBuffer.allocate(byteMessage.length);
-//        buffer.put(byteMessage);
-//        buffer.flip();
-//
-//        socketChannel.write(buffer);
-//
-//        return message;
-//    }

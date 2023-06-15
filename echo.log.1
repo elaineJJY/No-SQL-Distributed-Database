@@ -7890,3 +7890,1831 @@ Jun 15, 2023 2:38:48 PM de.tum.common.KVMessageBuilder send
 INFO: Sent:{"command":"GET","key":"mmr","statusCode":"REDIRECT"}
 Jun 15, 2023 2:38:48 PM de.tum.App main
 SEVERE: Server init failed: Connection reset
+6月 15, 2023 9:23:24 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 9:23:24 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 9:23:24 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 9:23:25 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:23:25 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52049
+6月 15, 2023 9:23:26 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52049 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:23:26 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 9:23:26 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:23:26 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52049 Request: {"command":"INIT"}
+6月 15, 2023 9:23:26 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 9:23:26 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52057
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52057 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:23:36 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52057 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:23:36 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52049 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:23:36 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 9:23:36 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52049 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:23:36 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52049 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:23:36 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 9:23:36 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:26:39 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 9:26:39 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 9:26:39 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 9:26:40 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:26:40 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52118
+6月 15, 2023 9:26:40 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52118 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:26:40 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 9:26:40 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:26:40 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52118 Request: {"command":"INIT"}
+6月 15, 2023 9:26:40 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 9:26:40 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52124
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52124 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:26:44 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52124 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:26:44 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52118 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:26:44 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 9:26:44 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52118 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:26:44 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52118 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:26:44 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 9:26:44 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:30:26 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 9:30:26 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 9:30:26 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 9:30:27 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:30:27 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52219
+6月 15, 2023 9:30:28 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52219 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:30:28 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 9:30:28 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:30:28 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52219 Request: {"command":"INIT"}
+6月 15, 2023 9:30:28 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 9:30:28 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52230
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52230 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:30:34 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52230 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:30:34 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52219 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:30:34 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 9:30:34 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52219 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:30:34 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52219 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:30:34 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 9:30:34 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:30:52 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:30:52 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52242
+6月 15, 2023 9:30:57 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:52242 Request: keyrange
+6月 15, 2023 9:30:57 下午 de.tum.communication.KVServer send
+信息: Sent:keyrange_success 5c5078e3230df60803c9186f9bf0ae1e,37586c477a3ac69772c7e28b9bccc13e,localhost:5153;37586c477a3ac69772c7e28b9bccc13e,5c5078e3230df60803c9186f9bf0ae1e,localhost:5154
+
+6月 15, 2023 9:30:57 下午 de.tum.communication.KVServer read
+信息: keyrange_success 5c5078e3230df60803c9186f9bf0ae1e,37586c477a3ac69772c7e28b9bccc13e,localhost:5153;37586c477a3ac69772c7e28b9bccc13e,5c5078e3230df60803c9186f9bf0ae1e,localhost:5154
+
+6月 15, 2023 9:40:11 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 9:40:11 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 9:40:11 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 9:40:12 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:40:12 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52563
+6月 15, 2023 9:40:13 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52563 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:40:13 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 9:40:13 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:40:13 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52563 Request: {"command":"INIT"}
+6月 15, 2023 9:40:13 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 9:40:13 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52576
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52576 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:40:19 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:52576 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:40:19 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52563 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:40:19 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 9:40:19 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52563 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 9:40:19 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:52563 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 9:40:19 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 9:40:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 9:40:30 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+6月 15, 2023 9:40:30 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:52586
+6月 15, 2023 9:40:32 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:52586 Request: keyrange
+6月 15, 2023 9:40:32 下午 de.tum.communication.KVServer send
+信息: Sent:keyrange_success 5c5078e3230df60803c9186f9bf0ae1e,37586c477a3ac69772c7e28b9bccc13e,localhost:5153;37586c477a3ac69772c7e28b9bccc13e,5c5078e3230df60803c9186f9bf0ae1e,localhost:5154
+
+6月 15, 2023 9:40:32 下午 de.tum.communication.KVServer read
+信息: keyrange_success 5c5078e3230df60803c9186f9bf0ae1e,37586c477a3ac69772c7e28b9bccc13e,localhost:5153;37586c477a3ac69772c7e28b9bccc13e,5c5078e3230df60803c9186f9bf0ae1e,localhost:5154
+
+6月 15, 2023 10:32:40 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:32:40 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:32:40 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:32:41 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:32:41 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54238
+6月 15, 2023 10:32:42 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54238 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:32:42 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:32:42 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:32:42 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54238 Request: {"command":"INIT"}
+6月 15, 2023 10:32:42 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:32:42 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54249
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54249 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:32:54 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54249 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:32:54 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54238 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:32:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:32:54 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54238 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:32:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54238 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:32:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:32:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:33:09 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:33:09 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54256
+6月 15, 2023 10:33:45 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54256 Request: put @12347 -/() abc def
+6月 15, 2023 10:33:45 下午 de.tum.App main
+严重: Server init failed: Cannot invoke "String.hashCode()" because "<local2>" is null
+6月 15, 2023 10:39:01 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:39:01 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:39:01 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:39:02 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:39:02 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54368
+6月 15, 2023 10:39:04 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54368 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:39:04 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:39:04 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:39:04 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54368 Request: {"command":"INIT"}
+6月 15, 2023 10:39:04 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:39:04 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54375
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54375 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:39:07 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54375 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:39:07 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:39:07 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54368 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:39:07 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:39:08 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:39:08 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:39:08 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54368 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:39:08 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:39:08 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:39:08 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54368 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:39:08 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:39:08 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:39:26 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:39:26 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54387
+6月 15, 2023 10:39:33 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54387 Request: put @12347 -/() abc def
+6月 15, 2023 10:39:33 下午 de.tum.App main
+严重: Server init failed: Cannot invoke "String.hashCode()" because "<local2>" is null
+6月 15, 2023 10:40:51 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:40:51 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:40:51 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:40:52 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:40:52 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54421
+6月 15, 2023 10:40:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54421 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:40:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:40:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:40:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54421 Request: {"command":"INIT"}
+6月 15, 2023 10:40:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:40:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54428
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54428 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:40:58 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54428 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:40:58 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54421 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:40:58 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:40:58 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54421 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:40:58 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54421 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:40:58 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:40:58 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:41:19 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:41:19 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54439
+6月 15, 2023 10:41:20 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54439 Request: put @12347 -/() abc def
+6月 15, 2023 10:41:20 下午 de.tum.App main
+严重: Server init failed: Cannot invoke "String.hashCode()" because "<local2>" is null
+6月 15, 2023 10:45:26 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:45:26 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:45:26 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:45:27 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:45:27 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54510
+6月 15, 2023 10:45:28 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54510 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:45:28 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:45:28 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:45:28 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54510 Request: {"command":"INIT"}
+6月 15, 2023 10:45:28 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:45:28 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:45:31 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:45:31 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54519
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54519 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:45:32 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54519 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:45:32 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54510 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:45:32 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:45:32 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54510 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:45:32 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54510 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:45:32 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:45:32 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:45:51 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:45:51 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54534
+6月 15, 2023 10:45:54 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54534 Request: put tum 1
+6月 15, 2023 10:45:54 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:45:54 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 10:45:54 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 10:45:54 下午 de.tum.communication.KVServer send
+信息: Sent:put_success tum
+
+6月 15, 2023 10:45:54 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"} Received:updated Backup
+6月 15, 2023 10:46:02 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54534 Request: put @12347 -/() abc def
+6月 15, 2023 10:46:02 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:46:02 下午 de.tum.node.Node put
+信息: Put data on database 5153 <@12347:-/() abc def>
+6月 15, 2023 10:46:02 下午 de.tum.communication.KVServer send
+信息: Sent:put_success @12347
+
+6月 15, 2023 10:46:02 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"}
+6月 15, 2023 10:46:03 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"} Received:updated Backup
+6月 15, 2023 10:46:10 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54534 Request: get @12347
+6月 15, 2023 10:46:10 下午 de.tum.App main
+严重: Server init failed: Cannot invoke "String.hashCode()" because "<local2>" is null
+6月 15, 2023 10:47:18 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:47:18 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:47:18 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:47:19 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:47:19 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54571
+6月 15, 2023 10:47:20 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54571 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:47:20 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:47:20 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:47:20 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54571 Request: {"command":"INIT"}
+6月 15, 2023 10:47:20 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:47:20 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54584
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54584 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:47:35 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54584 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:47:35 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54571 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:47:35 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:47:35 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54571 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:47:35 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54571 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:47:35 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:47:35 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:48:06 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:48:06 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54598
+6月 15, 2023 10:48:11 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54598 Request: put tum 1
+6月 15, 2023 10:48:11 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:48:11 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 10:48:11 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 10:48:11 下午 de.tum.communication.KVServer send
+信息: Sent:put_update tum
+
+6月 15, 2023 10:48:11 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"} Received:updated Backup
+6月 15, 2023 10:48:23 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54598 Request: put @12347 -/() abc def
+6月 15, 2023 10:48:23 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:48:23 下午 de.tum.node.Node put
+信息: Put data on database 5153 <@12347:-/() abc def>
+6月 15, 2023 10:48:23 下午 de.tum.communication.KVServer send
+信息: Sent:put_update @12347
+
+6月 15, 2023 10:48:23 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"}
+6月 15, 2023 10:48:24 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"} Received:updated Backup
+6月 15, 2023 10:48:26 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54598 Request: get tum
+6月 15, 2023 10:48:26 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:48:26 下午 de.tum.communication.KVServer send
+信息: Sent:get_success tum 1
+
+6月 15, 2023 10:48:41 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54598 Request: get @12347
+6月 15, 2023 10:48:41 下午 de.tum.App main
+严重: Server init failed: Cannot invoke "String.hashCode()" because "<local2>" is null
+6月 15, 2023 10:54:22 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:54:22 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:54:22 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:54:23 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:54:23 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54704
+6月 15, 2023 10:54:25 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54704 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:54:25 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:54:25 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:54:25 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54704 Request: {"command":"INIT"}
+6月 15, 2023 10:54:25 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:54:25 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54711
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54711 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:54:30 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54711 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:54:30 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54704 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:54:30 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:54:30 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54704 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:54:30 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54704 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:54:30 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:54:30 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:54:50 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:54:50 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54719
+6月 15, 2023 10:54:55 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54719 Request: put tum 1
+6月 15, 2023 10:54:55 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:54:55 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 10:54:55 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 10:54:55 下午 de.tum.communication.KVServer send
+信息: Sent:put_update tum
+
+6月 15, 2023 10:54:55 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"} Received:updated Backup
+6月 15, 2023 10:55:11 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54719 Request: put @12347 -/() abc def
+6月 15, 2023 10:55:11 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:55:11 下午 de.tum.node.Node put
+信息: Put data on database 5153 <@12347:-/() abc def>
+6月 15, 2023 10:55:11 下午 de.tum.communication.KVServer send
+信息: Sent:put_update @12347
+
+6月 15, 2023 10:55:11 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"}
+6月 15, 2023 10:55:11 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"} Received:updated Backup
+6月 15, 2023 10:55:13 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54719 Request: get tum
+6月 15, 2023 10:55:13 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:55:13 下午 de.tum.communication.KVServer send
+信息: Sent:get_success tum 1
+
+6月 15, 2023 10:55:19 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54719 Request: get @12347
+6月 15, 2023 10:55:19 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:55:19 下午 de.tum.communication.KVServer send
+信息: Sent:get_success @12347 -/() abc def
+
+6月 15, 2023 10:55:28 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54719 Request: delete tum
+6月 15, 2023 10:55:28 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:DELETE
+6月 15, 2023 10:55:28 下午 de.tum.node.Node delete
+信息: Delete data on database 5153: tum
+6月 15, 2023 10:55:28 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"DELETE","dataType":"BACKUP","key":"tum"}
+6月 15, 2023 10:55:28 下午 de.tum.communication.KVServer send
+信息: Sent:delete_success tum
+
+6月 15, 2023 10:55:28 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"DELETE","dataType":"BACKUP","key":"tum"} Received:
+6月 15, 2023 10:55:35 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54719 Request: get tum
+6月 15, 2023 10:55:35 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:55:35 下午 de.tum.App main
+严重: Server init failed: Cannot invoke "String.equals(Object)" because "value" is null
+6月 15, 2023 10:58:25 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 10:58:25 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 10:58:25 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 10:58:26 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:58:26 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54768
+6月 15, 2023 10:58:27 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54768 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:58:27 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 10:58:27 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:58:27 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54768 Request: {"command":"INIT"}
+6月 15, 2023 10:58:27 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 10:58:27 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54776
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54776 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:58:32 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:54776 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:58:32 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 10:58:32 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54768 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:58:32 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 10:58:33 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 10:58:33 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:58:33 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54768 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 10:58:33 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 10:58:33 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:58:33 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:54768 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 10:58:33 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 10:58:33 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 10:58:54 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 10:58:54 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:54786
+6月 15, 2023 10:58:59 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: put tum 1
+6月 15, 2023 10:58:59 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:58:59 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 10:58:59 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 10:58:59 下午 de.tum.communication.KVServer send
+信息: Sent:put_success tum
+
+6月 15, 2023 10:58:59 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"} Received:updated Backup
+6月 15, 2023 10:59:06 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: put @12347 -/() abc def
+6月 15, 2023 10:59:06 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 10:59:06 下午 de.tum.node.Node put
+信息: Put data on database 5153 <@12347:-/() abc def>
+6月 15, 2023 10:59:06 下午 de.tum.communication.KVServer send
+信息: Sent:put_update @12347
+
+6月 15, 2023 10:59:06 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"}
+6月 15, 2023 10:59:06 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"@12347","value":"-/() abc def"} Received:updated Backup
+6月 15, 2023 10:59:08 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: get tum 
+6月 15, 2023 10:59:08 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:59:08 下午 de.tum.communication.KVServer send
+信息: Sent:get_error tum 
+
+6月 15, 2023 10:59:12 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: get @12347
+6月 15, 2023 10:59:12 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:59:12 下午 de.tum.communication.KVServer send
+信息: Sent:get_success @12347 -/() abc def
+
+6月 15, 2023 10:59:16 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: delete tum
+6月 15, 2023 10:59:16 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:DELETE
+6月 15, 2023 10:59:16 下午 de.tum.node.Node delete
+信息: Delete data on database 5153: tum
+6月 15, 2023 10:59:16 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"DELETE","dataType":"BACKUP","key":"tum"}
+6月 15, 2023 10:59:16 下午 de.tum.communication.KVServer send
+信息: Sent:delete_success tum
+
+6月 15, 2023 10:59:16 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"DELETE","dataType":"BACKUP","key":"tum"} Received:
+6月 15, 2023 10:59:19 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: get tum
+6月 15, 2023 10:59:19 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:59:19 下午 de.tum.communication.KVServer send
+信息: Sent:get_error tum
+
+6月 15, 2023 10:59:35 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: delete @12347
+6月 15, 2023 10:59:35 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:DELETE
+6月 15, 2023 10:59:35 下午 de.tum.node.Node delete
+信息: Delete data on database 5153: @12347
+6月 15, 2023 10:59:35 下午 de.tum.communication.KVServer send
+信息: Sent:delete_success @12347
+
+6月 15, 2023 10:59:35 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"DELETE","dataType":"BACKUP","key":"@12347"}
+6月 15, 2023 10:59:35 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"DELETE","dataType":"BACKUP","key":"@12347"} Received:
+6月 15, 2023 10:59:40 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:54786 Request: get @12347
+6月 15, 2023 10:59:40 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:GET
+6月 15, 2023 10:59:40 下午 de.tum.communication.KVServer send
+信息: Sent:get_error @12347
+
+6月 15, 2023 11:07:44 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:07:45 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:07:45 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:07:46 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:07:46 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55626
+6月 15, 2023 11:07:46 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:07:46 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 11:07:46 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:07:46 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"INIT"}
+6月 15, 2023 11:07:46 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 11:07:46 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55634
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55634 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:08:01 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55634 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:08:01 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:08:01 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 11:08:01 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:08:01 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:08:01 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 11:08:01 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:08:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 15, 2023 11:08:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@442675e1
+6月 15, 2023 11:08:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:08:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 15, 2023 11:08:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@6166e06f
+6月 15, 2023 11:08:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:08:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55626 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:08:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@473b46c3
+6月 15, 2023 11:08:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:09:51 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:09:51 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:09:51 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:09:52 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:09:52 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55672
+6月 15, 2023 11:09:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:09:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 11:09:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:09:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"INIT"}
+6月 15, 2023 11:09:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 11:09:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55679
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55679 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:09:58 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55679 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:09:58 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:09:58 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 11:09:58 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:09:58 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:09:58 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 11:09:58 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:10:02 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 15, 2023 11:10:02 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@442675e1
+6月 15, 2023 11:10:02 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:10:02 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 15, 2023 11:10:02 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@6166e06f
+6月 15, 2023 11:10:02 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:10:02 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55672 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:10:02 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@473b46c3
+6月 15, 2023 11:10:02 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:15:56 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:15:57 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:15:57 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:15:58 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:15:58 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55790
+6月 15, 2023 11:15:59 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:15:59 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 11:15:59 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:15:59 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"INIT"}
+6月 15, 2023 11:15:59 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 11:15:59 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55799
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55799 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:16:03 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55799 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:16:03 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:16:03 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 11:16:03 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:16:03 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:16:03 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 11:16:03 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:16:10 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 15, 2023 11:16:10 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@442675e1
+6月 15, 2023 11:16:10 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:16:10 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 15, 2023 11:16:10 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@6166e06f
+6月 15, 2023 11:16:10 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:16:10 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55790 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:16:10 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@473b46c3
+6月 15, 2023 11:16:10 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:18:14 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:18:14 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:18:14 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:18:15 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:18:15 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55864
+6月 15, 2023 11:18:16 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:18:16 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 11:18:16 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:18:16 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"INIT"}
+6月 15, 2023 11:18:16 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 11:18:16 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55873
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55873 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:18:27 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55873 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:18:27 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:18:27 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 11:18:27 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:18:27 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:18:27 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 11:18:27 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:18:42 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:18:42 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55880
+6月 15, 2023 11:18:44 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:55880 Request: put tum 1
+6月 15, 2023 11:18:44 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 11:18:44 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 11:18:44 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 11:18:44 下午 de.tum.communication.KVServer send
+信息: Sent:put_success tum
+
+6月 15, 2023 11:18:44 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"} Received:updated Backup
+6月 15, 2023 11:18:49 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:55880 Request: put lmu 2
+6月 15, 2023 11:18:49 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 11:18:49 下午 de.tum.node.Node put
+信息: Put data on database 5153 <lmu:2>
+6月 15, 2023 11:18:49 下午 de.tum.communication.KVServer send
+信息: Sent:put_success lmu
+
+6月 15, 2023 11:18:49 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"2"}
+6月 15, 2023 11:18:49 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"2"} Received:updated Backup
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:55894
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55894 Request: {"command":"COPY","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:19:16 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer send
+信息: Sent:{"lmu":"2"}
+
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:19:16 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@59717824
+6月 15, 2023 11:19:16 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer send
+信息: Sent:SERVER_ERROR
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:19:16 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1e9e725a
+6月 15, 2023 11:19:16 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:25:19 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:55880 Request: put hangzhou666 3
+6月 15, 2023 11:25:19 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","key":"hangzhou666","statusCode":"REDIRECT","value":"3"}
+6月 15, 2023 11:25:19 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","key":"hangzhou666","statusCode":"REDIRECT","value":"3"} Received:put_success hangzhou666
+6月 15, 2023 11:25:19 下午 de.tum.communication.KVServer send
+信息: Sent:put_success hangzhou666
+
+6月 15, 2023 11:25:19 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55873 Request: {"command":"PUT","dataType":"BACKUP","key":"hangzhou666","value":"3"}
+6月 15, 2023 11:25:19 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 11:25:19 下午 de.tum.node.Node putBackup
+信息: Put backup data on database 5153 <hangzhou666:3>
+6月 15, 2023 11:25:19 下午 de.tum.communication.KVServer send
+信息: Sent:updated Backup
+
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:55873 Request: {"command":"COPY","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:25:54 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer send
+信息: Sent:{"tum":"1"}
+
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5155"}
+6月 15, 2023 11:25:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@4d49af10
+6月 15, 2023 11:25:54 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:25:54 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}} Received:{"lmu":"2"}
+6月 15, 2023 11:25:54 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{"lmu":"2"}
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:55864 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:25:54 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@35fc6dc4
+6月 15, 2023 11:25:54 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:25:54 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:56001
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:25:54 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:56002
+6月 15, 2023 11:28:17 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:28:17 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:28:17 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:28:18 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:28:18 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:56059
+6月 15, 2023 11:28:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:28:19 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@27808f31
+6月 15, 2023 11:28:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:28:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"INIT"}
+6月 15, 2023 11:28:19 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@eb21112
+6月 15, 2023 11:28:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:56066
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56066 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:28:22 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56066 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:28:22 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:28:22 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3439f68d
+6月 15, 2023 11:28:22 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:28:22 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1dd02175
+6月 15, 2023 11:28:22 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:28:23 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:28:23 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@31206beb
+6月 15, 2023 11:28:23 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:56075
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56075 Request: {"command":"COPY","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:28:29 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:COPY
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:28:29 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@3ffcd140
+6月 15, 2023 11:28:29 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer send
+信息: Sent:SERVER_ERROR
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56059 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:28:29 下午 de.tum.common.ECSMessageParser processMessage
+信息: Received Message:de.tum.common.ECSMessage@1176dcec
+6月 15, 2023 11:28:29 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:28:55 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:28:55 下午 de.tum.communication.KVServer accept
+信息: Accept new client: /127.0.0.1:56088
+6月 15, 2023 11:28:58 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:56088 Request: put tum 1
+6月 15, 2023 11:28:58 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 11:28:58 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 11:28:58 下午 de.tum.communication.KVServer send
+信息: Sent:put_update tum
+
+6月 15, 2023 11:28:58 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"}
+6月 15, 2023 11:28:58 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","dataType":"BACKUP","key":"tum","value":"1"} Received:updated Backup
+6月 15, 2023 11:29:01 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:56088 Request: put hangzhou666 2
+6月 15, 2023 11:29:01 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","key":"hangzhou666","statusCode":"REDIRECT","value":"2"}
+6月 15, 2023 11:29:01 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","key":"hangzhou666","statusCode":"REDIRECT","value":"2"} Received:put_update hangzhou666
+6月 15, 2023 11:29:01 下午 de.tum.communication.KVServer send
+信息: Sent:put_update hangzhou666
+
+6月 15, 2023 11:29:01 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56066 Request: {"command":"PUT","dataType":"BACKUP","key":"hangzhou666","value":"2"}
+6月 15, 2023 11:29:01 下午 de.tum.common.KVMessageParser processMessage
+信息: Received Command Type:PUT
+6月 15, 2023 11:29:01 下午 de.tum.node.Node putBackup
+信息: Put backup data on database 5153 <hangzhou666:2>
+6月 15, 2023 11:29:01 下午 de.tum.communication.KVServer send
+信息: Sent:updated Backup
+
+6月 15, 2023 11:29:04 下午 de.tum.communication.KVServer read
+信息: Received request from CLIENT: /127.0.0.1:56088 Request: put lmu 3
+6月 15, 2023 11:29:04 下午 de.tum.common.KVMessageBuilder send
+信息: Sent:{"command":"PUT","key":"lmu","statusCode":"REDIRECT","value":"3"}
+6月 15, 2023 11:29:04 下午 de.tum.common.KVMessageBuilder receive
+信息: For Message:{"command":"PUT","key":"lmu","statusCode":"REDIRECT","value":"3"} Received:put_update lmu
+6月 15, 2023 11:29:04 下午 de.tum.communication.KVServer send
+信息: Sent:put_update lmu
+
+6月 15, 2023 11:42:43 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:42:43 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:42:43 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:42:44 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:42:45 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:42:45 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:42:45 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"INIT"}
+6月 15, 2023 11:42:45 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56300 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56300 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:42:48 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56308 Request: {"command":"COPY","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer send
+信息: Sent:SERVER_ERROR
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:42:52 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:43:20 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:43:22 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 11:43:22 下午 de.tum.communication.KVServer send
+信息: Sent:put_success tum
+
+6月 15, 2023 11:43:26 下午 de.tum.communication.KVServer send
+信息: Sent:put_success hangzhou666
+
+6月 15, 2023 11:43:26 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56300 Request: {"command":"PUT","dataType":"BACKUP","key":"hangzhou666"}
+6月 15, 2023 11:43:26 下午 de.tum.node.Node putBackup
+信息: Put backup data on database 5153 <hangzhou666:null>
+6月 15, 2023 11:43:26 下午 de.tum.communication.KVServer send
+信息: Sent:updated Backup
+
+6月 15, 2023 11:43:28 下午 de.tum.communication.KVServer send
+信息: Sent:put_success lmu
+
+6月 15, 2023 11:44:01 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56300 Request: {"command":"COPY","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:44:01 下午 de.tum.communication.KVServer send
+信息: Sent:{"tum":"1"}
+
+6月 15, 2023 11:44:02 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5155"}
+6月 15, 2023 11:44:02 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{"lmu":"3"}
+6月 15, 2023 11:44:02 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:44:02 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56293 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:44:02 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:44:02 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:44:02 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:47:38 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:47:38 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:47:39 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5156, ready to receive data from KVClient
+6月 15, 2023 11:47:39 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:47:41 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56438 Request: {"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:47:41 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:47:41 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56438 Request: {"command":"INIT"}
+6月 15, 2023 11:47:41 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{}
+6月 15, 2023 11:47:41 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{"tum":"1"}
+6月 15, 2023 11:47:41 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:47:41 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:49:06 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:49:06 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:49:06 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:49:07 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:49:08 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56469 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:49:08 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:49:08 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56469 Request: {"command":"INIT"}
+6月 15, 2023 11:49:08 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56476 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56476 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56469 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56469 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56469 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:49:21 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:49:46 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56476 Request: {"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"1"}
+6月 15, 2023 11:49:46 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 11:49:46 下午 de.tum.communication.KVServer send
+信息: Sent:put_update tum
+
+6月 15, 2023 11:49:52 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56476 Request: {"command":"PUT","dataType":"BACKUP","key":"hangzhou666","value":"2"}
+6月 15, 2023 11:49:52 下午 de.tum.node.Node putBackup
+信息: Put backup data on database 5153 <hangzhou666:2>
+6月 15, 2023 11:49:52 下午 de.tum.communication.KVServer send
+信息: Sent:updated Backup
+
+6月 15, 2023 11:51:45 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 15, 2023 11:51:45 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 15, 2023 11:51:45 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 15, 2023 11:51:46 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:51:47 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:51:47 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:51:47 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"INIT"}
+6月 15, 2023 11:51:47 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56531 Request: {"command":"COPY","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56531 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 15, 2023 11:51:52 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56540 Request: {"command":"COPY","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer send
+信息: Sent:SERVER_ERROR
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 15, 2023 11:51:59 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56551 Request: {"command":"COPY","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"95f8c59640f188c6fd3c3442b6429ff4"}}
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:{}
+
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:52:06 下午 de.tum.communication.KVServer send
+信息: Sent:SERVER_ERROR
+6月 15, 2023 11:52:07 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"95f8c59640f188c6fd3c3442b6429ff4"}}
+6月 15, 2023 11:52:07 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:52:20 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:52:22 下午 de.tum.node.Node put
+信息: Put data on database 5153 <tum:1>
+6月 15, 2023 11:52:22 下午 de.tum.communication.KVServer send
+信息: Sent:put_success tum
+
+6月 15, 2023 11:52:25 下午 de.tum.communication.KVServer send
+信息: Sent:put_success hangzhou666
+
+6月 15, 2023 11:52:25 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56531 Request: {"command":"PUT","dataType":"BACKUP","key":"hangzhou666","value":"2"}
+6月 15, 2023 11:52:25 下午 de.tum.node.Node putBackup
+信息: Put backup data on database 5153 <hangzhou666:2>
+6月 15, 2023 11:52:25 下午 de.tum.communication.KVServer send
+信息: Sent:updated Backup
+
+6月 15, 2023 11:52:29 下午 de.tum.communication.KVServer send
+信息: Sent:put_success lmu
+
+6月 15, 2023 11:52:32 下午 de.tum.communication.KVServer send
+信息: Sent:put_success sunday
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer read
+信息: Received request from SERVER: /127.0.0.1:56540 Request: {"command":"COPY","dataType":"DATA","range":{"from":"95f8c59640f188c6fd3c3442b6429ff4","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:{"tum":"1"}
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5156"}
+6月 15, 2023 11:53:10 下午 de.tum.node.Node copy
+信息: Get Data from other Node:{"sunday":"4"}
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:53:10 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"RECOVER","removedNodeAddress":"localhost:5155"}
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer read
+信息: Received request from ECS: /127.0.0.1:56525 Request: {"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer send
+信息: Sent:OK
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
+6月 15, 2023 11:54:19 下午 de.tum.communication.KVServer send
+信息: Sent:Hello client
+
