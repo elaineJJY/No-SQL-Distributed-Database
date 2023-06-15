@@ -80,6 +80,9 @@ public class KVServer {
 		writeBuffer.clear();
 		SocketChannel socketChannel = ssChannel.accept();
 		socketChannel.configureBlocking(false);
+//		while (!socketChannel.finishConnect()) {
+//			// wait for connection
+//		}
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
 		String message = "Hello client";
@@ -191,9 +194,9 @@ public class KVServer {
 					.key(key)
 					.value(value)
 					.statusCode(StatusCode.REDIRECT)
-					.send(resopnsibleNode.getSocketChannel())
-					.receive(resopnsibleNode.getSocketChannel());
-//					.sendAndRespond(resopnsibleNode.getSocketChannel());
+					.socketChannel(resopnsibleNode.getSocketChannel())
+					.send()
+					.receive();
 			send(response, clientSocketChannel); // send response from other KV-Server back to client socket
 			return;
 		}

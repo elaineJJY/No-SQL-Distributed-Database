@@ -77,6 +77,7 @@ public class ECSMessageBuilder {
         do {
             bytesWritten = socketChannel.write(byteBuffer);
         } while (bytesWritten > 0 && byteBuffer.hasRemaining());
+        System.out.println("Sent:" + JSON.toJSONString(this.message));
         return this;
     }
 

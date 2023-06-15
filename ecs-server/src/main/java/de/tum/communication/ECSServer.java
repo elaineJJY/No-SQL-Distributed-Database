@@ -74,8 +74,6 @@ public class ECSServer {
             String remoteAddress = addressString.split(":")[0];
             int remotePort = Integer.parseInt(addressString.split(":")[1]);
 
-//            String remoteAddress = String.valueOf(clientSocket.getInetAddress());
-//            int remotePort = clientSocket.getPort();
             LOGGER.info("Accept new KVServer <" + remoteAddress + ":" + remotePort + ">");
 
             Thread.sleep(1000);
@@ -98,14 +96,9 @@ public class ECSServer {
             readBuffer.clear(); // clear buffer
             try {
                 int len = node.getSocketChannel().read(readBuffer);
-
-                if (len != -1) {
-                    node.updateRing(ConsistentHash.INSTANCE.getRing());
-                } else {
-                    // Connected KVServer is lost
+                if (len == -1) {
                     node.getSocketChannel().close(); // close channel
                     ConsistentHash.INSTANCE.removeNode(node);
-//            key.cancel(); // cancel key
                 }
             }
             catch (Exception e) {
@@ -114,26 +107,6 @@ public class ECSServer {
         });
     }
 
-//    private void clientHandler(Node node) {
-//        executorService.execute(() -> {
-//            try {
-//
-//
-//                String message;
-//                while ((message = reader.readLine()) != null) {
-//                    System.out.println("Received message from client: " + message);
-//                    node.updateRing(ConsistentHash.INSTANCE.getRing());
-//                    writer.flush();
-//                }
-//                // Connected KVServer is lost
-//                ConsistentHash.INSTANCE.removeNode(node);
-//                node.getClientSocket().close();
-//            }
-//            catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//    }
 
     private static void shutdown() {
         // close thread pool

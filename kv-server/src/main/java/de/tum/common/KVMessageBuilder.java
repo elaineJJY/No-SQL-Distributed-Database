@@ -67,7 +67,7 @@ public class KVMessageBuilder {
         message.setStatusCode(statusCode);
         return this;
     }
-    public KVMessageBuilder send(SocketChannel socketChannel) throws IOException {
+    public KVMessageBuilder send() throws IOException {
         String messageString = JSON.toJSONString(this.message);
         byte[] msg = messageString.getBytes();
         ByteBuffer byteBuffer = ByteBuffer.wrap(msg);
@@ -80,7 +80,7 @@ public class KVMessageBuilder {
     }
 
 
-    public String receive(SocketChannel socketChannel) throws Exception {
+    public String receive() throws Exception {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int bytesRead = 0;
         do {

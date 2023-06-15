@@ -35,8 +35,7 @@ public enum MetaData {
 
 	public SocketChannel createSocket(String host, int port) throws Exception {
 		SocketChannel socketChannel =  SocketChannel.open(new InetSocketAddress(host, port));
-		String respond = KVMessageBuilder.create().receive(socketChannel);// handle the "Hello Client" message
-		System.out.println(respond);
+		KVMessageBuilder.create().socketChannel(socketChannel).receive();// handle the "Hello Client" message
 		return socketChannel;
 	}
 

@@ -142,9 +142,9 @@ public class Node {
 						.command(KVMessage.Command.COPY)
 						.dataType(where)
 						.range(range)
-						.send(socketChannel)
-						.receive(socketChannel);
-//				.sendAndRespond(socketChannel);
+						.socketChannel(socketChannel)
+						.send()
+						.receive();
 				System.out.println("Get Data from other Node:" + response);
 				try{
 					JSON.parse(response);
@@ -154,8 +154,9 @@ public class Node {
 							.command(KVMessage.Command.COPY)
 							.dataType(where)
 							.range(range)
-							.send(socketChannel)
-							.receive(socketChannel);
+							.socketChannel(socketChannel)
+							.send()
+							.receive();
 				}
 				HashMap<String, String> data = (HashMap<String, String>) JSONObject.parseObject(response, HashMap.class);
 				return data;
@@ -196,8 +197,9 @@ public class Node {
 							.key(key)
 							.value(value)
 							.dataType(DataType.BACKUP)
-							.send(backUpNode.getSocketChannel())
-							.receive(backUpNode.getSocketChannel());
+							.socketChannel(backUpNode.getSocketChannel())
+							.send()
+							.receive();
 //						.sendAndRespond(backUpNode.getSocketChannel());
 				}
 				else {
@@ -237,9 +239,9 @@ public class Node {
 							.command(KVMessage.Command.DELETE)
 							.key(key)
 							.dataType(DataType.BACKUP)
-							.send(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel())
-							.receive(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
-//						.sendAndRespond(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+							.socketChannel(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel())
+							.send()
+							.receive();
 				}
 			}
 		}
