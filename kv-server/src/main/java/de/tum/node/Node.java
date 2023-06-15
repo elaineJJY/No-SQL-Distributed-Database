@@ -5,10 +5,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONException;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
-import de.tum.common.KVMessage;
-import de.tum.common.KVMessageBuilder;
-import de.tum.common.KVMessageParser;
-import de.tum.common.StatusCode;
+import de.tum.common.*;
 import de.tum.communication.KVServer;
 import de.tum.database.IDatabase;
 
@@ -17,10 +14,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.SortedMap;
+import java.util.concurrent.CompletableFuture;
 import java.util.jar.JarException;
+import java.util.logging.Logger;
 
 public class Node {
-
+	private final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	KVServer server;
 	private String host;
 	private int port;
@@ -145,7 +144,7 @@ public class Node {
 						.socketChannel(socketChannel)
 						.send()
 						.receive();
-				System.out.println("Get Data from other Node:" + response);
+				LOGGER.info("Get Data from other Node:" + response.trim());
 				try{
 					JSON.parse(response);
 				}
@@ -187,25 +186,7 @@ public class Node {
 			if (isResponsible(key)){
 				code = mainDatabase.hasKey(key) ? StatusCode.put_update : StatusCode.put_success;
 				mainDatabase.put(key, value);
-				System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
-
-				// put data into the backup Node
-				Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
-				if(!backUpNode.equals(this)){
-					KVMessageBuilder.create()
-							.command(KVMessage.Command.PUT)
-							.key(key)
-							.value(value)
-							.dataType(DataType.BACKUP)
-							.socketChannel(backUpNode.getSocketChannel())
-							.send()
-							.receive();
-//						.sendAndRespond(backUpNode.getSocketChannel());
-				}
-				else {
-					backupDatabase.put(key, value);
-				}
-
+				LOGGER.info("Put data on database " + this.port + " <" + key + ":" + value + ">");
 			}
 		}
 		finally {
@@ -214,9 +195,36 @@ public class Node {
 
 	}
 
+	public CompletableFuture<StatusCode> putDataToBackupNode(String key, String value) throws Exception  {
+		Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
+		if (!backUpNode.equals(this)) {
+			return CompletableFuture.supplyAsync(() -> {
+				try {
+					KVMessageBuilder.create()
+							.command(KVMessage.Command.PUT)
+							.key(key)
+							.value(value)
+							.dataType(DataType.BACKUP)
+							.socketChannel(backUpNode.getSocketChannel())
+							.send()
+							.receive();
+					return StatusCode.put_success; // Return the desired result
+				} catch (Exception e) {
+					// Handle exceptions here
+					return StatusCode.SERVER_ERROR; // Return an appropriate error code
+				}
+			});
+		}
+		else {
+			backupDatabase.put(key, value);
+			return CompletableFuture.completedFuture(StatusCode.put_success); // Return the result immediately
+		}
+
+	}
+
 	public void putBackup(String key, String value) throws Exception {
 		backupDatabase.put(key, value);
-		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
+		LOGGER.info("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
 	}
 	public void deleteBackup(String key) throws Exception {
 		backupDatabase.delete(key);
@@ -228,25 +236,35 @@ public class Node {
 			if (isResponsible(key)){
 				code = mainDatabase.hasKey(key) ? StatusCode.OK : StatusCode.NOT_FOUND;
 				mainDatabase.delete(key);
-				System.out.println("Delete data on database " + this.port + ": " + key );
-
-				if(MetaData.INSTANCE.getBackupNodeByKey(key).equals(this)){
-					backupDatabase.delete(key);
-				}
-				else{
-					// delete data from backup node
-					KVMessageBuilder.create()
-							.command(KVMessage.Command.DELETE)
-							.key(key)
-							.dataType(DataType.BACKUP)
-							.socketChannel(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel())
-							.send()
-							.receive();
-				}
+				LOGGER.info("Delete data on database " + this.port + ": " + key );
 			}
 		}
 		finally {
 			return code;
+		}
+	}
+
+	public CompletableFuture<StatusCode> deleteDataFromBackupNode(String key) throws Exception {
+		Node backupNode = MetaData.INSTANCE.getBackupNodeByKey(key);
+		if (backupNode.equals(this)) {
+			backupDatabase.delete(key);
+			return CompletableFuture.completedFuture(StatusCode.OK); // Return the result immediately
+		} else {
+			return CompletableFuture.supplyAsync(() -> {
+				try {
+					KVMessageBuilder.create()
+							.command(KVMessage.Command.DELETE)
+							.key(key)
+							.dataType(DataType.BACKUP)
+							.socketChannel(backupNode.getSocketChannel())
+							.send()
+							.receive();
+					return StatusCode.OK; // Return the desired result
+				} catch (Exception e) {
+					// Handle exceptions here
+					return StatusCode.SERVER_ERROR; // Return an appropriate error code
+				}
+			});
 		}
 	}
 

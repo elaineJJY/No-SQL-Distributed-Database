@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
 
 public class KVMessageParser {
     public static KVMessage parseMessageFromString(String messageString) {
@@ -29,13 +30,18 @@ public class KVMessageParser {
                 }
                 else {
                     StatusCode code = localNode.put(message.getKey(), message.getValue());
+                    CompletableFuture<StatusCode> backupResult = localNode.putDataToBackupNode(message.getKey(), message.getValue());
+                    backupResult.thenApply(result -> {
+                        System.out.println("Put " + message.getKey() +" from Backup: " + result);
+                        return result;
+                    });
                     response = code.toString() + " " + message.getKey();
                 }
                 break;
 
             case GET:
                 String value = localNode.get(message.getKey());
-                if(value != "") {
+                if(value != null || value.equals("") ) {
                     response = "get_success " + message.getKey() + " " + value;
                 }
                 else{
@@ -48,13 +54,18 @@ public class KVMessageParser {
                 break;
 
             case DELETE:
-                if (message.getDataType() == DataType.DATA) {
-                    StatusCode code = localNode.delete(message.getKey());
-                    response = code == StatusCode.OK ? "delete_success" : "delete_error";
-                    response = response + " " + message.getKey();
+                if (message.getDataType() == DataType.BACKUP) {
+                    localNode.deleteBackup(message.getKey());
                 }
                 else {
-                    localNode.deleteBackup(message.getKey());
+                    StatusCode code = localNode.delete(message.getKey());
+                    CompletableFuture<StatusCode> backupResult = localNode.deleteDataFromBackupNode(message.getKey());
+                    backupResult.thenApply(result -> {
+                        System.out.println("Delete " + message.getKey() +" from Backup: " + result);
+                        return result;
+                    });
+                    response = code == StatusCode.OK ? "delete_success" : "delete_error";
+                    response = response + " " + message.getKey();
                 }
                 break;
             default:

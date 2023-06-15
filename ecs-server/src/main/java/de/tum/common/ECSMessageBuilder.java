@@ -14,10 +14,12 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.nio.channels.SocketChannel;
+import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 
 public class ECSMessageBuilder {
+    private final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
     private ECSMessage message;
 
     private ECSMessageBuilder() {
@@ -77,7 +79,7 @@ public class ECSMessageBuilder {
         do {
             bytesWritten = socketChannel.write(byteBuffer);
         } while (bytesWritten > 0 && byteBuffer.hasRemaining());
-        System.out.println("Sent:" + JSON.toJSONString(this.message));
+        LOGGER.info("Sent:" + JSON.toJSONString(this.message));
         return this;
     }
 
@@ -93,7 +95,7 @@ public class ECSMessageBuilder {
         byte[] receivedMessage = new byte[bytesRead];
         buffer.flip();
         buffer.get(receivedMessage);
-        System.out.println("For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage));
+        LOGGER.info( "For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage).trim());
         return new String(receivedMessage);
     }
 

@@ -6051,3 +6051,1842 @@ Jun 15, 2023 12:50:45 PM de.tum.communication.KVServer read
 INFO: Received request from ECS: /127.0.0.1:57047 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
 Jun 15, 2023 12:50:45 PM de.tum.common.ECSMessageParser processMessage
 INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 12:58:54 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 12:58:54 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 12:58:54 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:01:34 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:01:34 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:01:34 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:01:35 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:01:35 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:57310
+Jun 15, 2023 1:01:36 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:57310 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:01:36 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@515aebb0
+Jun 15, 2023 1:01:36 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:01:36 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:57310 Request: {"command":"INIT"}
+Jun 15, 2023 1:01:36 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@411f53a0
+Jun 15, 2023 1:01:36 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:57316
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:57316 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:01:42 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:57316 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:01:42 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:01:42 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:57310 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:01:42 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3a52dba3
+Jun 15, 2023 1:04:10 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:04:33 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:04:33 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:04:33 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:04:34 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:04:34 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:57388
+Jun 15, 2023 1:04:34 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:57388 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:04:34 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:04:34 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:04:34 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:57388 Request: {"command":"INIT"}
+Jun 15, 2023 1:04:34 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:04:34 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:57396
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:57396 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:04:49 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:57396 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:04:49 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:04:49 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:57388 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:04:49 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:08:18 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:08:18 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:08:18 PM de.tum.App main
+SEVERE: Server init failed: null
+Jun 15, 2023 1:08:34 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:08:34 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:08:34 PM de.tum.App main
+SEVERE: Server init failed: null
+Jun 15, 2023 1:14:45 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:14:45 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:14:45 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:14:46 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:14:46 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49488
+Jun 15, 2023 1:14:46 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49488 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:14:46 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:14:46 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:14:46 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49488 Request: {"command":"INIT"}
+Jun 15, 2023 1:14:46 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:14:46 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49494
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49494 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:14:50 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49494 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:14:50 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:14:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49488 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:14:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:25:33 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:25:33 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:25:33 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:25:34 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:25:34 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49622
+Jun 15, 2023 1:25:34 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49622 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:25:34 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:25:34 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:25:34 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49622 Request: {"command":"INIT"}
+Jun 15, 2023 1:25:34 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:25:34 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49628
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49628 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:25:36 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49628 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:25:36 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:25:36 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49622 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:25:36 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:26:34 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:26:34 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:26:34 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:26:35 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:26:35 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49639
+Jun 15, 2023 1:26:35 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49639 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:26:35 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:26:35 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:26:35 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49639 Request: {"command":"INIT"}
+Jun 15, 2023 1:26:35 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:26:35 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49645
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49645 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:26:38 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49645 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:26:38 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:26:38 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49639 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:26:38 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:28:49 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:28:49 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:28:49 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:28:50 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49676
+Jun 15, 2023 1:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49676 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:28:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@515aebb0
+Jun 15, 2023 1:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49676 Request: {"command":"INIT"}
+Jun 15, 2023 1:28:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@411f53a0
+Jun 15, 2023 1:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49682
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49682 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:28:52 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49682 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:28:52 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:28:52 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49676 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:28:52 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3a52dba3
+Jun 15, 2023 1:29:19 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:29:19 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:29:19 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:29:20 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:29:20 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49693
+Jun 15, 2023 1:29:20 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49693 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:29:20 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@515aebb0
+Jun 15, 2023 1:29:20 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:29:20 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49693 Request: {"command":"INIT"}
+Jun 15, 2023 1:29:20 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@411f53a0
+Jun 15, 2023 1:29:20 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49699
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49699 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:29:22 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49699 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:29:22 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:29:22 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49693 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:29:22 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3a52dba3
+Jun 15, 2023 1:30:02 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:30:02 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:30:03 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:30:04 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:30:04 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49712
+Jun 15, 2023 1:30:04 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49712 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:30:04 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:30:04 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:30:04 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49712 Request: {"command":"INIT"}
+Jun 15, 2023 1:30:04 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:30:04 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:30:05 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:30:05 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49718
+Jun 15, 2023 1:30:05 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49718 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:30:05 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:30:05 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:30:06 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49718 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:30:06 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:30:06 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:30:06 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49712 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:30:06 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:31:09 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:31:09 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:31:09 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:31:10 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:31:10 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49729
+Jun 15, 2023 1:31:10 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49729 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:31:10 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:31:10 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:31:10 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49729 Request: {"command":"INIT"}
+Jun 15, 2023 1:31:10 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:31:10 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49735
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49735 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:31:16 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49735 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:31:16 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:31:16 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49729 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:31:16 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:32:36 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:32:36 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:32:36 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:32:37 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:32:37 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49747
+Jun 15, 2023 1:32:38 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49747 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:32:38 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:32:38 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:32:38 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49747 Request: {"command":"INIT"}
+Jun 15, 2023 1:32:38 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:32:38 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49753
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49753 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:32:40 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49753 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:32:40 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:32:40 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49747 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:32:40 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:34:03 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:34:03 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:34:03 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:34:04 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:34:04 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49764
+Jun 15, 2023 1:34:04 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49764 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:34:04 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:34:04 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:34:04 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49764 Request: {"command":"INIT"}
+Jun 15, 2023 1:34:04 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:34:04 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49770
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49770 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:34:08 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49770 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:34:08 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:34:08 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49764 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:34:08 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:34:54 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:34:54 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:34:54 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:34:55 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:34:55 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49783
+Jun 15, 2023 1:34:55 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49783 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:34:55 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:34:56 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:34:56 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49783 Request: {"command":"INIT"}
+Jun 15, 2023 1:34:56 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:34:56 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49789
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49789 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:34:58 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49789 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:34:58 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:34:58 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49783 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:34:58 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:35:50 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:35:50 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:35:50 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:35:51 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:35:51 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49800
+Jun 15, 2023 1:35:51 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49800 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:35:51 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@515aebb0
+Jun 15, 2023 1:35:51 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:35:51 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49800 Request: {"command":"INIT"}
+Jun 15, 2023 1:35:51 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@411f53a0
+Jun 15, 2023 1:35:51 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49806
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49806 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:35:56 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49806 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:35:56 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:35:56 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49800 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:35:56 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3a52dba3
+Jun 15, 2023 1:37:15 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:37:15 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:37:15 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:37:51 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:37:51 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:37:51 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:37:52 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:37:52 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49823
+Jun 15, 2023 1:37:53 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49823 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:37:53 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:37:53 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:37:53 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49823 Request: {"command":"INIT"}
+Jun 15, 2023 1:37:53 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:37:53 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49829
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49829 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:37:57 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49829 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:37:57 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:37:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49823 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:37:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:43:46 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:43:47 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:43:47 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:43:48 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:43:48 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49912
+Jun 15, 2023 1:43:48 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49912 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:43:48 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@515aebb0
+Jun 15, 2023 1:43:48 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:43:48 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49912 Request: {"command":"INIT"}
+Jun 15, 2023 1:43:48 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@411f53a0
+Jun 15, 2023 1:43:48 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49918
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49918 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:43:50 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49918 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:43:50 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:43:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49912 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:43:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3a52dba3
+Jun 15, 2023 1:44:22 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:44:22 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:44:22 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:44:23 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:44:23 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49933
+Jun 15, 2023 1:44:23 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49933 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:44:23 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 1:44:23 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:44:23 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49933 Request: {"command":"INIT"}
+Jun 15, 2023 1:44:23 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 1:44:23 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49939
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49939 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:44:26 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49939 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:44:26 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:44:26 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49933 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:44:26 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 1:45:54 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 1:45:54 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 1:45:54 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 1:45:55 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:45:55 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49951
+Jun 15, 2023 1:45:56 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49951 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:45:56 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@515aebb0
+Jun 15, 2023 1:45:56 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:45:56 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49951 Request: {"command":"INIT"}
+Jun 15, 2023 1:45:56 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@411f53a0
+Jun 15, 2023 1:45:56 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49957
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49957 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:45:58 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:49957 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:45:58 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49951 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:45:58 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3a52dba3
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49951 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 1:45:58 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@65d09a04
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:49951 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 1:45:58 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@33c911a1
+Jun 15, 2023 1:45:58 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 1:46:22 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 1:46:22 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:49962
+Jun 15, 2023 1:46:49 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:49962 Request: put tum a
+Jun 15, 2023 1:46:49 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:03:55 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:03:55 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:03:55 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:03:56 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:03:56 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50084
+Jun 15, 2023 2:03:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50084 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:03:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 2:03:57 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:03:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50084 Request: {"command":"INIT"}
+Jun 15, 2023 2:03:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 2:03:57 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:04:02 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:04:02 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50091
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50091 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:04:03 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50091 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:04:03 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50084 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:04:03 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50084 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:04:03 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@33c911a1
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50084 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:04:03 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@75db5df9
+Jun 15, 2023 2:04:03 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:04:14 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:04:14 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50096
+Jun 15, 2023 2:04:19 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50096 Request: put tumm a
+Jun 15, 2023 2:04:19 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:04:19 PM de.tum.communication.KVServer send
+INFO: Sent:put_success tumm
+
+
+Jun 15, 2023 2:05:12 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:05:12 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50109
+Jun 15, 2023 2:05:15 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50109 Request: put tum a
+Jun 15, 2023 2:05:15 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:05:15 PM de.tum.communication.KVServer send
+INFO: Sent:put_success tum
+
+
+
+Jun 15, 2023 2:06:22 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:06:22 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:06:22 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:06:23 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:06:23 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50126
+Jun 15, 2023 2:06:24 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50126 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:06:24 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 2:06:24 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:06:24 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50126 Request: {"command":"INIT"}
+Jun 15, 2023 2:06:24 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 2:06:24 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50133
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50133 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:06:30 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50133 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:06:30 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50126 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:06:30 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50126 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:06:30 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@33c911a1
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50126 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:06:30 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@75db5df9
+Jun 15, 2023 2:06:30 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:06:43 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:06:43 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50141
+Jun 15, 2023 2:06:47 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50141 Request: put tum a
+Jun 15, 2023 2:06:47 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:06:47 PM de.tum.communication.KVServer send
+INFO: Sent:put_update tum
+
+
+
+Jun 15, 2023 2:06:47 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50133 Request: {"command":"PUT","dataType":"BACKUP","key":"tum","value":"a"}
+Jun 15, 2023 2:06:47 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:06:47 PM de.tum.communication.KVServer send
+INFO: Sent:updated Backup
+
+
+Jun 15, 2023 2:12:24 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:12:24 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:12:24 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:12:25 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:12:25 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50195
+Jun 15, 2023 2:12:25 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50195 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:12:25 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 2:12:25 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:12:25 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50195 Request: {"command":"INIT"}
+Jun 15, 2023 2:12:25 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 2:12:25 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50201
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50201 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:12:29 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50201 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:12:29 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50195 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:12:29 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50195 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:12:29 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@33c911a1
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50195 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:12:29 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@75db5df9
+Jun 15, 2023 2:12:29 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:12:42 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:12:42 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50212
+Jun 15, 2023 2:12:46 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50212 Request: put tum a
+Jun 15, 2023 2:12:46 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:12:46 PM de.tum.App main
+SEVERE: Server init failed: -1
+Jun 15, 2023 2:13:17 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:13:17 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:13:17 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:13:18 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:13:18 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50232
+Jun 15, 2023 2:13:19 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:13:19 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@dd8ba08
+Jun 15, 2023 2:13:19 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:13:19 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"INIT"}
+Jun 15, 2023 2:13:19 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2b71e916
+Jun 15, 2023 2:13:19 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50238
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50238 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:13:24 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50238 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:13:24 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:13:24 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2a5c8d3f
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:13:24 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@33c911a1
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:13:24 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@75db5df9
+Jun 15, 2023 2:13:24 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50247
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50247 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:13:29 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5155":"bb8fccd6254363033af9e837d0e789f8","127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:13:29 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@1190200a
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer send
+INFO: Sent:SERVER_ERROR
+
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50232 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:13:29 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@45b4c3a9
+Jun 15, 2023 2:13:29 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+
+Jun 15, 2023 2:13:35 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+
+Jun 15, 2023 2:13:35 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50263
+Jun 15, 2023 2:13:38 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50263 Request: put tum a
+Jun 15, 2023 2:13:38 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:13:38 PM de.tum.communication.KVServer send
+INFO: Sent:put_update tum
+
+
+
+Jun 15, 2023 2:13:53 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50263 Request: put lmu b
+Jun 15, 2023 2:13:53 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:13:53 PM de.tum.communication.KVServer send
+INFO: Sent:put_success lmu
+
+
+Jun 15, 2023 2:13:53 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"b"}
+Jun 15, 2023 2:13:59 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50263 Request: put hangzhou666 d
+Jun 15, 2023 2:13:59 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:13:59 PM de.tum.communication.KVServer send
+INFO: Sent:put_success hangzhou666
+
+
+Jun 15, 2023 2:13:59 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","dataType":"BACKUP","key":"hangzhou666","value":"d"}
+Jun 15, 2023 2:16:09 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:16:10 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:16:10 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:16:11 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:16:11 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50306
+Jun 15, 2023 2:16:11 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:16:11 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7e07db1f
+Jun 15, 2023 2:16:11 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:16:11 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"INIT"}
+Jun 15, 2023 2:16:11 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3c46e67a
+Jun 15, 2023 2:16:11 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50314
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50314 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:16:13 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50314 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:16:13 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:16:13 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@fa4c865
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:16:13 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@26b3fd41
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:16:13 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7494f96a
+Jun 15, 2023 2:16:13 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50323
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50323 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:16:16 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5155":"bb8fccd6254363033af9e837d0e789f8","127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:16:16 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2e377400
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer send
+INFO: Sent:SERVER_ERROR
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50306 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:16:16 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@445b295b
+Jun 15, 2023 2:16:16 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:16:23 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:16:23 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50327
+Jun 15, 2023 2:16:47 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50327 Request: put tum a
+Jun 15, 2023 2:16:47 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:16:47 PM de.tum.communication.KVServer send
+INFO: Sent:put_update tum
+
+Jun 15, 2023 2:16:59 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50327 Request: put lmu b
+Jun 15, 2023 2:16:59 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:16:59 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"b"}
+Jun 15, 2023 2:16:59 PM de.tum.communication.KVServer send
+INFO: Sent:put_update lmu
+
+Jun 15, 2023 2:22:35 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:22:35 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:22:35 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:22:36 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:22:36 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50398
+Jun 15, 2023 2:22:37 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:22:37 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7e07db1f
+Jun 15, 2023 2:22:37 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:22:37 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"INIT"}
+Jun 15, 2023 2:22:37 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3c46e67a
+Jun 15, 2023 2:22:37 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50404
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50404 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:22:39 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50404 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:22:39 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:22:39 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@fa4c865
+Jun 15, 2023 2:22:39 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:22:39 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@26b3fd41
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:22:39 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7494f96a
+Jun 15, 2023 2:22:39 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50413
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50413 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:22:43 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5155":"bb8fccd6254363033af9e837d0e789f8","127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:22:43 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2e377400
+Jun 15, 2023 2:22:43 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer send
+INFO: Sent:SERVER_ERROR
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50398 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:22:43 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@445b295b
+Jun 15, 2023 2:22:43 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:23:22 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:23:22 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50427
+Jun 15, 2023 2:23:25 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50427 Request: put tum a
+Jun 15, 2023 2:23:25 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"}
+Jun 15, 2023 2:23:25 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"a"} Received:put_update tum
+Jun 15, 2023 2:23:25 PM de.tum.communication.KVServer send
+INFO: Sent:put_update tum
+
+Jun 15, 2023 2:23:30 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50427 Request: put lmu b
+Jun 15, 2023 2:23:30 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:23:30 PM de.tum.communication.KVServer send
+INFO: Sent:put_update lmu
+
+Jun 15, 2023 2:23:30 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"b"}
+Jun 15, 2023 2:23:30 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"b"} Received:updated Backup
+Jun 15, 2023 2:28:41 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:28:41 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:28:41 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:28:42 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:28:42 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50553
+Jun 15, 2023 2:28:42 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:28:42 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7e07db1f
+Jun 15, 2023 2:28:42 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:28:42 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"INIT"}
+Jun 15, 2023 2:28:42 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3c46e67a
+Jun 15, 2023 2:28:42 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50560
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50560 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:28:50 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50560 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:28:50 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:28:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@fa4c865
+Jun 15, 2023 2:28:50 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:28:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@26b3fd41
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:28:50 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7494f96a
+Jun 15, 2023 2:28:50 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50568
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50568 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:28:57 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer send
+INFO: Sent:{}
+
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5155":"bb8fccd6254363033af9e837d0e789f8","127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:28:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2e377400
+Jun 15, 2023 2:28:57 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer send
+INFO: Sent:SERVER_ERROR
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50553 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:28:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@445b295b
+Jun 15, 2023 2:28:57 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:30:12 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:30:12 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50599
+Jun 15, 2023 2:30:18 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50599 Request: put lmu a
+Jun 15, 2023 2:30:18 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:30:18 PM de.tum.node.Node put
+INFO: Put data on database 5153 <lmu:a>
+Jun 15, 2023 2:30:18 PM de.tum.communication.KVServer send
+INFO: Sent:put_success lmu
+
+Jun 15, 2023 2:30:18 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"a"}
+Jun 15, 2023 2:30:18 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"PUT","dataType":"BACKUP","key":"lmu","value":"a"} Received:updated Backup
+Jun 15, 2023 2:30:23 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50599 Request: put tum b
+Jun 15, 2023 2:30:23 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"b"}
+Jun 15, 2023 2:30:23 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"PUT","key":"tum","statusCode":"REDIRECT","value":"b"} Received:put_success tum
+Jun 15, 2023 2:30:23 PM de.tum.communication.KVServer send
+INFO: Sent:put_success tum
+
+Jun 15, 2023 2:30:27 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50599 Request: put mmr c
+Jun 15, 2023 2:30:27 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"PUT","key":"mmr","statusCode":"REDIRECT","value":"c"}
+Jun 15, 2023 2:30:27 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"PUT","key":"mmr","statusCode":"REDIRECT","value":"c"} Received:put_success mmr
+Jun 15, 2023 2:30:27 PM de.tum.communication.KVServer send
+INFO: Sent:put_success mmr
+
+Jun 15, 2023 2:30:27 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50568 Request: {"command":"PUT","dataType":"BACKUP","key":"mmr","value":"c"}
+Jun 15, 2023 2:30:27 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:30:27 PM de.tum.node.Node putBackup
+INFO: Put backup data on database 5153 <mmr:c>
+Jun 15, 2023 2:30:27 PM de.tum.communication.KVServer send
+INFO: Sent:updated Backup
+
+Jun 15, 2023 2:31:52 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50599 Request: get mmr
+Jun 15, 2023 2:31:52 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"GET","key":"mmr","statusCode":"REDIRECT"}
+Jun 15, 2023 2:31:52 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"GET","key":"mmr","statusCode":"REDIRECT"} Received:get_success mmr c
+Jun 15, 2023 2:31:52 PM de.tum.communication.KVServer send
+INFO: Sent:get_success mmr c
+
+Jun 15, 2023 2:32:06 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50599 Request: delete mmr
+Jun 15, 2023 2:32:06 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"DELETE","key":"mmr","statusCode":"REDIRECT"}
+Jun 15, 2023 2:32:06 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"DELETE","key":"mmr","statusCode":"REDIRECT"} Received:delete_success mmr
+Jun 15, 2023 2:32:06 PM de.tum.communication.KVServer send
+INFO: Sent:delete_success mmr
+
+Jun 15, 2023 2:32:06 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50568 Request: {"command":"DELETE","dataType":"BACKUP","key":"mmr"}
+Jun 15, 2023 2:32:06 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:DELETE
+Jun 15, 2023 2:32:06 PM de.tum.communication.KVServer send
+INFO: Sent:
+
+Jun 15, 2023 2:32:12 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50599 Request: get mmr
+Jun 15, 2023 2:32:12 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"GET","key":"mmr","statusCode":"REDIRECT"}
+Jun 15, 2023 2:32:12 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{"command":"GET","key":"mmr","statusCode":"REDIRECT"} Received:get_success mmr null
+Jun 15, 2023 2:32:12 PM de.tum.communication.KVServer send
+INFO: Sent:get_success mmr null
+
+Jun 15, 2023 2:34:33 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:34:33 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:34:33 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:34:34 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:34:34 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50689
+Jun 15, 2023 2:34:35 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50689 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:34:35 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7e07db1f
+Jun 15, 2023 2:34:35 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:34:35 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50689 Request: {"command":"INIT"}
+Jun 15, 2023 2:34:35 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3c46e67a
+Jun 15, 2023 2:34:35 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:34:56 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:34:56 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50695
+Jun 15, 2023 2:35:02 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50695 Request: put lmu a
+Jun 15, 2023 2:35:02 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:35:02 PM de.tum.node.Node put
+INFO: Put data on database 5153 <lmu:a>
+Jun 15, 2023 2:35:02 PM de.tum.communication.KVServer send
+INFO: Sent:put_success lmu
+
+Jun 15, 2023 2:35:07 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50695 Request: put tum b
+Jun 15, 2023 2:35:07 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:35:07 PM de.tum.node.Node put
+INFO: Put data on database 5153 <tum:b>
+Jun 15, 2023 2:35:07 PM de.tum.communication.KVServer send
+INFO: Sent:put_success tum
+
+Jun 15, 2023 2:35:11 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50695 Request: put mmr c
+Jun 15, 2023 2:35:11 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:35:11 PM de.tum.node.Node put
+INFO: Put data on database 5153 <mmr:c>
+Jun 15, 2023 2:35:11 PM de.tum.communication.KVServer send
+INFO: Sent:put_success mmr
+
+Jun 15, 2023 2:36:04 PM de.tum.common.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+Jun 15, 2023 2:36:04 PM de.tum.cacheDisplacement.LRU <init>
+INFO: Init Cache with strategy LRU
+Jun 15, 2023 2:36:04 PM de.tum.communication.KVServer start
+INFO: KVServer is listening on port 5153, ready to receive data from KVClient
+Jun 15, 2023 2:36:05 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:36:05 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50709
+Jun 15, 2023 2:36:06 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:36:06 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@7e07db1f
+Jun 15, 2023 2:36:06 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:36:06 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"INIT"}
+Jun 15, 2023 2:36:06 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@3c46e67a
+Jun 15, 2023 2:36:06 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:36:10 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:36:10 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50710
+Jun 15, 2023 2:36:15 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50710 Request: put lmu a
+Jun 15, 2023 2:36:15 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:36:15 PM de.tum.node.Node put
+INFO: Put data on database 5153 <lmu:a>
+Jun 15, 2023 2:36:15 PM de.tum.communication.KVServer send
+INFO: Sent:put_success lmu
+
+Jun 15, 2023 2:36:20 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50710 Request: put tum b
+Jun 15, 2023 2:36:20 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:36:20 PM de.tum.node.Node put
+INFO: Put data on database 5153 <tum:b>
+Jun 15, 2023 2:36:20 PM de.tum.communication.KVServer send
+INFO: Sent:put_success tum
+
+Jun 15, 2023 2:36:25 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50710 Request: put mmr c
+Jun 15, 2023 2:36:25 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:PUT
+Jun 15, 2023 2:36:25 PM de.tum.node.Node put
+INFO: Put data on database 5153 <mmr:c>
+Jun 15, 2023 2:36:25 PM de.tum.communication.KVServer send
+INFO: Sent:put_success mmr
+
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50720
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50720 Request: {"command":"COPY","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:36:57 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer send
+INFO: Sent:{"mmr":"c","tum":"b"}
+
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50720 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:36:57 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer send
+INFO: Sent:{"lmu":"a"}
+
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:36:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@609cd4d8
+Jun 15, 2023 2:36:57 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"075bc709c2d0e5087d04bb5a67a37d98","to":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:36:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@1ebd319f
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"a0d35786369d54772965a36ed3bd4eb6","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:36:57 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@683dbc2c
+Jun 15, 2023 2:36:57 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer send
+INFO: Sent:Hello client
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer accept
+INFO: Accept new client: /127.0.0.1:50734
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer read
+INFO: Received request from SERVER: /127.0.0.1:50734 Request: {"command":"COPY","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:37:15 PM de.tum.common.KVMessageParser processMessage
+INFO: Received Command Type:COPY
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer send
+INFO: Sent:{"tum":"b"}
+
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"UPDATE_RING","ring":{"127.0.0.1:5155":"bb8fccd6254363033af9e837d0e789f8","127.0.0.1:5154":"075bc709c2d0e5087d04bb5a67a37d98","127.0.0.1:5153":"a0d35786369d54772965a36ed3bd4eb6"}}
+Jun 15, 2023 2:37:15 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@2638011
+Jun 15, 2023 2:37:15 PM de.tum.common.KVMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer send
+INFO: Sent:SERVER_ERROR
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer read
+INFO: Received request from ECS: /127.0.0.1:50709 Request: {"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"bb8fccd6254363033af9e837d0e789f8","to":"075bc709c2d0e5087d04bb5a67a37d98"}}
+Jun 15, 2023 2:37:15 PM de.tum.common.ECSMessageParser processMessage
+INFO: Received Message:de.tum.common.ECSMessage@6a2b953e
+Jun 15, 2023 2:37:15 PM de.tum.communication.KVServer send
+INFO: Sent:OK
+Jun 15, 2023 2:38:48 PM de.tum.communication.KVServer read
+INFO: Received request from CLIENT: /127.0.0.1:50710 Request: get mmr
+Jun 15, 2023 2:38:48 PM de.tum.common.KVMessageBuilder send
+INFO: Sent:{"command":"GET","key":"mmr","statusCode":"REDIRECT"}
+Jun 15, 2023 2:38:48 PM de.tum.App main
+SEVERE: Server init failed: Connection reset

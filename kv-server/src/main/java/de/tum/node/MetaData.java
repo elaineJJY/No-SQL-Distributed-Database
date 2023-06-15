@@ -88,7 +88,6 @@ public enum MetaData {
 
 	//newRing: <ip:port, hash>
 	public void update(HashMap<String, String> addrAndHash) throws Exception {
-
 		if (ring.isEmpty()) {
 			for (String address : addrAndHash.keySet()) {
 				String[] hostPort = address.split(":");
@@ -105,15 +104,17 @@ public enum MetaData {
 		} else {
 			for (String address : addrAndHash.keySet()) {
 				for (String addrOfNodesInOldRing : ring.keySet()) {
-					if (MD5Hash.hash(address).equals(addrOfNodesInOldRing)) {
+					if (ring.get(addrOfNodesInOldRing).toString().equals(address)) {
 						continue;
 					}
 					String[] hostPort = address.split(":");
 					String host = hostPort[0];
 					int port = Integer.parseInt(hostPort[1]);
 					// create socket channel for each node
-					SocketChannel socketChannel = createSocket(host, port);
-
+					SocketChannel socketChannel = null;
+					if (!address.equals(localNode.getHost() + ":" + localNode.getPort())) {
+						socketChannel = createSocket(host, port);
+					}
 					Node node = new Node(host, port, socketChannel);
 					ring.put(getHash(node), node);
 				}

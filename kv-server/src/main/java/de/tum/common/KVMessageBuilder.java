@@ -75,7 +75,7 @@ public class KVMessageBuilder {
         do {
             bytesWritten = socketChannel.write(byteBuffer);
         } while (bytesWritten > 0 && byteBuffer.hasRemaining());
-        LOGGER.info("Sent:" + messageString);
+        LOGGER.info("Sent:" + messageString.trim());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class KVMessageBuilder {
         byte[] receivedMessage = new byte[bytesRead];
         buffer.flip();
         buffer.get(receivedMessage);
-        System.out.println("For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage));
+        LOGGER.info( "For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage).trim());
         return new String(receivedMessage);
     }
 
