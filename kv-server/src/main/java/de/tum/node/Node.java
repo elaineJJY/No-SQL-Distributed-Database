@@ -136,6 +136,7 @@ public class Node {
 	 */
 	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
 		try {
+			// only for remote node
 			if (socketChannel!=null){
 				String response = KVMessageBuilder.create()
 						.command(KVMessage.Command.COPY)
@@ -275,13 +276,12 @@ public class Node {
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
 	public StatusCode init() {
 		try{
-			System.out.println("Start Data Transfer");
+			System.out.println("KVServer:" + this.host + ":" + this.port + " starts data transfer");
 			if (MetaData.INSTANCE.getRing().size() != 1) {
 				Node nextNode = MetaData.INSTANCE.getNextNode(this);
 				Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
 				if (!nextNode.equals(this)) {
 					HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
-					System.out.println("Data transfer from " + nextNode.getPort() + " to " + this.port);
 					mainDatabase.saveAllData(mainData);
 				}
 				if (!previousNode.equals(this)) {
@@ -289,7 +289,7 @@ public class Node {
 					backupDatabase.saveAllData(backup);
 				}
 			}
-			System.out.println("Start KVServer: " + this.host + ":" + this.port);
+			System.out.println("Initiation finish, server is ready");
 			return StatusCode.OK;
 		} catch(Exception e) {
 			System.out.println("Data transfer fail");

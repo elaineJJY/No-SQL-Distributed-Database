@@ -40,12 +40,6 @@ public enum MetaData {
 	}
 
 	public String getHash(Node node) {
-//		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
-////		int i = 1;
-//		while (!ring.get(nodeHash).equals(node)) {
-//			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
-//		}
-
 		return MD5Hash.hash(node.getHost() + ":" + node.getPort());
 	}
 

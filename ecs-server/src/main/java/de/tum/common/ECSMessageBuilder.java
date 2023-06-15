@@ -40,8 +40,8 @@ public class ECSMessageBuilder {
         return this;
     }
 
-    public ECSMessageBuilder removedNode(Node removedNode) {
-        message.removedNode = removedNode;
+    public ECSMessageBuilder removedNodeAddress(String removedNode) {
+        message.removedNodeAddress = removedNode;
         return this;
     }
 

@@ -79,9 +79,20 @@ public class ECSServer {
             Thread.sleep(1000);
 
             // Start to connect to corresponded KVServer
-            SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(remoteAddress, remotePort));
+//            SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(remoteAddress, remotePort));
+//            socketChannel.configureBlocking(false);
+//            ECSMessageBuilder.create().receive(socketChannel); // Test
+
+            SocketChannel socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
+            socketChannel.bind(new InetSocketAddress("localhost", 0));
+            socketChannel.connect(new InetSocketAddress(remoteAddress, remotePort));
+            while (!socketChannel.finishConnect()) {
+                System.out.println("Connecting to KVServer...");
+                sleep(1000);
+            }
             ECSMessageBuilder.create().receive(socketChannel); // Test
+
 
             Node node = new Node(remoteAddress, remotePort, socketChannel);
             ConsistentHash.INSTANCE.addNode(node);
@@ -89,20 +100,23 @@ public class ECSServer {
         }
     }
 
-    // Read message from KVServer (Using NIO)
     private void readKVServer(Node node) throws Exception {
         executorService.execute(() -> {
-            ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-            readBuffer.clear(); // clear buffer
-            try {
-                int len = node.getSocketChannel().read(readBuffer);
-                if (len == -1) {
-                    node.getSocketChannel().close(); // close channel
-                    ConsistentHash.INSTANCE.removeNode(node);
+            while (true) {
+                ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+                readBuffer.clear(); // clear buffer
+                try {
+                    int len = node.getSocketChannel().read(readBuffer);
+                    if (len == -1) {
+                        System.out.println("KVServer<" + node.getHost() + ":" + node.getPort() + "> is closed");
+                        node.getSocketChannel().close(); // close channel
+                        ConsistentHash.INSTANCE.removeNode(node);
+                    }
+                    Thread.sleep(1000);
                 }
-            }
-            catch (Exception e) {
-                throw new RuntimeException(e);
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

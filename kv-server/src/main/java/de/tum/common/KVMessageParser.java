@@ -32,7 +32,7 @@ public class KVMessageParser {
                     StatusCode code = localNode.put(message.getKey(), message.getValue());
                     CompletableFuture<StatusCode> backupResult = localNode.putDataToBackupNode(message.getKey(), message.getValue());
                     backupResult.thenApply(result -> {
-                        System.out.println("Put " + message.getKey() +" from Backup: " + result);
+                        System.out.println("Put " + message.getKey() +" to Backup: " + result);
                         return result;
                     });
                     response = code.toString() + " " + message.getKey();

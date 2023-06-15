@@ -131,10 +131,7 @@ public enum ConsistentHash {
 
 	private void updateRingForAllNodes(Node except) throws Exception {
 		for (Node node : ring.values()) {
-			System.out.println("node in ring:" + node.toString());
-			System.out.println("except:" + except.toString());
 			if (!node.equals(except)){
-				System.out.println("update all ring for node:" + node.toString());
 				node.updateRing(ring);
 			}
 		}

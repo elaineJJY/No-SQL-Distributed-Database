@@ -60,7 +60,6 @@ public class KVServer {
 			while (selectionKeyIterator.hasNext()) {
 				SelectionKey next = selectionKeyIterator.next();
 				if (next.isAcceptable()) {
-					System.out.println("Acceptable");
 					accept(next);
 //					selectionKeyIterator.remove();
 				} else if (next.isReadable()) {

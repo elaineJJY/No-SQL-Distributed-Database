@@ -11,7 +11,7 @@ public class ECSMessage implements Serializable {
 
     public Command command;
     public HashMap<String, String> ring; // key: ip:port, value: hash
-    public Node removedNode;
+    public String removedNodeAddress;
     public Range range;
     public DataType dataType;
 
@@ -35,12 +35,12 @@ public class ECSMessage implements Serializable {
         this.ring = ring;
     }
 
-    public Node getRemovedNode() {
-        return removedNode;
+    public String getRemovedNodeAddress() {
+        return removedNodeAddress;
     }
 
-    public void setRemovedNode(Node removedNode) {
-        this.removedNode = removedNode;
+    public void setRemovedNodeAd(String removedNodeAddress) {
+        this.removedNodeAddress = removedNodeAddress;
     }
 
     public Range getRange() {

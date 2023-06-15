@@ -67,9 +67,10 @@ public class Node {
     }
 
     public void recover(Node removedNode) throws Exception {
+
         ECSMessageBuilder.create()
                 .command(ECSMessage.Command.RECOVER)
-                .removedNode(removedNode)
+                .removedNodeAddress(removedNode.host + ":" + removedNode.port)   //TODO: node cannot be parsed
                 .send(this.socketChannel)
                 .receive(this.socketChannel);
 //                .sendAndRespond(this.socketChannel);

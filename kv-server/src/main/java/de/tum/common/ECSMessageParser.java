@@ -23,7 +23,10 @@ public class ECSMessageParser {
                 return localNode.init();
 
             case RECOVER:
-                return localNode.recover(message.removedNode);
+                String host = message.removedNodeAddress.split(":")[0];
+                int port = Integer.parseInt(message.removedNodeAddress.split(":")[1]);
+                Node removedNode = new Node(host, port, null);
+                return localNode.recover(removedNode);
 
             default:
                 throw new UnsupportedOperationException("Unsupported command: " + command);
