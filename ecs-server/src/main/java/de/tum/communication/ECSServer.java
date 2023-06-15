@@ -1,5 +1,6 @@
 package de.tum.communication;
 
+import de.tum.common.ECSMessageBuilder;
 import de.tum.common.Help;
 import de.tum.node.ConsistentHash;
 
@@ -43,7 +44,7 @@ public class ECSServer {
     public ECSServer(String address, int port) {
         this.ecsPort = port;
         this.ecsAddress = address;
-        //this.executorService = Executors.newFixedThreadPool(15);
+        this.executorService = Executors.newFixedThreadPool(15);
     }
 
     public int getPort () { return this.ecsPort; }
@@ -77,14 +78,16 @@ public class ECSServer {
 //            int remotePort = clientSocket.getPort();
             LOGGER.info("Accept new KVServer <" + remoteAddress + ":" + remotePort + ">");
 
+            Thread.sleep(1000);
+
             // Start to connect to corresponded KVServer
             SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(remoteAddress, remotePort));
             socketChannel.configureBlocking(false);
-
+            ECSMessageBuilder.create().receive(socketChannel); // Test
 
             Node node = new Node(remoteAddress, remotePort, socketChannel);
             ConsistentHash.INSTANCE.addNode(node);
-            //readKVServer(node);
+            readKVServer(node);
         }
     }
 

@@ -82,8 +82,8 @@ public class KVServer {
 		socketChannel.configureBlocking(false);
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
-//		String message = "Hello client\n";
-//		send(message, socketChannel);
+		String message = "Hello client\n";
+		send(message, socketChannel);
 //		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
 //		writeBuffer.put(message.getBytes());
 //		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
@@ -156,7 +156,7 @@ public class KVServer {
 					StatusCode returnCode = ECSMessageParser.processMessage(msg, this.node);
 					send(returnCode.toString(), socketChannel); // socketChannel = ECSServer
 				} catch (Exception exp) {
-					exp.printStackTrace();
+//					exp.printStackTrace();
 					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
 					process(requestToKVMessage(request), socketChannel); // socketChannel = Client
 				}
@@ -180,7 +180,7 @@ public class KVServer {
 		String key = msg.getKey();
 		String value = msg.getValue();
 		Node resopnsibleNode = metaData.getResponsibleNodeByKey(key);
-
+		System.out.println(resopnsibleNode.toString());
 		//Remote
 		if (!this.node.isResponsible(key)) {
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
@@ -190,7 +190,9 @@ public class KVServer {
 					.key(key)
 					.value(value)
 					.statusCode(StatusCode.REDIRECT)
-					.sendAndRespond(metaData.getResponsibleNodeByKey(key).getSocketChannel());
+					.send(resopnsibleNode.getSocketChannel())
+					.receive(resopnsibleNode.getSocketChannel());
+//					.sendAndRespond(resopnsibleNode.getSocketChannel());
 			send(response, clientSocketChannel); // send response from other KV-Server back to client socket
 			return;
 		}

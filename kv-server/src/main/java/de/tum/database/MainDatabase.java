@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class MainDatabase implements IDatabase {
-	private static final String DEFAULT_DIR = "src/main/java/de/tum/database/data/mainData";
+	private static final String DEFAULT_DIR = "data/mainData";
 	private Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private Cache cache;
 	private SortedMap<String, String> hashToKeyMap;

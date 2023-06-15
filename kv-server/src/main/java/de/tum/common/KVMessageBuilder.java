@@ -3,6 +3,7 @@ package de.tum.common;
 import com.alibaba.fastjson.JSON;
 import de.tum.node.DataType;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.channels.SocketChannel;
@@ -57,6 +58,33 @@ public class KVMessageBuilder {
         message.setStatusCode(statusCode);
         return this;
     }
+    public KVMessageBuilder send(SocketChannel socketChannel) throws IOException {
+        String messageString = JSON.toJSONString(this.message);
+        byte[] msg = messageString.getBytes();
+        ByteBuffer byteBuffer = ByteBuffer.wrap(msg);
+        int bytesWritten;
+        do {
+            bytesWritten = socketChannel.write(byteBuffer);
+        } while (bytesWritten > 0 && byteBuffer.hasRemaining());
+        return this;
+    }
+
+
+    public String receive(SocketChannel socketChannel) throws Exception {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        int bytesRead = 0;
+        do {
+            bytesRead = socketChannel.read(buffer);
+        } while (bytesRead == 0);
+
+        // Read the received bytes into a byte[]
+        byte[] receivedMessage = new byte[bytesRead];
+        buffer.flip();
+        buffer.get(receivedMessage);
+        System.out.println("For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage));
+        return new String(receivedMessage);
+    }
+
 
     public String sendAndRespond(SocketChannel socketChannel) throws Exception {
         String messageString = JSON.toJSONString(this.message);

@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 public class BackupDatabase implements IDatabase {
 	private PersistentStorage persistentStorage;
-	private static final String DEFAULT_DIR = "src/main/java/de/tum/database/data/backupData";
+	private static final String DEFAULT_DIR = "data/backupData";
 	private SortedMap<String, String> hashToKeyMap;   // Store <Hash, Key>
 
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);

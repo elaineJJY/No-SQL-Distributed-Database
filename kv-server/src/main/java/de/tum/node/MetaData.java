@@ -1,5 +1,7 @@
 package de.tum.node;
 
+import de.tum.common.KVMessageBuilder;
+
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
@@ -32,7 +34,9 @@ public enum MetaData {
 	}
 
 	public SocketChannel createSocket(String host, int port) throws Exception {
-		return SocketChannel.open(new InetSocketAddress(host, port));
+		SocketChannel socketChannel =  SocketChannel.open(new InetSocketAddress(host, port));
+//		KVMessageBuilder.create().receive(socketChannel);	// handle the "Hello Client" message
+		return socketChannel;
 	}
 
 	public String getHash(Node node) {
@@ -96,20 +100,21 @@ public enum MetaData {
 				Node node = new Node(host, port, socketChannel);
 				ring.put(getHash(node), node);
 			}
-		}
-		for (String address : addrAndHash.keySet()) {
-			for (String addrOfNodesInOldRing : ring.keySet()) {
-				if (address.equals(addrOfNodesInOldRing)) {
-					continue;
-				}
-				String[] hostPort = address.split(":");
-				String host = hostPort[0];
-				int port = Integer.parseInt(hostPort[1]);
-				// create socket channel for each node
-				SocketChannel socketChannel = createSocket(host, port);
+		} else {
+			for (String address : addrAndHash.keySet()) {
+				for (String addrOfNodesInOldRing : ring.keySet()) {
+					if (MD5Hash.hash(address).equals(addrOfNodesInOldRing)) {
+						continue;
+					}
+					String[] hostPort = address.split(":");
+					String host = hostPort[0];
+					int port = Integer.parseInt(hostPort[1]);
+					// create socket channel for each node
+					SocketChannel socketChannel = createSocket(host, port);
 
-				Node node = new Node(host, port, socketChannel);
-				ring.put(getHash(node), node);
+					Node node = new Node(host, port, socketChannel);
+					ring.put(getHash(node), node);
+				}
 			}
 		}
 	}
@@ -117,11 +122,10 @@ public enum MetaData {
 	public Node getResponsibleNodeByKey(String key) {
 		String hash = MD5Hash.hash(key);
 		SortedMap<String, Node> tailMap = ring.tailMap(hash);
-		Node responsibleNode = tailMap.get(tailMap.firstKey());
 		if (tailMap.isEmpty()) {
-			responsibleNode = ring.get(ring.firstKey());
+			return ring.get(ring.firstKey());
 		}
-		return responsibleNode;
+		return tailMap.get(tailMap.firstKey());
 	}
 
 	public Node getBackupNodeByKey(String key) {

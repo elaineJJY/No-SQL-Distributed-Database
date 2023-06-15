@@ -2,6 +2,7 @@ package de.tum.node;
 
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 import de.tum.common.KVMessage;
 import de.tum.common.KVMessageBuilder;
@@ -132,13 +133,26 @@ public class Node {
 	 * @return the data that in this range
 	 */
 	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
-		String response = KVMessageBuilder.create()
-				.command(KVMessage.Command.COPY)
-				.dataType(where)
-				.range(range)
-				.sendAndRespond(socketChannel);
-		HashMap<String, String> data = JSON.parseObject(response, new TypeReference<HashMap<String, String>>() {});
-		return data;
+		try {
+			if (socketChannel!=null){
+				String response = KVMessageBuilder.create()
+						.command(KVMessage.Command.COPY)
+						.dataType(where)
+						.range(range)
+						.send(socketChannel)
+						.receive(socketChannel);
+//				.sendAndRespond(socketChannel);
+				System.out.println("respond:" + response);
+				HashMap<String, String> data = (HashMap<String, String>) JSONObject.parseObject(response, HashMap.class);
+				return data;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		IDatabase database = where==DataType.DATA ? mainDatabase : backupDatabase;
+		return database.getDataByRange(range);
 	}
 
 	public String get(String key) throws Exception {
@@ -158,12 +172,20 @@ public class Node {
 
 				// put data into the backup Node
 				Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
-				KVMessageBuilder.create()
-						.command(KVMessage.Command.PUT)
-						.key(key)
-						.value(value)
-						.dataType(DataType.BACKUP)
-						.sendAndRespond(backUpNode.getSocketChannel());
+				if(!backUpNode.equals(this)){
+					KVMessageBuilder.create()
+							.command(KVMessage.Command.PUT)
+							.key(key)
+							.value(value)
+							.dataType(DataType.BACKUP)
+							.send(backUpNode.getSocketChannel())
+							.receive(backUpNode.getSocketChannel());
+//						.sendAndRespond(backUpNode.getSocketChannel());
+				}
+				else {
+					backupDatabase.put(key, value);
+				}
+
 			}
 		}
 		finally {
@@ -188,12 +210,19 @@ public class Node {
 				mainDatabase.delete(key);
 				System.out.println("Delete data on database " + this.port + ": " + key );
 
-				// delete data from backup node
-				KVMessageBuilder.create()
-						.command(KVMessage.Command.DELETE)
-						.key(key)
-						.dataType(DataType.BACKUP)
-						.sendAndRespond(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+				if(MetaData.INSTANCE.getBackupNodeByKey(key).equals(this)){
+					backupDatabase.delete(key);
+				}
+				else{
+					// delete data from backup node
+					KVMessageBuilder.create()
+							.command(KVMessage.Command.DELETE)
+							.key(key)
+							.dataType(DataType.BACKUP)
+							.send(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel())
+							.receive(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+//						.sendAndRespond(MetaData.INSTANCE.getBackupNodeByKey(key).getSocketChannel());
+				}
 			}
 		}
 		finally {
@@ -214,6 +243,7 @@ public class Node {
 				Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
 				if (!nextNode.equals(this)) {
 					HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
+					System.out.println("Data transfer from " + nextNode.getPort() + " to " + this.port);
 					mainDatabase.saveAllData(mainData);
 				}
 				if (!previousNode.equals(this)) {

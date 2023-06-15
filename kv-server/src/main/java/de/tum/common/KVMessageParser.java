@@ -19,14 +19,16 @@ public class KVMessageParser {
     public static String processMessage(KVMessage message, Node localNode) throws Exception {
         KVMessage.Command command = message.getCommand();
         String response = "";
+        ServerLogger.INSTANCE.getLogger().info("Received Command Type:" + command);
         switch (command) {
             case PUT:
-                if (message.getDataType() == DataType.DATA) {
-                    StatusCode code = localNode.put(message.getKey(), message.getValue());
-                    response = code.toString() + " " + message.getKey();
+                if (message.getDataType() == DataType.BACKUP) {
+                    localNode.putBackup(message.getKey(), message.getValue());
+                    response = "updated Backup";
                 }
                 else {
-                    localNode.putBackup(message.getKey(), message.getValue());
+                    StatusCode code = localNode.put(message.getKey(), message.getValue());
+                    response = code.toString() + " " + message.getKey();
                 }
                 break;
 
