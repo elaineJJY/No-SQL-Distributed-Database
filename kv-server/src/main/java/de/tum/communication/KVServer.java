@@ -161,6 +161,15 @@ public class KVServer {
 				} catch (Exception exp) {
 //					exp.printStackTrace();
 					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
+
+					// handle keyrange request from client
+					String command = request.split(" ")[0];
+					if (command.equals("keyrange")) {
+						String repsonse = "keyrange_success " + metaData.toString();
+						send(repsonse, socketChannel);
+						return;// socketChannel = Client
+					}
+
 					process(requestToKVMessage(request), socketChannel); // socketChannel = Client
 				}
 			}
@@ -182,7 +191,6 @@ public class KVServer {
 		String key = msg.getKey();
 		String value = msg.getValue();
 		Node resopnsibleNode = metaData.getResponsibleNodeByKey(key);
-		System.out.println(resopnsibleNode.toString());
 		//Remote
 		if (!this.node.isResponsible(key)) {
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
@@ -198,7 +206,6 @@ public class KVServer {
 			send(response, clientSocketChannel); // send response from other KV-Server back to client socket
 			return;
 		}
-		//Local
 		String response = KVMessageParser.processMessage(msg, this.node);
 		send(response, clientSocketChannel);
 

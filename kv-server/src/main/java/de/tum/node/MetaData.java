@@ -75,7 +75,7 @@ public enum MetaData {
 		for (String hash : ring.keySet()) {
 			Node node = ring.get(hash);
 			//  <kr-from>, <kr-to>, <ip:port>
-			text += node.getRange(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
+			text += node.getRange(DataType.DATA).toString() + "," + node.getHost() + ":" + node.getPort() + ";";
 		}
 		return text;
 	}

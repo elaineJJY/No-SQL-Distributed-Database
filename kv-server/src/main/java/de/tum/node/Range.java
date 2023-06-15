@@ -18,4 +18,9 @@ public class Range implements Serializable {
 	public String getTo() {
 		return to;
 	}
+
+	@Override
+	public String toString() {
+		return from + "," + to;
+	}
 }
