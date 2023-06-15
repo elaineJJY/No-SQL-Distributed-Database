@@ -61,6 +61,7 @@ public class ECSServer {
 
         Runtime.getRuntime().addShutdownHook(new Thread(ECSServer::shutdown));
 
+
         while (true) {
             // accept socket from KVServer
             Socket clientSocket = ecsServerSocket.accept();
@@ -78,21 +79,18 @@ public class ECSServer {
 
             Thread.sleep(1000);
 
-            // Start to connect to corresponded KVServer
-//            SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(remoteAddress, remotePort));
-//            socketChannel.configureBlocking(false);
-//            ECSMessageBuilder.create().receive(socketChannel); // Test
-
             SocketChannel socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
-            socketChannel.bind(new InetSocketAddress("localhost", 0));
+//            socketChannel.bind(new InetSocketAddress("localhost", 0));
             socketChannel.connect(new InetSocketAddress(remoteAddress, remotePort));
+
+            // Start to connect to corresponded KVServer
+//            socketChannel.configureBlocking(false);
             while (!socketChannel.finishConnect()) {
                 System.out.println("Connecting to KVServer...");
                 sleep(1000);
             }
             ECSMessageBuilder.create().receive(socketChannel); // Test
-
 
             Node node = new Node(remoteAddress, remotePort, socketChannel);
             ConsistentHash.INSTANCE.addNode(node);

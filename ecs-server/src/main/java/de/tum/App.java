@@ -19,7 +19,6 @@ public class App {
 		boolean helpUsage = parseCommand.getHelpUsage();
 		ServerLogger.INSTANCE.init(parseCommand.getLogLevel(), parseCommand.getLogFile(), logger);
 
-		// start ecs server
 		// String ecsHost = bootStrapServerAddress.split(":")[0];
 		// int ecsPort = Integer.parseInt(bootStrapServerAddress.split(":")[1]);
 		ECSServer ecsServer = new ECSServer(address, port);
