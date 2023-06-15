@@ -5,6 +5,7 @@ import de.tum.common.ServerLogger;
 import de.tum.communication.ParseCommand;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
+import de.tum.node.MetaData;
 import de.tum.node.Node;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -75,6 +76,7 @@ public class App
 
             // init node and start serve，open NIO server for other client/server/ECS
             Node node = new Node(address, port, database, backupDatabase);
+            MetaData.INSTANCE.setLocalNode(node);
             node.startKVServer();
         }
         catch (Exception e) {

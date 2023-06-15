@@ -27,7 +27,11 @@ public class KVMessage implements Serializable {
         return command;
     }
 
-    public void setCommand(String command) {
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void parserCommand(String command) {
         switch(command) {
             case "put": this.command = Command.PUT; break;
             case "get": this.command = Command.GET; break;

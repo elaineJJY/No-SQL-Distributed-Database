@@ -8,6 +8,7 @@ import de.tum.node.Node;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.HashMap;
 
 public class KVMessageParser {
     public static KVMessage parseMessageFromString(String messageString) {
@@ -42,7 +43,8 @@ public class KVMessageParser {
                 }
                 break;
             case COPY:
-                localNode.copy(message.getDataType(), message.getRange());
+                HashMap<String, String> data = localNode.getDataByRange(message.getDataType(), message.getRange());
+                response = JSON.toJSONString(data);
                 break;
 
             case DELETE:

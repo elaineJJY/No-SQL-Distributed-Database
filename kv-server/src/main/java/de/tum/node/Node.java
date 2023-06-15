@@ -2,10 +2,12 @@ package de.tum.node;
 
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONException;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 import de.tum.common.KVMessage;
 import de.tum.common.KVMessageBuilder;
+import de.tum.common.KVMessageParser;
 import de.tum.common.StatusCode;
 import de.tum.communication.KVServer;
 import de.tum.database.IDatabase;
@@ -15,6 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.SortedMap;
+import java.util.jar.JarException;
 
 public class Node {
 
@@ -142,7 +145,18 @@ public class Node {
 						.send(socketChannel)
 						.receive(socketChannel);
 //				.sendAndRespond(socketChannel);
-				System.out.println("respond:" + response);
+				System.out.println("Get Data from other Node:" + response);
+				try{
+					JSON.parse(response);
+				}
+				catch (JSONException e) {
+					response =  KVMessageBuilder.create()
+							.command(KVMessage.Command.COPY)
+							.dataType(where)
+							.range(range)
+							.send(socketChannel)
+							.receive(socketChannel);
+				}
 				HashMap<String, String> data = (HashMap<String, String>) JSONObject.parseObject(response, HashMap.class);
 				return data;
 			}
@@ -151,6 +165,10 @@ public class Node {
 			e.printStackTrace();
 		}
 
+		IDatabase database = where==DataType.DATA ? mainDatabase : backupDatabase;
+		return database.getDataByRange(range);
+	}
+	public HashMap<String, String> getDataByRange(DataType where, Range range) throws Exception{
 		IDatabase database = where==DataType.DATA ? mainDatabase : backupDatabase;
 		return database.getDataByRange(range);
 	}

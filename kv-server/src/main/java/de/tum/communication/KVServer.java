@@ -82,7 +82,7 @@ public class KVServer {
 		socketChannel.configureBlocking(false);
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
-		String message = "Hello client\n";
+		String message = "Hello client";
 		send(message, socketChannel);
 //		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
 //		writeBuffer.put(message.getBytes());
@@ -103,7 +103,7 @@ public class KVServer {
 				key = matcher.group(2);
 			}
 			KVMessage message = new KVMessage();
-			message.setCommand(command);
+			message.parserCommand(command);
 			message.setKey(key);
 			return message;
 		} else {
@@ -119,7 +119,7 @@ public class KVServer {
 				value = matcher.group(3);
 			}
 			KVMessage message = new KVMessage();
-			message.setCommand(command);
+			message.parserCommand(command);
 			message.setKey(key);
 			message.setValue(value);
 			return message;
@@ -147,6 +147,7 @@ public class KVServer {
 				String responseTOKVServer = KVMessageParser.processMessage(msg, this.node);
 				send(responseTOKVServer, socketChannel); // socketChannel = KV-Server
 			} catch (Exception e) {
+//				e.printStackTrace();
 				try {
 					ECSMessage msg = JSON.parseObject(request, ECSMessage.class);
 					if (msg.getCommand() == null) {

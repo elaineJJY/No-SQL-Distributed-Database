@@ -48,6 +48,15 @@ public class Node {
     @Override
     public String toString() { return host + ":" + port; }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Node) {
+            Node node = (Node) obj;
+            return node.toString().equals(this.toString());
+        }
+        return false;
+    }
+
     public boolean init() throws Exception {
         String response = ECSMessageBuilder.create()
                 .command(ECSMessage.Command.INIT)

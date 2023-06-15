@@ -7,11 +7,15 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.channels.SocketChannel;
+import java.util.logging.Logger;
+
 import de.tum.node.Range;
 
 
 public class KVMessageBuilder {
+    private final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
     private KVMessage message;
+    private SocketChannel socketChannel;
 
     private KVMessageBuilder() {
         message = new KVMessage();
@@ -25,14 +29,19 @@ public class KVMessageBuilder {
         return new KVMessageBuilder();
     }
 
-    public KVMessageBuilder command(KVMessage.Command command) {
-        message.setCommand(command.toString());
+    public KVMessageBuilder socketChannel(SocketChannel socketChannel){
+        this.socketChannel = socketChannel;
         return this;
     }
-    public KVMessageBuilder command(String command) {
+
+    public KVMessageBuilder command(KVMessage.Command command) {
         message.setCommand(command);
         return this;
     }
+//    public KVMessageBuilder command(String command) {
+//        message.setCommand(command);
+//        return this;
+//    }
 
     public KVMessageBuilder key(String key) {
         message.setKey(key);
@@ -66,6 +75,7 @@ public class KVMessageBuilder {
         do {
             bytesWritten = socketChannel.write(byteBuffer);
         } while (bytesWritten > 0 && byteBuffer.hasRemaining());
+        LOGGER.info("Sent:" + messageString);
         return this;
     }
 

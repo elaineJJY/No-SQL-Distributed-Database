@@ -22,11 +22,11 @@ public enum MetaData {
 	private SortedMap<String, Node> ring = new TreeMap<>(); // hash and node
 
 	private Node localNode;
-	private void setLocalNode(Node node) {
+	public void setLocalNode(Node node) {
 		this.localNode = node;
 	}
 
-	private Node getLocalNode() {
+	public Node getLocalNode() {
 		return this.localNode;
 	}
 	public SortedMap<String, Node> getRing() {
@@ -35,7 +35,8 @@ public enum MetaData {
 
 	public SocketChannel createSocket(String host, int port) throws Exception {
 		SocketChannel socketChannel =  SocketChannel.open(new InetSocketAddress(host, port));
-//		KVMessageBuilder.create().receive(socketChannel);	// handle the "Hello Client" message
+		String respond = KVMessageBuilder.create().receive(socketChannel);// handle the "Hello Client" message
+		System.out.println(respond);
 		return socketChannel;
 	}
 
@@ -95,8 +96,10 @@ public enum MetaData {
 				String host = hostPort[0];
 				int port = Integer.parseInt(hostPort[1]);
 				// create socket channel for each node
-				SocketChannel socketChannel = createSocket(host, port);
-
+				SocketChannel socketChannel = null;
+				if (!address.equals(localNode.getHost() + ":" + localNode.getPort())) {
+					socketChannel = createSocket(host, port);
+				}
 				Node node = new Node(host, port, socketChannel);
 				ring.put(getHash(node), node);
 			}
