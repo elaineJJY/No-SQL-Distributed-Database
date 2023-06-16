@@ -1,6 +1,8 @@
 package de.tum.node;
 
-public class Range {
+import java.io.Serializable;
+
+public class Range implements Serializable {
 	private String from;
 	private String to;
 
@@ -15,5 +17,10 @@ public class Range {
 
 	public String getTo() {
 		return to;
+	}
+
+	@Override
+	public String toString() {
+		return from + "," + to;
 	}
 }

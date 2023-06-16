@@ -14,15 +14,14 @@ import java.util.Map;
  * @Version 1.0
  */
 public class LFU extends Cache {
-    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private final int capacity;
-    private final Map<String, Object> cache; // 缓存
+    private final Map<String, String> cache; // 缓存
     private final Map<String, Integer> freq; // 记录每个 key 的访问次数
     private final Map<Integer, LinkedHashSet<String>> freqMap; // 记录每个访问次数对应的 key 集合
     private int minFreq;
 
-    public LFU(int capacity) {
-        super();
+    public LFU(int capacity, String directory) {
+        super(directory);
         this.capacity = capacity;
         this.cache = new HashMap<>();
         this.freq = new HashMap<>();
@@ -32,13 +31,14 @@ public class LFU extends Cache {
     }
 
     @Override
-    public Object get(String key) throws Exception {
-        Object value = cache.get(key);
+    public String get(String key) throws Exception {
+        String value = cache.get(key);
         if (!cache.containsKey(key)) {
             value = getPersistentStorage().readFromDisk(key);
             if (value != null) {
                 this.put(key, value);
-                getPersistentStorage().deleteFromDisk(key);
+            } else {
+                return null;
             }
         }
         int f = freq.get(key);
@@ -52,7 +52,7 @@ public class LFU extends Cache {
     }
 
     @Override
-    public void put(String key, Object value) throws Exception {
+    public void put(String key, String value) throws Exception {
         if (cache.containsKey(key)) {
             cache.put(key, value);
             get(key); // 更新访问次数
@@ -61,7 +61,6 @@ public class LFU extends Cache {
         if (cache.size() == capacity) {
             String evictKey = freqMap.get(minFreq).iterator().next(); // 获取访问次数最少的 key 集合中的第一个 key，即要被淘汰的 key
             freqMap.get(minFreq).remove(evictKey); // 从访问次数最少的 key 集合中移除该 key
-            getPersistentStorage().storeToDisk(evictKey, cache.get(evictKey));
             cache.remove(evictKey); // 从缓存中移除该 key
             freq.remove(evictKey); // 从访问次数的记录中移除该 key
         }
@@ -69,13 +68,11 @@ public class LFU extends Cache {
         freq.put(key, 1); // 访问次数初始化为 1
         freqMap.computeIfAbsent(1, k -> new LinkedHashSet<>()).add(key); // 加入访问次数为 1 的 key 集合
         minFreq = 1; // 更新 minFreq
+        getPersistentStorage().storeToDisk(key, value);
     }
 
     @Override
     public void delete(String key) throws Exception {
-        if (!cache.containsKey(key)) {
-            getPersistentStorage().deleteFromDisk(key);
-        }
         int f = freq.get(key);
         freq.remove(key);
         freqMap.get(f).remove(key);
@@ -83,5 +80,6 @@ public class LFU extends Cache {
         if (f == minFreq && freqMap.get(f).isEmpty()) {
             minFreq++;
         }
+        getPersistentStorage().deleteFromDisk(key);
     }
 }

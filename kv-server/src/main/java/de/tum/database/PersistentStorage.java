@@ -33,7 +33,7 @@ public class PersistentStorage {
      * @param key, value
      * @throws IOException
      */
-    public void storeToDisk(String key, Object value) throws IOException {
+    public void storeToDisk(String key, String value) throws IOException {
         Callable<Entry<String, String>> writingTask = new Callable<Entry<String, String>>() {
             @Override
             public Entry<String, String> call() throws Exception {
@@ -56,23 +56,23 @@ public class PersistentStorage {
      * @return Object
      * @throws Exception
      */
-    public Object readFromDisk(String key) throws Exception {
-        Callable<Object> readingTask = new Callable<Object>() {
+    public String readFromDisk(String key) throws Exception {
+        Callable<String> readingTask = new Callable<String>() {
             @Override
-            public Object call() throws Exception {
+            public String call() throws Exception {
                 String fileName = directory + "/"  + key + ".dat";
                 if (!new File(fileName).exists()) {
                     return null;
                 }
                 FileInputStream fis = new FileInputStream(fileName);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                Object value = ois.readObject();
+                String value = ois.readObject().toString();
                 ois.close();
                 fis.close();
                 return value;
             }
         };
-        Future<Object> future = executor.submit(readingTask);
+        Future<String> future = executor.submit(readingTask);
         return future.get();
     }
 

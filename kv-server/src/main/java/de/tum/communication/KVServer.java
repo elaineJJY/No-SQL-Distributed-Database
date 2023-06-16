@@ -1,10 +1,11 @@
 package de.tum.communication;
 
-import de.tum.common.Help;
-import de.tum.common.ServerLogger;
-import de.tum.node.ConsistentHash;
-
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import de.tum.common.*;
+import de.tum.node.MetaData;
 import de.tum.node.Node;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -14,23 +15,22 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 import java.util.logging.Logger;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class KVServer {
-	private final ConsistentHash metaData;
+	private final MetaData metaData;
 	private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
-	//单例模式，设置selector为static
 	private static Selector selector;
 	private static ServerSocketChannel ssChannel;
 	private Node node;
 
-	// 分离读写缓冲区，按需设置server的写缓冲区
+	// detach read and write buffer
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 	private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
 
 	public KVServer(Node node) {
-		this.metaData = ConsistentHash.INSTANCE;
+		this.metaData = MetaData.INSTANCE;
 		this.node = node;
 	}
 
@@ -52,12 +52,9 @@ public class KVServer {
 		selector = Selector.open();
 		// register listen channel to selector
 		ssChannel.register(selector, SelectionKey.OP_ACCEPT);
-		System.out.println("Server is listening on port " + port);
+		LOGGER.info("KVServer is listening on port " + port + ", ready to receive data from KVClient");
 
-		// register server to ECS
-		//registerToECS(address, port);
-		//registerToECS("10.181.95.176", 5152);
-		// 无参select()方法会一直阻塞直到有事件发生
+		// select() method without parameter will block until at least one event occurs
 		while (selector.select() > 0) {
 			Set<SelectionKey> selectionKeys = selector.selectedKeys();
 			Iterator<SelectionKey> selectionKeyIterator = selectionKeys.iterator();
@@ -65,6 +62,7 @@ public class KVServer {
 				SelectionKey next = selectionKeyIterator.next();
 				if (next.isAcceptable()) {
 					accept(next);
+//					selectionKeyIterator.remove();
 				} else if (next.isReadable()) {
 					read(next);
 				}
@@ -72,44 +70,6 @@ public class KVServer {
 			}
 		}
 	}
-
-	/**
-	 * Register server to ECS
-	 * @param address ECS address
-	 * @param port ECS port
-	 */
-//	public void registerToECS(String address, int port) {
-//		ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(address, port).usePlaintext().build();
-//		// 2. 创建stub 代理对象
-//		try {
-//			// We will use blocking stub here, since successful registration to ECS is a prerequisite
-//			grpc_api.ECSServiceGrpc.ECSServiceBlockingStub ecsService = grpc_api.ECSServiceGrpc.newBlockingStub(managedChannel);
-//			// sub-Builder
-//			KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
-//					.setHost(address)
-//					.setPort(port);
-//
-//			KVServerProto.InitRequest initRequest = KVServerProto.InitRequest.newBuilder()
-//					.setIpPort(nodeMessageBuilder.build()).build();
-//			//separate
-//			//builder.setIpPort(nodeMessageBuilder.build());
-//			//KVServerProto.InitRequest initRequest = builder.build();
-//
-//			// call rpc init(InitRequest) returns (InitResponse)
-//			KVServerProto.InitResponse initResponse = ecsService.init(initRequest);
-//			// get result and print
-//			Map<String, KVServerProto.NodeMessage> ring = initResponse.getRingMap();
-//			// print ring's information
-//			System.out.println("Ring information:");
-//			for (Map.Entry<String, KVServerProto.NodeMessage> entry : ring.entrySet()) {
-//				System.out.println("Hash: " + entry.getKey() + " Node: " + entry.getValue().getHost() + ":" + entry.getValue().getPort());
-//			}
-//		} catch (Exception e) {
-//			throw new RuntimeException(e);
-//		} finally {
-//			managedChannel.shutdown();
-//		}
-//	}
 
 	/**
 	 * Handler to accept new client
@@ -120,156 +80,223 @@ public class KVServer {
 		writeBuffer.clear();
 		SocketChannel socketChannel = ssChannel.accept();
 		socketChannel.configureBlocking(false);
+//		while (!socketChannel.finishConnect()) {
+//			// wait for connection
+//		}
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
+
 		String message = "Hello client\n";
-		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
-		writeBuffer.put(message.getBytes());
-		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
-		LOGGER.info("Accept new client: " + socketChannel.getRemoteAddress());
+		send(message, socketChannel);
+//		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
+//		writeBuffer.put(message.getBytes());
+//		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
 	}
 
-	/**
-	 * Handler to read message from client and echo certain message back to client
-	 * @param key
-	 * @throws Exception
-	 */
-	private void read(SelectionKey key) throws Exception {
-		readBuffer.clear(); //清空读缓存区
-		SocketChannel socketChannel = (SocketChannel) key.channel();
+	public KVMessage requestToKVMessage(String request) {
+		String[] tokens = request.split(" ");
+		if (tokens.length < 3) {
+			String regex = "^(\\w+)\\s+(.*)$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(request);
+			String command = null;
+			String key = null;
+			if (matcher.find()) {
+				command = matcher.group(1);
+				key = matcher.group(2);
+			}
+			KVMessage message = new KVMessage();
+			message.parserCommand(command);
+			message.setKey(key);
+			return message;
+		} else {
+			String regex = "^([a-zA-Z]+)\\s+([^\\s]+)\\s+(.*)$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(request);
+			String command = null;
+			String key = null;
+			String value = null;
+			if (matcher.find()) {
+				command = matcher.group(1);
+				key = matcher.group(2);
+				value = matcher.group(3);
+			}
+			System.out.println(command);
+			System.out.println(key);
+			System.out.println(value);
+			KVMessage message = new KVMessage();
+			message.parserCommand(command);
+			message.setKey(key);
+			message.setValue(value);
+			System.out.println(JSONObject.toJSONString(message));
+			return message;
+		}
+	}
+
+	private void read(SelectionKey selectionKey) throws Exception {
+		readBuffer.clear();
+		SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
 		int len = socketChannel.read(readBuffer);
 		if (len != -1) {
-			readBuffer.flip(); // 重置position
-			byte[] bytes = new byte[readBuffer.remaining()]; // 根据缓冲区的数据长度创建字节数组
-			readBuffer.get(bytes); // 将缓冲区的数据读到字节数组中
-			String request = new String(bytes).trim();
-			System.out.println("Server received: " + request);
+			readBuffer.flip();
+			byte[] bytes = new byte[readBuffer.remaining()];
+			readBuffer.get(bytes);
+			String request = new String(bytes);	//receive request from client.
 			socketChannel.configureBlocking(false);
-			//key.interestOps(SelectionKey.OP_READ); // 关心读事件?
-			LOGGER.info("Register read event for client: " + socketChannel.getRemoteAddress());
 
-			//read到一条request，交给process处理
-			//String request =  new String(readBuffer.array());
-			LOGGER.info("Received request:" + request);
-			process(request, socketChannel);
+			//TODO: optimize the parse process
+			try {
+				KVMessage msg = JSON.parseObject(request, KVMessage.class);
+				if (msg.getCommand() == null) {
+					throw new Exception("NOT A KVMessage");
+				}
+				LOGGER.info("Received request from SERVER: " + socketChannel.getRemoteAddress() + " Request: " + request);
+				String responseTOKVServer = KVMessageParser.processMessage(msg, this.node);
+				send(responseTOKVServer, socketChannel); // socketChannel = KV-Server
+			} catch (Exception e) {
+//				e.printStackTrace();
+				try {
+					ECSMessage msg = JSON.parseObject(request, ECSMessage.class);
+					if (msg.getCommand() == null) {
+						throw new Exception("NOT A ECSMessage");
+					}
+					LOGGER.info("Received request from ECS: " + socketChannel.getRemoteAddress() + " Request: " + request);
+					StatusCode returnCode = ECSMessageParser.processMessage(msg, this.node);
+					send(returnCode.toString(), socketChannel); // socketChannel = ECSServer
+				} catch (Exception exp) {
+////					exp.printStackTrace();
+//					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
+					// handle keyrange request from client
+					if (request.contains("keyrange")) {
+						String repsonse = "keyrange_success " + metaData.toString() ;
+						repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
+						send(repsonse, socketChannel);
+						LOGGER.info(repsonse);
+						return;
+					}
+					process(requestToKVMessage(request), socketChannel); // socketChannel = Client
+				}
+			}
 		}
 		else {
 			socketChannel.close(); // close channel
-			key.cancel(); // cancel key
+			selectionKey.cancel(); // cancel key
 		}
 	}
 
-	/**
-	 * Send message to client
-	 * @param msg
-	 * @param socketChannel
-	 * @throws IOException
-	 */
+	// Send to client
 	private void send(String msg, SocketChannel socketChannel) throws IOException {
-		String newMsg = msg + "\n";
-		socketChannel.write(ByteBuffer.wrap(newMsg.getBytes()));
+		socketChannel.write(ByteBuffer.wrap(msg.getBytes()));
+		LOGGER.info("Sent:" + msg);
 	}
 
-	/**
-	 * Command Handler for put
-	 * @param tokens
-	 * @param socketChannel
-	 * @throws IOException
-	 */
-	private void putCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
-		try {
-			StringBuilder sb = new StringBuilder();
-			for (int i = 2; i < tokens.length; i++) {
-				if (i > 2) {
-					sb.append(" ");
-				}
-				sb.append(tokens[i]);
-			}
-			String value = sb.toString();
-			if (responsibleNode.get(tokens[1]) != null) {
-				responsibleNode.put(tokens[1], value);
-				String msg = "put_update " + tokens[1];
-				send(msg, socketChannel);
-			} else {
-				responsibleNode.put(tokens[1], value);
-				String msg = "put_success " + tokens[1];
-				send(msg, socketChannel);
-			}
-		} catch (Exception e){
-			String msg = "put_error";
-			send(msg, socketChannel);
+	private void process(KVMessage msg, SocketChannel clientSocketChannel) throws Exception {
+		KVMessage.Command command = msg.getCommand();
+		String key = msg.getKey();
+		String value = msg.getValue();
+		Node resopnsibleNode = metaData.getResponsibleNodeByKey(key);
+		//Remote
+		if (!this.node.isResponsible(key)) {
+			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
+			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
+			String response = KVMessageBuilder.create()
+					.command(msg.getCommand())
+					.key(key)
+					.value(value)
+					.statusCode(StatusCode.REDIRECT)
+					.socketChannel(resopnsibleNode.getSocketChannel())
+					.send()
+					.receive();
+			send(response, clientSocketChannel); // send response from other KV-Server back to client socket
+			return;
 		}
-	}
-
-	/**
-	 * Command Handler for get
-	 * @param tokens
-	 * @param socketChannel
-	 * @throws IOException
-	 */
-
-	private void getCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
-		try {
-			Object value = responsibleNode.get(tokens[1]);
-			if (value != null) {
-				String msg = "get_success " + tokens[1] + " " + value;
-				send(msg, socketChannel);
-			}
-			else {
-				String msg = "get_error " + tokens[1];
-				send(msg, socketChannel);
-			}
-
-		} catch (Exception e) {
-			String msg = "get_error " + tokens[1];
-			send(msg, socketChannel);
-		}
-	}
-
-	/**
-	 * Command Handler for delete
-	 * @param tokens
-	 * @param socketChannel
-	 * @throws IOException
-	 */
-
-	private void deleteCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
-		try {
-			Object value = node.get(tokens[1]);
-			if (value != null) {
-				node.delete(tokens[1]);
-				String msg = "delete_success " + tokens[1];
-				send(msg, socketChannel);
-			}
-			else {
-				String msg = "delete_error " + tokens[1];
-				send(msg, socketChannel);
-			}
-		} catch (Exception e) {
-			String msg = "delete_error" + tokens[1];
-			send(msg, socketChannel);
-		}
-	}
-
-	/**
-	 * Process request from client which is distributed by read handler
-	 * @param request
-	 * @param socketChannel
-	 * @throws Exception
-	 */
-	private void process(String request, SocketChannel socketChannel) throws Exception {
-		String[] tokens = request.trim().split("\\s+");
-		String key = tokens[1];
-		Node resopnsibleNode = this.node;
-		if (!node.isResponsible(key)) {
-			System.out.println("Not responsible for key: " + key);
-			resopnsibleNode = metaData.getResponsibleServerByKey(key);
-		}
-		switch(tokens[0]) {
-			case "put": putCommandHandler(resopnsibleNode, tokens, socketChannel); break;
-			case "get": getCommandHandler(resopnsibleNode, tokens, socketChannel); break;
-			case "delete": deleteCommandHandler(resopnsibleNode, tokens, socketChannel); break;
-			case "quit": socketChannel.close(); break;
-			default: send("error Unknown Command", socketChannel);
-		}
+		String response = KVMessageParser.processMessage(msg, this.node);
+		send(response, clientSocketChannel);
 	}
 }
+
+	// local command from client
+//		switch (command) {
+//			case "put":
+//				putCommandHandler(msg, clientSocketChannel);
+//				break;
+//			case "get":
+//				getCommandHandler(msg, clientSocketChannel);
+//				break;
+//			case "delete":
+//				deleteCommandHandler(msg, clientSocketChannel);
+//				break;
+//			case "quit":
+//				clientSocketChannel.close();
+//				break;
+//			default:
+//				send("error Unknown Command", clientSocketChannel);
+//		}
+
+//	private void putCommandHandler(KVMessage message, SocketChannel socketChannel) throws Exception {
+//		try {
+//			for (int i = 2; i < tokens.length; i++) {
+//				if (i > 2) {
+//					sb.append(" ");
+//				}
+//				sb.append(tokens[i]);
+//			}
+//			String value = sb.toString();
+//			if (responsibleNode.hasKey(tokens[1])) {
+//				String msg = responsibeNode.put(tokens[1], value);
+//				String msg = "put_update " + tokens[1];
+//				send(msg, socketChannel);
+//			} else {
+//				responsibleNode.put(tokens[1], value);
+//				String msg = "put_success " + tokens[1];
+//				send(msg, socketChannel);
+//			}
+//		} catch (Exception e) {
+//			String msg = "put_error";
+//			send(msg, socketChannel);
+//		}
+//	}
+//
+//
+//	private void getCommandHandler(Node responsibleNode, String[] tokens, SocketChannel clientSocketChannel) throws IOException {
+//		try {
+//			String value = responsibleNode.get(tokens[1]);
+//			if (value != null) {
+//				String msg = "get_success " + tokens[1] + " " + value;
+//				send(msg, clientSocketChannel);
+//			}
+//			else {
+//				String msg = "get_error " + tokens[1];
+//				send(msg, clientSocketChannel);
+//			}
+//
+//		} catch (Exception e) {
+//			String msg = "get_error " + tokens[1];
+//			send(msg, clientSocketChannel);
+//		}
+//	}
+//
+//	/**
+//	 * Command Handler for delete
+//	 * @param tokens
+//	 * @param socketChannel
+//	 * @throws IOException
+//	 */
+//
+//	private void deleteCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
+//		try {
+//			String value = responsibleNode.get(tokens[1]);
+//			if (value != null) {
+//				responsibleNode.delete(tokens[1]);
+//				String msg = "delete_success " + tokens[1];
+//				send(msg, socketChannel);
+//			}
+//			else {
+//				String msg = "delete_error " + tokens[1];
+//				send(msg, socketChannel);
+//			}
+//		} catch (Exception e) {
+//			String msg = "delete_error" + tokens[1];
+//			send(msg, socketChannel);
+//		}
+//	}
+
