@@ -7121,3 +7121,555 @@ INFO: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"f
 信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
 6月 16, 2023 12:22:37 下午 de.tum.node.Node updateRing
 信息: Update Ring:OK
+6月 16, 2023 12:59:28 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 12:59:43 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 12:59:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 12:59:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 12:59:47 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 12:59:47 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 12:59:47 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 12:59:47 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 12:59:53 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5154>
+6月 16, 2023 12:59:55 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 12:59:55 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 12:59:57 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 12:59:57 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 12:59:57 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 12:59:58 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 16, 2023 12:59:58 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}} Received:OK
+6月 16, 2023 1:00:24 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5155>
+6月 16, 2023 1:00:26 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:00:26 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:27 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:27 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:27 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 16, 2023 1:00:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}} Received:OK
+6月 16, 2023 1:00:37 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5156>
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:39 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:39 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:39 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:40 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:40 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"95f8c59640f188c6fd3c3442b6429ff4","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"95f8c59640f188c6fd3c3442b6429ff4","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"95f8c59640f188c6fd3c3442b6429ff4"}}
+6月 16, 2023 1:00:40 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"95f8c59640f188c6fd3c3442b6429ff4"}} Received:OK
+6月 16, 2023 1:04:35 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:04:40 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:04:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:04:42 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:04:42 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:04:42 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:04:42 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:04:42 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:04:44 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5154>
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:04:46 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:04:46 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 16, 2023 1:04:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}} Received:OK
+6月 16, 2023 1:05:06 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:05:08 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:05:08 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:05:09 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:05:09 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}} Received:OK
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:05:09 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:06:27 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:06:35 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:06:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:06:37 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:06:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:06:37 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:06:37 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:06:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:07:06 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:07:12 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:07:13 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:07:13 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:07:14 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:07:14 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:07:14 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:07:14 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:07:56 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:07:56 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 16, 2023 1:07:56 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 16, 2023 1:08:04 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:08:11 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5154>
+6月 16, 2023 1:08:12 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:08:12 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 16, 2023 1:08:13 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e"}} Received:OK
+6月 16, 2023 1:08:13 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:08:13 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:08:13 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:09:13 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:09:13 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 16, 2023 1:09:13 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 16, 2023 1:09:21 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:09:21 下午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 16, 2023 1:09:21 下午 de.tum.App main
+严重: Server init failed: Connection refused
+6月 16, 2023 1:09:28 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:09:33 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5155>
+6月 16, 2023 1:09:35 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:09:35 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410"}}
+6月 16, 2023 1:09:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410"}} Received:OK
+6月 16, 2023 1:09:37 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:09:37 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:09:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:09:39 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:09:41 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:09:41 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"653795696acaf8eae91ccdcadbb29410"}} Received:OK
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:09:41 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:14:08 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:14:24 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:14:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:14:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:14:29 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:14:29 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:14:29 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:14:29 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:14:33 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5154>
+6月 16, 2023 1:14:35 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:14:35 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:14:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:14:37 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:14:37 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:14:37 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:14:37 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:14:38 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:14:38 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:14:38 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:14:38 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:14:38 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 16, 2023 1:14:38 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}} Received:OK
+6月 16, 2023 1:14:38 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 16, 2023 1:14:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5154"} Received:OK
+6月 16, 2023 1:14:39 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 16, 2023 1:14:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5154"} Received:OK
+6月 16, 2023 1:14:39 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:14:39 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:14:39 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:14:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+6月 16, 2023 1:14:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+6月 16, 2023 1:14:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+6月 16, 2023 1:14:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+6月 16, 2023 1:15:32 下午 de.tum.communication.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 16, 2023 1:15:43 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5153>
+6月 16, 2023 1:15:45 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:15:45 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:46 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:15:46 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:15:46 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:15:48 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5154>
+6月 16, 2023 1:15:50 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:15:50 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:51 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:51 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:15:51 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:15:51 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:15:51 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:51 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:51 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:15:52 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:52 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:52 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}}
+6月 16, 2023 1:15:52 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"37586c477a3ac69772c7e28b9bccc13e","to":"5c5078e3230df60803c9186f9bf0ae1e"}} Received:OK
+6月 16, 2023 1:15:53 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5155>
+6月 16, 2023 1:15:55 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:15:55 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:56 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:56 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:56 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}}
+6月 16, 2023 1:15:56 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"5c5078e3230df60803c9186f9bf0ae1e","to":"653795696acaf8eae91ccdcadbb29410"}} Received:OK
+6月 16, 2023 1:16:01 下午 de.tum.communication.ECSServer start
+信息: Accept new KVServer <localhost:5156>
+6月 16, 2023 1:16:03 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{} Received:Hello client
+6月 16, 2023 1:16:03 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:16:04 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:16:04 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:16:04 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"INIT"}
+6月 16, 2023 1:16:04 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"INIT"} Received:OK
+6月 16, 2023 1:16:04 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:16:05 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:16:05 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5156":"95f8c59640f188c6fd3c3442b6429ff4","localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:16:05 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"95f8c59640f188c6fd3c3442b6429ff4","to":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"BACKUP","range":{"from":"95f8c59640f188c6fd3c3442b6429ff4","to":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"95f8c59640f188c6fd3c3442b6429ff4"}}
+6月 16, 2023 1:16:05 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"from":"653795696acaf8eae91ccdcadbb29410","to":"95f8c59640f188c6fd3c3442b6429ff4"}} Received:OK
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5156"}
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5156"} Received:OK
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5156"}
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5156"} Received:OK
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:17:20 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:17:20 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:17:20 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5155":"653795696acaf8eae91ccdcadbb29410","localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:17:20 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5155"}
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5155"} Received:OK
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5155"}
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5155"} Received:OK
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:17:24 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:17:24 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5154":"5c5078e3230df60803c9186f9bf0ae1e","localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:17:24 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:17:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 16, 2023 1:17:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5154"} Received:OK
+6月 16, 2023 1:17:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5154"}
+6月 16, 2023 1:17:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5154"} Received:OK
+6月 16, 2023 1:17:27 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+6月 16, 2023 1:17:27 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+6月 16, 2023 1:17:27 下午 de.tum.node.Node updateRing
+信息: Update Ring:OK
+6月 16, 2023 1:17:45 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+6月 16, 2023 1:17:45 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+6月 16, 2023 1:17:45 下午 de.tum.common.ECSMessageBuilder send
+信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+6月 16, 2023 1:17:45 下午 de.tum.common.ECSMessageBuilder receive
+信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK

@@ -4,11 +4,9 @@ import de.tum.common.ECSMessageBuilder;
 import de.tum.common.Help;
 import de.tum.node.ConsistentHash;
 
-import java.io.*;
+import java.io.OutputStream;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.nio.channels.SocketChannel;
@@ -37,11 +35,11 @@ public class ECSServer {
     private static final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
     private final int ecsPort;
     private final String ecsAddress;
-
-    private HashMap<String, Node> mapOfNodes = new HashMap<>();
     private static ExecutorService executorService;
     public static ServerSocket ecsServerSocket;
-    private LinkedList<Socket> closeQueue; // Used when close the queue to transfer data gradually
+    private LinkedList<Node> closeQueue = new LinkedList<>(); // Used when close the queue to transfer data gradually
+    private HashMap<String, Node> nodeMap = new HashMap<>();//Store all exist nodes: <ip:port, Node>
+    private HashMap<Node, Socket> nodeSocketMap = new HashMap<>(); //store all exist nodes: <Node, Socket>
 
     public ECSServer(String address, int port) {
         this.ecsPort = port;
@@ -60,9 +58,9 @@ public class ECSServer {
         ecsServerSocket = new ServerSocket();
         ecsServerSocket.bind(socketAddress);
         System.out.println("ECS is listening on port " + ecsPort);
+        handleRemoveRequest();
 
         Runtime.getRuntime().addShutdownHook(new Thread(ECSServer::shutdown));
-
 
         while (true) {
             // accept socket from KVServer
@@ -96,31 +94,32 @@ public class ECSServer {
 
             Node node = new Node(remoteAddress, remotePort, socketChannel);
             ConsistentHash.INSTANCE.addNode(node);
-            mapOfNodes.put(remoteAddress + ":" + remotePort, node);
-            readKVServer(node);
+            nodeMap.put(remoteAddress + ":" + remotePort, node);
+            nodeSocketMap.put(node, clientSocket);
+            readKVServer(clientSocket); // read shutdown message from KVServer
         }
     }
 
-    private void readKVServer(Node node) throws Exception {
+    private void readKVServer(Socket clientSocket) throws Exception {
         executorService.execute(() -> {
-            while (true) {
-                ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-                readBuffer.clear(); // clear buffer
-                try {
-                    Thread.sleep(1000);
-                    int len = node.getSocketChannel().read(readBuffer);
-                    if (len == -1) {
-                        System.out.println("KVServer<" + node.getHost() + ":" + node.getPort() + "> is closed");
-                        node.getSocketChannel().close(); // close channel
-                        ConsistentHash.INSTANCE.removeNode(node);
-                        Thread.currentThread().interrupt();
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
+            ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+            readBuffer.clear(); // clear buffer
+
+            try {
+                // read shutdown message from KVServer
+                byte[] buffer = new byte[1024];
+                int bytesRead = clientSocket.getInputStream().read(buffer);
+                if (bytesRead != -1) {
+                    byte[] message = new byte[bytesRead];
+                    System.arraycopy(buffer, 0, message, 0, bytesRead);
+                    String addressOfRemoveNode = new String(message);
+                    System.out.println("Remove Node:" + addressOfRemoveNode);
+                    closeQueue.add(nodeMap.get(addressOfRemoveNode));
                 }
-                catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                Thread.currentThread().interrupt();
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
             }
         });
     }
@@ -137,5 +136,30 @@ public class ECSServer {
             e.printStackTrace();
         }
         System.out.println("ECS shutdowns complete.");
+    }
+
+    private void handleRemoveRequest() {
+        executorService.execute(() -> {
+            while (true) {
+                try {
+                    if (closeQueue != null && !closeQueue.isEmpty()) {
+                        Node node = closeQueue.poll();
+                        Socket clientSocket = nodeSocketMap.get(node);
+                        ConsistentHash.INSTANCE.removeNode(node);
+
+                        OutputStream outputStream = clientSocket.getOutputStream();
+                        ByteBuffer byteWriteBuffer = ByteBuffer.wrap("REMOVE_NODE_SUCCESS".getBytes());
+                        outputStream.write(byteWriteBuffer.array());
+                        outputStream.flush();
+
+                        node.getSocketChannel().close();
+                        clientSocket.close();
+                    }
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

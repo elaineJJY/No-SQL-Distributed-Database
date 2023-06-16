@@ -7,15 +7,8 @@ import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
 import de.tum.node.MetaData;
 import de.tum.node.Node;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
 
-import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.Buffer;
@@ -35,10 +28,8 @@ import java.util.logging.Logger;
 public class App 
 {
     private static Logger LOGGER = Logger.getLogger(App.class.getName());
-    // KVServer's port to listen ECS cannot conflict with KVServer's port to listen client
-    public static final int KV_LISTEN_ECS_PORT = 5200;
+    private static Socket socket;
     public static void main( String[] args )
-
     {
         ParseCommand parseCommand = new ParseCommand(args);
         
@@ -68,11 +59,48 @@ public class App
             backupDatabase.setDirectory(backupDatabaseDir);
 
             // register to ECS and sent address of this node to it
-            Socket socket = new Socket(bootStrapServerIP, bootStrapServerPort);
+            socket = new Socket(bootStrapServerIP, bootStrapServerPort);
             OutputStream outputStream = socket.getOutputStream();
             ByteBuffer byteBuffer = ByteBuffer.wrap((address + ":" + String.valueOf(port)).getBytes());
             outputStream.write(byteBuffer.array());
             outputStream.flush();
+
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                System.out.println("Shutting down server...");
+                try {
+                    // send shutdown message to ECS
+                    OutputStream outputStreamShutdown = socket.getOutputStream();
+                    ByteBuffer byteBufferShutdown = ByteBuffer.wrap((address + ":" + String.valueOf(port)).getBytes());
+                    outputStreamShutdown.write(byteBufferShutdown.array());
+                    outputStreamShutdown.flush();
+
+                    // receive response from ECS
+                    while (true) {
+                        byte[] buffer = new byte[1024];
+                        int bytesRead = socket.getInputStream().read(buffer);
+                        if (bytesRead != -1) {
+                            byte[] message = new byte[bytesRead];
+                            System.arraycopy(buffer, 0, message, 0, bytesRead);
+                            String messageString = new String(message);
+                            if (messageString.equals("REMOVE_NODE_SUCCESS")) {
+                                System.out.println("Successfully removed node from ECS");
+                                break;
+                            } else {
+                                LOGGER.severe("Error removing node from ECS");
+                                break;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    LOGGER.severe("Error notifying ECS to remove node: " + e.getMessage());
+                } finally {
+                    try {
+                        socket.close();
+                    } catch (IOException e) {
+                        LOGGER.severe("Error closing socket: " + e.getMessage());
+                    }
+                }
+            }));
 
             // init node and start serve，open NIO server for other client/server/ECS
             Node node = new Node(address, port, database, backupDatabase);
