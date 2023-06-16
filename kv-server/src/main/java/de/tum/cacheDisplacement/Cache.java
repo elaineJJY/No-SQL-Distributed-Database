@@ -15,11 +15,10 @@ import java.util.logging.Logger;
  * @Version 1.0
  */
 public abstract class Cache {
-    private static final String DEFAULT_DIR = "src/main/java/de/tum/server/database/data/backupdata";
     private PersistentStorage persistentStorage;
     private static Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 
-    public Cache() {
+    public Cache(String DEFAULT_DIR) {
         this.persistentStorage = new PersistentStorage(DEFAULT_DIR);
     }
 
@@ -35,7 +34,7 @@ public abstract class Cache {
         return persistentStorage;
     }
 
-    public abstract void put(String key, Object value) throws Exception;
-    public abstract Object get(String key) throws Exception ;
+    public abstract void put(String key, String value) throws Exception;
+    public abstract String get(String key) throws Exception ;
     public abstract void delete(String key) throws Exception;
 }

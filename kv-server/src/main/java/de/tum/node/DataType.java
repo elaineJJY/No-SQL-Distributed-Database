@@ -1,5 +1,7 @@
 package de.tum.node;
 
-public enum DataType {
+import java.io.Serializable;
+
+public enum DataType implements Serializable {
 	DATA, BACKUP
 }

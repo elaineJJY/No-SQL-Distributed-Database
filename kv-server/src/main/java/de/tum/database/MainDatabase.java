@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class MainDatabase implements IDatabase {
+	private static final String DEFAULT_DIR = "data/mainData";
 	private Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private Cache cache;
 	private SortedMap<String, String> hashToKeyMap;
@@ -28,13 +29,13 @@ public class MainDatabase implements IDatabase {
 		this.hashToKeyMap = new TreeMap<>();
 		switch (cacheDisplacementAlgorithm) {
 			case "LRU":
-				cache = new LRU(capacity);
+				cache = new LRU(capacity, DEFAULT_DIR);
 				break;
 			case "LFU":
-				cache = new LFU(capacity);
+				cache = new LFU(capacity, DEFAULT_DIR);
 				break;
 			case "FIFO":
-				cache = new FIFO(capacity);
+				cache = new FIFO(capacity, DEFAULT_DIR);
 				break;
 			default:
 				LOGGER.warning("Invalid cache displacement algorithm");
@@ -42,11 +43,15 @@ public class MainDatabase implements IDatabase {
 		}
 	}
 
-	public Object get(String key) throws Exception {
+	public void setDirectory(String directory) {
+		cache.setDirectory(directory);
+	}
+
+	public String get(String key) throws Exception {
 		return cache.get(key);
 	}
 
-	public void put(String key, Object value) throws Exception {
+	public void put(String key, String value) throws Exception {
 		String hash = MD5Hash.hash(key);
 		hashToKeyMap.put(hash, key);
 		cache.put(key, value);
@@ -57,39 +62,65 @@ public class MainDatabase implements IDatabase {
 		cache.delete(key);
 	}
 
-	public HashMap<String, Object> getDataByRange(Range range) throws Exception {
-		HashMap<String, Object> data = new HashMap<>(); // Map to store the gotten data
-		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+	public boolean hasKey(String key) throws Exception {
+		if (get(key) == null) {
+			return false;
+		}
+		return true;
+	}
+
+ 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
+		HashMap<String, String> data = new HashMap<>();
+
+		SortedMap<String, String> keysInRange;
+		if (range.getTo().compareTo(range.getFrom()) < 0) {
+			keysInRange = hashToKeyMap.tailMap(range.getFrom());
+			keysInRange.putAll(hashToKeyMap.headMap(range.getTo()));
+		} else {
+			keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		}
+
 		for (String key : keysInRange.values()) {
 			data.put(key, cache.get(key));
 		}
 		return data;
 	}
 
-	public HashMap<String, Object> getAllData() throws Exception {
-		HashMap<String, Object> data = new HashMap<>();
+	public HashMap<String, String> getAllData() throws Exception {
+		HashMap<String, String> data = new HashMap<>();
 		for (String key : hashToKeyMap.values()) {
 			data.put(key, cache.get(key));
 		}
 		return data;
 	}
 
-	public void saveAllData(HashMap<String, Object> data) throws Exception {
-		for (Map.Entry<String, Object> entry : data.entrySet()) {
-			// Store each key and hash
-			String hash = MD5Hash.hash(entry.getKey());
-			hashToKeyMap.put(hash, entry.getKey());
+	public void saveAllData(HashMap<String, String> data) throws Exception {
+		if (data != null) {
+			for (Map.Entry<String, String> entry : data.entrySet()) {
+				// Store each key and hash
+				String hash = MD5Hash.hash(entry.getKey());
+				hashToKeyMap.put(hash, entry.getKey());
 
-			// Store key and value to cache
-			cache.put(entry.getKey(), entry.getValue());
+				// Store key and value to cache
+				cache.put(entry.getKey(), entry.getValue());
+				System.out.println("save key: " + entry.getKey() + " to database");
+			}
 		}
 	}
 
 	public void deleteDataByRange(Range range) throws Exception {
-		SortedMap<String, String> keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		SortedMap<String, String> keysInRange;
+		if (range.getTo().compareTo(range.getFrom()) < 0) {
+			keysInRange = hashToKeyMap.tailMap(range.getFrom());
+			keysInRange.putAll(hashToKeyMap.headMap(range.getTo()));
+		} else {
+			keysInRange = hashToKeyMap.subMap(range.getFrom(), range.getTo());
+		}
+
 		for (String key : keysInRange.values()) {
 			cache.delete(key);
 			hashToKeyMap.remove(key);
+			System.out.println("delete key: " + key + " from database");
 		}
 	}
 }

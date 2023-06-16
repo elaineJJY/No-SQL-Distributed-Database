@@ -277,3 +277,24 @@ Client library/KVStore 提供了一个抽象来查询存储服务。KVServer的�
 
 ### 故障下线
 
+## *日志*
+
+### Empty问题
+
+NIO和gRPC监听冲突？
+
+
+
+get的使用返回一个范型的Object，用Profobuf中的any来实现
+
+
+
+
+
+startKVServer 应该在init和数据转后才启动，否则会卡在startServer，无法进行下一步的ECS调用
+
+
+
+Java tailMap的坑：它和生成它的Map引用同一个对象，所以删除tailMap中的内容的时候也会删除原Map
+
+isResponsible的坑

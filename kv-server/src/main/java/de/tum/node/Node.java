@@ -1,42 +1,67 @@
 package de.tum.node;
 
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONException;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
+import de.tum.common.*;
 import de.tum.communication.KVServer;
-import de.tum.database.BackupDatabase;
 import de.tum.database.IDatabase;
-import de.tum.database.MainDatabase;
-import java.io.Serializable;
+
+import java.nio.channels.SocketChannel;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.SortedMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.jar.JarException;
+import java.util.logging.Logger;
 
-public class Node implements Serializable {
-
-	private KVServer server;
+public class Node {
+	private final Logger LOGGER = ServerLogger.INSTANCE.getLogger();
+	KVServer server;
 	private String host;
 	private int port;
 	private IDatabase mainDatabase;
 	private IDatabase backupDatabase;
+	private SocketChannel socketChannel;
+	private SocketChannel ecsSocketChannel; //Only for local node
 
-	public Node(String host, int port, IDatabase mainDatabase, IDatabase backupDatabase){
+	// remote Node
+	public Node (String host, int port, SocketChannel socketChannel) {
+		this.host = host;
+		this.port = port;
+		this.socketChannel = socketChannel;
+	}
+
+	// local Node
+	public Node(String host, int port, IDatabase mainDatabase, IDatabase backupDatabase) throws Exception {
 		this.host = host;
 		this.port = port;
 		this.mainDatabase = mainDatabase;
 		this.backupDatabase = backupDatabase;
+		socketChannel = null;
 	}
 
-	public int getPort() {
-		return port;
+	public void startKVServer() throws Exception {
+		server = new KVServer(this);
+		server.start(host, port);
 	}
 
-	public String getHost() {
-		return host;
+	public SocketChannel getSocketChannel() {
+		return socketChannel;
 	}
 
-	public long heartbeat() {
-		return new Date().getTime();
+	public void setECSSocketChannel(SocketChannel ecsSocketChannel) {
+		this.ecsSocketChannel = ecsSocketChannel;
 	}
+
+	public String getHost() { return host; }
+
+	public int getPort() { return port; }
+
+	public long heartbeat() { return new Date().getTime(); }
 
 	/**
 	 * Get the range of this node in the ring
@@ -46,17 +71,17 @@ public class Node implements Serializable {
 		Node from = null;
 		Node to = null;
 		if (dataType == DataType.DATA) {
-			from = ConsistentHash.INSTANCE.getPreviousNode(this);
+			from = MetaData.INSTANCE.getPreviousNode(this);
 			to = this;
 		}
 		if (dataType == DataType.BACKUP) {
 			from = this;
-			to = ConsistentHash.INSTANCE.getNextNode(this);
+			to = MetaData.INSTANCE.getNextNode(this);
 		}
 		if (from == null || to == null) {
 			throw new NoSuchElementException("No such node");
 		}
-		return new Range(ConsistentHash.INSTANCE.getHash(from), ConsistentHash.INSTANCE.getHash(to));
+		return new Range(MetaData.INSTANCE.getHash(from), MetaData.INSTANCE.getHash(to));
 	}
 
 	/**
@@ -64,6 +89,7 @@ public class Node implements Serializable {
 	 * @param obj
 	 * @return
 	 */
+	// TODO
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Node) {
@@ -78,95 +104,293 @@ public class Node implements Serializable {
 	 * @return <ip:port> string
 	 */
 	@Override
-	public String toString() {
-		return host + ":" + port;
-	}
+	public String toString() { return host + ":" + port; }
 
 	/**
 	 * Check if this node is responsible for the given (key, value) pair
 	 * @param key
 	 * @return true if this node is responsible for the given (key, value) pair
 	 */
+	// isResponsible, copy, get, put, delete will only be called by other KVServer
 	public boolean isResponsible(String key) throws NullPointerException {
-		String keyHash = ConsistentHash.INSTANCE.getHash(this);
-		Node prevNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-		String prevHash = ConsistentHash.INSTANCE.getHash(prevNode);
-		return (keyHash.compareTo(key) >= 0 && prevHash.compareTo(key) < 0);
-	}
-
-	public void init() throws Exception {
-		Node nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-		Node previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-		mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
-		backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
-		server = new KVServer(this);
-	}
-
-
-	public void recover(Node removedNode) throws Exception {
-
-		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
-
-		// recover data from the removed node
-		if (ConsistentHash.INSTANCE.getPreviousNode(this).equals(removedNode)) {
-			Node newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
-			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
-			try {
-				removedNode.heartbeat(); // check whether the removed node is alive
-				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
-			}
-			catch (Exception e) {
-				System.out.println("Node " + removedNode + " is dead");
-				// recover data from the backup
-				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
-			}
+		if (MetaData.INSTANCE.getRing().size() == 1) {
+			return true;
 		}
-		// recover backup from the removed node
-		if (ConsistentHash.INSTANCE.getNextNode(this).equals(removedNode)) {
-			Node newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
-			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
-			try {
-				removedNode.heartbeat(); // check whether the removed node is alive
-				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
-			}
-			catch (Exception e) {
-				System.out.println("Node " + removedNode + " is dead");
-				// recover data from the backup
-				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
-			}
+		String keyHash = MD5Hash.hash(key);	//get hash of key
+
+		String currNodeHash = MetaData.INSTANCE.getHash(this);	//get hash of this node
+		SortedMap<String, Node> tailMap = MetaData.INSTANCE.getRing().tailMap(keyHash);
+		if (tailMap.isEmpty()) {
+			return MetaData.INSTANCE.getRing().firstKey().equals(currNodeHash);
+		} else {
+			return tailMap.firstKey().equals(currNodeHash);
 		}
-	}
-
-	public void updateRing(SortedMap<String, Node> ring) {
-		ConsistentHash.INSTANCE.update(ring);
-	}
-
-	public void deleteExpiredData(DataType dataType, Range range) throws Exception {
-		IDatabase database = dataType == DataType.DATA ? mainDatabase : backupDatabase;
-		database.deleteDataByRange(range);
 	}
 
 	/**
-	 * Get data from another node to this node
+	 * Get range of data from the remote node
 	 *
 	 * @param where
 	 * @param range
 	 * @return the data that in this range
 	 */
-	public HashMap<String, Object> copy(DataType where, Range range) throws Exception {
-		IDatabase database = where == DataType.DATA ? mainDatabase : backupDatabase;
+	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
+		try {
+			// only for remote node
+			if (this.socketChannel!=null){
+				String response = KVMessageBuilder.create()
+						.command(KVMessage.Command.COPY)
+						.dataType(where)
+						.range(range)
+						.socketChannel(this.socketChannel)
+						.send()
+						.receive();
+				LOGGER.info("Get Data from other Node:" + response.trim());
+				try{
+					JSON.parse(response);
+				}
+				catch (JSONException e) {
+					response =  KVMessageBuilder.create()
+							.command(KVMessage.Command.COPY)
+							.dataType(where)
+							.range(range)
+							.socketChannel(this.socketChannel)
+							.send()
+							.receive();
+				}
+				HashMap<String, String> data = (HashMap<String, String>) JSONObject.parseObject(response, HashMap.class);
+				return data;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		IDatabase database;
+
+		if (where == DataType.BACKUP) {
+			database = this.backupDatabase;
+		} else {
+			database = this.mainDatabase;
+		}
+
+//		if (where == DataType.DATA) {
+//			database = this.mainDatabase;
+//			System.out.println("data for mainDatabase: " + database.getAllData());
+//		} else {
+//			database = this.backupDatabase;
+//			System.out.println("data for backupDatabase: " + database.getAllData());
+//		}
+//		IDatabase database = where==DataType.DATA ? this.mainDatabase : this.backupDatabase;
+//		System.out.println("data: " + database.getAllData());
+		return database.getDataByRange(range);
+	}
+	public HashMap<String, String> getDataByRange(DataType where, Range range) throws Exception{
+		IDatabase database = where==DataType.DATA ? mainDatabase : backupDatabase;
 		return database.getDataByRange(range);
 	}
 
-	public Object get(String key) throws Exception {
-		return mainDatabase.get(key);
+	public String get(String key) throws Exception {
+		if (isResponsible(key)){
+			return mainDatabase.get(key);
+		}
+		return "";
 	}
-	public void put(String key, String value) throws Exception {
-		mainDatabase.put(key, value);
-		ConsistentHash.INSTANCE.getNextNode(this).put(key, value);
+
+	public StatusCode put(String key, String value) throws Exception {
+		StatusCode code = StatusCode.SERVER_ERROR;
+		try {
+			if (isResponsible(key)){
+				code = mainDatabase.hasKey(key) ? StatusCode.put_update : StatusCode.put_success;
+				mainDatabase.put(key, value);
+				LOGGER.info("Put data on database " + this.port + " <" + key + ":" + value + ">");
+			}
+		}
+		finally {
+			return code;
+		}
+
 	}
-	public void delete(String key) throws Exception {
-		mainDatabase.delete(key);
-		ConsistentHash.INSTANCE.getNextNode(this).delete(key);
+
+	public CompletableFuture<StatusCode> putDataToBackupNode(String key, String value) throws Exception  {
+		Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
+		if (!backUpNode.equals(this)) {
+			return CompletableFuture.supplyAsync(() -> {
+				try {
+					KVMessageBuilder.create()
+							.command(KVMessage.Command.PUT)
+							.key(key)
+							.value(value)
+							.dataType(DataType.BACKUP)
+							.socketChannel(backUpNode.getSocketChannel())
+							.send()
+							.receive();
+					return StatusCode.put_success; // Return the desired result
+				} catch (Exception e) {
+					// Handle exceptions here
+					return StatusCode.SERVER_ERROR; // Return an appropriate error code
+				}
+			});
+		}
+		else {
+			backupDatabase.put(key, value);
+			return CompletableFuture.completedFuture(StatusCode.put_success); // Return the result immediately
+		}
+
+	}
+
+	public void putBackup(String key, String value) throws Exception {
+		backupDatabase.put(key, value);
+		LOGGER.info("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
+	}
+	public void deleteBackup(String key) throws Exception {
+		backupDatabase.delete(key);
+	}
+
+	public StatusCode delete(String key) throws Exception {
+		StatusCode code = StatusCode.SERVER_ERROR;
+		try {
+			if (isResponsible(key)){
+				code = mainDatabase.hasKey(key) ? StatusCode.OK : StatusCode.NOT_FOUND;
+				mainDatabase.delete(key);
+				LOGGER.info("Delete data on database " + this.port + ": " + key );
+			}
+		}
+		finally {
+			return code;
+		}
+	}
+
+	public CompletableFuture<StatusCode> deleteDataFromBackupNode(String key) throws Exception {
+		Node backupNode = MetaData.INSTANCE.getBackupNodeByKey(key);
+		if (backupNode.equals(this)) {
+			backupDatabase.delete(key);
+			return CompletableFuture.completedFuture(StatusCode.OK); // Return the result immediately
+		} else {
+			return CompletableFuture.supplyAsync(() -> {
+				try {
+					KVMessageBuilder.create()
+							.command(KVMessage.Command.DELETE)
+							.key(key)
+							.dataType(DataType.BACKUP)
+							.socketChannel(backupNode.getSocketChannel())
+							.send()
+							.receive();
+					return StatusCode.OK; // Return the desired result
+				} catch (Exception e) {
+					// Handle exceptions here
+					return StatusCode.SERVER_ERROR; // Return an appropriate error code
+				}
+			});
+		}
+	}
+
+	public boolean hasKey(String key) throws Exception {
+		return mainDatabase.hasKey(key);
+	}
+
+	// init, recover, updateRing, deleteExpiredData will only be called by ECS
+	public StatusCode init() {
+		try{
+			System.out.println("KVServer:" + this.host + ":" + this.port + " starts data transfer");
+			if (MetaData.INSTANCE.getRing().size() != 1) {
+				Node nextNode = MetaData.INSTANCE.getNextNode(this);
+				Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
+				if (!nextNode.equals(this)) {
+					HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
+					mainDatabase.saveAllData(mainData);
+				}
+				if (!previousNode.equals(this)) {
+					HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
+					backupDatabase.saveAllData(backup);
+				}
+			}
+			System.out.println("Initiation finish, server is ready");
+			return StatusCode.OK;
+		} catch(Exception e) {
+			System.out.println("Data transfer fail");
+			return StatusCode.SERVER_ERROR;
+		}
+	}
+
+
+	// TODO: Exception
+	public StatusCode recover(Node removedNode) {
+		try {
+			String removedHash = MetaData.INSTANCE.getHash(removedNode);
+
+			// recover data from the removed node
+			// If the removed node is the previous node of this node
+			Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
+			System.out.println(MetaData.INSTANCE.getRing().toString());
+			System.out.println("previous node: " + previousNode);
+			if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
+				Node newPreviousNode = MetaData.INSTANCE.getPreviousNode(removedNode);
+				System.out.println("new previous node: " + newPreviousNode);
+				Range dataRangeOfRemovedNode = new Range(MetaData.INSTANCE.getHash(newPreviousNode), removedHash);
+				System.out.println("data range of removed node: " + dataRangeOfRemovedNode);
+//			try {
+//				removedNode.heartbeat(); // check whether the removed node is alive
+//				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
+//			}
+//			catch (Exception e) {
+//				System.out.println("Node " + removedNode + " is dead");
+//				// recover data from the backup
+//				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+//			}
+				// if work flow goes here, it means the removed node is dead, and we should also close
+				// form this node to the removed node
+				//TODO
+				if(!newPreviousNode.equals(this)) {
+					mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+				} else {
+					mainDatabase.saveAllData(this.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+				}
+			}
+			// recover backup from the removed node
+			// If the removed node is the next node of this node
+			Node nextNode = MetaData.INSTANCE.getNextNode(this);
+			System.out.println(MetaData.INSTANCE.getRing().toString());
+			if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
+				Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode);
+				Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(newNextNode));
+//			try {
+//				removedNode.heartbeat(); // check whether the removed node is alive
+//				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
+//			}
+//			catch (Exception e) {
+//				System.out.println("Node " + removedNode + " is dead");
+//				// recover data from the backup
+//				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+//			}
+				if (!newNextNode.equals(this)) {
+					backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+				}else {
+					backupDatabase.saveAllData(this.copy(DataType.DATA, backupRangeOfRemovedNode));
+				}
+			}
+			return StatusCode.OK;
+		} catch (Exception e) {
+			return StatusCode.SERVER_ERROR;
+		}
+	}
+
+	public StatusCode updateMetaData(HashMap<String, String> addrAndHash) throws Exception {
+		try {
+			MetaData.INSTANCE.update(addrAndHash);
+			return StatusCode.OK;
+		} catch (Exception e) {
+			return StatusCode.SERVER_ERROR;
+		}
+	}
+
+	public StatusCode deleteExpiredData(DataType dataType, Range range) throws Exception {
+		try {
+			IDatabase database = dataType == DataType.DATA ? mainDatabase : backupDatabase;
+			database.deleteDataByRange(range);
+			return StatusCode.OK;
+		} catch (Exception e) {
+			return StatusCode.SERVER_ERROR;
+		}
 	}
 }
