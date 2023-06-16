@@ -73,9 +73,14 @@ public enum ConsistentHash {
 			e.printStackTrace();
 		}
 		String nodeHash = getHash(node);
-
+		
 		Node previousNode = getPreviousNode(node);
 		Node nextNode = getNextNode(node);
+
+		System.out.println("Curr Node:" + node);
+		System.out.println("Previous node: " + previousNode);
+		System.out.println("Next node: " + nextNode);
+
 		ring.remove(nodeHash);
 		previousNode.recover(node);
 		nextNode.recover(node);

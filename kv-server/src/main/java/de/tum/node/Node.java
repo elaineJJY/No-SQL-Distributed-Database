@@ -137,12 +137,12 @@ public class Node {
 	public HashMap<String, String> copy(DataType where, Range range) throws Exception {
 		try {
 			// only for remote node
-			if (socketChannel!=null){
+			if (this.socketChannel!=null){
 				String response = KVMessageBuilder.create()
 						.command(KVMessage.Command.COPY)
 						.dataType(where)
 						.range(range)
-						.socketChannel(socketChannel)
+						.socketChannel(this.socketChannel)
 						.send()
 						.receive();
 				LOGGER.info("Get Data from other Node:" + response.trim());
@@ -154,7 +154,7 @@ public class Node {
 							.command(KVMessage.Command.COPY)
 							.dataType(where)
 							.range(range)
-							.socketChannel(socketChannel)
+							.socketChannel(this.socketChannel)
 							.send()
 							.receive();
 				}
@@ -166,7 +166,23 @@ public class Node {
 			e.printStackTrace();
 		}
 
-		IDatabase database = where==DataType.DATA ? mainDatabase : backupDatabase;
+		IDatabase database;
+
+		if (where == DataType.BACKUP) {
+			database = this.backupDatabase;
+		} else {
+			database = this.mainDatabase;
+		}
+
+//		if (where == DataType.DATA) {
+//			database = this.mainDatabase;
+//			System.out.println("data for mainDatabase: " + database.getAllData());
+//		} else {
+//			database = this.backupDatabase;
+//			System.out.println("data for backupDatabase: " + database.getAllData());
+//		}
+//		IDatabase database = where==DataType.DATA ? this.mainDatabase : this.backupDatabase;
+//		System.out.println("data: " + database.getAllData());
 		return database.getDataByRange(range);
 	}
 	public HashMap<String, String> getDataByRange(DataType where, Range range) throws Exception{
@@ -306,9 +322,13 @@ public class Node {
 			// recover data from the removed node
 			// If the removed node is the previous node of this node
 			Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
+			System.out.println(MetaData.INSTANCE.getRing().toString());
+			System.out.println("previous node: " + previousNode);
 			if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
 				Node newPreviousNode = MetaData.INSTANCE.getPreviousNode(removedNode);
+				System.out.println("new previous node: " + newPreviousNode);
 				Range dataRangeOfRemovedNode = new Range(MetaData.INSTANCE.getHash(newPreviousNode), removedHash);
+				System.out.println("data range of removed node: " + dataRangeOfRemovedNode);
 //			try {
 //				removedNode.heartbeat(); // check whether the removed node is alive
 //				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
@@ -320,14 +340,17 @@ public class Node {
 //			}
 				// if work flow goes here, it means the removed node is dead, and we should also close
 				// form this node to the removed node
+				//TODO
 				if(!newPreviousNode.equals(this)) {
 					mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+				} else {
+					mainDatabase.saveAllData(this.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 				}
 			}
-
 			// recover backup from the removed node
 			// If the removed node is the next node of this node
 			Node nextNode = MetaData.INSTANCE.getNextNode(this);
+			System.out.println(MetaData.INSTANCE.getRing().toString());
 			if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
 				Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode);
 				Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(newNextNode));
@@ -342,6 +365,8 @@ public class Node {
 //			}
 				if (!newNextNode.equals(this)) {
 					backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+				}else {
+					backupDatabase.saveAllData(this.copy(DataType.DATA, backupRangeOfRemovedNode));
 				}
 			}
 			return StatusCode.OK;

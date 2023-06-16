@@ -9,6 +9,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.nio.channels.SocketChannel;
 
@@ -37,6 +38,7 @@ public class ECSServer {
     private final int ecsPort;
     private final String ecsAddress;
 
+    private HashMap<String, Node> mapOfNodes = new HashMap<>();
     private static ExecutorService executorService;
     public static ServerSocket ecsServerSocket;
     private LinkedList<Socket> closeQueue; // Used when close the queue to transfer data gradually
@@ -94,6 +96,7 @@ public class ECSServer {
 
             Node node = new Node(remoteAddress, remotePort, socketChannel);
             ConsistentHash.INSTANCE.addNode(node);
+            mapOfNodes.put(remoteAddress + ":" + remotePort, node);
             readKVServer(node);
         }
     }

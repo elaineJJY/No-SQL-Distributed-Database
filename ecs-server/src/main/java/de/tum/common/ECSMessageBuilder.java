@@ -83,7 +83,6 @@ public class ECSMessageBuilder {
         return this;
     }
 
-
     public String receive(SocketChannel socketChannel) throws Exception {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int bytesRead = 0;
@@ -98,8 +97,6 @@ public class ECSMessageBuilder {
         LOGGER.info( "For Message:" + JSON.toJSONString(this.message) + " Received:" + new String(receivedMessage).trim());
         return new String(receivedMessage);
     }
-
-
 
     public String sendAndRespond(SocketChannel socketChannel) throws Exception {
         String messageString = JSON.toJSONString(this.message);
