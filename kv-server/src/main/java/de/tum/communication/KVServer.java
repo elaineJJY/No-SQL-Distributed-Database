@@ -163,11 +163,15 @@ public class KVServer {
 					StatusCode returnCode = ECSMessageParser.processMessage(msg, this.node);
 					send(returnCode.toString(), socketChannel); // socketChannel = ECSServer
 				} catch (Exception exp) {
-////					exp.printStackTrace();
-//					LOGGER.info("Received request from CLIENT: " + socketChannel.getRemoteAddress() + " Request: " + request);
-					// handle keyrange request from client
+					if (request.contains("keyrange_read")) {
+						String repsonse = "keyrange_read_success "+ metaData.getAllRange();
+						repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
+						send(repsonse, socketChannel);
+						LOGGER.info(repsonse);
+						return;
+					}
 					if (request.contains("keyrange")) {
-						String repsonse = "keyrange_success " + metaData.toString() ;
+						String repsonse = "keyrange_success " + metaData.getRange() ;
 						repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
 						send(repsonse, socketChannel);
 						LOGGER.info(repsonse);
@@ -190,14 +194,19 @@ public class KVServer {
 	}
 
 	private void process(KVMessage msg, SocketChannel clientSocketChannel) throws Exception {
-		KVMessage.Command command = msg.getCommand();
 		String key = msg.getKey();
 		String value = msg.getValue();
 		Node resopnsibleNode = metaData.getResponsibleNodeByKey(key);
+		KVMessage.Command command = msg.getCommand();
 		//Remote
 		if (!this.node.isResponsible(key)) {
 			System.out.println("Node " + this.node.getPort() + " not responsible for key: " + key);
 			System.out.println("Responsible Node: " + resopnsibleNode.getPort());
+			if (command == KVMessage.Command.PUT) {
+				String message = "server_not_responsible";
+				send(message, clientSocketChannel);
+				return;
+			}
 			String response = KVMessageBuilder.create()
 					.command(msg.getCommand())
 					.key(key)

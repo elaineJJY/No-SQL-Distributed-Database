@@ -38,8 +38,8 @@ public class ECSServer {
     private static ExecutorService executorService;
     public static ServerSocket ecsServerSocket;
     private LinkedList<Node> closeQueue = new LinkedList<>(); // Used when close the queue to transfer data gradually
-    private HashMap<String, Node> nodeMap = new HashMap<>();//Store all exist nodes: <ip:port, Node>
-    private HashMap<Node, Socket> nodeSocketMap = new HashMap<>(); //store all exist nodes: <Node, Socket>
+    private HashMap<String, Node> nodeMap = new HashMap<>();// Store all exist nodes: <ip:port, Node>
+    private HashMap<Node, Socket> nodeSocketMap = new HashMap<>(); // store all exist nodes: <Node, Socket>
 
     public ECSServer(String address, int port) {
         this.ecsPort = port;

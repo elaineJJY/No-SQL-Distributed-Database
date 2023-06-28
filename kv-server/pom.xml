@@ -12,7 +12,7 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <docker.repository.path>gitlab.lrz.de:5005/cdb-23/gr18/ms3/kv-server</docker.repository.path>
+    <docker.repository.path>gitlab.lrz.de:5005/cdb-23/gr18/ms4/kv-server</docker.repository.path>
     <junit.jupiter.version>5.9.1</junit.jupiter.version>
     <junit.platform.version>1.9.1</junit.platform.version>
   </properties>

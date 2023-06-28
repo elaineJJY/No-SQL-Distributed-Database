@@ -23,14 +23,8 @@ public enum ConsistentHash {
 	public SortedMap<String, Node> getRing() { return ring; }
 
 	public void addNode(Node node) throws Exception {
+
 		String nodeHash = getHash(node);
-		// in case of hash collision
-//		if (ring.containsKey(nodeHash)) {
-//			int i = 1;
-//			while (ring.containsKey(nodeHash)) {
-//				nodeHash = MD5Hash.hash(node.toString() + String.valueOf(i++));
-//			}
-//		}
 		ring.put(nodeHash, node);
 		boolean updateRingSuccess = node.updateRing(ring);
 		if (!updateRingSuccess) {
@@ -49,18 +43,6 @@ public enum ConsistentHash {
 			getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
 			getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
 		}
-
-//		if (node.init()) {
-//			updateRingForAllNodes(node);
-//			if (ring.size() > 1) {
-//				getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
-//				getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
-//			}
-//		}
-//		else {
-//			System.out.println("Initialization of KVServer<" + node.getHost() + "> failed");
-//			ring.remove(nodeHash);
-//		}
 	}
 
 	public void removeNode(Node node) throws Exception {
@@ -74,16 +56,18 @@ public enum ConsistentHash {
 		}
 		String nodeHash = getHash(node);
 		
-		Node previousNode = getPreviousNode(node);
+
 		Node nextNode = getNextNode(node);
+		// backup data
+		if (ring.size() > 2) {
+			Node previousNode = getPreviousNode(node);
+			Node prepreNode = getPreviousNode(previousNode);
+			prepreNode.recover(node);
+			previousNode.recover(node);
+		}
 
-		System.out.println("Curr Node:" + node);
-		System.out.println("Previous node: " + previousNode);
-		System.out.println("Next node: " + nextNode);
-
+		nextNode.recover(node); // store main data of the removed node
 		ring.remove(nodeHash);
-		previousNode.recover(node);
-		nextNode.recover(node);
 		updateRingForAllNodes(node);
 	}
 

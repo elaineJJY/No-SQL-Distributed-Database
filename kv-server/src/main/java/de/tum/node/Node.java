@@ -10,10 +10,7 @@ import de.tum.communication.KVServer;
 import de.tum.database.IDatabase;
 
 import java.nio.channels.SocketChannel;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
-import java.util.SortedMap;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.jar.JarException;
 import java.util.logging.Logger;
@@ -83,6 +80,8 @@ public class Node {
 		}
 		return new Range(MetaData.INSTANCE.getHash(from), MetaData.INSTANCE.getHash(to));
 	}
+
+
 
 	/**
 	 * Override the equals method, which will be used to compare two nodes according to their toString <ip:port>
@@ -194,7 +193,7 @@ public class Node {
 		if (isResponsible(key)){
 			return mainDatabase.get(key);
 		}
-		return "";
+		return backupDatabase.get(key);
 	}
 
 	public StatusCode put(String key, String value) throws Exception {
@@ -212,30 +211,55 @@ public class Node {
 
 	}
 
+	//TODO
 	public CompletableFuture<StatusCode> putDataToBackupNode(String key, String value) throws Exception  {
-		Node backUpNode = MetaData.INSTANCE.getBackupNodeByKey(key);
-		if (!backUpNode.equals(this)) {
-			return CompletableFuture.supplyAsync(() -> {
-				try {
-					KVMessageBuilder.create()
-							.command(KVMessage.Command.PUT)
-							.key(key)
-							.value(value)
-							.dataType(DataType.BACKUP)
-							.socketChannel(backUpNode.getSocketChannel())
-							.send()
-							.receive();
-					return StatusCode.put_success; // Return the desired result
-				} catch (Exception e) {
-					// Handle exceptions here
-					return StatusCode.SERVER_ERROR; // Return an appropriate error code
-				}
-			});
-		}
-		else {
+		List<Node> backupNodes = MetaData.INSTANCE.getBackupNodeByKey(key);
+		// no backups
+		if (backupNodes.isEmpty()) {
 			backupDatabase.put(key, value);
-			return CompletableFuture.completedFuture(StatusCode.put_success); // Return the result immediately
+			return CompletableFuture.completedFuture(StatusCode.OK); // Return the result immediately
 		}
+		CompletableFuture<StatusCode> finalResult = new CompletableFuture<>();
+		CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+				backupNodes.stream()
+						.filter(node -> !node.equals(this))
+						.map(backUpNode -> CompletableFuture.supplyAsync(() -> {
+							try {
+								KVMessageBuilder.create()
+										.command(KVMessage.Command.PUT)
+										.key(key)
+										.value(value)
+										.dataType(DataType.BACKUP)
+										.socketChannel(backUpNode.getSocketChannel())
+										.send()
+										.receive();
+								return StatusCode.put_success; // Return the desired result
+							} catch (Exception e) {
+								// Handle exceptions here
+								return StatusCode.SERVER_ERROR; // Return an appropriate error code
+							}
+						}))
+						.toArray(CompletableFuture[]::new)
+		);
+
+		allFutures.thenRun(() -> {
+			for (Node backupNode : backupNodes) {
+				if (backupNode.equals(this)) {
+					try {
+						backupDatabase.put(key, value);
+					} catch (Exception e) {
+						throw new RuntimeException(e);
+					}
+					finalResult.complete(StatusCode.put_success);
+					break;
+				}
+			}
+			if (!finalResult.isDone()) {
+				finalResult.complete(StatusCode.SERVER_ERROR); // Return an appropriate error code
+			}
+		});
+
+		return finalResult;
 
 	}
 
@@ -261,28 +285,42 @@ public class Node {
 		}
 	}
 
+	// TODO
 	public CompletableFuture<StatusCode> deleteDataFromBackupNode(String key) throws Exception {
-		Node backupNode = MetaData.INSTANCE.getBackupNodeByKey(key);
-		if (backupNode.equals(this)) {
+		List<Node> backupNodes = MetaData.INSTANCE.getBackupNodeByKey(key);
+
+		if (backupNodes.isEmpty()) {
 			backupDatabase.delete(key);
 			return CompletableFuture.completedFuture(StatusCode.OK); // Return the result immediately
-		} else {
-			return CompletableFuture.supplyAsync(() -> {
-				try {
-					KVMessageBuilder.create()
-							.command(KVMessage.Command.DELETE)
-							.key(key)
-							.dataType(DataType.BACKUP)
-							.socketChannel(backupNode.getSocketChannel())
-							.send()
-							.receive();
-					return StatusCode.OK; // Return the desired result
-				} catch (Exception e) {
-					// Handle exceptions here
-					return StatusCode.SERVER_ERROR; // Return an appropriate error code
-				}
-			});
 		}
+		CompletableFuture<StatusCode> finalResult = new CompletableFuture<>();
+		CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+				backupNodes.stream()
+						.filter(node -> !node.equals(this))
+						.map(backupNode -> CompletableFuture.supplyAsync(() -> {
+							try {
+								KVMessageBuilder.create()
+										.command(KVMessage.Command.DELETE)
+										.key(key)
+										.dataType(DataType.BACKUP)
+										.socketChannel(backupNode.getSocketChannel())
+										.send()
+										.receive();
+								return StatusCode.OK; // Return the desired result
+							} catch (Exception e) {
+								// Handle exceptions here
+								return StatusCode.SERVER_ERROR; // Return an appropriate error code
+							}
+						}))
+						.toArray(CompletableFuture[]::new)
+		);
+
+		allFutures.thenRun(() -> {
+			finalResult.complete(StatusCode.OK); // Return the result immediately
+		});
+
+		return finalResult;
+
 	}
 
 	public boolean hasKey(String key) throws Exception {
@@ -295,14 +333,16 @@ public class Node {
 			System.out.println("KVServer:" + this.host + ":" + this.port + " starts data transfer");
 			if (MetaData.INSTANCE.getRing().size() != 1) {
 				Node nextNode = MetaData.INSTANCE.getNextNode(this);
-				Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
 				if (!nextNode.equals(this)) {
 					HashMap<String, String> mainData = nextNode.copy(DataType.DATA, getRange(DataType.DATA));
 					mainDatabase.saveAllData(mainData);
 				}
-				if (!previousNode.equals(this)) {
-					HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
-					backupDatabase.saveAllData(backup);
+				if (MetaData.INSTANCE.getRing().size() > 2) {
+					Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
+					if (!previousNode.equals(this)) {
+						HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
+						backupDatabase.saveAllData(backup);
+					}
 				}
 			}
 			System.out.println("Initiation finish, server is ready");
@@ -324,6 +364,8 @@ public class Node {
 			Node previousNode = MetaData.INSTANCE.getPreviousNode(this);
 			System.out.println(MetaData.INSTANCE.getRing().toString());
 			System.out.println("previous node: " + previousNode);
+
+			// recover the main database
 			if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
 				Node newPreviousNode = MetaData.INSTANCE.getPreviousNode(removedNode);
 				System.out.println("new previous node: " + newPreviousNode);
@@ -341,18 +383,19 @@ public class Node {
 				// if work flow goes here, it means the removed node is dead, and we should also close
 				// form this node to the removed node
 				//TODO
-				if(!newPreviousNode.equals(this)) {
+				if (!newPreviousNode.equals(this)) {
 					mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 				} else {
 					mainDatabase.saveAllData(this.copy(DataType.BACKUP, dataRangeOfRemovedNode));
 				}
 			}
+
 			// recover backup from the removed node
 			// If the removed node is the next node of this node
 			Node nextNode = MetaData.INSTANCE.getNextNode(this);
 			System.out.println(MetaData.INSTANCE.getRing().toString());
 			if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
-				Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode);
+				Node newNextNode = MetaData.INSTANCE.getNextNode(removedNode); // backupNode 1
 				Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(newNextNode));
 //			try {
 //				removedNode.heartbeat(); // check whether the removed node is alive
@@ -365,10 +408,29 @@ public class Node {
 //			}
 				if (!newNextNode.equals(this)) {
 					backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
-				}else {
+				} else {
 					backupDatabase.saveAllData(this.copy(DataType.DATA, backupRangeOfRemovedNode));
 				}
 			}
+			// prepre Node
+			Node newBackupNode = MetaData.INSTANCE.getPreviousNode(removedNode);
+			Node newBackupNode2 = MetaData.INSTANCE.getPreviousNode(newBackupNode);
+			if (MetaData.INSTANCE.getHash(this).equals(MetaData.INSTANCE.getHash(newBackupNode2))) {
+				Range backupRangeOfRemovedNode = new Range(removedHash, MetaData.INSTANCE.getHash(MetaData.INSTANCE.getNextNode(removedNode)));
+//			try {
+//				removedNode.heartbeat(); // check whether the removed node is alive
+//				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
+//			}
+//			catch (Exception e) {
+//				System.out.println("Node " + removedNode + " is dead");
+//				// recover data from the backup
+//				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+//			}
+				if (!newBackupNode.equals(this)) {
+					backupDatabase.saveAllData(newBackupNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
+				}
+			}
+
 			return StatusCode.OK;
 		} catch (Exception e) {
 			return StatusCode.SERVER_ERROR;

@@ -4,9 +4,7 @@ import de.tum.common.KVMessageBuilder;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
-import java.util.HashMap;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * ClassName: ConsistentHash
@@ -68,14 +66,27 @@ public enum MetaData {
 	 * print each node and its corresponding range, ip and port
 	 * @return String <kr-from>, <kr-to>, <ip:port>
 	 */
-	@Override
-	public String toString() {
+	public String getRange() {
 		// for each node: <kr-from>, <kr-to>, <ip:port>
 		String text = "";
 		for (String hash : ring.keySet()) {
 			Node node = ring.get(hash);
 			//  <kr-from>, <kr-to>, <ip:port>
 			text += node.getRange(DataType.DATA).toString() + "," + node.getHost() + ":" + node.getPort() + ";";
+		}
+		return text;
+	}
+
+	public String getAllRange() {
+		String text = "";
+		for (String hash : ring.keySet()) {
+			Node node = ring.get(hash);
+			Node nextNode = getPreviousNode(node);
+			Node nextnextNode = getPreviousNode(nextNode);
+			//  <kr-from>, <kr-to>, <ip:port>
+			String from = node.getRange(DataType.DATA).getFrom();
+			String to = nextnextNode.getRange(DataType.DATA).getTo();
+			text += from + "," + to + "," + node.getHost() + ":" + node.getPort() + ";";
 		}
 		return text;
 	}
@@ -127,7 +138,15 @@ public enum MetaData {
 		return tailMap.get(tailMap.firstKey());
 	}
 
-	public Node getBackupNodeByKey(String key) {
-		return getPreviousNode(getResponsibleNodeByKey(key));
+	// key: the key from data
+	public List<Node> getBackupNodeByKey(String key) {
+		List<Node> backupNodes = new LinkedList<>() ;
+		if(ring.size()>2) {
+			Node node1 = getPreviousNode(getResponsibleNodeByKey(key));
+			backupNodes.add(node1);
+			backupNodes.add(getPreviousNode(node1));
+		}
+		return backupNodes;
 	}
+
 }
