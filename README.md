@@ -4,7 +4,7 @@
 
 ## Server and Client
 
-#### Server Online CLI Parameters
+### Server Online CLI Parameters
 
 + -p: Set the port for server listening
 + -a: Set the IP address for server listening
@@ -47,7 +47,7 @@ The core components of Java NIO include the following:
 
 ## Data Storage
 
-#### Data Persistence
+### Data Persistence
 
 Data persistence is the process of storing data in non-volatile media (such as hard drives, solid-state drives, flash storage) to ensure data is retained and can be recovered and used after a computer system shutdown or power failure, without data loss.
 
@@ -103,7 +103,7 @@ Functionality
 
 
 
-#### Cluster Communication
+### Cluster Communication
 
 Cluster communication refers to the process of mutual communication and collaboration between multiple nodes in a distributed system through the network. In cluster communication, nodes can be physical servers, virtual machines, containers, etc., connected through the network to enable data transfer, task allocation, coordination, synchronization, and other operations.
 
@@ -115,7 +115,7 @@ Please refer to the API documentation for specific communication protocols.
 
 
 
-#### Load Balancing
+### Load Balancing
 
 Load balancing is a technique that distributes the workload, such as network traffic, requests, or computing tasks, across multiple computing resources to improve system performance, reliability, and scalability. Load balancing ensures that each computing resource is utilized properly, avoids resource overload, and enhances system fault tolerance.
 
@@ -147,7 +147,7 @@ We also plan to implement other fault detection and recovery strategies, such as
 
 
 
-#### Consistency Guarantees
+### Consistency Guarantees
 
 In distributed systems, data is often replicated on multiple nodes to improve system availability and fault tolerance. When performing update operations on data, due to network latency, node failures, or concurrent operations, data replication may not be instantaneous. Therefore, different nodes in the system may have different data replicas during the data replication process. The eventual consistency model assumes that, without new update operations, after a period of synchronization and data exchange, the system will eventually reach a consistent state. This means that if no new write operations occur, all nodes in the system will eventually converge to the same data replica.
 
