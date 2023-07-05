@@ -74,7 +74,7 @@ Java NIO的核心组件包括以下几个部分：
 
 ### Overview
 
-![Untitled](asset/Untitled.png)
+<img src="asset/整体架构.png">
 
 ### Components
 
@@ -133,7 +133,7 @@ Java NIO的核心组件包括以下几个部分：
 
 如下图所示，一致性哈希可以有效应对节点的扩容或缩容
 
-![Untitled](asset/Untitled%201.png)
+<img src="asset/一致性哈希的扩容和缩容.drawio.png">
 
 为了进一步提升系统的扩展性和容错性，我们计划在未来扩展我们的分布式系统以支持虚拟节点。虚拟节点将映射到物理节点上，通过更细粒度的控制数据和请求的分布，进一步提升负载均衡的效果。
 
@@ -171,6 +171,6 @@ Master在回复client之前不会等待replica的确认，因为这会造成很�
 
 ## Future Plan
 
-ECS's single point failure
+ECS 的单点故障需要通过Raft或Paxos等共识算法来解决，也就是将ECS的功能直接分摊给服务器本身。直接实现Raft等算法比较复杂，所以暂时抽象出一个ECS注册中心来管理。
 
 目前已有的数据持久化方式只适用于小规模数据，对于大规模的数据，考虑参照关系性数据库的存储方式，建立表格存储数据。

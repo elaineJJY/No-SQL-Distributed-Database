@@ -18,14 +18,14 @@
 
 ## Client Connection API
 
-+ connect <addrs> <port>: Connect to a specific IP:Port server
-+ disconnect: Disconnect from the server
-+ put <key> <val>: Store data
-+ get <key>: Retrieve data
-+ send <message>: The server will echo back the sent message
-+ logLevel <level>: Adjust log level
-+ help: View help information
-+ quit: Quit the client
++ `connect <addrs> <port>`: Connect to a specific IP:Port server
++ `disconnect`: Disconnect from the server
++ `put <key> <val>`: Store data
++ `get <key>`: Retrieve data
++ `send <message>`: The server will echo back the sent message
++ `logLevel <level>`: Adjust log level
++ `help`: View help information
++ `quit`: Quit the client
 
 
 
@@ -74,6 +74,8 @@ When a GET request from the client leads to a cache miss, the corresponding key-
 ## Distributed Cluster
 
 ### Overview
+
+<img src="docs/asset/整体架构.png">
 
 ##### Components
 
@@ -129,6 +131,8 @@ Consistent hashing solves the issue of remapping a large portion of requests whe
 
 As shown in the diagram, consistent hashing effectively handles node scaling up or down.
 
+<img src="docs/asset/一致性哈希的扩容和缩容.drawio.png">
+
 To further improve system scalability and fault tolerance, we plan to extend our distributed system to support virtual nodes in the future. Virtual nodes will be mapped to physical nodes and enable finer-grained distribution of data and requests, further enhancing load balancing effectiveness.
 
 
@@ -159,8 +163,8 @@ Improving consistency can be achieved by forcing the database to flush data to t
 
 
 
-# Future Plan
+## Future Plan
 
-ECS's single point failure
+The single point of failure in ECS needs to be addressed by consensus algorithms like Raft or Paxos, which distribute the functionality of ECS directly among the servers. Implementing Raft or similar algorithms directly can be complex, so for now, an ECS registry center is abstracted to handle this task.
 
 The current data persistence method is suitable for small-scale data. For large-scale data, we plan to adopt a tabular storage approach inspired by relational databases to store data.
