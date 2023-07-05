@@ -41,6 +41,10 @@ public class Node {
 		socketChannel = null;
 	}
 
+	/**
+	 * Start NIO KVServer
+	 * @throws Exception
+	 */
 	public void startKVServer() throws Exception {
 		server = new KVServer(this);
 		server.start(host, port);
@@ -80,8 +84,6 @@ public class Node {
 		}
 		return new Range(MetaData.INSTANCE.getHash(from), MetaData.INSTANCE.getHash(to));
 	}
-
-
 
 	/**
 	 * Override the equals method, which will be used to compare two nodes according to their toString <ip:port>
@@ -165,23 +167,7 @@ public class Node {
 			e.printStackTrace();
 		}
 
-		IDatabase database;
-
-		if (where == DataType.BACKUP) {
-			database = this.backupDatabase;
-		} else {
-			database = this.mainDatabase;
-		}
-
-//		if (where == DataType.DATA) {
-//			database = this.mainDatabase;
-//			System.out.println("data for mainDatabase: " + database.getAllData());
-//		} else {
-//			database = this.backupDatabase;
-//			System.out.println("data for backupDatabase: " + database.getAllData());
-//		}
-//		IDatabase database = where==DataType.DATA ? this.mainDatabase : this.backupDatabase;
-//		System.out.println("data: " + database.getAllData());
+		IDatabase database = where==DataType.DATA ? this.mainDatabase : this.backupDatabase;
 		return database.getDataByRange(range);
 	}
 	public HashMap<String, String> getDataByRange(DataType where, Range range) throws Exception{

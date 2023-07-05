@@ -65,6 +65,7 @@ public class App
             outputStream.write(byteBuffer.array());
             outputStream.flush();
 
+            // add shutdown hook
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("Shutting down server...");
                 try {

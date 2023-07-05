@@ -47,10 +47,15 @@ public class ECSServer {
         this.executorService = Executors.newFixedThreadPool(15);
     }
 
-    public int getPort () { return this.ecsPort; }
+    public int getEcsPort () { return this.ecsPort; }
 
-    public String getAddress() { return this.ecsAddress; }
+    public String getEcsAddress() { return this.ecsAddress; }
 
+    /**
+     * Start ECS server
+     * @param helpUsage
+     * @throws Exception
+     */
     public void start(boolean helpUsage) throws Exception {
         if (helpUsage) Help.helpDisplay();
         // Start ECS as a server for registering KVServer
@@ -63,9 +68,8 @@ public class ECSServer {
         Runtime.getRuntime().addShutdownHook(new Thread(ECSServer::shutdown));
 
         while (true) {
-            // accept socket from KVServer
+            // accept socket from KVServer, block if no connection comes in
             Socket clientSocket = ecsServerSocket.accept();
-//            String message = "ECS starts adding KVServer<" + remoteAddress + ":" + remotePort + "> to ring";
             byte[] buffer = new byte[1024];
             int bytesRead = clientSocket.getInputStream().read(buffer);
             byte[] address = new byte[bytesRead];
@@ -79,13 +83,11 @@ public class ECSServer {
 
             Thread.sleep(1000);
 
+            // Connect to KVServer through NIO SocketChannel
             SocketChannel socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
-//            socketChannel.bind(new InetSocketAddress("localhost", 0));
             socketChannel.connect(new InetSocketAddress(remoteAddress, remotePort));
 
-            // Start to connect to corresponded KVServer
-//            socketChannel.configureBlocking(false);
             while (!socketChannel.finishConnect()) {
                 System.out.println("Connecting to KVServer...");
                 sleep(1000);
@@ -100,6 +102,10 @@ public class ECSServer {
         }
     }
 
+    /**
+     * Handle remove request from KVServer with a new thread
+     * @throws Exception
+     */
     private void readKVServer(Socket clientSocket) throws Exception {
         executorService.execute(() -> {
             ByteBuffer readBuffer = ByteBuffer.allocate(1024);
@@ -114,6 +120,7 @@ public class ECSServer {
                     System.arraycopy(buffer, 0, message, 0, bytesRead);
                     String addressOfRemoveNode = new String(message);
                     System.out.println("Remove Node:" + addressOfRemoveNode);
+                    // add node to close queue, handle remove request will be executed in another thread
                     closeQueue.add(nodeMap.get(addressOfRemoveNode));
                 }
                 Thread.currentThread().interrupt();
@@ -125,12 +132,15 @@ public class ECSServer {
     }
 
 
+    /**
+     * Shutdown hook called when ECS is terminated
+     */
     private static void shutdown() {
         // close thread pool
         executorService.shutdown();
 
         try {
-            // 等待所有线程完成任务的最长时间
+            // Longest time to wait for all threads to complete tasks
             executorService.awaitTermination(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -138,6 +148,9 @@ public class ECSServer {
         System.out.println("ECS shutdowns complete.");
     }
 
+    /**
+     * Thread specifically for closing KVServer properly
+     */
     private void handleRemoveRequest() {
         executorService.execute(() -> {
             while (true) {

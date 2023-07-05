@@ -22,6 +22,11 @@ public enum ConsistentHash {
 
 	public SortedMap<String, Node> getRing() { return ring; }
 
+	/**
+	 * Once a new KVServer node joins the system, update the ring on ECS, then invoke initialization on the KVServer
+	 * lastly also initiate updates on all the other KVServer
+	 * @param node the new KVServer node
+	 */
 	public void addNode(Node node) throws Exception {
 
 		String nodeHash = getHash(node);

@@ -80,18 +80,17 @@ public class KVServer {
 		writeBuffer.clear();
 		SocketChannel socketChannel = ssChannel.accept();
 		socketChannel.configureBlocking(false);
-//		while (!socketChannel.finishConnect()) {
-//			// wait for connection
-//		}
 		socketChannel.register(selector, SelectionKey.OP_READ|SelectionKey.OP_WRITE);
 
 		String message = "Hello client\n";
 		send(message, socketChannel);
-//		ByteBuffer writeBuffer = ByteBuffer.wrap(message.getBytes());
-//		writeBuffer.put(message.getBytes());
-//		socketChannel.write(ByteBuffer.wrap(message.getBytes()));
 	}
 
+	/**
+	 * Transfer request to KVMessage
+	 * @param request
+	 * @return
+	 */
 	public KVMessage requestToKVMessage(String request) {
 		String[] tokens = request.split(" ");
 		if (tokens.length < 3) {
@@ -222,90 +221,3 @@ public class KVServer {
 		send(response, clientSocketChannel);
 	}
 }
-
-	// local command from client
-//		switch (command) {
-//			case "put":
-//				putCommandHandler(msg, clientSocketChannel);
-//				break;
-//			case "get":
-//				getCommandHandler(msg, clientSocketChannel);
-//				break;
-//			case "delete":
-//				deleteCommandHandler(msg, clientSocketChannel);
-//				break;
-//			case "quit":
-//				clientSocketChannel.close();
-//				break;
-//			default:
-//				send("error Unknown Command", clientSocketChannel);
-//		}
-
-//	private void putCommandHandler(KVMessage message, SocketChannel socketChannel) throws Exception {
-//		try {
-//			for (int i = 2; i < tokens.length; i++) {
-//				if (i > 2) {
-//					sb.append(" ");
-//				}
-//				sb.append(tokens[i]);
-//			}
-//			String value = sb.toString();
-//			if (responsibleNode.hasKey(tokens[1])) {
-//				String msg = responsibeNode.put(tokens[1], value);
-//				String msg = "put_update " + tokens[1];
-//				send(msg, socketChannel);
-//			} else {
-//				responsibleNode.put(tokens[1], value);
-//				String msg = "put_success " + tokens[1];
-//				send(msg, socketChannel);
-//			}
-//		} catch (Exception e) {
-//			String msg = "put_error";
-//			send(msg, socketChannel);
-//		}
-//	}
-//
-//
-//	private void getCommandHandler(Node responsibleNode, String[] tokens, SocketChannel clientSocketChannel) throws IOException {
-//		try {
-//			String value = responsibleNode.get(tokens[1]);
-//			if (value != null) {
-//				String msg = "get_success " + tokens[1] + " " + value;
-//				send(msg, clientSocketChannel);
-//			}
-//			else {
-//				String msg = "get_error " + tokens[1];
-//				send(msg, clientSocketChannel);
-//			}
-//
-//		} catch (Exception e) {
-//			String msg = "get_error " + tokens[1];
-//			send(msg, clientSocketChannel);
-//		}
-//	}
-//
-//	/**
-//	 * Command Handler for delete
-//	 * @param tokens
-//	 * @param socketChannel
-//	 * @throws IOException
-//	 */
-//
-//	private void deleteCommandHandler(Node responsibleNode, String[] tokens, SocketChannel socketChannel) throws IOException {
-//		try {
-//			String value = responsibleNode.get(tokens[1]);
-//			if (value != null) {
-//				responsibleNode.delete(tokens[1]);
-//				String msg = "delete_success " + tokens[1];
-//				send(msg, socketChannel);
-//			}
-//			else {
-//				String msg = "delete_error " + tokens[1];
-//				send(msg, socketChannel);
-//			}
-//		} catch (Exception e) {
-//			String msg = "delete_error" + tokens[1];
-//			send(msg, socketChannel);
-//		}
-//	}
-

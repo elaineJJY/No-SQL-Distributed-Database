@@ -1,6 +1,6 @@
 ---
-Title: README_zh for ms3
-Author: Weijian Feng 封伟健
+Title: README_zh for ms4
+Author: Weijian Feng, Jingyi Jia, Mingrun Ma (Alphabet)
 ---
 
 [英文版README](../README.md)
@@ -13,7 +13,7 @@ Author: Weijian Feng 封伟健
 
 键值存储通常会放宽传统数据库管理系统的ACID（原子性、一致性、隔离性和持久性）事务模型，并提供一个BASE模型（基本可用、软状态和最终一致性），以在性能和可用性上进行权衡，而不是严格保证一致性。BASE模型是以高效可靠地扩展数据库的基础。它实现了数据在一组大型服务器上的大规模分发和复制
 
-**本任务的目标是将ms2中的集中式存储服务器架构扩展为一个弹性、可扩展的分布式存储器**。数据记录（即键值对）通过利用一致性哈希的能力分布在多个存储服务器上。每个存储服务器仅负责整个数据空间的子集（即一系列连续的哈希值范围）。哈希函数用于确定特定元组（即关联键的哈希值）的位置
+**本项目的目标是将一个基础的集中式存储服务器架构扩展为一个弹性、可扩展的分布式存储器**。数据记录（即键值对）通过利用一致性哈希的能力分布在多个存储服务器上。每个存储服务器仅负责整个数据空间的子集（即一系列连续的哈希值范围）。哈希函数用于确定特定元组（即关联键的哈希值）的位置
 
 客户端库（KVStore）通过提供早期定义的KV-Storage接口（connect, disconnect, get, put）来访问存储服务。此外，该库使客户端应用程序对数据的分布对客户端应用程序透明。客户端应用程序仅与整个存储服务进行交互，而库则管理与单个存储服务器的通信。为了将请求转发到负责特定元组的服务器，客户端库维护有关存储服务当前状态的元数据。由于存储服务内部的重新组织，客户端的元数据可能过时。因此，该库必须进行乐观处理请求。如果客户端请求被转发到错误的存储节点，服务器将返回适当的错误信息和最新版本的元数据。更新元数据后，客户端最终会重试该请求（可能联系另一个存储服务器）
 
@@ -165,11 +165,11 @@ protoc编译器只会在message的builder中生成下面的方法
 3. 客户端流式RPC Client Streaming RPC：多个请求对应一个响应 IOT
 4. 双向流RPC Bi-directional Stream RPC：多个请求返回多个响应
 
-# 结构
+# 架构
 
-<img src="ms3.png">
+<img src="整体架构.png">
 
-## *ECS*
+## *注册中心：ECS*
 
 ### Bootstrap server
 
@@ -223,7 +223,7 @@ protoc编译器只会在message的builder中生成下面的方法
 * 当所有受影响的数据已转移（即要删除的服务器发送通知给 ECS）时，ECS 向剩余的存储服务器发送元数据更新
 * 继续关闭存储服务器的操作
 
-## *KVServer 节点*
+## *KVServer 服务器节点*
 
 ### KVServer & ECS的交互
 
@@ -243,7 +243,7 @@ KVClient的get put是发给KVStore，然后再由KVStore转发给KVServer
 
 定义一个适当的表示形式（例如一个映射）用于元数据，在整个系统的所有组件（即KVStore、KVServer和ECS）中保持一致。该数据结构将存储节点的地址映射到相应的哈希范围
 
-## *Client*
+## *KVStore 数据库*
 
 ### KVStore的作用
 
@@ -265,6 +265,21 @@ Client library/KVStore 提供了一个抽象来查询存储服务。KVServer的�
   <kr-from>, <kr-to>, <ip:port>; <kr-from>, <kr-to>, <ip:port>;...
   ```
 
+### 两种数据库
+
+<img src="IDatabase.png">
+
+* MainDatabase
+* BackupDatabase
+
+策略模式，MainDatabase和BackupDatabase都会实现一个接口IDatabase
+
+
+
+
+
+### Cache策略
+
 # Protocol
 
 所有消息都是以\r\n分隔的明文
@@ -276,6 +291,8 @@ Client library/KVStore 提供了一个抽象来查询存储服务。KVServer的�
 ### 主动下线
 
 ### 故障下线
+
+## *负载均衡*
 
 ## *日志*
 
@@ -298,3 +315,7 @@ startKVServer 应该在init和数据转后才启动，否则会卡在startServer
 Java tailMap的坑：它和生成它的Map引用同一个对象，所以删除tailMap中的内容的时候也会删除原Map
 
 isResponsible的坑
+
+
+
+### 异步问题
