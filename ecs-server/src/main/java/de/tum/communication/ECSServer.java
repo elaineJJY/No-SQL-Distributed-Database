@@ -115,6 +115,10 @@ public class ECSServer {
                 // read shutdown message from KVServer
                 byte[] buffer = new byte[1024];
                 int bytesRead = clientSocket.getInputStream().read(buffer);
+                if (clientSocket.isClosed()) {
+                    System.out.println("KVServer <" + clientSocket.getInetAddress().getHostAddress() + ":" + clientSocket.getPort() + "> is closed");
+                    closeQueue.add(nodeMap.get(clientSocket.getInetAddress().getHostAddress() + ":" + clientSocket.getPort()));
+                }
                 if (bytesRead != -1) {
                     byte[] message = new byte[bytesRead];
                     System.arraycopy(buffer, 0, message, 0, bytesRead);
