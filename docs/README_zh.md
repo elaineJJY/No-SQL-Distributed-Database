@@ -274,10 +274,6 @@ Client library/KVStore 提供了一个抽象来查询存储服务。KVServer的�
 
 策略模式，MainDatabase和BackupDatabase都会实现一个接口IDatabase
 
-
-
-
-
 ### Cache策略
 
 # Protocol

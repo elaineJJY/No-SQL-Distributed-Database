@@ -64,7 +64,11 @@ public class KVServer {
 					accept(next);
 //					selectionKeyIterator.remove();
 				} else if (next.isReadable()) {
-					read(next);
+					try {
+						read(next);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 				selectionKeyIterator.remove();
 			}
@@ -162,21 +166,25 @@ public class KVServer {
 					StatusCode returnCode = ECSMessageParser.processMessage(msg, this.node);
 					send(returnCode.toString(), socketChannel); // socketChannel = ECSServer
 				} catch (Exception exp) {
-					if (request.contains("keyrange_read")) {
-						String repsonse = "keyrange_read_success "+ metaData.getAllRange();
-						repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
-						send(repsonse, socketChannel);
-						LOGGER.info(repsonse);
-						return;
+					try {
+						if (request.contains("keyrange_read")) {
+							String repsonse = "keyrange_read_success " + metaData.getAllRange();
+							repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
+							send(repsonse, socketChannel);
+							LOGGER.info(repsonse);
+							return;
+						}
+						if (request.contains("keyrange")) {
+							String repsonse = "keyrange_success " + metaData.getRange();
+							repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
+							send(repsonse, socketChannel);
+							LOGGER.info(repsonse);
+							return;
+						}
+						process(requestToKVMessage(request), socketChannel); // socketChannel = Client
+					} catch (Exception ex) {
+						send("INVALID COMMAND", socketChannel);
 					}
-					if (request.contains("keyrange")) {
-						String repsonse = "keyrange_success " + metaData.getRange() ;
-						repsonse = repsonse.substring(0, repsonse.length() - 1) + "\r\n";
-						send(repsonse, socketChannel);
-						LOGGER.info(repsonse);
-						return;
-					}
-					process(requestToKVMessage(request), socketChannel); // socketChannel = Client
 				}
 			}
 		}

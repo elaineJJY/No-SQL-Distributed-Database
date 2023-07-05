@@ -6,9 +6,9 @@ import de.tum.database.PersistentStorage;
 import java.util.logging.Logger;
 
 /**
- * ClassName: CacheDisplacementInterface
+ * ClassName: Cache
  * Package: de.tum.server.cacheDisplacement
- * Description:
+ * Description: Abstract class for cache displacement algorithm
  *
  * @Author Weijian Feng, Jingyi Jia, Mingrun Ma
  * @Create 2023/5/13 10:45
