@@ -7673,3 +7673,197 @@ INFO: For Message:{"command":"DELETE_EXPIRED_DATA","dataType":"DATA","range":{"f
 信息: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
 6月 16, 2023 1:17:45 下午 de.tum.common.ECSMessageBuilder receive
 信息: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 4:56:20 下午 de.tum.communication.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+7月 05, 2023 4:59:06 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 4:59:07 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 4:59:07 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 4:59:07 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 4:59:07 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 4:59:07 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 4:59:07 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:14:08 下午 de.tum.communication.ServerLogger init
+INFO: Already initialized loggers using Level INFO
+7月 05, 2023 5:14:16 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:14:17 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:14:17 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:14:17 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:14:17 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:14:17 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:14:17 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:17:38 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:17:38 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:17:39 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:17:41 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:17:41 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:17:41 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:17:41 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:17:41 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:17:41 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:19:31 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:19:31 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:19:36 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:19:38 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:19:38 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:19:38 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:19:38 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:19:38 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:19:38 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:30:44 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:30:44 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:30:45 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:30:47 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:30:47 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:30:47 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:30:47 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:30:47 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:30:47 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:33:50 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:33:50 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:33:51 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:33:53 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:33:53 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:33:53 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:33:53 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:33:53 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:33:53 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:34:40 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:34:40 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:34:41 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:34:43 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:34:43 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:34:43 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:34:43 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:34:43 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:34:43 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:35:22 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:35:22 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:35:23 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:35:25 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:35:25 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:35:25 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:35:25 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:35:25 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:35:25 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:36:17 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:36:17 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:36:18 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:36:20 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:36:20 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:36:20 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:36:20 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:36:20 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:36:20 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:39:25 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:39:25 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:39:26 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:39:28 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:39:28 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:39:28 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:39:28 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:39:28 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:39:28 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
+7月 05, 2023 5:42:45 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"RECOVER","removedNodeAddress":"localhost:5153"}
+7月 05, 2023 5:42:45 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"RECOVER","removedNodeAddress":"localhost:5153"} Received:OK
+7月 05, 2023 5:42:46 下午 de.tum.communication.ECSServer start
+INFO: Accept new KVServer <localhost:5153>
+7月 05, 2023 5:42:48 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{} Received:Hello client
+7月 05, 2023 5:42:48 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}}
+7月 05, 2023 5:42:48 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"UPDATE_RING","ring":{"localhost:5153":"37586c477a3ac69772c7e28b9bccc13e"}} Received:OK
+7月 05, 2023 5:42:48 下午 de.tum.node.Node updateRing
+INFO: Update Ring:OK
+7月 05, 2023 5:42:48 下午 de.tum.common.ECSMessageBuilder send
+INFO: Sent:{"command":"INIT"}
+7月 05, 2023 5:42:48 下午 de.tum.common.ECSMessageBuilder receive
+INFO: For Message:{"command":"INIT"} Received:OK
