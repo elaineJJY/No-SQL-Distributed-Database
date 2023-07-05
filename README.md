@@ -83,25 +83,26 @@ When a GET request from the client leads to a cache miss, the corresponding key-
 + KVServer: Server nodes
 	+ KVStore: Database
 
-###### Bootstrap Server (Registry Center)
+### Bootstrap Server Registry
 
-In distributed systems, a bootstrap server refers to a special node or service used to bootstrap (initialize) newly joined nodes. It plays a critical role in system startup or when new nodes join the system.
+In distributed systems, a bootstrap server refers to a special server used to bootstrap (initialize) new nodes joining the system or remove nodes that need to be taken offline. It serves as a central node for managing various nodes in the hash ring and plays a crucial role, including updating the hash ring, guiding data migration among nodes, and monitoring the status of all nodes. By having a bootstrap server and its functionality, distributed systems can manage the process of node joining and exiting more stably and reliably, optimize data distribution and access efficiency, and provide a high-performance and scalable system architecture.
 
-In a distributed system, when a new node joins, it needs to know about the existence and configuration of other nodes for communication and collaboration. This process is often referred to as the bootstrap process. The bootstrap server acts as a central node or service that provides node discovery and configuration information to help new nodes join the system.
+### Functionality
 
-When a new node starts, it contacts the bootstrap server to obtain a list of known nodes, their network addresses, role information, and other relevant details. With this information, the new node can establish connections with other nodes and participate in the overall operation of the system.
-
-The bootstrap server can be a standalone server or a specific node within the distributed system. It typically exhibits stability and high availability to ensure the reliability and scalability of the system. In some systems, dedicated services such as ZooKeeper or etcd are used to implement the bootstrap server, providing node management and configuration services.
-
-In summary, in a distributed system, a bootstrap server is a special node or service used to bootstrap newly joined nodes. It provides node discovery and configuration information to help new nodes connect and collaborate with other nodes in the system.
-
-Functionality
-
-+ Data maintenance
-+ Addition/removal of KVServer nodes When a node needs to go offline, it sends a request to the registry center. The registry center receives the request, adds the node to the pending removal queue, and processes it one by one.
-+ Data transfer
-+ Metadata updates
-+ Monitoring the status of KVServer
+* Adding a KVServer: When a new KVServer connects to ECS, the following operations are performed:
+  * Determine the position of the new storage server in the ring based on the server's port address used for communication with clients.
+  * Recalculate and update the hash ring.
+  * Initialize the new storage server using the updated hash ring.
+  * Set write locks on successor nodes.
+  * Data transfer: Transfer affected data items to the new storage server.
+  * Once all affected data has been transferred, send the updated hash ring to all storage servers.
+* Removing a KVServer: When a KVServer sends a removal notification to ECS or ECS detects a node failure, the following operations are performed:
+  * Add the node to the removal queue in ECS and process them one by one.
+  * Recalculate and update the hash ring.
+  * Data transfer: Transfer affected data items to new storage servers.
+  * Once all affected data has been transferred, send the updated hash ring to the remaining storage servers.
+  * Continue shutting down the storage server.
+* Monitoring the status of KVServer: ECS assigns a dedicated thread to periodically monitor if servers go offline. Specifically, when `socket.isclose() == true`, it indicates the server is offline, and the appropriate logic for handling the offline event is invoked.
 
 
 
