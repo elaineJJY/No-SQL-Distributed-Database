@@ -1,133 +1,118 @@
 package de.tum.node;
 
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.nio.channels.SocketChannel;
-import java.util.HashMap;
+
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * ClassName: ConsistentHash
- * Package: de.tum.node
- * Description: Provides a consistent hash ring for the nodes
+ * ClassName: ConsistentHash Package: de.tum.node Description:
  *
  * @Author Weijian Feng, Jingyi Jia, Mingrun Ma
  * @Create 2023/6/2 23:37
  * @Version 1.0
  */
+
 public enum ConsistentHash {
 	INSTANCE;
-	private SortedMap<String, Node> ring = new TreeMap<>();
+	private SortedMap<String, NodeProxy> ring = new TreeMap<>();  // <hash, node>
 
-	public SortedMap<String, Node> getRing() { return ring; }
-
-	/**
-	 * Once a new KVServer node joins the system, update the ring on ECS, then invoke initialization on the KVServer
-	 * lastly also initiate updates on all the other KVServer
-	 * @param node the new KVServer node
-	 */
-	public void addNode(Node node) throws Exception {
-
-		String nodeHash = getHash(node);
-		ring.put(nodeHash, node);
-		boolean updateRingSuccess = node.updateRing(ring);
-		if (!updateRingSuccess) {
-			ring.remove(nodeHash);
-			throw new Exception("Update MetaData of KVServer<" + node.getHost() + "> failed");
-		}
-
-		boolean nodeInitSuccess = node.init();
-		if (!nodeInitSuccess) {
-			ring.remove(nodeHash);
-			throw new Exception("Initialization Node of KVServer<" + node.getHost() + "> failed");
-		}
-
-		updateRingForAllNodes(node);
-		if (ring.size() > 1) {
-			getPreviousNode(node).deleteExpiredData(DataType.BACKUP, node.getRange(DataType.BACKUP));
-			getNextNode(node).deleteExpiredData(DataType.DATA, node.getRange(DataType.DATA));
-		}
+	public SortedMap<String, NodeProxy> getRing() {
+		return ring;
 	}
 
-	public void removeNode(Node node) throws Exception {
+	public void addNode(NodeProxy nodeProxy) throws io.grpc.StatusRuntimeException {
+		String nodeHash = getHash(nodeProxy);
+		// in case of hash collision
+		if (ring.containsKey(nodeHash)) {
+			int i = 1;
+			while (ring.containsKey(nodeHash)) {
+				nodeHash = MD5Hash.hash(nodeProxy.toString() + String.valueOf(i++));
+			}
+		}
+		ring.put(nodeHash, nodeProxy);
+		nodeProxy.updateRing(ring);
+		nodeProxy.init();
+		updateRingForAllNodes(nodeProxy);
+		if (ring.size() > 1) {
+			getPreviousNode(nodeProxy).deleteExpiredData(DataType.BACKUP, nodeProxy.getRange(DataType.BACKUP));
+			getNextNode(nodeProxy).deleteExpiredData(DataType.DATA, nodeProxy.getRange(DataType.DATA));
+		}
+		nodeProxy.startKVServer();
+	}
+
+	public void removeNode(NodeProxy nodeProxy) {
 
 		// if node still alive, set node to read-only
 		try {
-			//TODO
 			// node.setReadOnly();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String nodeHash = getHash(node);
-		
+		String nodeHash = getHash(nodeProxy);
 
-		Node nextNode = getNextNode(node);
-		// backup data
-		if (ring.size() > 2) {
-			Node previousNode = getPreviousNode(node);
-			Node prepreNode = getPreviousNode(previousNode);
-			prepreNode.recover(node);
-			previousNode.recover(node);
-		}
-
-		nextNode.recover(node); // store main data of the removed node
+		NodeProxy previousNodeProxy = getPreviousNode(nodeProxy);
+		NodeProxy nextNodeProxy = getNextNode(nodeProxy);
 		ring.remove(nodeHash);
-		updateRingForAllNodes(node);
+		nodeProxy.closeRpcChannel();
+		System.out.println("Channel of ECS to KVServer<"
+				+ nodeProxy.getHost() + ":" + nodeProxy.getPortForClient() + "> is closed");
+		previousNodeProxy.recover(nodeProxy);
+		nextNodeProxy.recover(nodeProxy);
+		updateRingForAllNodes(nodeProxy);
 	}
 
-
-	public String getHash(Node node) {
-		String nodeHash = MD5Hash.hash(node.toString()); // hash value of the node, key is string <ip:port>
+	/**
+	 * Get the node hash corresponding to the node
+	 *
+	 * @param nodeProxy
+	 * @return hash value
+	 */
+	public String getHash(NodeProxy nodeProxy) {
+//		String nodeHash = MD5Hash.hash(
+//				nodeProxy.toString()); // hash value of the node, key is string <ip:port>
 //		int i = 1;
 //		while (!ring.get(nodeHash).equals(node)) {
 //			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
 //		}
-		return nodeHash;
+		return MD5Hash.hash(nodeProxy.getHost() + ":" + nodeProxy.getPortForClient());
 	}
 
-	public Node getNextNode(Node node) {
-		String nodeHash = getHash(node);
+	/**
+	 * Get the next node given the current node
+	 *
+	 * @param nodeProxy
+	 * @return next node
+	 */
+	public NodeProxy getNextNode(NodeProxy nodeProxy) {
+		String nodeHash = getHash(nodeProxy);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
-		SortedMap<String, Node> tailMap = ring.tailMap(nodeHash + 1);
-		// The node we need is next node of the first node in the tailMap
+		// TODO: can we copy tailmap
+		SortedMap<String, NodeProxy> tailMap = ring.tailMap(nodeHash + 1);
+		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
 		return ring.get(nextHash);
 	}
 
 	/**
 	 * Get the previous node given the current node
-	 * @param node
+	 *
+	 * @param nodeProxy
 	 * @return previous node
 	 */
-	public Node getPreviousNode(Node node){
-		String nodeHash = getHash(node);
-		SortedMap<String, Node> headMap = ring.headMap(nodeHash);
+	public NodeProxy getPreviousNode(NodeProxy nodeProxy) {
+		String nodeHash = getHash(nodeProxy);
+		SortedMap<String, NodeProxy> headMap = ring.headMap(nodeHash);
 		String previousHash = headMap.isEmpty() ? ring.lastKey() : headMap.lastKey();
 		return ring.get(previousHash);
 	}
 
-	/**
-	 * print each node and its corresponding range, ip and port
-	 * @return String <kr-from>, <kr-to>, <ip:port>
-	 */
-	@Override
-	public String toString() {
-		// for each node: <kr-from>, <kr-to>, <ip:port>
-		String text = "";
-		for (String hash : ring.keySet()) {
-			Node node = ring.get(hash);
-			//  <kr-from>, <kr-to>, <ip:port>
-			text += node.getRange(DataType.DATA) + ", " + node.getHost() + ":" + node.getPort() + "\n";
-		}
-		return text;
-	}
 
-	private void updateRingForAllNodes(Node except) throws Exception {
-		for (Node node : ring.values()) {
-			if (!node.equals(except)){
-				node.updateRing(ring);
+	private void updateRingForAllNodes(NodeProxy except) {
+		for (NodeProxy nodeProxy : ring.values()) {
+			if (nodeProxy.equals(except)) {
+				continue;
 			}
+			nodeProxy.updateRing(ring);
 		}
 	}
 }

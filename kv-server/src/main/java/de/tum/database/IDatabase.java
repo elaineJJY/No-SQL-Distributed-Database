@@ -3,15 +3,6 @@ package de.tum.database;
 import de.tum.node.Range;
 import java.util.HashMap;
 
-/**
- * ClassName: IDatabase
- * Package: de.tum.database
- * Description: Interface for databases
- *
- * @Author Weijian Feng, Jingyi Jia, Mingrun Ma
- * @Create 2023/4/25 23:37
- * @Version 1.0
- */
 public interface IDatabase {
 
 	void put(String key, String value) throws Exception;

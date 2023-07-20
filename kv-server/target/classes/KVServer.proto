@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "de.tum.grpc_api";
+option java_outer_classname = "KVServerProto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+
+message NodeMessage {
+  string host = 1;
+  int32 rpcPort = 2;
+  int32 portForClient = 3;
+}
+
+message Range {
+  string from = 1;
+  string to = 2;
+}
+
+enum DataType {
+  DATA = 0;
+  BACKUP = 1;
+}
+
+message HeartBeatResponse {
+  int64 timestamp = 1;
+}
+
+message GetRangeRequest {
+  DataType dataType = 1;
+}
+
+message GetRangeResponse {
+  Range range = 1;
+}
+
+message ToStringResponse {
+  string HostPort = 1;
+}
+
+message IsResponsibleRequest {
+  string key = 1;
+}
+
+message IsResponsibleResponse {
+  bool isResponsible = 1;
+}
+
+message CopyRequest{
+  DataType where = 1;
+  Range range = 2;
+}
+
+message CopyResponse{
+  map<string, string> data = 1;
+}
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+//  google.protobuf.Any Object = 1;
+  string value = 1;
+}
+
+message PutRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message PutBackupRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message DeleteRequest {
+  string key = 1;
+}
+
+message HasKeyRequest {
+  string key = 1;
+}
+
+message HasKeyResponse {
+  bool hasKey = 1;
+}
+
+message RecoverRequest {
+  NodeMessage node = 1;
+}
+
+message UpdateRingRequest {
+  map<string, NodeMessage> ring = 1;
+}
+
+message DeleteExpiredDataRequest {
+  DataType dataType = 1;
+  Range range = 2;
+}
+
+message RegisterRequest {
+  NodeMessage node = 1;
+  int32 rpcPort = 2;
+}
+
+service KVService {
+  rpc heartBeat(google.protobuf.Empty) returns (HeartBeatResponse) {} // Server-streaming RPC
+  rpc getRange(GetRangeRequest) returns (GetRangeResponse) {}
+  rpc equals(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc toString(google.protobuf.Empty) returns (ToStringResponse) {}
+
+  // isResponsible, copy, get, put, delete will only be called by other KVServer
+  rpc isResponsible(IsResponsibleRequest) returns (IsResponsibleResponse) {}
+  rpc copy(CopyRequest) returns (CopyResponse) {}
+  rpc get(GetRequest) returns (GetResponse) {}
+  rpc put(PutRequest) returns (google.protobuf.Empty) {}
+  rpc putBackup(PutBackupRequest) returns (google.protobuf.Empty) {}
+  rpc delete(DeleteRequest) returns (google.protobuf.Empty) {}
+  rpc hasKey(HasKeyRequest) returns (HasKeyResponse) {}
+
+  // init, recover, updateRing, deleteExpiredData will only be called by ECS
+  rpc init(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc startKVServer(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc recover(RecoverRequest) returns (google.protobuf.Empty) {}
+  rpc updateRing(UpdateRingRequest) returns (google.protobuf.Empty) {}
+  rpc deleteExpiredData(DeleteExpiredDataRequest) returns (google.protobuf.Empty) {}
+}
+
+service ECService {
+  rpc register(RegisterRequest) returns (google.protobuf.Empty) {}
+}

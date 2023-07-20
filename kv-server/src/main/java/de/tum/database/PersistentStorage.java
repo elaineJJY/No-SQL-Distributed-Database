@@ -8,9 +8,9 @@ import java.util.Map.Entry;
 import java.util.concurrent.Future;
 
 /**
- * ClassName: PersistentStorage
- * Package: de.tum.server.PersistentStorage
- * Description: Persistent storage for the server database
+ * ClassName: CacheManager used to change Cache management method (e.g. LRU, LFU, FIFO)
+ * Package: de.tum.server.cacheDisplacement
+ * Description:
  *
  * @Author Weijian Feng, Jingyi Jia, Mingrun Ma
  * @Create 2023/5/13 10:46

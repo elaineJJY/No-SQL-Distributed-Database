@@ -1,171 +1,213 @@
+---
+Title: README for ms3
+Author: Weijian Feng 封伟健
+---
+
 [Chinese REAMDE](docs/README_zh.md)
 
-# Project Overview
+# Background
 
-## Server and Client
+## *Distributed System*
 
-### Server Online CLI Parameters
+Large-scale web-based applications, such as social networks, online marketplaces, and collaboration platforms, need to serve millions of online users simultaneously, handle large amounts of data, and be available around the clock. While today's database management systems are powerful and flexible, they were not specifically designed for this type of usage. **Key-value stores (KV-stores)** attempt to fill this gap by providing a simpler data model that is often sufficient to support the storage and querying requirements of web-based applications.
 
-+ -p: Set the port for server listening
-+ -a: Set the IP address for server listening
-+ -b: IP:Port of the ECS registry center
-+ -d: Directory for persistent data storage
-+ -l: Address for storing logs
-+ -ll: Log level, such as INFO, ALL, etc.
-+ -c: Cache size, e.g., 100 keys
-+ -s: Cache update strategy
-+ -h: Print help information
+Key-value stores typically relax the ACID (Atomicity, Consistency, Isolation, Durability) transaction model of traditional database management systems and provide a BASE model (Basically Available, Soft state, Eventually consistent) that trades off consistency for performance and availability. The BASE model forms the foundation for efficiently and reliably scaling databases. It enables the distribution and replication of data across a set of large servers.
 
-## Client Connection API
+**The goal of this task is to extend the centralized storage server architecture in ms2 into a resilient and scalable distributed storage system**. Data records (i.e., key-value pairs) are distributed across multiple storage servers by leveraging the capability of consistent hashing. Each storage server is responsible for only a subset of the entire data space, which corresponds to a range of continuous hash values. A hash function is used to determine the location of a specific tuple (i.e., the hash value of the associated key).
 
-+ `connect <addrs> <port>`: Connect to a specific IP:Port server
-+ `disconnect`: Disconnect from the server
-+ `put <key> <val>`: Store data
-+ `get <key>`: Retrieve data
-+ `send <message>`: The server will echo back the sent message
-+ `logLevel <level>`: Adjust log level
-+ `help`: View help information
-+ `quit`: Quit the client
+The client library (KVStore) accesses the storage service by providing a well-defined KV-Storage interface (connect, disconnect, get, put). Additionally, the library abstracts the data distribution from the client application, which interacts only with the entire storage service while the library manages the communication with individual storage servers. To forward requests to the server responsible for a specific tuple, the client library maintains metadata about the current state of the storage service. Due to internal reorganization within the storage service, the client's metadata may become outdated. Hence, the library must handle requests optimistically. If a client request is forwarded to the wrong storage node, the server will return appropriate error messages along with the latest version of the metadata. After updating the metadata, the client eventually retries the request, possibly contacting another storage server.
+
+Each storage server (KVServer) is responsible for a portion of the data based on its position in the hash space (as depicted in the diagram below). The position implicitly defines a subrange of the complete hash range.
+
+The storage servers are monitored and controlled by ECS (Elastic Control Service). Through this configuration service, administrators can initialize and control the storage system (e.g., add/remove storage servers and invoke metadata coordination on the affected storage servers). In ms3, this is a single point of failure.
+
+## *Consistent Hashing*
+
+### Problems of IP hash
+
+IP hashing is a straightforward approach, where the **number of nodes N is used in a modulo operation**. However, the core problem arises when the number of nodes changes, such as during system scaling up or down. In such cases, **data with altered mapping relationships must be migrated**; otherwise, it can lead to mapping inconsistencies and data query issues.
+
+To address this problem, when scaling up or down the distributed system and performing node migration, it is possible that in the worst-case scenario, all node data needs to be adjusted. In this case, the complexity of node migration can be O(N), which can be a significant cost. **The improvement strategy derived from IP hashing is to minimize the number of node migrations as much as possible when changing the number of nodes.**
+
+### Process of Consistent Hashing
+
+<img src="docs/一致性哈希.png" width="30%">
+
+The consistent hashing algorithm also involves a modulo operation, but it is performed on a **fixed value** of $2^{32}$. The hash ring is a circular structure consisting of $2^{32}$ integers. Consistent hashing uses the MD5 algorithm as its hashing function. Although **MD5** is currently vulnerable to collision attacks, it is efficient enough for the number of nodes in a distributed system.
+
+Consistent hashing **maps both storage nodes and data to a unified hash ring**, which is achieved through two-level hashing: one for the nodes and another for the key-value (KV) data.
+
+1. **The hash calculation is performed on the storage nodes**, mapping them to the hash ring. For example, the hashing can be done based on the IP address of the nodes: `hash(<ip>+<port>)`.
+2. When storing or accessing data, **the key is hashed**: `hash(key)`.
+
+After the two-level hashing process, how are the KV data assigned to specific nodes? The data is allocated to the first node found in the clockwise direction.
+
+For example, in the following example, KV-1's key is mapped to Node A, which is the first node found in the clockwise direction. KV-2 and KV-3 are mapped to Node B and Node C, respectively.
+
+### Effectiveness against enlarging & shrinking nodes
+
+<img src="docs/一致性哈希的扩容和缩容.drawio.png" width="70%">
+
+* Scaling up: Assuming a new node D is added, and at that moment, the next node in the clockwise direction from KV-3 is node D. In this case, only one data migration is required to move KV-3 from its current node to node D.
+* Scaling down: Assuming a node B is removed. At this point, KV-2 needs to be migrated from node B (which acts as a backup) to node C. Again, only one data migration is needed to accomplish this.
+
+### Data skew
+
+<img src="docs/一致性哈希的集中问题.drawio.png" width="30%">
+
+If, by chance, the majority of the data is concentrated on one side of a node, then all the data pressure is focused on that particular node, which undermines the efforts of consistent hashing to achieve distributed load balancing. What's even more alarming is that when that node cannot handle the load and goes offline, it not only requires extensive data migration but may even trigger a cascading node failure. This means that Node B and Node C may also become overwhelmed, leading to a complete system crash.
+
+### Rebalance via virtual nodes
+
+To solve the problem of uneven data allocation on the hash ring, a large number of nodes is required. The more nodes there are, the more evenly the data will be distributed on the hash ring.
+
+However, in practice, it may not be feasible to have a large number of nodes. In such cases, **virtual nodes** can be introduced. **This involves creating multiple replicas or copies of a single physical node**. Instead of directly mapping the physical nodes to the hash ring, the virtual nodes are mapped onto the hash ring. Each virtual node is then mapped to a corresponding physical node. This introduces two levels of mapping relationships: virtual nodes to the hash ring and virtual nodes to physical nodes.
+
+<img src="docs/虚拟节点.drawio.png" width="30%">
+
+In practical engineering, the number of virtual nodes is often significantly larger. For example, in Nginx's consistent hashing algorithm, each real node with a weight of 1 is associated with 160 virtual nodes. With the introduction of virtual nodes, it is also possible to assign higher weights to better-performing hardware configurations. This can be achieved by adding more virtual nodes to nodes with higher weights. **The consistent hashing method with virtual nodes is not only suitable for scenarios with nodes having different hardware configurations but also for scenarios where the node scale may change.**
+
+### Java Hash API
+
+Documentation for `java.security.MessageDigest` <https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html>
+
+* Construct `MessageDigest(String algorithm)`: Creates a message digest with the specified algorithm name, supporting MD5, SHA-1, and SHA-256.
+* `getInstance(String algorithm)`: Returns a MessageDigest object that implements the specified digest algorithm.
+* `update()` method: Begins the computation of the hash value.
+* `digest()` method: Retrieves the encrypted content. After calling the `digest()` method, the state of the MessageDigest object is reset to the initial state.
+* `reset()` method: Resets the state of the MessageDigest object to the initial state.
+
+## *Redis Cluster*
+
+### Work mode of cluster
+
+* To ensure high availability, the Cluster mode also introduces a master-slave replication mode, where each master node corresponds to one or more slave nodes. When a master node fails, the slave node(s) will be activated.
+* The minimum configuration for a Cluster mode cluster is six nodes (3 masters and 3 slaves) because it requires a majority for operations. **The master nodes handle read and write operations, while the slave nodes serve as backup nodes and do not accept client requests except for failover purposes.**
+* All Redis nodes are interconnected using the PING-PONG mechanism, and binary protocols are used internally to optimize transmission speed and bandwidth.
+* A master node is considered faulty only when more than half of the nodes in the cluster detect its failure.
+* Clients connect directly to Redis nodes without the need for an intermediate proxy layer. Clients do not need to connect to all nodes in the cluster; connecting to any available node in the cluster is sufficient.
+
+### Hash Slot
+
+<img src="docs/Cluster.drawio.png">
 
 
+Redis Cluster is a leaderless distributed storage solution that uses hash slots for sharding instead of consistent hashing.
 
-## Network I/O
+**Each server node can have multiple hash slots within a certain range.** When using the hash slot algorithm for data sharding, the specific calculation is as follows:
 
-During the communication between the ECS registry center and the KVServer servers, their roles will be exchanged once.
+* Hash function: Redis uses the **CRC16** algorithm as the hash function to calculate the hash value of the data key.
+* Number of slots: The entire Redis cluster uses **a fixed number of 16384 slots**, which means there can be a maximum of 16384 nodes. Each slot can hold multiple key-value pairs. Each slot is assigned a unique number ranging from 0 to 16383.
+* Slot allocation: Based on the hash value of the key, the key is assigned to the corresponding slot using the modulo operation. The steps are as follows:
+  * Calculate the hash value of the key and obtain a hash result. Then perform a modulo operation with the number of slots, 16384, to get the remainder (a value between 0 and 16383). `CRC16(key) mod 16384`
+  * Store the key in the corresponding slot, where the slot number is the calculated remainder. Store it in `slot[ CRC16(key) mod 16384 ]`.
 
-The ECS registry center uses a BIO thread pool to provide registration services externally. It starts before all other KVServer nodes and waits for connections from KVServer nodes on a specific IP:Port. When a KVServer node connects, ECS will spawn a dedicated thread to handle the offline work of the KVServer node and then act as a client of the KVServer by constructing an NIO SocketChannel connection to the KVServer. This is followed by metadata synchronization, data transfer, and other operations.
+For example, let's consider a Redis cluster with three nodes (Node1, Node2, Node3), where each node is responsible for a range of slots:
 
-There are two types of I/O communication in KVServer. When a KVServer comes online, it first builds a BIO socket to register with the ECS. At this time, the KVServer acts as a client of the ECS. After registration, when the KVServer acts as a server to provide services externally, it adopts the Java NIO communication mode. We consolidate the requests from ECS and the requests from clients connected to the KVServer into the NIO next.isReadable() detection state. At this point, ECS's role is transformed into a client of the KVServer.
+* Node1: Slots with numbers `[0, 5460]`
+* Node2: Slots with numbers `[5461, 10922]`
+* Node3: Slots with numbers `[10923, 16383]`
 
-Java NIO is an I/O model provided by Java, introducing a set of new APIs for efficient multiplexed I/O operations. Compared to traditional Java BIO, Java NIO provides a more flexible and high-performance way to perform I/O operations.
+When storing a key-value pair, the key is first hashed using CRC16, resulting in a 16-bit hash value.
 
-The core components of Java NIO include the following:
+* The hash value is then subjected to the modulo operation. Let's say the result is 12345.
+* The key is stored in the slot with the number 12345.
 
-1. Channel: A channel is the conduit for data transfer and can be used to read and write data. Java NIO provides different types of channels, such as file channels and socket channels.
-2. Buffer: A buffer is an object used to store data and enables reading and writing data. Buffers provide a structured way to access data based on different data types (e.g., bytes, characters).
-3. Selector: A selector is a mechanism for multiplexing non-blocking channels. It manages multiple channel I/O operations in a single thread. The selector can listen to events on multiple channels and handle them accordingly when events occur.
+### How to allocate Hash Slot
 
-## Data Storage
+**Automatic Slot Allocation:** When creating a Redis cluster using the `cluster create` command, Redis automatically distributes all hash slots evenly across the cluster nodes. For example, if there are 9 nodes in the cluster, each node will have 16384/9 slots.
 
-### Data Persistence
+**Manual Slot Allocation:** It is possible to manually establish connections between nodes using the `cluster meet` command and form a cluster. Then, the `cluster addslots` command can be used to specify the number of hash slots on each node.
 
-Data persistence is the process of storing data in non-volatile media (such as hard drives, solid-state drives, flash storage) to ensure data is retained and can be recovered and used after a computer system shutdown or power failure, without data loss.
+Note: If manually assigning hash slots, all 16384 slots must be allocated, otherwise the Redis cluster will not work correctly.
 
-For this project, considering the small scale of data, we have adopted a simple data persistence solution, which stores each key-value pair in a corresponding file to achieve data persistence.
+### Hash Slot vs. Consistent Hashing
 
-To improve the efficiency of read and write operations, we have implemented a dual-database architecture: the main database and the backup database. The backup database is stored only on the hard disk and is typically not accessed externally. The main database is stored both on the hard disk and in the cache. When a client writes data, the data is first written to the main data cache and then asynchronously copied to the hard disk directory of the main database and backup database. When performing read operations, the system first checks the main data cache, and if the data is not found in the cache, it queries the data on the hard disk.
+Consistent hashing is a technique that uses virtual nodes to handle data migration and ensure data safety and cluster availability in the event of node failure. Redis Cluster, on the other hand, employs a master-slave mechanism to maintain data integrity, where master nodes handle data writes and slave nodes synchronize data. When a master node fails, a new master node is elected through an election mechanism from the available slave nodes, ensuring high availability.
 
-With this architecture, we can achieve data persistence and improve the efficiency of read and write operations. The presence of the backup database serves as redundant backup to provide higher data reliability. At the same time, the caching mechanism of the main database speeds up data retrieval and improves system response time.
+However, there is a consideration in this setup. If a master node experiences a high load on a particular key due to a sudden surge in access, it may become overloaded and fail. Subsequently, when a new node is elected as the master from the available slave nodes, it may also fail due to the same load. This process can cascade, leading to a cache avalanche scenario.
 
+## *protobuf & gRPC*
 
+### protobuf
 
-### Cache Update Strategy
+The main APIs used are map-type APIs and message-related APIs, especially the Builder.
 
-Regarding the replacement strategy for key-value pairs in the cache, the following three strategies can be implemented:
+```protobuf
+map<int32, int32> weight = 1;
+```
 
-1. First-In-First-Out (FIFO): Key-value pairs that enter the cache first will be replaced based on the order of entry.
-2. Least Recently Used (LRU): Key-value pairs that have been least recently used, based on their access time, will be replaced. We use Java's LinkedHashMap to implement the LRU strategy, where the most recently accessed key-value pairs are kept at the head of the linked list. When the cache is full, the key-value pair at the tail of the list is replaced.
-3. Least Frequently Used (LFU): Key-value pairs that have been least frequently used, based on their access frequency, will be replaced. We use a hash table combined with a priority queue to implement the LFU strategy, tracking and managing key-value pairs and their corresponding access frequencies. When the cache is full, the key-value pair with the lowest access frequency is replaced.
+The protoc compiler will generate the following methods in the message class and its builder:
 
-When a GET request from the client leads to a cache miss, the corresponding key-value pair will be searched on the disk and moved to the cache. If the cache is full, based on the currently selected strategy, a specific key-value pair will be selected for replacement and swapped to the disk (which may involve updates on the disk). Similarly, when a PUT request is received from the client and the cache is full, a specific key-value pair will be selected for replacement based on the selected strategy.
+* `Map<Integer, Integer> getWeightMap();`: Returns an **immutable** map.
+* `int getWeightOrDefault(int key, int defaultValue);`: Returns the value associated with the key, or the default value if the key does not exist.
+* `int getWeightOrThrow(int key);`: Returns the value associated with the key, or throws an IllegalArgumentException if the key does not exist.
+* `boolean containsWeight(int key);`: Checks if the map contains the key.
+* `int getWeightCount();`: Returns the number of elements in the map.
 
+The protoc compiler will only generate the following methods in the message's builder:
 
+* `Builder putWeight(int key, int value);`: Inserts a key-value pair.
+* `Builder putAllWeight(Map<Integer, Integer> values);`: Adds all entries in the given map to this field.
+* `Builder removeWeight(int key);`: Removes the key-value pair from this field.
+* `Builder clearWeight();`: Removes all entries from this field.
+* `@Deprecated Map<Integer, Integer> getMutableWeight();`: Returns a **mutable** map. Note that multiple calls to this method may return different map instances. The returned map reference may be invalidated by any subsequent method calls to the Builder.
 
-## Distributed Cluster
+### gRPC
 
-### Overview
+<img src="docs/gRPC流程.drawio.png">
 
-<img src="docs/asset/整体架构.png">
+4 Ways of communication
 
-##### Components
+1. Simple RPC / Unary RPC: One request corresponds to one response.
+2. Server Streaming RPC: One request corresponds to multiple responses.
+3. Client Streaming RPC: Multiple requests correspond to one response. (e.g., IoT)
+4. Bi-directional Streaming RPC: Multiple requests correspond to multiple responses.
 
-+ Registry Center: Cluster management
-+ KVServer: Server nodes
-	+ KVStore: Database
+# Components
 
-### Bootstrap Server Registry
+<img src="docs/ms3.png">
 
-In distributed systems, a bootstrap server refers to a special server used to bootstrap (initialize) new nodes joining the system or remove nodes that need to be taken offline. It serves as a central node for managing various nodes in the hash ring and plays a crucial role, including updating the hash ring, guiding data migration among nodes, and monitoring the status of all nodes. By having a bootstrap server and its functionality, distributed systems can manage the process of node joining and exiting more stably and reliably, optimize data distribution and access efficiency, and provide a high-performance and scalable system architecture.
+## *ECS*
+
+### Bootstrap server
+
+A bootstrap server in a distributed system refers to a special node or service that is used to bootstrap (initialize) newly joining nodes. It plays a crucial role during system startup or when new nodes join the system
+
+In a distributed system, when a new node joins, it needs to be aware of the existence and configuration of other nodes in order to communicate and collaborate with them. This process is often referred to as the bootstrap process. The bootstrap server acts as a central node or service that provides node discovery and configuration information to assist new nodes in joining the system
+
+When a new node starts up, it contacts the bootstrap server to obtain a list of known nodes in the system, their network addresses, role information, and other relevant details. With this information, the new node can establish connections with other nodes and participate in the overall operation of the system
+
+The bootstrap server can be a standalone server or a specific node within the distributed system. It typically exhibits stability and high availability to ensure the reliability and scalability of the system. In some systems, specialized services such as ZooKeeper or etcd are used to implement the bootstrap server, providing node management and configuration services
+
+In summary, a bootstrap server in a distributed system is a special node or service used to bootstrap newly joining nodes. It provides node discovery and configuration information, helping new nodes establish connections and collaborate with other nodes in the system
+
+### Add KVServer
+
+### Remove KVServer
 
 ### Functionality
 
-* Adding a KVServer: When a new KVServer connects to ECS, the following operations are performed:
-  * Determine the position of the new storage server in the ring based on the server's port address used for communication with clients.
-  * Recalculate and update the hash ring.
-  * Initialize the new storage server using the updated hash ring.
-  * Set write locks on successor nodes.
-  * Data transfer: Transfer affected data items to the new storage server.
-  * Once all affected data has been transferred, send the updated hash ring to all storage servers.
-* Removing a KVServer: When a KVServer sends a removal notification to ECS or ECS detects a node failure, the following operations are performed:
-  * Add the node to the removal queue in ECS and process them one by one.
-  * Recalculate and update the hash ring.
-  * Data transfer: Transfer affected data items to new storage servers.
-  * Once all affected data has been transferred, send the updated hash ring to the remaining storage servers.
-  * Continue shutting down the storage server.
-* Monitoring the status of KVServer: ECS assigns a dedicated thread to periodically monitor if servers go offline. Specifically, when `socket.isclose() == true`, it indicates the server is offline, and the appropriate logic for handling the offline event is invoked.
+## *KVServer*
 
+The position of a particular storage server is calculated by hashing its address and port (i.e. `<IP>:<Port>`)
 
+### Functionality
 
-### Cluster Communication
+## *KVStore*
 
-Cluster communication refers to the process of mutual communication and collaboration between multiple nodes in a distributed system through the network. In cluster communication, nodes can be physical servers, virtual machines, containers, etc., connected through the network to enable data transfer, task allocation, coordination, synchronization, and other operations.
+### Functionality
 
-In our implementation, we use custom string messages for cluster communication. Each message is encoded and decoded as a string and transmitted to other nodes through the network. We use a message builder factory to generate message instances, creating corresponding message objects based on the message type and related data. This allows dynamic generation of different types of messages to meet the requirements of cluster communication.
+## *Client*
 
-To handle received messages, we use a unified message parser. The message parser is responsible for parsing received string messages and executing corresponding operations based on the message format and rules. This ensures consistency in message handling and improves code readability and maintainability.
+### Functionality
 
-Please refer to the API documentation for specific communication protocols.
+# Protocol
 
+## *Data transfer*
 
+<img src="docs/ms3哈希环的扩容和缩容.drawio.png">
 
-### Load Balancing
+### Subjectively down
 
-Load balancing is a technique that distributes the workload, such as network traffic, requests, or computing tasks, across multiple computing resources to improve system performance, reliability, and scalability. Load balancing ensures that each computing resource is utilized properly, avoids resource overload, and enhances system fault tolerance.
-
-Consistent hashing algorithm is applied to our distributed system to address load balancing and node expansion requirements. We plan to introduce virtual nodes in the future.
-
-Consistent hashing is an algorithm used to solve the load balancing problem. Traditional hashing algorithms map resources and requests to a fixed hash table. However, in a distributed environment, when the number of nodes changes, a large number of remappings occur, which negatively affects the stability and performance of the system.
-
-Consistent hashing algorithm maps resources and requests to a hash ring, represented as a circular structure. Each resource node has a corresponding position on the ring, and requests are mapped to the nearest resource node based on a hash function. When a new request arrives, the consistent hashing algorithm maps it to the resource node closest to its position.
-
-Consistent hashing solves the issue of remapping a large portion of requests when nodes change in traditional hashing algorithms. When a node is added or removed from the system, only requests in the vicinity of that node are affected, while the mapping relationship between other nodes and requests remains unchanged. By adjusting the positions of nodes on the ring, the impact of adding or removing nodes is minimized.
-
-As shown in the diagram, consistent hashing effectively handles node scaling up or down.
-
-<img src="docs/asset/一致性哈希的扩容和缩容.drawio.png">
-
-To further improve system scalability and fault tolerance, we plan to extend our distributed system to support virtual nodes in the future. Virtual nodes will be mapped to physical nodes and enable finer-grained distribution of data and requests, further enhancing load balancing effectiveness.
-
-
-
-### Fault Tolerance
-
-Fault tolerance is the ability of a distributed system to handle node failures or errors, ensuring system availability and reliability. It aims to enable the system to continue normal operation in the event of node failures and minimize the impact on users as much as possible through backup mechanisms, fault detection, and recovery strategies.
-
-Selection of Backup Nodes: In our implementation, we have chosen a simple and effective backup strategy, which designates the previous node on the hash ring as the backup node for each current node. This means that each node has a backup node to store the same data replica.
-
-Backup Node Data Synchronization: When a write request occurs, we asynchronously propagate the data update to the backup node. Specifically, when a write request arrives at the current node, we first write the data to the storage of the current node and then asynchronously pass the same write operation to the backup node to maintain data eventual consistency. (See AP eventual consistency)
-
-Fault Detection and Recovery: In our implementation, we use polling to detect node disconnections. We periodically poll the connection status of each thread to quickly detect node failures. Once a failure is detected, the central node adds the faulty node to the pending removal node list and processes each node in the list: remove the node from the hash ring and update the hash ring of all nodes. Additionally, since we use a backup node strategy based on the hash ring, the corresponding backup node automatically becomes responsible for the data and takes over the work of the failed node. This means that after a failure occurs, the system can continue to operate seamlessly.
-
-We also plan to implement other fault detection and recovery strategies, such as heartbeat mechanism and fault recovery protocols, to further improve system reliability and fault tolerance.
-
-
-
-### Consistency Guarantees
-
-In distributed systems, data is often replicated on multiple nodes to improve system availability and fault tolerance. When performing update operations on data, due to network latency, node failures, or concurrent operations, data replication may not be instantaneous. Therefore, different nodes in the system may have different data replicas during the data replication process. The eventual consistency model assumes that, without new update operations, after a period of synchronization and data exchange, the system will eventually reach a consistent state. This means that if no new write operations occur, all nodes in the system will eventually converge to the same data replica.
-
-In this system, CompletableFuture is used for asynchronous replication, which has the advantages of low latency and high performance. However, it also introduces some issues.
-
-Our cluster cannot guarantee strong consistency. Although strong consistency is generally ensured in most cases, there is a possibility of data loss in an extreme scenario: if a client writes some data, the master node confirms the write, but before propagating the newly written data to any replica and successfully flushing it to the disk, the master crashes. As a result, the write is permanently lost.
-
-Improving consistency can be achieved by forcing the database to flush data to the disk before replying to the client, but this often leads to low performance. Therefore, it is a trade-off between performance and consistency.
-
-
-
-## Future Plan
-
-The single point of failure in ECS needs to be addressed by consensus algorithms like Raft or Paxos, which distribute the functionality of ECS directly among the servers. Implementing Raft or similar algorithms directly can be complex, so for now, an ECS registry center is abstracted to handle this task.
-
-The current data persistence method is suitable for small-scale data. For large-scale data, we plan to adopt a tabular storage approach inspired by relational databases to store data.
+### Objectively down

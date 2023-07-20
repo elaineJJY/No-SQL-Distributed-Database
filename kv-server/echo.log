@@ -4920,3 +4920,105 @@ SM
 信息: Init Cache with strategy LRU
 6月 12, 2023 10:59:14 下午 de.tum.App main
 严重: Server init failed: UNAVAILABLE: io exception
+6月 13, 2023 12:51:38 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 12:51:38 上午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 13, 2023 12:51:44 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 12:51:44 上午 de.tum.App main
+信息: RPC service published on port: 52130, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 12:51:45 上午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 5153, ready to receive data from KVClient
+6月 13, 2023 12:58:40 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 12:58:40 上午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 13, 2023 12:58:45 上午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 13, 2023 12:58:50 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 12:58:51 上午 de.tum.cacheDisplacement.LRU <init>
+信息: Init Cache with strategy LRU
+6月 13, 2023 12:59:55 上午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 13, 2023 10:17:31 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 10:17:32 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 10:17:37 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 10:17:37 上午 de.tum.App main
+信息: RPC service published on port: 58007, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 10:17:38 上午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 38437, ready to receive data from KVClient
+6月 13, 2023 10:19:19 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 10:19:19 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 10:19:25 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 10:19:25 上午 de.tum.App main
+信息: RPC service published on port: 58036, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 10:19:25 上午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 38437, ready to receive data from KVClient
+6月 13, 2023 10:20:23 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 10:20:23 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 10:20:30 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 10:20:30 上午 de.tum.App main
+信息: RPC service published on port: 58129, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 10:20:31 上午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 38437, ready to receive data from KVClient
+6月 13, 2023 10:21:15 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 10:21:15 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 10:21:21 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 10:21:21 上午 de.tum.App main
+信息: RPC service published on port: 58152, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 11:00:35 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 11:00:35 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 11:00:41 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 11:00:41 上午 de.tum.App main
+信息: RPC service published on port: 58946, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 11:00:42 上午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 38437, ready to receive data from KVClient
+6月 13, 2023 11:02:27 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 11:02:27 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 11:02:33 上午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 11:02:33 上午 de.tum.App main
+信息: RPC service published on port: 58981, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 11:02:34 上午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 38437, ready to receive data from KVClient
+6月 13, 2023 11:09:55 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 11:09:55 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 11:10:02 上午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 13, 2023 11:11:49 上午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 11:11:49 上午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 11:11:51 上午 de.tum.App main
+严重: Server init failed: UNAVAILABLE: io exception
+6月 13, 2023 1:47:51 下午 de.tum.common.ServerLogger init
+信息: Already initialized loggers using Level INFO
+6月 13, 2023 1:47:51 下午 de.tum.cacheDisplacement.FIFO <init>
+信息: Init Cache with strategy FIFO
+6月 13, 2023 1:47:54 下午 de.tum.App registerHandler
+信息: Register to ECS successfully
+6月 13, 2023 1:47:54 下午 de.tum.App main
+信息: RPC service published on port: 63184, waiting to receive heartbeat from ECS/Other Servers
+6月 13, 2023 1:47:55 下午 de.tum.communication.KVServer start
+信息: KVServer is listening on port 38437, ready to receive data from KVClient

@@ -1,19 +1,21 @@
 package de.tum;
 
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Empty;
 import de.tum.common.Help;
 import de.tum.common.ServerLogger;
+import de.tum.communication.KVServer;
 import de.tum.communication.ParseCommand;
 import de.tum.database.BackupDatabase;
 import de.tum.database.MainDatabase;
-import de.tum.node.MetaData;
+import de.tum.grpc_api.ECServiceGrpc;
+import de.tum.grpc_api.KVServerProto;
 import de.tum.node.Node;
-
-import java.io.*;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
+import de.tum.node.NodeProxy;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
 import java.util.logging.Logger;
 
 /**
@@ -28,8 +30,10 @@ import java.util.logging.Logger;
 public class App 
 {
     private static Logger LOGGER = Logger.getLogger(App.class.getName());
-    private static Socket socket;
+    // KVServer's port to listen ECS cannot conflict with KVServer's port to listen client
+    public static final int KV_LISTEN_ECS_PORT = 5200;
     public static void main( String[] args )
+
     {
         ParseCommand parseCommand = new ParseCommand(args);
         
@@ -57,60 +61,65 @@ public class App
             String backupDatabaseDir = "src/main/java/de/tum/database/data/" + port + "/backupDatabase";
             BackupDatabase backupDatabase = new BackupDatabase();
             backupDatabase.setDirectory(backupDatabaseDir);
-
-            // register to ECS and sent address of this node to it
-            socket = new Socket(bootStrapServerIP, bootStrapServerPort);
-            OutputStream outputStream = socket.getOutputStream();
-            ByteBuffer byteBuffer = ByteBuffer.wrap((address + ":" + String.valueOf(port)).getBytes());
-            outputStream.write(byteBuffer.array());
-            outputStream.flush();
-
-            // add shutdown hook
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                System.out.println("Shutting down server...");
-                try {
-                    // send shutdown message to ECS
-                    OutputStream outputStreamShutdown = socket.getOutputStream();
-                    ByteBuffer byteBufferShutdown = ByteBuffer.wrap((address + ":" + String.valueOf(port)).getBytes());
-                    outputStreamShutdown.write(byteBufferShutdown.array());
-                    outputStreamShutdown.flush();
-
-                    // receive response from ECS
-                    while (true) {
-                        byte[] buffer = new byte[1024];
-                        int bytesRead = socket.getInputStream().read(buffer);
-                        if (bytesRead != -1) {
-                            byte[] message = new byte[bytesRead];
-                            System.arraycopy(buffer, 0, message, 0, bytesRead);
-                            String messageString = new String(message);
-                            if (messageString.equals("REMOVE_NODE_SUCCESS")) {
-                                System.out.println("Successfully removed node from ECS");
-                                break;
-                            } else {
-                                LOGGER.severe("Error removing node from ECS");
-                                break;
-                            }
-                        }
-                    }
-                } catch (IOException e) {
-                    LOGGER.severe("Error notifying ECS to remove node: " + e.getMessage());
-                } finally {
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        LOGGER.severe("Error closing socket: " + e.getMessage());
-                    }
-                }
-            }));
-
-            // init node and start serve，open NIO server for other client/server/ECS
             Node node = new Node(address, port, database, backupDatabase);
-            MetaData.INSTANCE.setLocalNode(node);
-            node.startKVServer();
+            System.out.println("test before rpc server");
+
+            ServerBuilder rpcServerBuilder = ServerBuilder.forPort(0); // dynamic port
+
+            rpcServerBuilder.addService(node);
+            Server rpcServer = rpcServerBuilder.build();
+            rpcServer.start();
+
+            System.out.println("test after rpc server");
+            int rpcPort = rpcServer.getPort();
+            System.out.println(rpcPort);
+
+            // register to ECS
+            registerHandler(bootStrapServerIP, bootStrapServerPort, address, port, rpcPort);
+            System.out.println("test after register");
+            LOGGER.info("RPC service published on port: " + rpcPort + ", waiting to receive heartbeat from ECS/Other Servers");
+
+//            KVServer kvServer = new KVServer(node);
+//            kvServer.start(address, port);
+            rpcServer.awaitTermination();
         }
         catch (Exception e) {
             LOGGER.severe("Server init failed: " + e.getMessage());
         }
+    }
+
+    public static void registerHandler(String bootStrapServerIP, int bootStrapServerPort, String address, int port, int rpcPort) throws InterruptedException{
+
+        System.out.println("test in registerHandler: " + bootStrapServerIP + ":" + bootStrapServerPort + ":" + address + ":" + port + ":" +  rpcPort);
+
+        // Register to ECS
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(bootStrapServerIP + ":" + String.valueOf(bootStrapServerPort)).usePlaintext().build();
+
+        System.out.println("test in registerHandler: " + managedChannel);
+        ECServiceGrpc.ECServiceBlockingStub ecsService = ECServiceGrpc.newBlockingStub(managedChannel);
+        System.out.println("test in registerHandler: " + ecsService);
+
+        KVServerProto.NodeMessage.Builder nodeMessageBuilder = KVServerProto.NodeMessage.newBuilder()
+                .setHost(address)
+                .setRpcPort(rpcPort)
+                .setPortForClient(port);
+        System.out.println("test in registerHandler: " + nodeMessageBuilder);
+
+        KVServerProto.RegisterRequest registerRequest = KVServerProto.RegisterRequest.newBuilder()
+                .setNode(nodeMessageBuilder.build())
+                .setRpcPort(rpcPort)
+                .build();
+
+        System.out.println("test in registerHandler: " + registerRequest);
+
+        System.out.println("test sleep");
+        //Thread.sleep(5000);
+        System.out.println("test sleep end");
+
+        System.out.println("test register: " + ecsService.register(registerRequest));
+
+        managedChannel.shutdown();
+        LOGGER.info("Register to ECS successfully");
     }
 }
 
