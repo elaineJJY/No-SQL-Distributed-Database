@@ -249,21 +249,21 @@ public class KVServer {
 	private void transaction(SocketChannel socketChannel) throws Exception {
 		send("start transaction", socketChannel);
 		List<String> requests = new ArrayList<>();
-		String request = "commit";
+		String request = "";
 		int t = 0;
 		// read request
-		do {
-			socketChannel.isBlocking();
+		while (true){
+			readBuffer.clear();
 			int len = socketChannel.read(readBuffer);
-			while (len == 0) {
-				len = socketChannel.read(readBuffer);
-				LOGGER.info("Loop-Len: " + len);
-			}
-			if (len != 0) {
+			System.out.println("len: " + len);
+			if (len > 0) {
 				readBuffer.flip();
 				byte[] bytes = new byte[readBuffer.remaining()];
 				readBuffer.get(bytes);
 				request = new String(bytes).trim();
+				if (request.equals("commit")) {
+					break;
+				}
 				requests.add(request);
 				send("queued", socketChannel);
 			}
@@ -271,16 +271,15 @@ public class KVServer {
 				socketChannel.close(); // close channel
 			}
 			LOGGER.info(t + "-Read: " + request);
-		} while(!request.equals("commit"));
-
-		// process request
+		}
 		int i = 0;
+		// process request
 		HashMap<String, String> backup = new HashMap<>();
 
 		while(i++ < requests.size()) {
-
-			String[] tokens = request.trim().split("\\s+");
-			String key = tokens[1];
+			LOGGER.info("Processing request: " + requests.get(i-1));
+			String[] tokens = requests.get(i-1).trim().split("\\s+");
+			String key = tokens.length > 1 ? tokens[1] : "";
 			INode resopnsibleNode = this.node;
 			if (!node.isResponsible(key)) {
 				resopnsibleNode = metaData.getResponsibleServerByKey(key);
