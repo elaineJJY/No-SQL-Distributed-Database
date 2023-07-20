@@ -224,7 +224,7 @@ public class KVServer {
 	 */
 	private void process(String request, SocketChannel socketChannel) throws Exception {
 		String[] tokens = request.trim().split("\\s+");
-		String key = tokens[1];
+		String key = tokens.length > 1 ? tokens[1] : "";
 		INode resopnsibleNode = this.node;
 		if (!node.isResponsible(key)) {
 			resopnsibleNode = metaData.getResponsibleServerByKey(key);
@@ -241,7 +241,75 @@ public class KVServer {
 			case "get": getCommandHandler(resopnsibleNode, tokens, socketChannel); break;
 			case "delete": deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel); break;
 			case "quit": socketChannel.close(); break;
+			case "multi": transaction(socketChannel); break;
 			default: send("error Unknown Command", socketChannel);
+		}
+	}
+
+	private void transaction(SocketChannel socketChannel) throws Exception {
+		send("start transaction", socketChannel);
+		List<String> requests = new ArrayList<>();
+		String request = "commit";
+		int t = 0;
+		// read request
+		do {
+			socketChannel.isBlocking();
+			int len = socketChannel.read(readBuffer);
+			while (len == 0) {
+				len = socketChannel.read(readBuffer);
+				LOGGER.info("Loop-Len: " + len);
+			}
+			if (len != 0) {
+				readBuffer.flip();
+				byte[] bytes = new byte[readBuffer.remaining()];
+				readBuffer.get(bytes);
+				request = new String(bytes).trim();
+				requests.add(request);
+				send("queued", socketChannel);
+			}
+			if (len == -1) {
+				socketChannel.close(); // close channel
+			}
+			LOGGER.info(t + "-Read: " + request);
+		} while(!request.equals("commit"));
+
+		// process request
+		int i = 0;
+		HashMap<String, String> backup = new HashMap<>();
+
+		while(i++ < requests.size()) {
+
+			String[] tokens = request.trim().split("\\s+");
+			String key = tokens[1];
+			INode resopnsibleNode = this.node;
+			if (!node.isResponsible(key)) {
+				resopnsibleNode = metaData.getResponsibleServerByKey(key);
+			}
+			INode backupNode = metaData.getBackupNodeByKey(key);
+			if(!backup.containsKey(key)){
+				backup.put(key, resopnsibleNode.get(key));
+			}
+
+			try {
+				switch(tokens[0]) {
+					case "put": putCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel); break;
+					case "get": getCommandHandler(resopnsibleNode, tokens, socketChannel); break;
+					case "delete": deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel); break;
+					default:
+						rollingBack(backup, resopnsibleNode);
+						send("error Unknown Command", socketChannel);
+						return;
+				}
+			} catch (Exception e) {
+				rollingBack(backup, resopnsibleNode);
+				return;
+			}
+		}
+	}
+
+	private void rollingBack(HashMap<String, String> backup, INode node) throws Exception {
+		for (String key : backup.keySet()) {
+			node.put(key, backup.get(key));
 		}
 	}
 }
