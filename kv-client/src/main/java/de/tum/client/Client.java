@@ -24,6 +24,9 @@ public enum Client {
     public void startConnection(String ip, int port) throws IOException {
         socketChannel = SocketChannel.open(new InetSocketAddress(ip, port));
         socketChannel.configureBlocking(false);
+        if (socketChannel.isConnected()) {
+            System.out.println("connect to: " + socketChannel.getRemoteAddress());
+        }
     }
 
     /**

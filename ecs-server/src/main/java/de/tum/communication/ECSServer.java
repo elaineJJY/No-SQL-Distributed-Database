@@ -102,10 +102,9 @@ public class ECSServer {
                 try {
 //                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);
-                } catch (io.grpc.StatusRuntimeException e) {
-                    if (ConsistentHash.INSTANCE.getRing().size() > 1) {
-                        ConsistentHash.INSTANCE.removeNode(node);
-                    }
+//                } catch (io.grpc.StatusRuntimeException e) {
+                } catch (Exception e) {
+                    ConsistentHash.INSTANCE.removeNode(node);
                 }
             });
         }

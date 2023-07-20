@@ -41,24 +41,22 @@ public enum ConsistentHash {
 	}
 
 	public void removeNode(NodeProxy nodeProxy) {
-
-		// if node still alive, set node to read-only
-		try {
-			// node.setReadOnly();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		String nodeHash = getHash(nodeProxy);
-
-		NodeProxy previousNodeProxy = getPreviousNode(nodeProxy);
-		NodeProxy nextNodeProxy = getNextNode(nodeProxy);
-		ring.remove(nodeHash);
-		nodeProxy.closeRpcChannel();
-		System.out.println("Channel of ECS to KVServer<"
+		if (ring.size() == 1) {
+			ring.remove(nodeHash);
+			nodeProxy.closeRpcChannel();
+		}
+		else {
+			NodeProxy previousNodeProxy = getPreviousNode(nodeProxy);
+			NodeProxy nextNodeProxy = getNextNode(nodeProxy);
+			ring.remove(nodeHash);
+			nodeProxy.closeRpcChannel();
+			System.out.println("Channel of ECS to KVServer<"
 				+ nodeProxy.getHost() + ":" + nodeProxy.getPortForClient() + "> is closed");
-		previousNodeProxy.recover(nodeProxy);
-		nextNodeProxy.recover(nodeProxy);
-		updateRingForAllNodes(nodeProxy);
+			previousNodeProxy.recover(nodeProxy);
+			nextNodeProxy.recover(nodeProxy);
+			updateRingForAllNodes(nodeProxy);
+		}
 	}
 
 	/**

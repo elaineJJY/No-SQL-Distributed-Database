@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ecs-server" />
+        <module name="kv-client" />
         <module name="kv-server" />
       </profile>
     </annotationProcessing>
