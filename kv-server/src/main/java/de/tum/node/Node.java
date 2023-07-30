@@ -302,6 +302,11 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	private List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
+		return server.executeTransactions(localCommands, transactionId);
+	}
+
+
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
 	public void init() throws Exception {
         // Data transfer

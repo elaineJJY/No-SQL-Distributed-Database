@@ -356,6 +356,37 @@ public final class KVServiceGrpc {
     return getHasKeyMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest,
+      de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> getExecuteTransactionsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "executeTransactions",
+      requestType = de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest.class,
+      responseType = de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest,
+      de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> getExecuteTransactionsMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest, de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> getExecuteTransactionsMethod;
+    if ((getExecuteTransactionsMethod = KVServiceGrpc.getExecuteTransactionsMethod) == null) {
+      synchronized (KVServiceGrpc.class) {
+        if ((getExecuteTransactionsMethod = KVServiceGrpc.getExecuteTransactionsMethod) == null) {
+          KVServiceGrpc.getExecuteTransactionsMethod = getExecuteTransactionsMethod =
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest, de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "executeTransactions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("executeTransactions"))
+              .build();
+        }
+      }
+    }
+    return getExecuteTransactionsMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.google.protobuf.Empty> getInitMethod;
 
@@ -640,6 +671,13 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    default void executeTransactions(de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getExecuteTransactionsMethod(), responseObserver);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -797,6 +835,14 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    public void executeTransactions(de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest request,
+        io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getExecuteTransactionsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -934,6 +980,13 @@ public final class KVServiceGrpc {
     public de.tum.grpc_api.KVServerProto.HasKeyResponse hasKey(de.tum.grpc_api.KVServerProto.HasKeyRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getHasKeyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse executeTransactions(de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getExecuteTransactionsMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1083,6 +1136,14 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> executeTransactions(
+        de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getExecuteTransactionsMethod(), getCallOptions()), request);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -1137,11 +1198,12 @@ public final class KVServiceGrpc {
   private static final int METHODID_PUT_BACKUP = 8;
   private static final int METHODID_DELETE = 9;
   private static final int METHODID_HAS_KEY = 10;
-  private static final int METHODID_INIT = 11;
-  private static final int METHODID_START_KVSERVER = 12;
-  private static final int METHODID_RECOVER = 13;
-  private static final int METHODID_UPDATE_RING = 14;
-  private static final int METHODID_DELETE_EXPIRED_DATA = 15;
+  private static final int METHODID_EXECUTE_TRANSACTIONS = 11;
+  private static final int METHODID_INIT = 12;
+  private static final int METHODID_START_KVSERVER = 13;
+  private static final int METHODID_RECOVER = 14;
+  private static final int METHODID_UPDATE_RING = 15;
+  private static final int METHODID_DELETE_EXPIRED_DATA = 16;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1203,6 +1265,10 @@ public final class KVServiceGrpc {
         case METHODID_HAS_KEY:
           serviceImpl.hasKey((de.tum.grpc_api.KVServerProto.HasKeyRequest) request,
               (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.HasKeyResponse>) responseObserver);
+          break;
+        case METHODID_EXECUTE_TRANSACTIONS:
+          serviceImpl.executeTransactions((de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest) request,
+              (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse>) responseObserver);
           break;
         case METHODID_INIT:
           serviceImpl.init((com.google.protobuf.Empty) request,
@@ -1320,6 +1386,13 @@ public final class KVServiceGrpc {
               de.tum.grpc_api.KVServerProto.HasKeyResponse>(
                 service, METHODID_HAS_KEY)))
         .addMethod(
+          getExecuteTransactionsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest,
+              de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse>(
+                service, METHODID_EXECUTE_TRANSACTIONS)))
+        .addMethod(
           getInitMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1413,6 +1486,7 @@ public final class KVServiceGrpc {
               .addMethod(getPutBackupMethod())
               .addMethod(getDeleteMethod())
               .addMethod(getHasKeyMethod())
+              .addMethod(getExecuteTransactionsMethod())
               .addMethod(getInitMethod())
               .addMethod(getStartKVServerMethod())
               .addMethod(getRecoverMethod())

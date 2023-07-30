@@ -52,7 +52,6 @@ public class Shell {
 	 */
 	public void send(byte[] msg) throws Exception {
 		client.send(msg);
-		Thread.sleep(500);
 		System.out.println(new String(client.receive()));
 	}
 

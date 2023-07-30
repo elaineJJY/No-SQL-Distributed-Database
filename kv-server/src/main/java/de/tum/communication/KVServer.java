@@ -2,6 +2,7 @@ package de.tum.communication;
 
 import de.tum.common.Help;
 import de.tum.common.ServerLogger;
+import de.tum.common.StatusCode;
 import de.tum.node.ConsistentHash;
 
 import de.tum.node.INode;
@@ -34,7 +35,7 @@ public class KVServer {
 	// detach read and write buffer
 	private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 	private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
-
+	private static final HashMap<String, HashMap<String, String>> snapshots = new HashMap<>();
 	public KVServer(Node node) {
 		this.metaData = ConsistentHash.INSTANCE;
 		this.node = node;
@@ -142,14 +143,9 @@ public class KVServer {
 	 * Command Handler for put
 	 *
 	 * @param tokens
-	 * @param socketChannel
 	 * @throws IOException
 	 */
-	private void putCommandHandler(INode responsibleNode, INode backupNode, String[] tokens,
-		SocketChannel socketChannel) throws Exception {
-//		if (tokens[1].equals("")|| tokens[2].equals("")) {
-//			throw new Exception("Invalid Input");
-//		}
+	private StatusCode putCommandHandler(INode responsibleNode, INode backupNode, String[] tokens) throws Exception {
 		try {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 2; i < tokens.length; i++) {
@@ -162,17 +158,14 @@ public class KVServer {
 			if (responsibleNode.hasKey(tokens[1])) {
 				backupNode.putBackup(tokens[1], value);
 				responsibleNode.put(tokens[1], value);
-				String msg = "put_update " + tokens[1];
-				send(msg, socketChannel);
+				return StatusCode.UPDATED_CONTENT;
 			} else {
 				responsibleNode.put(tokens[1], value);
 				backupNode.putBackup(tokens[1], value);
-				String msg = "put_success " + tokens[1];
-				send(msg, socketChannel);
+				return StatusCode.PUT_CONTENT;
 			}
 		} catch (Exception e) {
-			String msg = "put_error";
-			send(msg, socketChannel);
+			throw new Exception("put error");
 		}
 	}
 
@@ -180,55 +173,31 @@ public class KVServer {
 	 * Command Handler for get
 	 *
 	 * @param tokens
-	 * @param socketChannel
 	 * @throws IOException
 	 */
 
-	private void getCommandHandler(INode responsibleNode, String[] tokens,
-		SocketChannel socketChannel) throws Exception {
-		try {
-			String value = responsibleNode.get(tokens[1]);
-			if (value.equals("")) {
-				String msg = "get_success " + tokens[1] + " " + value;
-				send(msg, socketChannel);
-			} else {
-				String msg = "get_error " + tokens[1];
-				send(msg, socketChannel);
-			}
-
-		} catch (Exception e) {
-			String msg = "get_error";
-			send(msg, socketChannel);
-			System.out.println(e.getMessage());
+	private String getCommandHandler(INode responsibleNode, String[] tokens) throws Exception {
+		String value = responsibleNode.get(tokens[1]);
+		if (value == null) {
+			throw new Exception("not found");
 		}
+		return value;
 	}
 
 	/**
 	 * Command Handler for delete
 	 *
 	 * @param tokens
-	 * @param socketChannel
 	 * @throws IOException
 	 */
 
-	private void deleteCommandHandler(INode responsibleNode, INode backupNode, String[] tokens,
-		SocketChannel socketChannel) throws Exception {
-//		if (tokens[1].equals("")) {
-//			throw new Exception("Invalid Input");
-//		}
-		try {
-			String value = responsibleNode.get(tokens[1]);
-			if (value != null) {
-				responsibleNode.delete(tokens[1]);
-				String msg = "delete_success " + tokens[1];
-				send(msg, socketChannel);
-			} else {
-				String msg = "delete_error " + tokens[1];
-				send(msg, socketChannel);
-			}
-		} catch (Exception e) {
-			String msg = "delete_error" + tokens[1];
-			send(msg, socketChannel);
+	private StatusCode deleteCommandHandler(INode responsibleNode, String[] tokens) throws Exception {
+		String value = responsibleNode.get(tokens[1]);
+		if (value != null) {
+			responsibleNode.delete(tokens[1]);
+			return StatusCode.DELETE_CONTENT;
+		} else {
+			throw new Exception("delete error");
 		}
 	}
 
@@ -253,29 +222,150 @@ public class KVServer {
 		INode backupNode = metaData.getBackupNodeByKey(key);
 		System.out.println("Backup Node: " + backupNode.getPort());
 
-		switch (tokens[0]) {
-			case "put":
-				putCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel);
-				break;
-			case "get":
-				getCommandHandler(resopnsibleNode, tokens, socketChannel);
-				break;
-			case "delete":
-				deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel);
-				break;
-			case "quit":
-				socketChannel.close();
-				break;
-			case "multi":
-				transaction(socketChannel);
-				break;
-			default:
-				send("error Unknown Command", socketChannel);
+		try {
+			switch (tokens[0]) {
+				case "put": {
+					StatusCode returnValue = putCommandHandler(resopnsibleNode, backupNode, tokens);
+					if (returnValue == StatusCode.UPDATED_CONTENT) {
+						send("put_updated " + tokens[1], socketChannel);
+					}
+					if (returnValue == StatusCode.PUT_CONTENT){
+						send("put_success " + tokens[1], socketChannel);
+					}
+					break;
+				}
+				case "get":
+					String value = getCommandHandler(resopnsibleNode, tokens);
+					send("get_success " + tokens[1] + " " + value, socketChannel);
+					break;
+				case "delete":
+					deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel);
+					break;
+				case "quit":
+					socketChannel.close();
+					break;
+				case "multi":
+					transaction(socketChannel);
+					break;
+				default:
+					throw new Exception("Invalid Command");
+			}
+		} catch (Exception e) {
+			send("error " + e.getMessage(), socketChannel);
 		}
 	}
 
+
+
 	private void transaction(SocketChannel socketChannel) throws Exception {
-		send("start transaction", socketChannel);
+//		send("start transaction", socketChannel);
+//		List<String> requests = new ArrayList<>();
+//		String request = "";
+//		int t = 0;
+//		// read request
+//		while (true) {
+//			readBuffer.clear();
+//			int len = socketChannel.read(readBuffer);
+//			if (len > 0) {
+//				readBuffer.flip();
+//				byte[] bytes = new byte[readBuffer.remaining()];
+//				readBuffer.get(bytes);
+//				request = new String(bytes).trim();
+//				if (request.equals("commit")) {
+//					break;
+//				}
+//				if (request.split("\\s+").length < 2) {
+//					send("Invalid Input, discard all requests", socketChannel);
+//					break;
+//				}
+//				requests.add(request);
+//				send("queued", socketChannel);
+//			}
+//			if (len == -1) {
+//				socketChannel.close(); // close channel
+//			}
+//			LOGGER.info(t + "-Read: " + request);
+//		}
+//
+//		// process request
+//		HashMap<String, String> history = new HashMap<>();
+//		StringBuilder response = new StringBuilder();
+//		int i = 0;
+//
+//		while (i++ < requests.size()) {
+//			LOGGER.info("Processing request: " + requests.get(i - 1));
+//			String[] tokens = requests.get(i - 1).trim().split("\\s+");
+//
+//			try {
+//				String key = tokens[1];
+//				INode resopnsibleNode = this.node;
+//				if (!node.isResponsible(key)) {
+//					resopnsibleNode = metaData.getResponsibleServerByKey(key);
+//				}
+//				INode backupNode = metaData.getBackupNodeByKey(key);
+//
+//				switch (tokens[0]) {
+//					case "put":
+//						StatusCode returnValue = putCommandHandler(resopnsibleNode, backupNode, tokens);
+//						if (returnValue == StatusCode.UPDATED_CONTENT) {
+//							response.append("put_updated ").append(tokens[1]).append("\n");
+//						}
+//						if (returnValue == StatusCode.PUT_CONTENT) {
+//							response.append("put_success ").append(tokens[1]).append("\n");
+//						}
+//						break;
+//					case "get":
+//						String value = getCommandHandler(resopnsibleNode, tokens);
+//						response.append("get_success ").append(tokens[1]).append(" ").append(value).append("\n");
+//						break;
+//					case "delete":
+//						StatusCode deleteStatus = deleteCommandHandler(resopnsibleNode, tokens);
+//						responses.add("delete_success" + tokens[1] + "\n");
+//						break;
+//					default:
+//						rollingBack(history);
+//						response.append("Invalid Command, Rolling Back\n");
+//						break;
+//				}
+//
+//				// if success, add to history
+//				if (!history.containsKey(key)) {
+//					history.put(key, resopnsibleNode.get(key));
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				LOGGER.info("Error: " + e.getMessage());
+//				response.append(request).append(" error ").append(e.getMessage()).append(" rolling back\n");
+//				if (history.size() > 0) {
+//					rollingBack(history);
+//				}
+//			}
+//		}
+		try {
+			List<String> requests = collectTransactions(socketChannel);
+			List<String> responses = invoke(requests);
+			String response = String.join("", responses);
+			LOGGER.info("send: " + response);
+			send(response, socketChannel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void rollingBack(String transactionId) throws Exception {
+		HashMap<String, String> backup = snapshots.get(transactionId);
+		LOGGER.info("Rolling back");
+		for (String key : backup.keySet()) {
+			INode responsibleNode = metaData.getResponsibleServerByKey(key);
+			INode backupNode = metaData.getBackupNodeByKey(key);
+			responsibleNode.put(key, backup.get(key));
+			backupNode.putBackup(key, backup.get(key));
+		}
+	}
+
+	// listen to transaction request from the client and write them to a list
+	private List<String> collectTransactions(SocketChannel socketChannel) throws Exception {
 		List<String> requests = new ArrayList<>();
 		String request = "";
 		int t = 0;
@@ -291,6 +381,10 @@ public class KVServer {
 				if (request.equals("commit")) {
 					break;
 				}
+				if (request.split("\\s+").length < 2) {
+					send("Invalid Input, discard all requests", socketChannel);
+					throw new Exception("INVALID INPUT");
+				}
 				requests.add(request);
 				send("queued", socketChannel);
 			}
@@ -298,58 +392,118 @@ public class KVServer {
 				socketChannel.close(); // close channel
 			}
 			LOGGER.info(t + "-Read: " + request);
-			Thread.sleep(1000);
 		}
-		int i = 0;
-		// process request
-		HashMap<String, String> history = new HashMap<>();
+		return requests;
+	}
 
-		while (i++ < requests.size()) {
-			LOGGER.info("Processing request: " + requests.get(i - 1));
-			String[] tokens = requests.get(i - 1).trim().split("\\s+");
+	/**
+	 * Parse transaction request and invoke the corresponding Node
+	 * @param allCommands
+	 * @return the list of all responses
+	 */
+	private List<String> invoke(List<String> allCommands) throws Exception {
+		String transactionId = UUID.randomUUID().toString();
+		HashMap<INode,List<String>> map = new HashMap<>(); //node and correspond requests
+		for (String command : allCommands){
+			String[] tokens = command.trim().split("\\s+");
+			String key = tokens[1];
+			INode resopnsibleNode =  metaData.getResponsibleServerByKey(key);
+			if (!map.containsKey(resopnsibleNode)){
+				map.put(resopnsibleNode, new ArrayList<>());
+			}
+			map.get(resopnsibleNode).add(command);
+		}
+
+		// execute locally and remotely
+		boolean failed = false;
+		List<String> responses = new ArrayList<>();
+		for (INode node : map.keySet()){
+			//TODO: executeTransactions RPC
+			List<String> response = node.executeTransactions(map.get(node), transactionId); // rpc
+			// if any contains "Rolling Back", rollback
+			for (String r : response){
+				if (r.contains("Rolling Back")){
+					failed = true;
+					break;
+				}
+			}
+			responses.addAll(response); // rpc
+		}
+
+		// if any node fails, rollback
+		if(failed){
+			for (INode node : map.keySet()){
+				//TODO: executeTransactions RPC
+				node.rollingBack(transactionId); // rpc
+			}
+		}
+
+		return responses;
+	}
+
+	/**
+	 * Execute transaction request, which only be locally executed
+	 * @param localCommands the list of transaction request
+	 * @return the list of response
+	 */
+	public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
+		// process request
+		HashMap<String, String> history = snapshots.getOrDefault(transactionId, new HashMap<>());
+		snapshots.put(transactionId, history);
+		List<String> responses = new ArrayList<>();
+		int i = 0;
+
+		while (i++ < localCommands.size()) {
+			LOGGER.info("Processing request: " + localCommands.get(i - 1));
+			String[] tokens = localCommands.get(i - 1).trim().split("\\s+");
 
 			try {
 				String key = tokens[1];
-
 				INode resopnsibleNode = this.node;
 				if (!node.isResponsible(key)) {
 					resopnsibleNode = metaData.getResponsibleServerByKey(key);
 				}
 				INode backupNode = metaData.getBackupNodeByKey(key);
-				if (!history.containsKey(key)) {
-					history.put(key, resopnsibleNode.get(key));
-				}
 
 				switch (tokens[0]) {
 					case "put":
-						putCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel);
+						StatusCode putStatus = putCommandHandler(resopnsibleNode, backupNode, tokens);
+						if (putStatus == StatusCode.UPDATED_CONTENT) {
+							responses.add("put_updated " + tokens[1] + "\n");
+						}
+						if (putStatus == StatusCode.PUT_CONTENT) {
+							responses.add("put_success " + tokens[1] + "\n");
+						}
 						break;
 					case "get":
-						getCommandHandler(resopnsibleNode, tokens, socketChannel);
+						String value = getCommandHandler(resopnsibleNode, tokens);
+						responses.add("get_success " + tokens[1] + " " + value + "\n");
 						break;
 					case "delete":
-						deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel);
+						StatusCode deleteStatus = deleteCommandHandler(resopnsibleNode, tokens);
+						responses.add("delete_success" + tokens[1] + "\n");
 						break;
 					default:
-						rollingBack(history);
-						send("error Unknown Command", socketChannel);
-						return;
+						rollingBack(transactionId);
+						responses.add("Invalid Command, Rolling Back\n");
+						break;
+				}
+
+				// if success, add to history
+				if (!history.containsKey(key)) {
+					history.put(key, resopnsibleNode.get(key));
 				}
 			} catch (Exception e) {
-
-				rollingBack(history);
-				return;
+				e.printStackTrace();
+				LOGGER.info("Error: " + e.getMessage());
+				responses.add(localCommands.get(i - 1) + " error " + e.getMessage() + " Rolling back\n");
+				if (history.size() > 0) {
+					rollingBack(transactionId);
+				}
 			}
 		}
+		return responses;
 	}
 
-	private void rollingBack(HashMap<String, String> backup) throws Exception {
-		LOGGER.info("Rolling back");
-		for (String key : backup.keySet()) {
-			INode responsibleNode = metaData.getResponsibleServerByKey(key);
-			INode backupNode = metaData.getBackupNodeByKey(key);
-			responsibleNode.put(key, backup.get(key));
-			backupNode.putBackup(key, backup.get(key));
-		}
-	}
+
 }

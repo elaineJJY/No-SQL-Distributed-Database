@@ -30,7 +30,6 @@ public class BackupDatabase implements IDatabase {
 	public void put(String key, String value) throws Exception {
 		String hash = MD5Hash.hash(key);
 		hashToKeyMap.put(hash, key);
-		System.out.println("map hash:" + hashToKeyMap.firstKey());
 		persistentStorage.storeToDisk(key, value);
 		System.out.println("finish put in backup: " + hashToKeyMap.get(key));
 	}
