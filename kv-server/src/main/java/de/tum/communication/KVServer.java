@@ -239,7 +239,8 @@ public class KVServer {
 					send("get_success " + tokens[1] + " " + value, socketChannel);
 					break;
 				case "delete":
-					deleteCommandHandler(resopnsibleNode, backupNode, tokens, socketChannel);
+					deleteCommandHandler(resopnsibleNode, tokens, socketChannel);
+					send("delete_success" + tokens[1], socketChannel)''
 					break;
 				case "quit":
 					socketChannel.close();
@@ -383,7 +384,7 @@ public class KVServer {
 				}
 				if (request.split("\\s+").length < 2) {
 					send("Invalid Input, discard all requests", socketChannel);
-					throw new Exception("INVALID INPUT");
+					throw new Exception("INVSAL");
 				}
 				requests.add(request);
 				send("queued", socketChannel);
@@ -503,7 +504,7 @@ public class KVServer {
 			}
 		}
 		return responses;
-	}
+}
 
 
 }
