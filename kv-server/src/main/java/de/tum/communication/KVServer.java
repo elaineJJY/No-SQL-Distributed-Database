@@ -404,39 +404,39 @@ public class KVServer {
      */
     private List<String> invoke(List<String> allCommands) throws Exception {
         String transactionId = UUID.randomUUID().toString();
-        HashMap<INode,List<String>> map = new HashMap<>(); // node and corresponding requests
-        for (String command : allCommands){
+        HashMap<INode, List<String>> map = new HashMap<>(); // node and corresponding requests
+        for (String command : allCommands) {
             String[] tokens = command.trim().split("\\s+");
             String key = tokens[1];
-            INode responsibleNode =  metaData.getResponsibleServerByKey(key);
-            if (!map.containsKey(responsibleNode)){
+            INode responsibleNode = metaData.getResponsibleServerByKey(key);
+            if (!map.containsKey(responsibleNode)) {
                 map.put(responsibleNode, new ArrayList<>());
             }
             map.get(responsibleNode).add(command);
         }
 
-
         // execute locally and remotely
         boolean failed = false;
         List<String> responses = new ArrayList<>();
-        for (INode node : map.keySet()){
+        for (INode node : map.keySet()) {
             List<String> response = node.executeTransactions(map.get(node), transactionId); // rpcS
             // if any contains "Rolling Back", rollback
-            for (String r : response){
-                if (r.contains("Rolling Back")){
+            for (String r : response) {
+                if (r.contains("Rolling Back")) {
                     failed = true;
                     break;
                 }
                 responses.addAll(response); // rpc
             }
 
-            if(failed){
-                for (INode node : map.keySet()){
-                    node.rollBack(transactionId); // rpc
+            if (failed) {
+                for (INode n : map.keySet()) {
+                    n.rollBack(transactionId); // rpc
                 }
             }
             return responses;
         }
+    }
 
         /**
          * Execute transaction request, which only be locally executed
