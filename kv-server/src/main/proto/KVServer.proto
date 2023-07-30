@@ -89,9 +89,14 @@ message HasKeyResponse {
 
 message ExecuteTransactionsRequest {
   repeated string localCommands = 1;
+  string transactionId = 2;
 }
 
 message ExecuteTransactionsResponse {
+  repeated string results = 1;
+}
+
+message RollbackRequest {
   string transactionId = 1;
 }
 
@@ -128,6 +133,7 @@ service KVService {
   rpc delete(DeleteRequest) returns (google.protobuf.Empty) {}
   rpc hasKey(HasKeyRequest) returns (HasKeyResponse) {}
   rpc executeTransactions(ExecuteTransactionsRequest) returns (ExecuteTransactionsResponse) {}
+  rpc rollBack(RollbackRequest) returns (google.protobuf.Empty) {}
 
   // init, recover, updateRing, deleteExpiredData will only be called by ECS
   rpc init(google.protobuf.Empty) returns (google.protobuf.Empty) {}

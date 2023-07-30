@@ -353,7 +353,7 @@ public class KVServer {
 
 	}
 
-	private void rollingBack(String transactionId) throws Exception {
+	public void rollBack(String transactionId) throws Exception {
 		HashMap<String, String> backup = snapshots.get(transactionId);
 		LOGGER.info("Rolling back");
 		for (String key : backup.keySet()) {
@@ -434,7 +434,7 @@ public class KVServer {
 		if(failed){
 			for (INode node : map.keySet()){
 				//TODO: executeTransactions RPC
-				node.rollingBack(transactionId); // rpc
+				node.rollBack(transactionId); // rpc
 			}
 		}
 
@@ -484,7 +484,7 @@ public class KVServer {
 						responses.add("delete_success" + tokens[1] + "\n");
 						break;
 					default:
-						rollingBack(transactionId);
+						rollBack(transactionId);
 						responses.add("Invalid Command, Rolling Back\n");
 						break;
 				}
@@ -498,12 +498,10 @@ public class KVServer {
 				LOGGER.info("Error: " + e.getMessage());
 				responses.add(localCommands.get(i - 1) + " error " + e.getMessage() + " Rolling back\n");
 				if (history.size() > 0) {
-					rollingBack(transactionId);
+					rollBack(transactionId);
 				}
 			}
 		}
 		return responses;
 	}
-
-
 }

@@ -1,6 +1,7 @@
 package de.tum.node;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.SortedMap;
 
 /**
@@ -25,6 +26,8 @@ public interface INode {
     public void putBackup(String key, String value) throws Exception;
     public void delete(String key) throws Exception;
     public boolean hasKey(String key) throws Exception;
+    public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception;
+    public void rollBack(String transactionId) throws Exception;
 
     // Only called by ECS
     //public void init() throws Exception;

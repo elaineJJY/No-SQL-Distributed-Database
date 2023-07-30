@@ -7,9 +7,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/ecs-server/pom.xml" />
         <option value="$PROJECT_DIR$/kv-server/pom.xml" />
-        <option value="$PROJECT_DIR$/kv-client/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="19" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="19" project-jdk-type="JavaSDK" />
 </project>

@@ -8,6 +8,7 @@ import io.grpc.ManagedChannelBuilder;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,7 +116,17 @@ public class NodeProxy implements INode {
         return this.stub.hasKey(request).getHasKey();
     }
 
+    public List<String> executeTransactions(List<String> localCommands, String transactionId) {
+        KVServerProto.ExecuteTransactionsRequest request = KVServerProto.ExecuteTransactionsRequest.newBuilder()
+                .addAllLocalCommands(localCommands).setTransactionId(transactionId).build();
+        KVServerProto.ExecuteTransactionsResponse response = this.stub.executeTransactions(request);
+        return response.getResultsList();
+    }
 
+    public void rollBack(String transactionId) {
+        KVServerProto.RollbackRequest request = KVServerProto.RollbackRequest.newBuilder().setTransactionId(transactionId).build();
+        this.stub.rollBack(request);
+    }
 
     public void closeRpcChannel() {
         this.managedChannel.shutdown();

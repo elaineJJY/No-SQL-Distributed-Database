@@ -287,6 +287,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		return mainDatabase.hasKey(key);
 	}
 
+	@Override
 	public void hasKey(de.tum.grpc_api.KVServerProto.HasKeyRequest request,
 					   io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.HasKeyResponse> responseObserver) {
 		String key = request.getKey();
@@ -302,10 +303,44 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-	private List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
+	public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
 		return server.executeTransactions(localCommands, transactionId);
 	}
 
+	@Override
+	public void executeTransactions(de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest request,
+									io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse> responseObserver) {
+		List<String> localCommands = request.getLocalCommandsList();
+		String transactionId = request.getTransactionId();
+		List<String> result;
+		try {
+			result = executeTransactions(localCommands, transactionId);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		KVServerProto.ExecuteTransactionsResponse response = KVServerProto.ExecuteTransactionsResponse.newBuilder()
+				.addAllResults(result).build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
+
+	public void rollBack(String transactionId) throws Exception {
+		server.rollBack(transactionId);
+	}
+
+	@Override
+	public void rollBack(de.tum.grpc_api.KVServerProto.RollbackRequest request,
+			io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+		String transactionId = request.getTransactionId();
+		try {
+			rollBack(transactionId);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		Empty response = Empty.newBuilder().build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
 
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
 	public void init() throws Exception {

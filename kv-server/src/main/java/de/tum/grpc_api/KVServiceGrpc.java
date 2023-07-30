@@ -387,6 +387,37 @@ public final class KVServiceGrpc {
     return getExecuteTransactionsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RollbackRequest,
+      com.google.protobuf.Empty> getRollBackMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "rollBack",
+      requestType = de.tum.grpc_api.KVServerProto.RollbackRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RollbackRequest,
+      com.google.protobuf.Empty> getRollBackMethod() {
+    io.grpc.MethodDescriptor<de.tum.grpc_api.KVServerProto.RollbackRequest, com.google.protobuf.Empty> getRollBackMethod;
+    if ((getRollBackMethod = KVServiceGrpc.getRollBackMethod) == null) {
+      synchronized (KVServiceGrpc.class) {
+        if ((getRollBackMethod = KVServiceGrpc.getRollBackMethod) == null) {
+          KVServiceGrpc.getRollBackMethod = getRollBackMethod =
+              io.grpc.MethodDescriptor.<de.tum.grpc_api.KVServerProto.RollbackRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "rollBack"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  de.tum.grpc_api.KVServerProto.RollbackRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("rollBack"))
+              .build();
+        }
+      }
+    }
+    return getRollBackMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.google.protobuf.Empty> getInitMethod;
 
@@ -678,6 +709,13 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    default void rollBack(de.tum.grpc_api.KVServerProto.RollbackRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRollBackMethod(), responseObserver);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -843,6 +881,14 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    public void rollBack(de.tum.grpc_api.KVServerProto.RollbackRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRollBackMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -987,6 +1033,13 @@ public final class KVServiceGrpc {
     public de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse executeTransactions(de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getExecuteTransactionsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty rollBack(de.tum.grpc_api.KVServerProto.RollbackRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRollBackMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1144,6 +1197,14 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> rollBack(
+        de.tum.grpc_api.KVServerProto.RollbackRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRollBackMethod(), getCallOptions()), request);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -1199,11 +1260,12 @@ public final class KVServiceGrpc {
   private static final int METHODID_DELETE = 9;
   private static final int METHODID_HAS_KEY = 10;
   private static final int METHODID_EXECUTE_TRANSACTIONS = 11;
-  private static final int METHODID_INIT = 12;
-  private static final int METHODID_START_KVSERVER = 13;
-  private static final int METHODID_RECOVER = 14;
-  private static final int METHODID_UPDATE_RING = 15;
-  private static final int METHODID_DELETE_EXPIRED_DATA = 16;
+  private static final int METHODID_ROLL_BACK = 12;
+  private static final int METHODID_INIT = 13;
+  private static final int METHODID_START_KVSERVER = 14;
+  private static final int METHODID_RECOVER = 15;
+  private static final int METHODID_UPDATE_RING = 16;
+  private static final int METHODID_DELETE_EXPIRED_DATA = 17;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1269,6 +1331,10 @@ public final class KVServiceGrpc {
         case METHODID_EXECUTE_TRANSACTIONS:
           serviceImpl.executeTransactions((de.tum.grpc_api.KVServerProto.ExecuteTransactionsRequest) request,
               (io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse>) responseObserver);
+          break;
+        case METHODID_ROLL_BACK:
+          serviceImpl.rollBack((de.tum.grpc_api.KVServerProto.RollbackRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_INIT:
           serviceImpl.init((com.google.protobuf.Empty) request,
@@ -1393,6 +1459,13 @@ public final class KVServiceGrpc {
               de.tum.grpc_api.KVServerProto.ExecuteTransactionsResponse>(
                 service, METHODID_EXECUTE_TRANSACTIONS)))
         .addMethod(
+          getRollBackMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              de.tum.grpc_api.KVServerProto.RollbackRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_ROLL_BACK)))
+        .addMethod(
           getInitMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1487,6 +1560,7 @@ public final class KVServiceGrpc {
               .addMethod(getDeleteMethod())
               .addMethod(getHasKeyMethod())
               .addMethod(getExecuteTransactionsMethod())
+              .addMethod(getRollBackMethod())
               .addMethod(getInitMethod())
               .addMethod(getStartKVServerMethod())
               .addMethod(getRecoverMethod())
