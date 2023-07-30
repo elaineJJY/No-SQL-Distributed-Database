@@ -419,6 +419,37 @@ public final class KVServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.google.protobuf.Empty> getUnlockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "unlock",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.google.protobuf.Empty> getUnlockMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getUnlockMethod;
+    if ((getUnlockMethod = KVServiceGrpc.getUnlockMethod) == null) {
+      synchronized (KVServiceGrpc.class) {
+        if ((getUnlockMethod = KVServiceGrpc.getUnlockMethod) == null) {
+          KVServiceGrpc.getUnlockMethod = getUnlockMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "unlock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new KVServiceMethodDescriptorSupplier("unlock"))
+              .build();
+        }
+      }
+    }
+    return getUnlockMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.google.protobuf.Empty> getInitMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -716,6 +747,13 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    default void unlock(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUnlockMethod(), responseObserver);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -889,6 +927,14 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    public void unlock(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUnlockMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -1040,6 +1086,13 @@ public final class KVServiceGrpc {
     public com.google.protobuf.Empty rollBack(de.tum.grpc_api.KVServerProto.RollbackRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRollBackMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty unlock(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUnlockMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1205,6 +1258,14 @@ public final class KVServiceGrpc {
     }
 
     /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> unlock(
+        com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUnlockMethod(), getCallOptions()), request);
+    }
+
+    /**
      * <pre>
      * init, recover, updateRing, deleteExpiredData will only be called by ECS
      * </pre>
@@ -1261,11 +1322,12 @@ public final class KVServiceGrpc {
   private static final int METHODID_HAS_KEY = 10;
   private static final int METHODID_EXECUTE_TRANSACTIONS = 11;
   private static final int METHODID_ROLL_BACK = 12;
-  private static final int METHODID_INIT = 13;
-  private static final int METHODID_START_KVSERVER = 14;
-  private static final int METHODID_RECOVER = 15;
-  private static final int METHODID_UPDATE_RING = 16;
-  private static final int METHODID_DELETE_EXPIRED_DATA = 17;
+  private static final int METHODID_UNLOCK = 13;
+  private static final int METHODID_INIT = 14;
+  private static final int METHODID_START_KVSERVER = 15;
+  private static final int METHODID_RECOVER = 16;
+  private static final int METHODID_UPDATE_RING = 17;
+  private static final int METHODID_DELETE_EXPIRED_DATA = 18;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1334,6 +1396,10 @@ public final class KVServiceGrpc {
           break;
         case METHODID_ROLL_BACK:
           serviceImpl.rollBack((de.tum.grpc_api.KVServerProto.RollbackRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_UNLOCK:
+          serviceImpl.unlock((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_INIT:
@@ -1466,6 +1532,13 @@ public final class KVServiceGrpc {
               com.google.protobuf.Empty>(
                 service, METHODID_ROLL_BACK)))
         .addMethod(
+          getUnlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.Empty,
+              com.google.protobuf.Empty>(
+                service, METHODID_UNLOCK)))
+        .addMethod(
           getInitMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1561,6 +1634,7 @@ public final class KVServiceGrpc {
               .addMethod(getHasKeyMethod())
               .addMethod(getExecuteTransactionsMethod())
               .addMethod(getRollBackMethod())
+              .addMethod(getUnlockMethod())
               .addMethod(getInitMethod())
               .addMethod(getStartKVServerMethod())
               .addMethod(getRecoverMethod())

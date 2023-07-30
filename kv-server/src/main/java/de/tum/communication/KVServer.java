@@ -24,6 +24,8 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
+import javax.swing.plaf.TableHeaderUI;
+
 public class KVServer {
 
     private final ConsistentHash metaData;
@@ -32,6 +34,8 @@ public class KVServer {
     private static ServerSocketChannel ssChannel;
     private INode node;
 
+    private boolean lock;
+
     // detach read and write buffer
     private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
     private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
@@ -39,8 +43,8 @@ public class KVServer {
     public KVServer(Node node) {
         this.metaData = ConsistentHash.INSTANCE;
         this.node = node;
+        this.lock = false;
     }
-
     /**
      * Start server
      *
@@ -65,6 +69,9 @@ public class KVServer {
 
         // select() method without parameter will block until at least one event occurs
         while (selector.select() > 0) {
+            while (this.lock) {
+                Thread.sleep(500);
+            }
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             Iterator<SelectionKey> selectionKeyIterator = selectionKeys.iterator();
             while (selectionKeyIterator.hasNext()) {
@@ -434,82 +441,88 @@ public class KVServer {
                     n.rollBack(transactionId); // rpc
                 }
             }
-            return responses;
-        }
-    }
-
-        /**
-         * Execute transaction request, which only be locally executed
-         * @param localCommands the list of transaction request
-         * @return the list of response
-         */
-        public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
-            // process request
-            HashMap<String, String> history = snapshots.getOrDefault(transactionId, new HashMap<>());
-            snapshots.put(transactionId, history);
-            List<String> responses = new ArrayList<>();
-            int i = 0;
-
-            boolean lock = true;
-            while (lock) {
-                while (i++ < localCommands.size()) {
-                    LOGGER.info("Processing request: " + localCommands.get(i - 1));
-                    String[] tokens = localCommands.get(i - 1).trim().split("\\s+");
-
-                    try {
-                        String key = tokens[1];
-                        INode resopnsibleNode = this.node;
-                        if (!node.isResponsible(key)) {
-                            resopnsibleNode = metaData.getResponsibleServerByKey(key);
-                        }
-                        INode backupNode = metaData.getBackupNodeByKey(key);
-
-                        switch (tokens[0]) {
-                            case "put":
-                                StatusCode putStatus = putCommandHandler(resopnsibleNode, backupNode, tokens);
-                                if (putStatus == StatusCode.UPDATED_CONTENT) {
-                                    responses.add("put_updated " + tokens[1] + "\n");
-                                }
-                                if (putStatus == StatusCode.PUT_CONTENT) {
-                                    responses.add("put_success " + tokens[1] + "\n");
-                                }
-                                break;
-                            case "get":
-                                String value = getCommandHandler(resopnsibleNode, tokens);
-                                responses.add("get_success " + tokens[1] + " " + value + "\n");
-                                break;
-                            case "delete":
-                                StatusCode deleteStatus = deleteCommandHandler(resopnsibleNode, tokens);
-                                responses.add("delete_success" + tokens[1] + "\n");
-                                break;
-                            default:
-                                rollBack(transactionId);
-                                responses.add("Invalid Command, Rolling Back\n");
-                                break;
-                        }
-
-                        // if success, add to history
-                        if (!history.containsKey(key)) {
-                            history.put(key, resopnsibleNode.get(key));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        LOGGER.info("Error: " + e.getMessage());
-                        responses.add(localCommands.get(i - 1) + " error " + e.getMessage() + " Rolling back\n");
-                        if (history.size() > 0) {
-                            rollBack(transactionId);
-                        }
-                    }
+            else {
+                for (INode n : map.keySet()) {
+                    n.unlock(); // rpc
                 }
-                lock = false;
             }
-
-            return responses;
         }
 
-
-//	// rpc, coordinator
-//	public void unlock() {
-//
-//	}
+        return responses;
     }
+
+    /**
+     * Execute transaction request, which only be locally executed
+     * @param localCommands the list of transaction request
+     * @return the list of response
+     */
+    public synchronized List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
+        lock(); // lock the selector
+        // process request
+        HashMap<String, String> history = snapshots.getOrDefault(transactionId, new HashMap<>());
+        snapshots.put(transactionId, history);
+        List<String> responses = new ArrayList<>();
+        int i = 0;
+        this.lock = true;
+        while (i++ < localCommands.size()) {
+            LOGGER.info("Processing request: " + localCommands.get(i - 1));
+            String[] tokens = localCommands.get(i - 1).trim().split("\\s+");
+
+            try {
+                String key = tokens[1];
+                INode resopnsibleNode = this.node;
+                if (!node.isResponsible(key)) {
+                    resopnsibleNode = metaData.getResponsibleServerByKey(key);
+                }
+                INode backupNode = metaData.getBackupNodeByKey(key);
+
+                switch (tokens[0]) {
+                    case "put":
+                        StatusCode putStatus = putCommandHandler(resopnsibleNode, backupNode, tokens);
+                        if (putStatus == StatusCode.UPDATED_CONTENT) {
+                            responses.add("put_updated " + tokens[1] + "\n");
+                        }
+                        if (putStatus == StatusCode.PUT_CONTENT) {
+                            responses.add("put_success " + tokens[1] + "\n");
+                        }
+                        break;
+                    case "get":
+                        String value = getCommandHandler(resopnsibleNode, tokens);
+                        responses.add("get_success " + tokens[1] + " " + value + "\n");
+                        break;
+                    case "delete":
+                        StatusCode deleteStatus = deleteCommandHandler(resopnsibleNode, tokens);
+                        responses.add("delete_success" + tokens[1] + "\n");
+                        break;
+                    default:
+                        rollBack(transactionId);
+                        responses.add("Invalid Command, Rolling Back\n");
+                        break;
+                }
+
+                // if success, add to history
+                if (!history.containsKey(key)) {
+                    history.put(key, resopnsibleNode.get(key));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                LOGGER.info("Error: " + e.getMessage());
+                responses.add(localCommands.get(i - 1) + " error " + e.getMessage() + " Rolling back\n");
+                if (history.size() > 0) {
+                    rollBack(transactionId);
+                }
+            }
+        }
+        return responses;
+    }
+
+    // rpc, coordinator
+    public void unlock() {
+        this.lock = false;
+    }
+
+    //called by local
+    public void lock() {
+        this.lock = true;
+    }
+}

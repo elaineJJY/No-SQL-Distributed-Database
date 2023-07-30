@@ -134,6 +134,7 @@ service KVService {
   rpc hasKey(HasKeyRequest) returns (HasKeyResponse) {}
   rpc executeTransactions(ExecuteTransactionsRequest) returns (ExecuteTransactionsResponse) {}
   rpc rollBack(RollbackRequest) returns (google.protobuf.Empty) {}
+  rpc unlock(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 
   // init, recover, updateRing, deleteExpiredData will only be called by ECS
   rpc init(google.protobuf.Empty) returns (google.protobuf.Empty) {}

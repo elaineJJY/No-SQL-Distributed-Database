@@ -342,6 +342,23 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	public void unlock() {
+		server.unlock();
+	}
+
+	@Override
+	public void unlock(com.google.protobuf.Empty request,
+					   io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+		try {
+			unlock();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Empty response = Empty.newBuilder().build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
+
 	// init, recover, updateRing, deleteExpiredData will only be called by ECS
 	public void init() throws Exception {
         // Data transfer

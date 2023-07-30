@@ -128,6 +128,10 @@ public class NodeProxy implements INode {
         this.stub.rollBack(request);
     }
 
+    public void unlock() {
+        this.stub.unlock(emptyRequest);
+    }
+
     public void closeRpcChannel() {
         this.managedChannel.shutdown();
     }
