@@ -350,10 +350,11 @@ public class KVServer {
 //			}
 //		}
         try {
+            send("start transaction", socketChannel);
             List<String> requests = collectTransactions(socketChannel);
             List<String> responses = invoke(requests);
             String response = String.join("", responses);
-            LOGGER.info("send: " + response);
+            System.out.println("send: " + response);
             send(response, socketChannel);
         } catch (Exception e) {
             e.printStackTrace();
@@ -363,7 +364,7 @@ public class KVServer {
 
     public void rollBack(String transactionId) throws Exception {
         HashMap<String, String> backup = snapshots.get(transactionId);
-        LOGGER.info("Rolling back");
+        System.out.println("Rolling back");
         for (String key : backup.keySet()) {
             INode responsibleNode = metaData.getResponsibleServerByKey(key);
             INode backupNode = metaData.getBackupNodeByKey(key);
@@ -399,7 +400,7 @@ public class KVServer {
             if (len == -1) {
                 socketChannel.close(); // close channel
             }
-            LOGGER.info(t + "-Read: " + request);
+            System.out.println(t + "-Read: " + request);
         }
         return requests;
     }
@@ -416,11 +417,13 @@ public class KVServer {
             String[] tokens = command.trim().split("\\s+");
             String key = tokens[1];
             INode responsibleNode = metaData.getResponsibleServerByKey(key);
+            System.out.println(responsibleNode.toString() + " " + command);
             if (!map.containsKey(responsibleNode)) {
                 map.put(responsibleNode, new ArrayList<>());
             }
             map.get(responsibleNode).add(command);
         }
+        Thread.sleep(20000);
 
         // execute locally and remotely
         boolean failed = false;

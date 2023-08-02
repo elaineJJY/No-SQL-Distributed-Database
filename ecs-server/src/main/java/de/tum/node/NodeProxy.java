@@ -58,10 +58,14 @@ public class NodeProxy {
         return new Range(response.getRange().getFrom(), response.getRange().getTo());
     }
 
+//    @Override
+//    public String toString() {
+//		ECSProto.ToStringResponse response = this.stub.toString(emptyRequest);
+//        return response.getHostPort();
+//    }
     @Override
     public String toString() {
-		ECSProto.ToStringResponse response = this.stub.toString(emptyRequest);
-        return response.getHostPort();
+        return host + ":" + portForClient;
     }
 
     public void init() {

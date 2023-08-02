@@ -37,13 +37,12 @@ public class NodeProxy implements INode {
     }
 
     public String getHost() { return host; }
-
-    public int getRpcPort() { return rpcPort; } // actually getRpcPort
+    public int getRpcPort() { return rpcPort; }
     public int getPort() { return portForClient; }
 
     public long heartbeat() {
-        KVServerProto.HeartBeatResponse heartBeatResponse = this.stub.heartBeat(emptyRequest);
-        return heartBeatResponse.getTimestamp();
+        KVServerProto.HeartBeatResponse response = this.stub.heartBeat(emptyRequest);
+        return response.getTimestamp();
     }
 
     public Range getRange(DataType dataType) {
@@ -58,10 +57,13 @@ public class NodeProxy implements INode {
         return new Range(response.getRange().getFrom(), response.getRange().getTo());
     }
 
-    @Override
+//    @Override
+//    public String toString() {
+//        KVServerProto.ToStringResponse response = this.stub.toString(emptyRequest);
+//        return response.getHostPort();
+//    }
     public String toString() {
-        KVServerProto.ToStringResponse response = this.stub.toString(emptyRequest);
-        return response.getHostPort();
+        return this.host + ":" + this.portForClient;
     }
 
     public boolean isResponsible(String key) throws NullPointerException {

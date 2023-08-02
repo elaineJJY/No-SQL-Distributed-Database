@@ -50,7 +50,7 @@ public enum ConsistentHash {
 			NodeProxy previousNodeProxy = getPreviousNode(nodeProxy);
 			NodeProxy nextNodeProxy = getNextNode(nodeProxy);
 			ring.remove(nodeHash);
-			nodeProxy.closeRpcChannel();
+			//nodeProxy.closeRpcChannel();
 			System.out.println("Channel of ECS to KVServer<"
 				+ nodeProxy.getHost() + ":" + nodeProxy.getPortForClient() + "> is closed");
 			previousNodeProxy.recover(nodeProxy);
@@ -110,6 +110,7 @@ public enum ConsistentHash {
 			if (nodeProxy.equals(except)) {
 				continue;
 			}
+			System.out.println(ring);
 			nodeProxy.updateRing(ring);
 		}
 	}

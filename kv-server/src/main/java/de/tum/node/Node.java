@@ -411,11 +411,14 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 
-	// TODO: Exception
-	public void recover(NodeProxy removedNode) throws Exception {
+	public void recover(INode removedNode) throws Exception {
 
-		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
-		removedNode.closeRpcChannel();
+//		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
+		String removedHost = removedNode.getHost();
+		int removedPort = removedNode.getPort();
+		String removedHash = MD5Hash.hash(removedPort + ":" + removedHost);
+//		String removedHash = MD5Hash.hash(removedNode.getHost() + ":" + removedNode.getPort());
+		//removedNode.closeRpcChannel();
 
 		// recover data from the removed node
 		// If the removed node is the previous node of this node
@@ -456,13 +459,62 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		}
 	}
 
+//	public void recover(String removedHost, int removedPort) throws Exception {
+//
+//		String removedHash = MD5Hash.hash(removedHost + ":" + removedPort);
+//		//removedNode.closeRpcChannel();
+//
+//		// recover data from the removed node
+//		// If the removed node is the previous node of this node
+//		INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
+//		if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
+//			INode newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
+//			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
+////			try {
+////				removedNode.heartbeat(); // check whether the removed node is alive
+////				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
+////			}
+////			catch (Exception e) {
+////				System.out.println("Node " + removedNode + " is dead");
+////				// recover data from the backup
+////				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+////			}
+//			// if work flow goes here, it means the removed node is dead, and we should also close
+//			// form this node to the removed node
+//			mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
+//		}
+//
+//		// recover backup from the removed node
+//		// If the removed node is the next node of this node
+//		INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
+//		if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
+//			INode newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
+//			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
+////			try {
+////				removedNode.heartbeat(); // check whether the removed node is alive
+////				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
+////			}
+////			catch (Exception e) {
+////				System.out.println("Node " + removedNode + " is dead");
+////				// recover data from the backup
+////				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+////			}
+//			backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
+//		}
+//	}
+
 	@Override
 	public void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
 						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		KVServerProto.NodeMessage nodeProto = request.getNode();
-		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getRpcPort(), nodeProto.getPortForClient());
+//		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getRpcPort(), nodeProto.getPortForClient());
+		String removedHost = nodeProto.getHost();
+		int removedPortForClient = nodeProto.getPortForClient();
+		String removedHash = removedHost + ":" + removedPortForClient;
+		INode removedNode = ConsistentHash.INSTANCE.getResponsibleServerByKey(removedHash);
+//		INode removedNode = ConsistentHash.INSTANCE.getResponsibleServerByKey(removedHost + ":" + removedPortForClient);
 		try {
-			recover(nodeProxy);
+			recover(removedNode);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -481,20 +533,41 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		Map<String, KVServerProto.NodeMessage> ringNodeMessage = request.getRingMap();
 		TreeMap<String, INode> ring = new TreeMap<>();
 
+		// first close all rpc channels of NodeProxy
+		for (Map.Entry<String, INode> entry : ConsistentHash.INSTANCE.getRing().entrySet()) {
+			if (entry.getKey().equals(MD5Hash.hash(this.host + ":" + this.port))) {
+				continue;
+			}
+			NodeProxy node = (NodeProxy)entry.getValue();
+			node.closeRpcChannel();
+		}
+
+		if ((ringNodeMessage.size() == 2) && (!ringNodeMessage.containsKey("653795696acaf8eae91ccdcadbb29410"))) {
+			// if the ring is empty, then add the current node to the ring
+			System.out.println("stop");
+		}
 		// Process each entry in the map
 		// TODO: NEEDS TO BE IMPROVED
-		for (Map.Entry<String, KVServerProto.NodeMessage> entry : ringNodeMessage.entrySet()) {
-			String key = entry.getKey();
-			KVServerProto.NodeMessage nodeMessage = entry.getValue();
-			String host = nodeMessage.getHost();
-			int rpcPort = nodeMessage.getRpcPort();
-			int portForClient = nodeMessage.getPortForClient();
-			if (key == MD5Hash.hash(this.host + ":" + this.port)) {
-				ring.put(key, new Node(host, portForClient, this.mainDatabase, this.backupDatabase));
-			}
-			ring.put(key, new NodeProxy(host, rpcPort, portForClient));
+		try {
+			for (Map.Entry<String, KVServerProto.NodeMessage> entry : ringNodeMessage.entrySet()) {
+				String key = entry.getKey();
+				KVServerProto.NodeMessage nodeMessage = entry.getValue();
+				String host = nodeMessage.getHost();
+				int rpcPort = nodeMessage.getRpcPort();
+				int portForClient = nodeMessage.getPortForClient();
+				if (key == MD5Hash.hash(this.host + ":" + this.port)) {
+					System.out.println("host: " + host + ", portForClient: " + portForClient);
+					ring.put(key, new Node(host, portForClient, this.mainDatabase, this.backupDatabase));
+				}
+				System.out.println("host: " + host + ", rpcPort: " + rpcPort + ", portForClient: " + portForClient);
+				ring.put(key, new NodeProxy(host, rpcPort, portForClient));
+
 //			System.out.println("Key: " + key + ", Host: " + host + ", Port: " + this.port);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
+
 		System.out.println("Update ring: " + ring);
 		updateRing(ring);
 		responseObserver.onNext(Empty.newBuilder().build());

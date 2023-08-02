@@ -104,6 +104,7 @@ public class ECSServer {
                     ConsistentHash.INSTANCE.addNode(node);
 //                } catch (io.grpc.StatusRuntimeException e) {
                 } catch (Exception e) {
+                    // TODO: shutdown when 2 KVServers are running
                     ConsistentHash.INSTANCE.removeNode(node);
                 }
             });
