@@ -1,5 +1,6 @@
 package de.tum.node;
 
+import de.tum.database.IDatabase;
 import java.util.HashMap;
 import java.util.List;
 import java.util.SortedMap;
@@ -28,8 +29,8 @@ public interface INode {
     public boolean hasKey(String key) throws Exception;
     public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception;
     public void rollBack(String transactionId) throws Exception;
-    public void unlock();
-
+    public void unlock(String key) throws Exception;
+    public void lock(String key) throws Exception;
     // Only called by ECS
     //public void init() throws Exception;
     //public void startKVServer() throws Exception;

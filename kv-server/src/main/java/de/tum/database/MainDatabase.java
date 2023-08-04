@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 /**
@@ -24,6 +25,7 @@ public class MainDatabase implements IDatabase {
 	private Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private Cache cache;
 	private SortedMap<String, String> hashToKeyMap;
+	private ConcurrentHashMap<String, Boolean> locks = new ConcurrentHashMap<>(); // key -> locked
 
 	public MainDatabase(int capacity, String cacheDisplacementAlgorithm) {
 		this.hashToKeyMap = new TreeMap<>();
@@ -43,21 +45,41 @@ public class MainDatabase implements IDatabase {
 		}
 	}
 
+	public void lock(String key) throws Exception{
+		if (locks.containsKey(key) && locks.get(key)){
+			throw new Exception(key + " is locked");
+		}
+		locks.put(key, true);
+	}
+
+	public void unlock(String key) throws Exception{
+		locks.put(key, false);
+	}
+
 	public void setDirectory(String directory) {
 		cache.setDirectory(directory);
 	}
 
 	public String get(String key) throws Exception {
+		if(locks.containsKey(key) && locks.get(key)) {
+			throw new Exception(key + " is locked");
+		}
 		return cache.get(key);
 	}
 
 	public void put(String key, String value) throws Exception {
+		if(locks.containsKey(key) && locks.get(key)) {
+			throw new Exception(key + " is locked");
+		}
 		String hash = MD5Hash.hash(key);
 		hashToKeyMap.put(hash, key);
 		cache.put(key, value);
 	}
 
 	public void delete(String key) throws Exception {
+		if(locks.containsKey(key) && locks.get(key)) {
+			throw new Exception(key + " is locked");
+		}
 		hashToKeyMap.remove(key);
 		cache.delete(key);
 	}

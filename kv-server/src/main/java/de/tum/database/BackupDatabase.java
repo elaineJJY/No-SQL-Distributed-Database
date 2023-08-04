@@ -50,6 +50,16 @@ public class BackupDatabase implements IDatabase {
 		return false;
 	}
 
+	@Override
+	public void lock(String key) throws Exception {
+
+	}
+
+	@Override
+	public void unlock(String key) throws Exception {
+
+	}
+
 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
 		HashMap<String, String> data = new HashMap<>();
 

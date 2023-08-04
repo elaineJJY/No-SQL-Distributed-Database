@@ -25,7 +25,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	private IDatabase mainDatabase;
 	private IDatabase backupDatabase;
 
-
 	public Node(String host, int port, IDatabase mainDatabase, IDatabase backupDatabase){
 		this.host = host;
 		this.port = port;
@@ -342,15 +341,21 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-	public void unlock() {
-		server.unlock();
+
+	// TODO
+	public void unlock(String key) throws Exception {
+		mainDatabase.unlock(key);
+	}
+
+	public void lock(String key) throws Exception {
+		mainDatabase.lock(key);
 	}
 
 	@Override
-	public void unlock(com.google.protobuf.Empty request,
+	public void unlockAll(com.google.protobuf.Empty request,
 					   io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		try {
-			unlock();
+			server.unlockAll(transactionId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -19,4 +19,7 @@ public interface IDatabase {
 
 	void deleteDataByRange(Range range) throws Exception;
 	boolean hasKey(String key) throws Exception;
+
+	void lock(String key) throws Exception;
+	void unlock(String key) throws Exception;
 }

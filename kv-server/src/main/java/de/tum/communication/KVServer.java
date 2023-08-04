@@ -34,8 +34,6 @@ public class KVServer {
     private static ServerSocketChannel ssChannel;
     private INode node;
 
-    private boolean lock;
-
     // detach read and write buffer
     private static final ByteBuffer readBuffer = ByteBuffer.allocate(1024);
     private static final ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
@@ -43,7 +41,6 @@ public class KVServer {
     public KVServer(Node node) {
         this.metaData = ConsistentHash.INSTANCE;
         this.node = node;
-        this.lock = false;
     }
     /**
      * Start server
@@ -69,9 +66,6 @@ public class KVServer {
 
         // select() method without parameter will block until at least one event occurs
         while (selector.select() > 0) {
-            while (this.lock) {
-                Thread.sleep(500);
-            }
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             Iterator<SelectionKey> selectionKeyIterator = selectionKeys.iterator();
             while (selectionKeyIterator.hasNext()) {
@@ -446,7 +440,7 @@ public class KVServer {
             }
             else {
                 for (INode n : map.keySet()) {
-                    n.unlock(); // rpc
+                    n.unlockAll(transactionId); // rpc
                 }
             }
         }
@@ -459,24 +453,23 @@ public class KVServer {
      * @param localCommands the list of transaction request
      * @return the list of response
      */
-    public synchronized List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
-        lock(); // lock the selector
+    public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
+
         // process request
         HashMap<String, String> history = snapshots.getOrDefault(transactionId, new HashMap<>());
         snapshots.put(transactionId, history);
         List<String> responses = new ArrayList<>();
         int i = 0;
-        this.lock = true;
+
         while (i++ < localCommands.size()) {
             LOGGER.info("Processing request: " + localCommands.get(i - 1));
             String[] tokens = localCommands.get(i - 1).trim().split("\\s+");
-
+            Thread.sleep(2000);
             try {
                 String key = tokens[1];
+
                 INode resopnsibleNode = this.node;
-                if (!node.isResponsible(key)) {
-                    resopnsibleNode = metaData.getResponsibleServerByKey(key);
-                }
+                resopnsibleNode.lock(key);
                 INode backupNode = metaData.getBackupNodeByKey(key);
 
                 switch (tokens[0]) {
@@ -520,12 +513,11 @@ public class KVServer {
     }
 
     // rpc, coordinator
-    public void unlock() {
-        this.lock = false;
+    public void unlockAll(String transactionId) throws Exception {
+        HashMap<String,String> history = snapshots.get(transactionId);
+        for(String key : history.keySet()){
+            this.node.unlock(key);
+        }
     }
 
-    //called by local
-    public void lock() {
-        this.lock = true;
-    }
 }
