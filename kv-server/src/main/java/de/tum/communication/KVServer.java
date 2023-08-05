@@ -471,7 +471,12 @@ public class KVServer {
                 String key = tokens[1];
 
                 INode resopnsibleNode = this.node;
+
                 resopnsibleNode.lock(key, transactionId);
+                if (!history.containsKey(key)) {
+                    history.put(key, resopnsibleNode.get(key, transactionId));
+                }
+
                 INode backupNode = metaData.getBackupNodeByKey(key);
 
                 switch (tokens[0]) {
@@ -498,10 +503,7 @@ public class KVServer {
                         break;
                 }
 
-                // if success, add to history
-                if (!history.containsKey(key)) {
-                    history.put(key, resopnsibleNode.get(key, transactionId));
-                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 LOGGER.info("Error: " + e.getMessage());

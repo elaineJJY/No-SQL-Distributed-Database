@@ -113,7 +113,7 @@ public class MainDatabase implements IDatabase {
 	}
 
 	public boolean hasKey(String key) throws Exception {
-		if (get(key,"") == null) {
+		if (hashToKeyMap.get(key) == null) {
 			return false;
 		}
 		return true;
