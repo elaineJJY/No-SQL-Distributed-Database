@@ -227,7 +227,7 @@ public class KVServer {
         try {
             switch (tokens[0]) {
                 case "put": {
-                    StatusCode returnValue = putCommandHandler(resopnsibleNode, backupNode, tokens, null);
+                    StatusCode returnValue = putCommandHandler(resopnsibleNode, backupNode, tokens, "");
                     if (returnValue == StatusCode.UPDATED_CONTENT) {
                         send("put_updated " + tokens[1], socketChannel);
                     }
@@ -237,11 +237,11 @@ public class KVServer {
                     break;
                 }
                 case "get":
-                    String value = getCommandHandler(resopnsibleNode, tokens, null);
+                    String value = getCommandHandler(resopnsibleNode, tokens, "");
                     send("get_success " + tokens[1] + " " + value, socketChannel);
                     break;
                 case "delete":
-                    deleteCommandHandler(resopnsibleNode, tokens, null);
+                    deleteCommandHandler(resopnsibleNode, tokens, "");
                     send("delete_success" + tokens[1], socketChannel);
                     break;
                 case "quit":
@@ -363,7 +363,7 @@ public class KVServer {
         for (String key : backup.keySet()) {
             INode responsibleNode = metaData.getResponsibleServerByKey(key);
             INode backupNode = metaData.getBackupNodeByKey(key);
-            responsibleNode.put(key, backup.get(key), null);
+            responsibleNode.put(key, backup.get(key), "");
             backupNode.putBackup(key, backup.get(key));
         }
     }
@@ -419,7 +419,7 @@ public class KVServer {
             }
             map.get(responsibleNode).add(command);
         }
-        Thread.sleep(20000);
+        Thread.sleep(5000);
 
         // execute locally and remotely
         boolean failed = false;
@@ -434,7 +434,7 @@ public class KVServer {
                 }
             }
             responses.addAll(response);
-            Thread.sleep(10000);
+            Thread.sleep(2000);
 
             if (failed) {
                 for (INode n : map.keySet()) {
@@ -443,6 +443,7 @@ public class KVServer {
             }
             else {
                 for (INode n : map.keySet()) {
+                    System.out.println("test unlockAll");
                     n.unlockAll(transactionId); // rpc
                 }
             }

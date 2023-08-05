@@ -137,7 +137,7 @@ public class NodeProxy implements INode {
     public void unlock(String key, String transactionId) {}
 
     public void unlockAll(String transactionId) {
-        KVServerProto.unlockAllRequest request = KVServerProto.unlockAllRequest.newBuilder().build();
+        KVServerProto.unlockAllRequest request = KVServerProto.unlockAllRequest.newBuilder().setTransactionId(transactionId).build();
         this.stub.unlockAll(request);
     }
 

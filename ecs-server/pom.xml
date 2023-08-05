@@ -112,25 +112,25 @@
         </configuration>
       </plugin>
 
-      <!-- Configure the Spotify Dockerfile Maven Plugin to build and push Docker images -->
-      <plugin>
-        <groupId>com.spotify</groupId>
-        <artifactId>dockerfile-maven-plugin</artifactId>
-        <version>1.4.13</version>
-        <executions>
-          <execution>
-            <id>default</id>
-            <goals>
-              <!--  it will build and push the image to the registry  -->
-              <goal>build</goal>
-              <goal>push</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <repository>${docker.repository.path}</repository>
-        </configuration>
-      </plugin>
+<!--      &lt;!&ndash; Configure the Spotify Dockerfile Maven Plugin to build and push Docker images &ndash;&gt;-->
+<!--      <plugin>-->
+<!--        <groupId>com.spotify</groupId>-->
+<!--        <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--        <version>1.4.13</version>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>default</id>-->
+<!--            <goals>-->
+<!--              &lt;!&ndash;  it will build and push the image to the registry  &ndash;&gt;-->
+<!--              <goal>build</goal>-->
+<!--              <goal>push</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--        <configuration>-->
+<!--          <repository>${docker.repository.path}</repository>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
 
       <!-- Configure the Protobuf Maven Plugin to generate Java code from .proto files -->
       <plugin>

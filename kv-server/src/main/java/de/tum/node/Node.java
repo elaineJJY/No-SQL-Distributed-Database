@@ -346,6 +346,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 	// TODO key local, transactionId remote
 	public void unlock(String key, String transactionId) throws Exception {
+		System.out.println("test unlock");
 		mainDatabase.unlock(key, transactionId);
 	}
 

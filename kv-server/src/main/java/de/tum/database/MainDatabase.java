@@ -88,7 +88,7 @@ public class MainDatabase implements IDatabase {
 
 	public void put(String key, String value, String transactionId) throws Exception {
 		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
-			System.out.println("testdata");
+//			System.out.println("testdata");
 			throw new Exception(key + " is locked");
 		}
 		String hash = MD5Hash.hash(key);
