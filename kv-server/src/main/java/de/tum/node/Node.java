@@ -202,8 +202,8 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-	public String get(String key) throws Exception {
-		return mainDatabase.get(key);
+	public String get(String key, String transactionID) throws Exception {
+		return mainDatabase.get(key, transactionID);
 	}
 
 	@Override
@@ -213,7 +213,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		KVServerProto.GetResponse response;
 		try {
 			response = KVServerProto.GetResponse.newBuilder()
-					.setValue(mainDatabase.get(key))
+					.setValue(mainDatabase.get(key, null))
 					.build();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -222,8 +222,8 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-	public void put(String key, String value) throws Exception {
-		mainDatabase.put(key, value);
+	public void put(String key, String value, String transactionId) throws Exception {
+		mainDatabase.put(key, value, transactionId);
 		System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
 	}
 
@@ -232,9 +232,9 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 					   io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		String key = request.getKey();
 		String value = request.getValue();
-
+		String transactionId = request.getTransactionId();
 		try {
-			put(key, value);
+			put(key, value, transactionId);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -244,7 +244,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 	public void putBackup(String key, String value) throws Exception {
-		backupDatabase.put(key, value);
+		backupDatabase.put(key, value, null);
 		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
 	}
 
@@ -264,8 +264,8 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 
-	public void delete(String key) throws Exception {
-		mainDatabase.delete(key);
+	public void delete(String key, String transactionID) throws Exception {
+		mainDatabase.delete(key, transactionID);
 		System.out.println("Delete data on database " + this.port + ": " + key );
 	}
 
@@ -273,8 +273,9 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	public void delete(de.tum.grpc_api.KVServerProto.DeleteRequest request,
 						  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		String key = request.getKey();
+		String transactionId = request.getTransactionId();
 		try {
-			delete(key);
+			delete(key, transactionId);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -343,13 +344,13 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 
-	// TODO key本地 transactionId远程
-	public void unlock(String key) throws Exception {
-		mainDatabase.unlock(key);
+	// TODO key local, transactionId remote
+	public void unlock(String key, String transactionId) throws Exception {
+		mainDatabase.unlock(key, transactionId);
 	}
 
-	public void lock(String key) throws Exception {
-		mainDatabase.lock(key);
+	public void lock(String key, String transactionId) throws Exception {
+		mainDatabase.lock(key, transactionId);
 	}
 
 	public void unlockAll(String transactionId) throws Exception {

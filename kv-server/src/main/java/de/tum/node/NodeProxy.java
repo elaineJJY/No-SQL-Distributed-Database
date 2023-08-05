@@ -92,14 +92,16 @@ public class NodeProxy implements INode {
         return returnHashMap;
     }
 
-    public String get(String key) throws Exception {
-        KVServerProto.GetRequest request = KVServerProto.GetRequest.newBuilder().setKey(key).build();
+    public String get(String key, String transactionId) throws Exception {
+        KVServerProto.GetRequest request = KVServerProto.GetRequest.newBuilder()
+            .setKey(key).setTransactionId(transactionId).build();
         KVServerProto.GetResponse response = this.stub.get(request);
         return response.getValue();
     }
 
-    public void put(String key, String value) throws Exception {
-        KVServerProto.PutRequest request = KVServerProto.PutRequest.newBuilder().setKey(key).setValue(value).build();
+    public void put(String key, String value, String transactionId) throws Exception {
+        KVServerProto.PutRequest request = KVServerProto.PutRequest.newBuilder().setKey(key)
+            .setValue(value).setTransactionId(transactionId).build();
         this.stub.put(request);
     }
 
@@ -108,8 +110,9 @@ public class NodeProxy implements INode {
         this.stub.putBackup(request);
     }
 
-    public void delete(String key) throws Exception {
-        KVServerProto.DeleteRequest request = KVServerProto.DeleteRequest.newBuilder().setKey(key).build();
+    public void delete(String key, String transactionId) throws Exception {
+        KVServerProto.DeleteRequest request = KVServerProto.DeleteRequest.newBuilder()
+            .setKey(key).setTransactionId(transactionId).build();
         this.stub.delete(request);
     }
 
@@ -129,8 +132,10 @@ public class NodeProxy implements INode {
         KVServerProto.RollbackRequest request = KVServerProto.RollbackRequest.newBuilder().setTransactionId(transactionId).build();
         this.stub.rollBack(request);
     }
-    public void lock(String key) {}
-    public void unlock(String key) {}
+    public void lock(String key, String transactionId) {}
+
+    public void unlock(String key, String transactionId) {}
+
     public void unlockAll(String transactionId) {
         KVServerProto.unlockAllRequest request = KVServerProto.unlockAllRequest.newBuilder().build();
         this.stub.unlockAll(request);

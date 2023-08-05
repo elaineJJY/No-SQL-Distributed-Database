@@ -52,20 +52,23 @@ public class MainDatabase implements IDatabase {
 		locks.put(key, transactionId);
 	}
 
-	public void unlock(String key) throws Exception{
-		locks.put(key, "");
+	public void unlock(String key, String transactionId) throws Exception{
+		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
+			throw new Exception(key + " is locked by another transaction");
+		}
+		locks.remove(key);
 	}
 
 	public void setDirectory(String directory) {
 		cache.setDirectory(directory);
 	}
 
-	public String get(String key) throws Exception {
-		if(locks.containsKey(key) && locks.get(key).length() > 0){
-			throw new Exception(key + " is locked");
-		}
-		return cache.get(key);
-	}
+//	public String get(String key) throws Exception {
+//		if(locks.containsKey(key) && locks.get(key).length() > 0){
+//			throw new Exception(key + " is locked");
+//		}
+//		return cache.get(key);
+//	}
 	public String get(String key, String transactionId) throws Exception {
 		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
 			throw new Exception(key + " is locked");
@@ -73,15 +76,15 @@ public class MainDatabase implements IDatabase {
 		return cache.get(key);
 	}
 
-	public void put(String key, String value) throws Exception {
-		if(locks.containsKey(key) && locks.get(key).length() > 0) {
-			System.out.println("testdata");
-			throw new Exception(key + " is locked");
-		}
-		String hash = MD5Hash.hash(key);
-		hashToKeyMap.put(hash, key);
-		cache.put(key, value);
-	}
+//	public void put(String key, String value) throws Exception {
+//		if(locks.containsKey(key) && locks.get(key).length() > 0) {
+//			System.out.println("testdata");
+//			throw new Exception(key + " is locked");
+//		}
+//		String hash = MD5Hash.hash(key);
+//		hashToKeyMap.put(hash, key);
+//		cache.put(key, value);
+//	}
 
 	public void put(String key, String value, String transactionId) throws Exception {
 		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
@@ -93,13 +96,13 @@ public class MainDatabase implements IDatabase {
 		cache.put(key, value);
 	}
 
-	public void delete(String key) throws Exception {
-		if(locks.containsKey(key) && locks.get(key).length() > 0) {
-			throw new Exception(key + " is locked");
-		}
-		hashToKeyMap.remove(key);
-		cache.delete(key);
-	}
+//	public void delete(String key) throws Exception {
+//		if(locks.containsKey(key) && locks.get(key).length() > 0) {
+//			throw new Exception(key + " is locked");
+//		}
+//		hashToKeyMap.remove(key);
+//		cache.delete(key);
+//	}
 
 	public void delete(String key, String transactionId) throws Exception {
 		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
@@ -110,13 +113,13 @@ public class MainDatabase implements IDatabase {
 	}
 
 	public boolean hasKey(String key) throws Exception {
-		if (get(key) == null) {
+		if (get(key,"") == null) {
 			return false;
 		}
 		return true;
 	}
 
- 	public HashMap<String, String> getDataByRange(Range range) throws Exception {
+	public HashMap<String, String> getDataByRange(Range range) throws Exception {
 		HashMap<String, String> data = new HashMap<>();
 
 		SortedMap<String, String> keysInRange;

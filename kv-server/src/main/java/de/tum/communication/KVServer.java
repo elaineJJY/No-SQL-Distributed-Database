@@ -146,7 +146,7 @@ public class KVServer {
      * @param tokens
      * @throws IOException
      */
-    private StatusCode putCommandHandler(INode responsibleNode, INode backupNode, String[] tokens) throws Exception {
+    private StatusCode putCommandHandler(INode responsibleNode, INode backupNode, String[] tokens, String transactionId) throws Exception {
         try {
             StringBuilder sb = new StringBuilder();
             for (int i = 2; i < tokens.length; i++) {
@@ -158,10 +158,10 @@ public class KVServer {
             String value = sb.toString();
             if (responsibleNode.hasKey(tokens[1])) {
                 backupNode.putBackup(tokens[1], value);
-                responsibleNode.put(tokens[1], value);
+                responsibleNode.put(tokens[1], value, transactionId);
                 return StatusCode.UPDATED_CONTENT;
             } else {
-                responsibleNode.put(tokens[1], value);
+                responsibleNode.put(tokens[1], value, transactionId);
                 backupNode.putBackup(tokens[1], value);
                 return StatusCode.PUT_CONTENT;
             }
@@ -178,8 +178,8 @@ public class KVServer {
      * @throws IOException
      */
 
-    private String getCommandHandler(INode responsibleNode, String[] tokens) throws Exception {
-        String value = responsibleNode.get(tokens[1]);
+    private String getCommandHandler(INode responsibleNode, String[] tokens, String transactionId) throws Exception {
+        String value = responsibleNode.get(tokens[1], transactionId);
         if (value == null) {
             throw new Exception("not found");
         }
@@ -193,10 +193,10 @@ public class KVServer {
      * @throws IOException
      */
 
-    private StatusCode deleteCommandHandler(INode responsibleNode, String[] tokens) throws Exception {
-        String value = responsibleNode.get(tokens[1]);
+    private StatusCode deleteCommandHandler(INode responsibleNode, String[] tokens, String transactionId) throws Exception {
+        String value = responsibleNode.get(tokens[1], transactionId);
         if (value != null) {
-            responsibleNode.delete(tokens[1]);
+            responsibleNode.delete(tokens[1], transactionId);
             return StatusCode.DELETE_CONTENT;
         } else {
             throw new Exception("delete error");
@@ -227,7 +227,7 @@ public class KVServer {
         try {
             switch (tokens[0]) {
                 case "put": {
-                    StatusCode returnValue = putCommandHandler(resopnsibleNode, backupNode, tokens);
+                    StatusCode returnValue = putCommandHandler(resopnsibleNode, backupNode, tokens, null);
                     if (returnValue == StatusCode.UPDATED_CONTENT) {
                         send("put_updated " + tokens[1], socketChannel);
                     }
@@ -237,11 +237,11 @@ public class KVServer {
                     break;
                 }
                 case "get":
-                    String value = getCommandHandler(resopnsibleNode, tokens);
+                    String value = getCommandHandler(resopnsibleNode, tokens, null);
                     send("get_success " + tokens[1] + " " + value, socketChannel);
                     break;
                 case "delete":
-                    deleteCommandHandler(resopnsibleNode, tokens);
+                    deleteCommandHandler(resopnsibleNode, tokens, null);
                     send("delete_success" + tokens[1], socketChannel);
                     break;
                 case "quit":
@@ -363,7 +363,7 @@ public class KVServer {
         for (String key : backup.keySet()) {
             INode responsibleNode = metaData.getResponsibleServerByKey(key);
             INode backupNode = metaData.getBackupNodeByKey(key);
-            responsibleNode.put(key, backup.get(key));
+            responsibleNode.put(key, backup.get(key), null);
             backupNode.putBackup(key, backup.get(key));
         }
     }
@@ -470,12 +470,12 @@ public class KVServer {
                 String key = tokens[1];
 
                 INode resopnsibleNode = this.node;
-                resopnsibleNode.lock(key);
+                resopnsibleNode.lock(key, transactionId);
                 INode backupNode = metaData.getBackupNodeByKey(key);
 
                 switch (tokens[0]) {
                     case "put":
-                        StatusCode putStatus = putCommandHandler(resopnsibleNode, backupNode, tokens);
+                        StatusCode putStatus = putCommandHandler(resopnsibleNode, backupNode, tokens, transactionId);
                         if (putStatus == StatusCode.UPDATED_CONTENT) {
                             responses.add("put_updated " + tokens[1] + "\n");
                         }
@@ -484,11 +484,11 @@ public class KVServer {
                         }
                         break;
                     case "get":
-                        String value = getCommandHandler(resopnsibleNode, tokens);
+                        String value = getCommandHandler(resopnsibleNode, tokens, transactionId);
                         responses.add("get_success " + tokens[1] + " " + value + "\n");
                         break;
                     case "delete":
-                        StatusCode deleteStatus = deleteCommandHandler(resopnsibleNode, tokens);
+                        StatusCode deleteStatus = deleteCommandHandler(resopnsibleNode, tokens, transactionId);
                         responses.add("delete_success" + tokens[1] + "\n");
                         break;
                     default:
@@ -499,7 +499,7 @@ public class KVServer {
 
                 // if success, add to history
                 if (!history.containsKey(key)) {
-                    history.put(key, resopnsibleNode.get(key));
+                    history.put(key, resopnsibleNode.get(key, transactionId));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -520,7 +520,7 @@ public class KVServer {
             return;
         }
         for(String key : history.keySet()){
-            this.node.unlock(key);
+            this.node.unlock(key, transactionId);
         }
     }
 }

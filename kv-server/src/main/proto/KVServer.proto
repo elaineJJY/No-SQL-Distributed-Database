@@ -58,6 +58,7 @@ message CopyResponse{
 
 message GetRequest {
   string key = 1;
+  string transactionId = 2;
 }
 
 message GetResponse {
@@ -68,6 +69,7 @@ message GetResponse {
 message PutRequest {
   string key = 1;
   string value = 2;
+  string transactionId = 3;
 }
 
 message PutBackupRequest {
@@ -77,6 +79,7 @@ message PutBackupRequest {
 
 message DeleteRequest {
   string key = 1;
+  string transactionId = 2;
 }
 
 message HasKeyRequest {

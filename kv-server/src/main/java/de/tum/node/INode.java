@@ -22,15 +22,15 @@ public interface INode {
     public boolean isResponsible(String key);
     public Range getRange(DataType dataType);
     public HashMap<String, String> copy(DataType where, Range range) throws Exception;
-    public String get(String key) throws Exception;
-    public void put(String key, String value) throws Exception;
+    public String get(String key, String transactionId) throws Exception;
+    public void put(String key, String value, String transactionID) throws Exception;
     public void putBackup(String key, String value) throws Exception;
-    public void delete(String key) throws Exception;
+    public void delete(String key, String transactionId) throws Exception;
     public boolean hasKey(String key) throws Exception;
     public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception;
     public void rollBack(String transactionId) throws Exception;
-    public void lock(String key) throws Exception;
-    public void unlock(String key) throws Exception;
+    public void lock(String key, String transactionId) throws Exception;
+    public void unlock(String key, String transactionId) throws Exception;
     public void unlockAll(String transactionId) throws Exception;
 //    public void lock(String key) throws Exception;
     // Only called by ECS

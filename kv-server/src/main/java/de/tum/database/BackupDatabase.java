@@ -27,27 +27,37 @@ public class BackupDatabase implements IDatabase {
 		persistentStorage.setDirectory(directory);
 	}
 
-	public void put(String key, String value) throws Exception {
+//	public void put(String key, String value) throws Exception {
+//		String hash = MD5Hash.hash(key);
+//		hashToKeyMap.put(hash, key);
+//		persistentStorage.storeToDisk(key, value);
+//		System.out.println("finish put in backup: " + hashToKeyMap.get(key));
+//	}
+
+	public void put(String key, String value, String transactionId) throws Exception {
 		String hash = MD5Hash.hash(key);
 		hashToKeyMap.put(hash, key);
 		persistentStorage.storeToDisk(key, value);
 		System.out.println("finish put in backup: " + hashToKeyMap.get(key));
 	}
 
-	public void put(String key, String value, String transactionId) throws Exception {}
+//	public String get(String key) throws Exception {
+//		return persistentStorage.readFromDisk(key);
+//	}
 
-	public String get(String key) throws Exception {
+	public String get(String key, String transactionId) throws Exception {
 		return persistentStorage.readFromDisk(key);
 	}
 
-	public String get(String key, String transactionId) throws Exception { return null; }
+//	public void delete(String key) throws Exception {
+//		hashToKeyMap.remove(key);
+//		persistentStorage.deleteFromDisk(key);
+//	}
 
-	public void delete(String key) throws Exception {
+	public void delete(String key, String transactionId) throws Exception {
 		hashToKeyMap.remove(key);
 		persistentStorage.deleteFromDisk(key);
 	}
-
-	public void delete(String key, String transactionId) throws Exception {}
 
 	public boolean hasKey(String key) throws Exception {
 		if (persistentStorage.readFromDisk(key) == null) {
@@ -57,12 +67,12 @@ public class BackupDatabase implements IDatabase {
 	}
 
 	@Override
-	public void lock(String key) throws Exception {
+	public void lock(String key, String transactionId) throws Exception {
 
 	}
 
 	@Override
-	public void unlock(String key) throws Exception {
+	public void unlock(String key, String transactionId) throws Exception {
 
 	}
 
@@ -124,13 +134,13 @@ public class BackupDatabase implements IDatabase {
 	public static void main(String[] args) {
 		BackupDatabase lru = new BackupDatabase();
 		try {
-			lru.put("1", "a");
-			lru.put("1", "b");
-			lru.put("3", "c");
-			lru.put("4", "d");
-			System.out.println(lru.get("1"));
-			System.out.println(lru.get("3"));
-			System.out.println(lru.get("4"));
+			lru.put("1", "a", null);
+			lru.put("1", "b", null);
+			lru.put("3", "c", null);
+			lru.put("4", "d", null);
+			System.out.println(lru.get("1", null));
+			System.out.println(lru.get("3", null));
+			System.out.println(lru.get("4", null));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 public interface IDatabase {
 
-	void put(String key, String value) throws Exception;
-
-	String get(String key) throws Exception;
-
-	void delete(String key) throws Exception;
+//	void put(String key, String value) throws Exception;
+//
+//	String get(String key) throws Exception;
+//
+//	void delete(String key) throws Exception;
 
 	void put(String key, String value, String transactionId) throws Exception;
 
@@ -26,6 +26,6 @@ public interface IDatabase {
 	void deleteDataByRange(Range range) throws Exception;
 	boolean hasKey(String key) throws Exception;
 
-	void lock(String key) throws Exception;
-	void unlock(String key) throws Exception;
+	void lock(String key, String transactionId) throws Exception;
+	void unlock(String key, String transactionId) throws Exception;
 }

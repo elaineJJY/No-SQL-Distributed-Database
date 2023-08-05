@@ -6089,6 +6089,18 @@ java.lang.String defaultValue);
      */
     com.google.protobuf.ByteString
         getKeyBytes();
+
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The transactionId.
+     */
+    java.lang.String getTransactionId();
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The bytes for transactionId.
+     */
+    com.google.protobuf.ByteString
+        getTransactionIdBytes();
   }
   /**
    * Protobuf type {@code GetRequest}
@@ -6104,6 +6116,7 @@ java.lang.String defaultValue);
     }
     private GetRequest() {
       key_ = "";
+      transactionId_ = "";
     }
 
     @java.lang.Override
@@ -6169,6 +6182,44 @@ java.lang.String defaultValue);
       }
     }
 
+    public static final int TRANSACTIONID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object transactionId_;
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The transactionId.
+     */
+    @java.lang.Override
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        transactionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The bytes for transactionId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTransactionIdBytes() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        transactionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -6186,6 +6237,9 @@ java.lang.String defaultValue);
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, transactionId_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -6197,6 +6251,9 @@ java.lang.String defaultValue);
       size = 0;
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, transactionId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -6215,6 +6272,8 @@ java.lang.String defaultValue);
 
       if (!getKey()
           .equals(other.getKey())) return false;
+      if (!getTransactionId()
+          .equals(other.getTransactionId())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -6228,6 +6287,8 @@ java.lang.String defaultValue);
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
       hash = (53 * hash) + getKey().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6358,6 +6419,8 @@ java.lang.String defaultValue);
         super.clear();
         key_ = "";
 
+        transactionId_ = "";
+
         return this;
       }
 
@@ -6385,6 +6448,7 @@ java.lang.String defaultValue);
       public de.tum.grpc_api.KVServerProto.GetRequest buildPartial() {
         de.tum.grpc_api.KVServerProto.GetRequest result = new de.tum.grpc_api.KVServerProto.GetRequest(this);
         result.key_ = key_;
+        result.transactionId_ = transactionId_;
         onBuilt();
         return result;
       }
@@ -6437,6 +6501,10 @@ java.lang.String defaultValue);
           key_ = other.key_;
           onChanged();
         }
+        if (!other.getTransactionId().isEmpty()) {
+          transactionId_ = other.transactionId_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -6468,6 +6536,11 @@ java.lang.String defaultValue);
 
                 break;
               } // case 10
+              case 18: {
+                transactionId_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6556,6 +6629,82 @@ java.lang.String defaultValue);
   checkByteStringIsUtf8(value);
         
         key_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object transactionId_ = "";
+      /**
+       * <code>string transactionId = 2;</code>
+       * @return The transactionId.
+       */
+      public java.lang.String getTransactionId() {
+        java.lang.Object ref = transactionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          transactionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @return The bytes for transactionId.
+       */
+      public com.google.protobuf.ByteString
+          getTransactionIdBytes() {
+        java.lang.Object ref = transactionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          transactionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @param value The transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        transactionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTransactionId() {
+        
+        transactionId_ = getDefaultInstance().getTransactionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @param value The bytes for transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        transactionId_ = value;
         onChanged();
         return this;
       }
@@ -7235,6 +7384,18 @@ java.lang.String defaultValue);
      */
     com.google.protobuf.ByteString
         getValueBytes();
+
+    /**
+     * <code>string transactionId = 3;</code>
+     * @return The transactionId.
+     */
+    java.lang.String getTransactionId();
+    /**
+     * <code>string transactionId = 3;</code>
+     * @return The bytes for transactionId.
+     */
+    com.google.protobuf.ByteString
+        getTransactionIdBytes();
   }
   /**
    * Protobuf type {@code PutRequest}
@@ -7251,6 +7412,7 @@ java.lang.String defaultValue);
     private PutRequest() {
       key_ = "";
       value_ = "";
+      transactionId_ = "";
     }
 
     @java.lang.Override
@@ -7354,6 +7516,44 @@ java.lang.String defaultValue);
       }
     }
 
+    public static final int TRANSACTIONID_FIELD_NUMBER = 3;
+    private volatile java.lang.Object transactionId_;
+    /**
+     * <code>string transactionId = 3;</code>
+     * @return The transactionId.
+     */
+    @java.lang.Override
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        transactionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string transactionId = 3;</code>
+     * @return The bytes for transactionId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTransactionIdBytes() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        transactionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -7374,6 +7574,9 @@ java.lang.String defaultValue);
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, transactionId_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -7388,6 +7591,9 @@ java.lang.String defaultValue);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(value_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, transactionId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -7408,6 +7614,8 @@ java.lang.String defaultValue);
           .equals(other.getKey())) return false;
       if (!getValue()
           .equals(other.getValue())) return false;
+      if (!getTransactionId()
+          .equals(other.getTransactionId())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -7423,6 +7631,8 @@ java.lang.String defaultValue);
       hash = (53 * hash) + getKey().hashCode();
       hash = (37 * hash) + VALUE_FIELD_NUMBER;
       hash = (53 * hash) + getValue().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7555,6 +7765,8 @@ java.lang.String defaultValue);
 
         value_ = "";
 
+        transactionId_ = "";
+
         return this;
       }
 
@@ -7583,6 +7795,7 @@ java.lang.String defaultValue);
         de.tum.grpc_api.KVServerProto.PutRequest result = new de.tum.grpc_api.KVServerProto.PutRequest(this);
         result.key_ = key_;
         result.value_ = value_;
+        result.transactionId_ = transactionId_;
         onBuilt();
         return result;
       }
@@ -7639,6 +7852,10 @@ java.lang.String defaultValue);
           value_ = other.value_;
           onChanged();
         }
+        if (!other.getTransactionId().isEmpty()) {
+          transactionId_ = other.transactionId_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -7675,6 +7892,11 @@ java.lang.String defaultValue);
 
                 break;
               } // case 18
+              case 26: {
+                transactionId_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -7839,6 +8061,82 @@ java.lang.String defaultValue);
   checkByteStringIsUtf8(value);
         
         value_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object transactionId_ = "";
+      /**
+       * <code>string transactionId = 3;</code>
+       * @return The transactionId.
+       */
+      public java.lang.String getTransactionId() {
+        java.lang.Object ref = transactionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          transactionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 3;</code>
+       * @return The bytes for transactionId.
+       */
+      public com.google.protobuf.ByteString
+          getTransactionIdBytes() {
+        java.lang.Object ref = transactionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          transactionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 3;</code>
+       * @param value The transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        transactionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTransactionId() {
+        
+        transactionId_ = getDefaultInstance().getTransactionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 3;</code>
+       * @param value The bytes for transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        transactionId_ = value;
         onChanged();
         return this;
       }
@@ -8619,6 +8917,18 @@ java.lang.String defaultValue);
      */
     com.google.protobuf.ByteString
         getKeyBytes();
+
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The transactionId.
+     */
+    java.lang.String getTransactionId();
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The bytes for transactionId.
+     */
+    com.google.protobuf.ByteString
+        getTransactionIdBytes();
   }
   /**
    * Protobuf type {@code DeleteRequest}
@@ -8634,6 +8944,7 @@ java.lang.String defaultValue);
     }
     private DeleteRequest() {
       key_ = "";
+      transactionId_ = "";
     }
 
     @java.lang.Override
@@ -8699,6 +9010,44 @@ java.lang.String defaultValue);
       }
     }
 
+    public static final int TRANSACTIONID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object transactionId_;
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The transactionId.
+     */
+    @java.lang.Override
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        transactionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string transactionId = 2;</code>
+     * @return The bytes for transactionId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTransactionIdBytes() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        transactionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -8716,6 +9065,9 @@ java.lang.String defaultValue);
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, transactionId_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -8727,6 +9079,9 @@ java.lang.String defaultValue);
       size = 0;
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, transactionId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -8745,6 +9100,8 @@ java.lang.String defaultValue);
 
       if (!getKey()
           .equals(other.getKey())) return false;
+      if (!getTransactionId()
+          .equals(other.getTransactionId())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -8758,6 +9115,8 @@ java.lang.String defaultValue);
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
       hash = (53 * hash) + getKey().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8888,6 +9247,8 @@ java.lang.String defaultValue);
         super.clear();
         key_ = "";
 
+        transactionId_ = "";
+
         return this;
       }
 
@@ -8915,6 +9276,7 @@ java.lang.String defaultValue);
       public de.tum.grpc_api.KVServerProto.DeleteRequest buildPartial() {
         de.tum.grpc_api.KVServerProto.DeleteRequest result = new de.tum.grpc_api.KVServerProto.DeleteRequest(this);
         result.key_ = key_;
+        result.transactionId_ = transactionId_;
         onBuilt();
         return result;
       }
@@ -8967,6 +9329,10 @@ java.lang.String defaultValue);
           key_ = other.key_;
           onChanged();
         }
+        if (!other.getTransactionId().isEmpty()) {
+          transactionId_ = other.transactionId_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -8998,6 +9364,11 @@ java.lang.String defaultValue);
 
                 break;
               } // case 10
+              case 18: {
+                transactionId_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -9086,6 +9457,82 @@ java.lang.String defaultValue);
   checkByteStringIsUtf8(value);
         
         key_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object transactionId_ = "";
+      /**
+       * <code>string transactionId = 2;</code>
+       * @return The transactionId.
+       */
+      public java.lang.String getTransactionId() {
+        java.lang.Object ref = transactionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          transactionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @return The bytes for transactionId.
+       */
+      public com.google.protobuf.ByteString
+          getTransactionIdBytes() {
+        java.lang.Object ref = transactionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          transactionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @param value The transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        transactionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTransactionId() {
+        
+        transactionId_ = getDefaultInstance().getTransactionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 2;</code>
+       * @param value The bytes for transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        transactionId_ = value;
         onChanged();
         return this;
       }
@@ -15490,57 +15937,59 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       "quest\022\030\n\005where\030\001 \001(\0162\t.DataType\022\025\n\005range" +
       "\030\002 \001(\0132\006.Range\"b\n\014CopyResponse\022%\n\004data\030\001" +
       " \003(\0132\027.CopyResponse.DataEntry\032+\n\tDataEnt" +
-      "ry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\031\n\nGe" +
-      "tRequest\022\013\n\003key\030\001 \001(\t\"\034\n\013GetResponse\022\r\n\005" +
-      "value\030\001 \001(\t\"(\n\nPutRequest\022\013\n\003key\030\001 \001(\t\022\r" +
-      "\n\005value\030\002 \001(\t\".\n\020PutBackupRequest\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\034\n\rDeleteRequest\022\013" +
-      "\n\003key\030\001 \001(\t\"\034\n\rHasKeyRequest\022\013\n\003key\030\001 \001(" +
-      "\t\" \n\016HasKeyResponse\022\016\n\006hasKey\030\001 \001(\010\"J\n\032E" +
-      "xecuteTransactionsRequest\022\025\n\rlocalComman" +
-      "ds\030\001 \003(\t\022\025\n\rtransactionId\030\002 \001(\t\".\n\033Execu" +
-      "teTransactionsResponse\022\017\n\007results\030\001 \003(\t\"" +
-      "(\n\017RollbackRequest\022\025\n\rtransactionId\030\001 \001(" +
-      "\t\")\n\020unlockAllRequest\022\025\n\rtransactionId\030\001" +
-      " \001(\t\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(\0132\014.N" +
-      "odeMessage\"z\n\021UpdateRingRequest\022*\n\004ring\030" +
-      "\001 \003(\0132\034.UpdateRingRequest.RingEntry\0329\n\tR" +
-      "ingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.N" +
-      "odeMessage:\0028\001\"N\n\030DeleteExpiredDataReque" +
-      "st\022\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005range" +
-      "\030\002 \001(\0132\006.Range\">\n\017RegisterRequest\022\032\n\004nod" +
-      "e\030\001 \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* " +
-      "\n\010DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\303\010\n\tKVS" +
-      "ervice\0229\n\theartBeat\022\026.google.protobuf.Em" +
-      "pty\032\022.HeartBeatResponse\"\000\0221\n\010getRange\022\020." +
-      "GetRangeRequest\032\021.GetRangeResponse\"\000\022:\n\006" +
-      "equals\022\026.google.protobuf.Empty\032\026.google." +
-      "protobuf.Empty\"\000\0227\n\010toString\022\026.google.pr" +
-      "otobuf.Empty\032\021.ToStringResponse\"\000\022@\n\risR" +
-      "esponsible\022\025.IsResponsibleRequest\032\026.IsRe" +
-      "sponsibleResponse\"\000\022%\n\004copy\022\014.CopyReques" +
-      "t\032\r.CopyResponse\"\000\022\"\n\003get\022\013.GetRequest\032\014" +
-      ".GetResponse\"\000\022,\n\003put\022\013.PutRequest\032\026.goo" +
-      "gle.protobuf.Empty\"\000\0228\n\tputBackup\022\021.PutB" +
-      "ackupRequest\032\026.google.protobuf.Empty\"\000\0222" +
-      "\n\006delete\022\016.DeleteRequest\032\026.google.protob" +
-      "uf.Empty\"\000\022+\n\006hasKey\022\016.HasKeyRequest\032\017.H" +
-      "asKeyResponse\"\000\022R\n\023executeTransactions\022\033" +
-      ".ExecuteTransactionsRequest\032\034.ExecuteTra" +
-      "nsactionsResponse\"\000\0226\n\010rollBack\022\020.Rollba" +
-      "ckRequest\032\026.google.protobuf.Empty\"\000\0228\n\tu" +
-      "nlockAll\022\021.unlockAllRequest\032\026.google.pro" +
-      "tobuf.Empty\"\000\0228\n\004init\022\026.google.protobuf." +
-      "Empty\032\026.google.protobuf.Empty\"\000\022A\n\rstart" +
-      "KVServer\022\026.google.protobuf.Empty\032\026.googl" +
-      "e.protobuf.Empty\"\000\0224\n\007recover\022\017.RecoverR" +
-      "equest\032\026.google.protobuf.Empty\"\000\022:\n\nupda" +
-      "teRing\022\022.UpdateRingRequest\032\026.google.prot" +
-      "obuf.Empty\"\000\022H\n\021deleteExpiredData\022\031.Dele" +
-      "teExpiredDataRequest\032\026.google.protobuf.E" +
-      "mpty\"\0002C\n\tECService\0226\n\010register\022\020.Regist" +
-      "erRequest\032\026.google.protobuf.Empty\"\000B\"\n\017d" +
-      "e.tum.grpc_apiB\rKVServerProtoP\000b\006proto3"
+      "ry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"0\n\nGe" +
+      "tRequest\022\013\n\003key\030\001 \001(\t\022\025\n\rtransactionId\030\002" +
+      " \001(\t\"\034\n\013GetResponse\022\r\n\005value\030\001 \001(\t\"?\n\nPu" +
+      "tRequest\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\022\025\n\r" +
+      "transactionId\030\003 \001(\t\".\n\020PutBackupRequest\022" +
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"3\n\rDeleteReq" +
+      "uest\022\013\n\003key\030\001 \001(\t\022\025\n\rtransactionId\030\002 \001(\t" +
+      "\"\034\n\rHasKeyRequest\022\013\n\003key\030\001 \001(\t\" \n\016HasKey" +
+      "Response\022\016\n\006hasKey\030\001 \001(\010\"J\n\032ExecuteTrans" +
+      "actionsRequest\022\025\n\rlocalCommands\030\001 \003(\t\022\025\n" +
+      "\rtransactionId\030\002 \001(\t\".\n\033ExecuteTransacti" +
+      "onsResponse\022\017\n\007results\030\001 \003(\t\"(\n\017Rollback" +
+      "Request\022\025\n\rtransactionId\030\001 \001(\t\")\n\020unlock" +
+      "AllRequest\022\025\n\rtransactionId\030\001 \001(\t\",\n\016Rec" +
+      "overRequest\022\032\n\004node\030\001 \001(\0132\014.NodeMessage\"" +
+      "z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003(\0132\034.Upd" +
+      "ateRingRequest.RingEntry\0329\n\tRingEntry\022\013\n" +
+      "\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.NodeMessage:" +
+      "\0028\001\"N\n\030DeleteExpiredDataRequest\022\033\n\010dataT" +
+      "ype\030\001 \001(\0162\t.DataType\022\025\n\005range\030\002 \001(\0132\006.Ra" +
+      "nge\">\n\017RegisterRequest\022\032\n\004node\030\001 \001(\0132\014.N" +
+      "odeMessage\022\017\n\007rpcPort\030\002 \001(\005* \n\010DataType\022" +
+      "\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\303\010\n\tKVService\0229\n\th" +
+      "eartBeat\022\026.google.protobuf.Empty\032\022.Heart" +
+      "BeatResponse\"\000\0221\n\010getRange\022\020.GetRangeReq" +
+      "uest\032\021.GetRangeResponse\"\000\022:\n\006equals\022\026.go" +
+      "ogle.protobuf.Empty\032\026.google.protobuf.Em" +
+      "pty\"\000\0227\n\010toString\022\026.google.protobuf.Empt" +
+      "y\032\021.ToStringResponse\"\000\022@\n\risResponsible\022" +
+      "\025.IsResponsibleRequest\032\026.IsResponsibleRe" +
+      "sponse\"\000\022%\n\004copy\022\014.CopyRequest\032\r.CopyRes" +
+      "ponse\"\000\022\"\n\003get\022\013.GetRequest\032\014.GetRespons" +
+      "e\"\000\022,\n\003put\022\013.PutRequest\032\026.google.protobu" +
+      "f.Empty\"\000\0228\n\tputBackup\022\021.PutBackupReques" +
+      "t\032\026.google.protobuf.Empty\"\000\0222\n\006delete\022\016." +
+      "DeleteRequest\032\026.google.protobuf.Empty\"\000\022" +
+      "+\n\006hasKey\022\016.HasKeyRequest\032\017.HasKeyRespon" +
+      "se\"\000\022R\n\023executeTransactions\022\033.ExecuteTra" +
+      "nsactionsRequest\032\034.ExecuteTransactionsRe" +
+      "sponse\"\000\0226\n\010rollBack\022\020.RollbackRequest\032\026" +
+      ".google.protobuf.Empty\"\000\0228\n\tunlockAll\022\021." +
+      "unlockAllRequest\032\026.google.protobuf.Empty" +
+      "\"\000\0228\n\004init\022\026.google.protobuf.Empty\032\026.goo" +
+      "gle.protobuf.Empty\"\000\022A\n\rstartKVServer\022\026." +
+      "google.protobuf.Empty\032\026.google.protobuf." +
+      "Empty\"\000\0224\n\007recover\022\017.RecoverRequest\032\026.go" +
+      "ogle.protobuf.Empty\"\000\022:\n\nupdateRing\022\022.Up" +
+      "dateRingRequest\032\026.google.protobuf.Empty\"" +
+      "\000\022H\n\021deleteExpiredData\022\031.DeleteExpiredDa" +
+      "taRequest\032\026.google.protobuf.Empty\"\0002C\n\tE" +
+      "CService\0226\n\010register\022\020.RegisterRequest\032\026" +
+      ".google.protobuf.Empty\"\000B\"\n\017de.tum.grpc_" +
+      "apiB\rKVServerProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -15619,7 +16068,7 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     internal_static_GetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetRequest_descriptor,
-        new java.lang.String[] { "Key", });
+        new java.lang.String[] { "Key", "TransactionId", });
     internal_static_GetResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_GetResponse_fieldAccessorTable = new
@@ -15631,7 +16080,7 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     internal_static_PutRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PutRequest_descriptor,
-        new java.lang.String[] { "Key", "Value", });
+        new java.lang.String[] { "Key", "Value", "TransactionId", });
     internal_static_PutBackupRequest_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_PutBackupRequest_fieldAccessorTable = new
@@ -15643,7 +16092,7 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     internal_static_DeleteRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DeleteRequest_descriptor,
-        new java.lang.String[] { "Key", });
+        new java.lang.String[] { "Key", "TransactionId", });
     internal_static_HasKeyRequest_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_HasKeyRequest_fieldAccessorTable = new
