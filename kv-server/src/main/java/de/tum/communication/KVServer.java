@@ -365,6 +365,7 @@ public class KVServer {
             INode backupNode = metaData.getBackupNodeByKey(key);
             responsibleNode.put(key, backup.get(key), "");
             backupNode.putBackup(key, backup.get(key));
+            unlockAll(transactionId);
         }
     }
 
@@ -425,26 +426,46 @@ public class KVServer {
         boolean failed = false;
         List<String> responses = new ArrayList<>();
         for (INode node : map.keySet()) {
-            List<String> response = node.executeTransactions(map.get(node), transactionId); // rpcS
-            // if any contains "Rolling Back", rollback
-            for (String r : response) {
-                if (r.contains("Rolling Back")) {
-                    failed = true;
-                    break;
+            try {
+                List<String> response = node.executeTransactions(map.get(node), transactionId); // rpcS
+                // if any contains "Rolling Back", rollback
+                for (String r : response) {
+                    if (r.contains("Rolling Back")) {
+                        failed = true;
+                        break;
+                    }
                 }
-            }
-            responses.addAll(response);
-            Thread.sleep(2000);
+                responses.addAll(response);
+                Thread.sleep(2000);
 
-            if (failed) {
-                for (INode n : map.keySet()) {
-                    n.rollBack(transactionId); // rpc
+                if (failed) {
+                    for (INode n : map.keySet()) {
+                        try {
+                            n.rollBack(transactionId); // rpc
+                        } catch (Exception e) {
+                            System.out.println(n.getHost() + ":" + n.getPort() + " closed");
+                        }
+                    }
+                } else {
+                    for (INode n : map.keySet()) {
+                        System.out.println("test unlockAll");
+                        try {
+                            n.unlockAll(transactionId); // rpc
+                        } catch (Exception e) {
+                            System.out.println(n.getHost() + ":" + n.getPort() + " closed");
+                        }
+                    }
                 }
             }
-            else {
+            catch (Exception e) {
+                e.printStackTrace();
+                failed = true;
                 for (INode n : map.keySet()) {
-                    System.out.println("test unlockAll");
-                    n.unlockAll(transactionId); // rpc
+                    try {
+                        n.rollBack(transactionId); // rpc
+                    } catch (Exception ex) {
+                        System.out.println(n.getHost() + ":" + n.getPort() + " closed");
+                    }
                 }
             }
         }
