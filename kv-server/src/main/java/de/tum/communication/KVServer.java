@@ -432,8 +432,8 @@ public class KVServer {
                     failed = true;
                     break;
                 }
-                responses.addAll(response); // rpc
             }
+            responses.addAll(response);
             Thread.sleep(10000);
 
             if (failed) {
