@@ -129,9 +129,11 @@ public class NodeProxy implements INode {
         KVServerProto.RollbackRequest request = KVServerProto.RollbackRequest.newBuilder().setTransactionId(transactionId).build();
         this.stub.rollBack(request);
     }
-
-    public void unlock() {
-        this.stub.unlock(emptyRequest);
+    public void lock(String key) {}
+    public void unlock(String key) {}
+    public void unlockAll(String transactionId) {
+        KVServerProto.unlockAllRequest request = KVServerProto.unlockAllRequest.newBuilder().build();
+        this.stub.unlockAll(request);
     }
 
     public void closeRpcChannel() {

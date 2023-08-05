@@ -166,6 +166,7 @@ public class KVServer {
                 return StatusCode.PUT_CONTENT;
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("put error");
         }
     }
@@ -432,6 +433,7 @@ public class KVServer {
                 }
                 responses.addAll(response); // rpc
             }
+            Thread.sleep(10000);
 
             if (failed) {
                 for (INode n : map.keySet()) {
@@ -464,7 +466,6 @@ public class KVServer {
         while (i++ < localCommands.size()) {
             LOGGER.info("Processing request: " + localCommands.get(i - 1));
             String[] tokens = localCommands.get(i - 1).trim().split("\\s+");
-            Thread.sleep(2000);
             try {
                 String key = tokens[1];
 
@@ -514,10 +515,12 @@ public class KVServer {
 
     // rpc, coordinator
     public void unlockAll(String transactionId) throws Exception {
-        HashMap<String,String> history = snapshots.get(transactionId);
+        HashMap<String, String> history = snapshots.get(transactionId);
+        if (history == null) {
+            return;
+        }
         for(String key : history.keySet()){
             this.node.unlock(key);
         }
     }
-
 }

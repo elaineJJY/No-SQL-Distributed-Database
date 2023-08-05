@@ -12097,6 +12097,555 @@ java.lang.String defaultValue);
 
   }
 
+  public interface unlockAllRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:unlockAllRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string transactionId = 1;</code>
+     * @return The transactionId.
+     */
+    java.lang.String getTransactionId();
+    /**
+     * <code>string transactionId = 1;</code>
+     * @return The bytes for transactionId.
+     */
+    com.google.protobuf.ByteString
+        getTransactionIdBytes();
+  }
+  /**
+   * Protobuf type {@code unlockAllRequest}
+   */
+  public static final class unlockAllRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:unlockAllRequest)
+      unlockAllRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use unlockAllRequest.newBuilder() to construct.
+    private unlockAllRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private unlockAllRequest() {
+      transactionId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new unlockAllRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return de.tum.grpc_api.KVServerProto.internal_static_unlockAllRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return de.tum.grpc_api.KVServerProto.internal_static_unlockAllRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              de.tum.grpc_api.KVServerProto.unlockAllRequest.class, de.tum.grpc_api.KVServerProto.unlockAllRequest.Builder.class);
+    }
+
+    public static final int TRANSACTIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object transactionId_;
+    /**
+     * <code>string transactionId = 1;</code>
+     * @return The transactionId.
+     */
+    @java.lang.Override
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        transactionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string transactionId = 1;</code>
+     * @return The bytes for transactionId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTransactionIdBytes() {
+      java.lang.Object ref = transactionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        transactionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, transactionId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, transactionId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof de.tum.grpc_api.KVServerProto.unlockAllRequest)) {
+        return super.equals(obj);
+      }
+      de.tum.grpc_api.KVServerProto.unlockAllRequest other = (de.tum.grpc_api.KVServerProto.unlockAllRequest) obj;
+
+      if (!getTransactionId()
+          .equals(other.getTransactionId())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(de.tum.grpc_api.KVServerProto.unlockAllRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code unlockAllRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:unlockAllRequest)
+        de.tum.grpc_api.KVServerProto.unlockAllRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return de.tum.grpc_api.KVServerProto.internal_static_unlockAllRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return de.tum.grpc_api.KVServerProto.internal_static_unlockAllRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                de.tum.grpc_api.KVServerProto.unlockAllRequest.class, de.tum.grpc_api.KVServerProto.unlockAllRequest.Builder.class);
+      }
+
+      // Construct using de.tum.grpc_api.KVServerProto.unlockAllRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        transactionId_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return de.tum.grpc_api.KVServerProto.internal_static_unlockAllRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.unlockAllRequest getDefaultInstanceForType() {
+        return de.tum.grpc_api.KVServerProto.unlockAllRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.unlockAllRequest build() {
+        de.tum.grpc_api.KVServerProto.unlockAllRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public de.tum.grpc_api.KVServerProto.unlockAllRequest buildPartial() {
+        de.tum.grpc_api.KVServerProto.unlockAllRequest result = new de.tum.grpc_api.KVServerProto.unlockAllRequest(this);
+        result.transactionId_ = transactionId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof de.tum.grpc_api.KVServerProto.unlockAllRequest) {
+          return mergeFrom((de.tum.grpc_api.KVServerProto.unlockAllRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(de.tum.grpc_api.KVServerProto.unlockAllRequest other) {
+        if (other == de.tum.grpc_api.KVServerProto.unlockAllRequest.getDefaultInstance()) return this;
+        if (!other.getTransactionId().isEmpty()) {
+          transactionId_ = other.transactionId_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                transactionId_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object transactionId_ = "";
+      /**
+       * <code>string transactionId = 1;</code>
+       * @return The transactionId.
+       */
+      public java.lang.String getTransactionId() {
+        java.lang.Object ref = transactionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          transactionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 1;</code>
+       * @return The bytes for transactionId.
+       */
+      public com.google.protobuf.ByteString
+          getTransactionIdBytes() {
+        java.lang.Object ref = transactionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          transactionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string transactionId = 1;</code>
+       * @param value The transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        transactionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTransactionId() {
+        
+        transactionId_ = getDefaultInstance().getTransactionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string transactionId = 1;</code>
+       * @param value The bytes for transactionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTransactionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        transactionId_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:unlockAllRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:unlockAllRequest)
+    private static final de.tum.grpc_api.KVServerProto.unlockAllRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new de.tum.grpc_api.KVServerProto.unlockAllRequest();
+    }
+
+    public static de.tum.grpc_api.KVServerProto.unlockAllRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<unlockAllRequest>
+        PARSER = new com.google.protobuf.AbstractParser<unlockAllRequest>() {
+      @java.lang.Override
+      public unlockAllRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<unlockAllRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<unlockAllRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public de.tum.grpc_api.KVServerProto.unlockAllRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RecoverRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:RecoverRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -14889,6 +15438,11 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_RollbackRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_unlockAllRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_unlockAllRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_RecoverRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -14947,45 +15501,46 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       "ds\030\001 \003(\t\022\025\n\rtransactionId\030\002 \001(\t\".\n\033Execu" +
       "teTransactionsResponse\022\017\n\007results\030\001 \003(\t\"" +
       "(\n\017RollbackRequest\022\025\n\rtransactionId\030\001 \001(" +
-      "\t\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(\0132\014.Node" +
-      "Message\"z\n\021UpdateRingRequest\022*\n\004ring\030\001 \003" +
-      "(\0132\034.UpdateRingRequest.RingEntry\0329\n\tRing" +
-      "Entry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.Node" +
-      "Message:\0028\001\"N\n\030DeleteExpiredDataRequest\022" +
-      "\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005range\030\002 " +
-      "\001(\0132\006.Range\">\n\017RegisterRequest\022\032\n\004node\030\001" +
-      " \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* \n\010D" +
-      "ataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\305\010\n\tKVServ" +
-      "ice\0229\n\theartBeat\022\026.google.protobuf.Empty" +
-      "\032\022.HeartBeatResponse\"\000\0221\n\010getRange\022\020.Get" +
-      "RangeRequest\032\021.GetRangeResponse\"\000\022:\n\006equ" +
-      "als\022\026.google.protobuf.Empty\032\026.google.pro" +
-      "tobuf.Empty\"\000\0227\n\010toString\022\026.google.proto" +
-      "buf.Empty\032\021.ToStringResponse\"\000\022@\n\risResp" +
-      "onsible\022\025.IsResponsibleRequest\032\026.IsRespo" +
-      "nsibleResponse\"\000\022%\n\004copy\022\014.CopyRequest\032\r" +
-      ".CopyResponse\"\000\022\"\n\003get\022\013.GetRequest\032\014.Ge" +
-      "tResponse\"\000\022,\n\003put\022\013.PutRequest\032\026.google" +
-      ".protobuf.Empty\"\000\0228\n\tputBackup\022\021.PutBack" +
-      "upRequest\032\026.google.protobuf.Empty\"\000\0222\n\006d" +
-      "elete\022\016.DeleteRequest\032\026.google.protobuf." +
-      "Empty\"\000\022+\n\006hasKey\022\016.HasKeyRequest\032\017.HasK" +
-      "eyResponse\"\000\022R\n\023executeTransactions\022\033.Ex" +
-      "ecuteTransactionsRequest\032\034.ExecuteTransa" +
-      "ctionsResponse\"\000\0226\n\010rollBack\022\020.RollbackR" +
-      "equest\032\026.google.protobuf.Empty\"\000\022:\n\006unlo" +
-      "ck\022\026.google.protobuf.Empty\032\026.google.prot" +
-      "obuf.Empty\"\000\0228\n\004init\022\026.google.protobuf.E" +
-      "mpty\032\026.google.protobuf.Empty\"\000\022A\n\rstartK" +
-      "VServer\022\026.google.protobuf.Empty\032\026.google" +
-      ".protobuf.Empty\"\000\0224\n\007recover\022\017.RecoverRe" +
-      "quest\032\026.google.protobuf.Empty\"\000\022:\n\nupdat" +
-      "eRing\022\022.UpdateRingRequest\032\026.google.proto" +
-      "buf.Empty\"\000\022H\n\021deleteExpiredData\022\031.Delet" +
-      "eExpiredDataRequest\032\026.google.protobuf.Em" +
-      "pty\"\0002C\n\tECService\0226\n\010register\022\020.Registe" +
-      "rRequest\032\026.google.protobuf.Empty\"\000B\"\n\017de" +
-      ".tum.grpc_apiB\rKVServerProtoP\000b\006proto3"
+      "\t\")\n\020unlockAllRequest\022\025\n\rtransactionId\030\001" +
+      " \001(\t\",\n\016RecoverRequest\022\032\n\004node\030\001 \001(\0132\014.N" +
+      "odeMessage\"z\n\021UpdateRingRequest\022*\n\004ring\030" +
+      "\001 \003(\0132\034.UpdateRingRequest.RingEntry\0329\n\tR" +
+      "ingEntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.N" +
+      "odeMessage:\0028\001\"N\n\030DeleteExpiredDataReque" +
+      "st\022\033\n\010dataType\030\001 \001(\0162\t.DataType\022\025\n\005range" +
+      "\030\002 \001(\0132\006.Range\">\n\017RegisterRequest\022\032\n\004nod" +
+      "e\030\001 \001(\0132\014.NodeMessage\022\017\n\007rpcPort\030\002 \001(\005* " +
+      "\n\010DataType\022\010\n\004DATA\020\000\022\n\n\006BACKUP\020\0012\303\010\n\tKVS" +
+      "ervice\0229\n\theartBeat\022\026.google.protobuf.Em" +
+      "pty\032\022.HeartBeatResponse\"\000\0221\n\010getRange\022\020." +
+      "GetRangeRequest\032\021.GetRangeResponse\"\000\022:\n\006" +
+      "equals\022\026.google.protobuf.Empty\032\026.google." +
+      "protobuf.Empty\"\000\0227\n\010toString\022\026.google.pr" +
+      "otobuf.Empty\032\021.ToStringResponse\"\000\022@\n\risR" +
+      "esponsible\022\025.IsResponsibleRequest\032\026.IsRe" +
+      "sponsibleResponse\"\000\022%\n\004copy\022\014.CopyReques" +
+      "t\032\r.CopyResponse\"\000\022\"\n\003get\022\013.GetRequest\032\014" +
+      ".GetResponse\"\000\022,\n\003put\022\013.PutRequest\032\026.goo" +
+      "gle.protobuf.Empty\"\000\0228\n\tputBackup\022\021.PutB" +
+      "ackupRequest\032\026.google.protobuf.Empty\"\000\0222" +
+      "\n\006delete\022\016.DeleteRequest\032\026.google.protob" +
+      "uf.Empty\"\000\022+\n\006hasKey\022\016.HasKeyRequest\032\017.H" +
+      "asKeyResponse\"\000\022R\n\023executeTransactions\022\033" +
+      ".ExecuteTransactionsRequest\032\034.ExecuteTra" +
+      "nsactionsResponse\"\000\0226\n\010rollBack\022\020.Rollba" +
+      "ckRequest\032\026.google.protobuf.Empty\"\000\0228\n\tu" +
+      "nlockAll\022\021.unlockAllRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\0228\n\004init\022\026.google.protobuf." +
+      "Empty\032\026.google.protobuf.Empty\"\000\022A\n\rstart" +
+      "KVServer\022\026.google.protobuf.Empty\032\026.googl" +
+      "e.protobuf.Empty\"\000\0224\n\007recover\022\017.RecoverR" +
+      "equest\032\026.google.protobuf.Empty\"\000\022:\n\nupda" +
+      "teRing\022\022.UpdateRingRequest\032\026.google.prot" +
+      "obuf.Empty\"\000\022H\n\021deleteExpiredData\022\031.Dele" +
+      "teExpiredDataRequest\032\026.google.protobuf.E" +
+      "mpty\"\0002C\n\tECService\0226\n\010register\022\020.Regist" +
+      "erRequest\032\026.google.protobuf.Empty\"\000B\"\n\017d" +
+      "e.tum.grpc_apiB\rKVServerProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -15119,14 +15674,20 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RollbackRequest_descriptor,
         new java.lang.String[] { "TransactionId", });
-    internal_static_RecoverRequest_descriptor =
+    internal_static_unlockAllRequest_descriptor =
       getDescriptor().getMessageTypes().get(20);
+    internal_static_unlockAllRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_unlockAllRequest_descriptor,
+        new java.lang.String[] { "TransactionId", });
+    internal_static_RecoverRequest_descriptor =
+      getDescriptor().getMessageTypes().get(21);
     internal_static_RecoverRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RecoverRequest_descriptor,
         new java.lang.String[] { "Node", });
     internal_static_UpdateRingRequest_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_UpdateRingRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateRingRequest_descriptor,
@@ -15138,13 +15699,13 @@ de.tum.grpc_api.KVServerProto.NodeMessage defaultValue);
         internal_static_UpdateRingRequest_RingEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_DeleteExpiredDataRequest_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_DeleteExpiredDataRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DeleteExpiredDataRequest_descriptor,
         new java.lang.String[] { "DataType", "Range", });
     internal_static_RegisterRequest_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,

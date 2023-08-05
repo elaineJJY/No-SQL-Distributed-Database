@@ -34,14 +34,20 @@ public class BackupDatabase implements IDatabase {
 		System.out.println("finish put in backup: " + hashToKeyMap.get(key));
 	}
 
+	public void put(String key, String value, String transactionId) throws Exception {}
+
 	public String get(String key) throws Exception {
 		return persistentStorage.readFromDisk(key);
 	}
+
+	public String get(String key, String transactionId) throws Exception { return null; }
 
 	public void delete(String key) throws Exception {
 		hashToKeyMap.remove(key);
 		persistentStorage.deleteFromDisk(key);
 	}
+
+	public void delete(String key, String transactionId) throws Exception {}
 
 	public boolean hasKey(String key) throws Exception {
 		if (persistentStorage.readFromDisk(key) == null) {

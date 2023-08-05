@@ -29,8 +29,10 @@ public interface INode {
     public boolean hasKey(String key) throws Exception;
     public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception;
     public void rollBack(String transactionId) throws Exception;
-    public void unlock(String key) throws Exception;
     public void lock(String key) throws Exception;
+    public void unlock(String key) throws Exception;
+    public void unlockAll(String transactionId) throws Exception;
+//    public void lock(String key) throws Exception;
     // Only called by ECS
     //public void init() throws Exception;
     //public void startKVServer() throws Exception;

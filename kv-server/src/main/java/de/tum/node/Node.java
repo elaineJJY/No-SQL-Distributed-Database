@@ -201,6 +201,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
+
 	public String get(String key) throws Exception {
 		return mainDatabase.get(key);
 	}
@@ -342,7 +343,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 
-	// TODO
+	// TODO key本地 transactionId远程
 	public void unlock(String key) throws Exception {
 		mainDatabase.unlock(key);
 	}
@@ -351,11 +352,16 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		mainDatabase.lock(key);
 	}
 
+	public void unlockAll(String transactionId) throws Exception {
+		server.unlockAll(transactionId);
+	}
+
 	@Override
-	public void unlockAll(com.google.protobuf.Empty request,
-					   io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+	public void unlockAll(de.tum.grpc_api.KVServerProto.unlockAllRequest request,
+						  io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+		String transactionId = request.getTransactionId();
 		try {
-			server.unlockAll(transactionId);
+			unlockAll(transactionId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

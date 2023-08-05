@@ -25,7 +25,7 @@ public class MainDatabase implements IDatabase {
 	private Logger LOGGER = ServerLogger.INSTANCE.getLogger();
 	private Cache cache;
 	private SortedMap<String, String> hashToKeyMap;
-	private ConcurrentHashMap<String, Boolean> locks = new ConcurrentHashMap<>(); // key -> locked
+	private ConcurrentHashMap<String, String> locks = new ConcurrentHashMap<>(); // key -> transaction id
 
 	public MainDatabase(int capacity, String cacheDisplacementAlgorithm) {
 		this.hashToKeyMap = new TreeMap<>();
@@ -45,15 +45,15 @@ public class MainDatabase implements IDatabase {
 		}
 	}
 
-	public void lock(String key) throws Exception{
-		if (locks.containsKey(key) && locks.get(key)){
+	public void lock(String key, String transactionId) throws Exception{
+		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
 			throw new Exception(key + " is locked");
 		}
-		locks.put(key, true);
+		locks.put(key, transactionId);
 	}
 
 	public void unlock(String key) throws Exception{
-		locks.put(key, false);
+		locks.put(key, "");
 	}
 
 	public void setDirectory(String directory) {
@@ -61,14 +61,31 @@ public class MainDatabase implements IDatabase {
 	}
 
 	public String get(String key) throws Exception {
-		if(locks.containsKey(key) && locks.get(key)) {
+		if(locks.containsKey(key) && locks.get(key).length() > 0){
+			throw new Exception(key + " is locked");
+		}
+		return cache.get(key);
+	}
+	public String get(String key, String transactionId) throws Exception {
+		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
 			throw new Exception(key + " is locked");
 		}
 		return cache.get(key);
 	}
 
 	public void put(String key, String value) throws Exception {
-		if(locks.containsKey(key) && locks.get(key)) {
+		if(locks.containsKey(key) && locks.get(key).length() > 0) {
+			System.out.println("testdata");
+			throw new Exception(key + " is locked");
+		}
+		String hash = MD5Hash.hash(key);
+		hashToKeyMap.put(hash, key);
+		cache.put(key, value);
+	}
+
+	public void put(String key, String value, String transactionId) throws Exception {
+		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
+			System.out.println("testdata");
 			throw new Exception(key + " is locked");
 		}
 		String hash = MD5Hash.hash(key);
@@ -77,7 +94,15 @@ public class MainDatabase implements IDatabase {
 	}
 
 	public void delete(String key) throws Exception {
-		if(locks.containsKey(key) && locks.get(key)) {
+		if(locks.containsKey(key) && locks.get(key).length() > 0) {
+			throw new Exception(key + " is locked");
+		}
+		hashToKeyMap.remove(key);
+		cache.delete(key);
+	}
+
+	public void delete(String key, String transactionId) throws Exception {
+		if(locks.containsKey(key) && !locks.get(key).equals(transactionId)) {
 			throw new Exception(key + " is locked");
 		}
 		hashToKeyMap.remove(key);
