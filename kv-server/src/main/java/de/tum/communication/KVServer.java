@@ -376,6 +376,7 @@ public class KVServer {
         // read request
         while (true) {
             readBuffer.clear();
+            Thread.sleep(500);
             int len = socketChannel.read(readBuffer);
             if (len > 0) {
                 readBuffer.flip();
