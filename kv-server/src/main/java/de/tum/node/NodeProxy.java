@@ -96,7 +96,10 @@ public class NodeProxy implements INode {
         KVServerProto.GetRequest request = KVServerProto.GetRequest.newBuilder()
             .setKey(key).setTransactionId(transactionId).build();
         KVServerProto.GetResponse response = this.stub.get(request);
-        return response.getValue();
+        if (response.getValue().equals("")) {
+            return null;
+        }
+        else { return response.getValue(); }
     }
 
     public void put(String key, String value, String transactionId) throws Exception {

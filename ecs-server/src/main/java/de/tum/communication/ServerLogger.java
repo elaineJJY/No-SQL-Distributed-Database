@@ -25,7 +25,7 @@ public enum ServerLogger {
         fileHandler.setFormatter(new SimpleFormatter());
         LOGGER.setLevel(logLevel);
         LOGGER.addHandler(fileHandler);
-        LOGGER.info("Already initialized loggers using Level " + level);
+//        LOGGER.info("Already initialized loggers using Level " + level);
     }
 
     public Logger getLogger() {

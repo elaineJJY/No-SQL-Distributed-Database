@@ -210,10 +210,12 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	public void get(de.tum.grpc_api.KVServerProto.GetRequest request,
 					   io.grpc.stub.StreamObserver<de.tum.grpc_api.KVServerProto.GetResponse> responseObserver) {
 		String key = request.getKey();
+		String transactionId = request.getTransactionId();
 		KVServerProto.GetResponse response;
 		try {
+			String response_before = mainDatabase.get(key, transactionId) == null ? "" : mainDatabase.get(key, transactionId);
 			response = KVServerProto.GetResponse.newBuilder()
-					.setValue(mainDatabase.get(key, null))
+					.setValue(response_before)
 					.build();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -244,7 +246,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 	}
 
 	public void putBackup(String key, String value) throws Exception {
-		backupDatabase.put(key, value, null);
+		backupDatabase.put(key, value, "");
 		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
 	}
 

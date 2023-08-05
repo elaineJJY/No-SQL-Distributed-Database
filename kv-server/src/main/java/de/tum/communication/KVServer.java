@@ -242,7 +242,7 @@ public class KVServer {
                     break;
                 case "delete":
                     deleteCommandHandler(resopnsibleNode, tokens, "");
-                    send("delete_success" + tokens[1], socketChannel);
+                    send("delete_success " + tokens[1], socketChannel);
                     break;
                 case "quit":
                     socketChannel.close();
@@ -363,10 +363,22 @@ public class KVServer {
         for (String key : backup.keySet()) {
             INode responsibleNode = metaData.getResponsibleServerByKey(key);
             INode backupNode = metaData.getBackupNodeByKey(key);
-            responsibleNode.put(key, backup.get(key), "");
-            backupNode.putBackup(key, backup.get(key));
-            unlockAll(transactionId);
+            try {
+//                String value = backup.get(key) == null ? "" : backup.get(key);
+                if (backup.get(key) == null) {
+                    responsibleNode.delete(key, transactionId);
+                    backupNode.delete(key, transactionId);
+                    continue;
+                }
+                responsibleNode.put(key, backup.get(key), transactionId);
+                System.out.println("Rollback key" + key + " value: " + backup.get(key));
+                backupNode.putBackup(key, backup.get(key));
+            }
+            catch (Exception e) {
+                System.out.println("responsibleNode closed");
+            }
         }
+        unlockAll(transactionId);
     }
 
     // listen to transaction request from the client and write them to a list
@@ -458,8 +470,9 @@ public class KVServer {
                 }
             }
             catch (Exception e) {
-                e.printStackTrace();
                 failed = true;
+                System.out.println("Rolling Back");
+                responses.add("Rolling Back\n");
                 for (INode n : map.keySet()) {
                     try {
                         n.rollBack(transactionId); // rpc

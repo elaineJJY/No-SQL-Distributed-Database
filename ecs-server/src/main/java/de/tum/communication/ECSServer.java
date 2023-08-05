@@ -47,7 +47,7 @@ public class ECSServer {
         SocketAddress IpPort = new InetSocketAddress(this.address, this.port);
         ecsServer = NettyServerBuilder.forAddress(IpPort).addService(new ECSServiceImpl()).build();
         ecsServer.start();
-        System.out.println("ECS is listening on port " + port);
+//        System.out.println("ECS is listening on port " + port);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -84,12 +84,12 @@ public class ECSServer {
                              io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
             //ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(() -> {
-                System.out.println("test register starts");
+//                System.out.println("test register starts");
                 String host = request.getNode().getHost();
                 int rpcPort = request.getRpcPort();
                 int portForClient = request.getNode().getPortForClient();
-                System.out.println(
-                        "ECS receive register request form KVServer<" + host + ":" + portForClient + ">");
+//                System.out.println(
+//                        "ECS receive register request form KVServer<" + host + ":" + portForClient + ">");
 
                 Empty response = Empty.newBuilder().build();
                 responseObserver.onNext(response);
