@@ -12,6 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="kv-client" target="11" />
       <module name="ms2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
