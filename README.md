@@ -110,13 +110,33 @@ In distributed systems, a bootstrap server refers to a special server used to bo
 
 Cluster communication refers to the process of mutual communication and collaboration between multiple nodes in a distributed system through the network. In cluster communication, nodes can be physical servers, virtual machines, containers, etc., connected through the network to enable data transfer, task allocation, coordination, synchronization, and other operations.
 
-In our implementation, we use custom string messages for cluster communication. Each message is encoded and decoded as a string and transmitted to other nodes through the network. We use a message builder factory to generate message instances, creating corresponding message objects based on the message type and related data. This allows dynamic generation of different types of messages to meet the requirements of cluster communication.
+In the context of cluster communication, we have implemented two distinct schemes: one employs JSON, while the other leverages the gRPC (gRPC Remote Procedure Call) framework.
+
+In our implementation based on JSON, we use custom string messages for cluster communication. Each message is encoded and decoded as a string and transmitted to other nodes through the network. We use a message builder factory to generate message instances, creating corresponding message objects based on the message type and related data. This allows dynamic generation of different types of messages to meet the requirements of cluster communication.
 
 To handle received messages, we use a unified message parser. The message parser is responsible for parsing received string messages and executing corresponding operations based on the message format and rules. This ensures consistency in message handling and improves code readability and maintainability.
 
+In contrast to the JSON-based approach, the implementation using the gRPC framework offers a more structured and efficient way of achieving cluster communication. gRPC is a high-performance open-source framework that facilitates remote procedure calls (RPCs) across different nodes in a distributed system. Unlike the custom JSON messages, gRPC uses protocol buffers (protobufs) to define the service interface and message formats in a language-agnostic manner. With gRPC, communication is driven by service method calls. Each method call corresponds to a specific operation that can be executed on a remote node. The gRPC framework handles the underlying network communication, serialization, and deserialization of messages, making it a more efficient and reliable choice for cluster communication compared to the custom JSON-based approach.
+
 Please refer to the API documentation for specific communication protocols.
 
+### Transaction
 
+We use Two-Phase Commit (2PC) and Two-Phase Locking (2PL) to ensure the atomicity, consistency, isolation, and durability of database operations, thereby ensuring data correctness and reliability.
+
+When implementing transactions using the Two-Phase Commit (2PC) protocol, coordination occurs between a Transaction Coordinator and Participants. The process involves two phases:
+
+- **Prepare Phase**: The Transaction Coordinator sends a prepare request to all Participants, asking if they are ready to commit the transaction. Participants perform their corresponding operations and respond with information about their preparedness.
+
+- **Commit Phase**: If all Participants are prepared, the Transaction Coordinator sends a commit request, instructing all Participants to commit the transaction. Participants receive the commit request, execute the actual commit operation, and send back a message confirming the completion of the commit.
+
+Through these two phases, the Transaction Coordinator ensures that either all Participants have successfully committed the transaction or all have rolled back the transaction, thereby maintaining transaction consistency and isolation.
+
+In the context of the Two-Phase Locking (2PL) protocol, transaction execution involves two phases:
+
+- **Locking Phase**: The transaction initially acquires all required locks. During this phase, the transaction can acquire locks but cannot release them.
+
+- **Unlocking Phase**: Once the transaction has acquired all necessary locks, it begins executing database operations. After completing its operations, the transaction releases the locks it holds.
 
 ### Load Balancing
 
@@ -164,7 +184,7 @@ Improving consistency can be achieved by forcing the database to flush data to t
 
 
 
-## Future Plan
+# Future Plan
 
 The single point of failure in ECS needs to be addressed by consensus algorithms like Raft or Paxos, which distribute the functionality of ECS directly among the servers. Implementing Raft or similar algorithms directly can be complex, so for now, an ECS registry center is abstracted to handle this task.
 
