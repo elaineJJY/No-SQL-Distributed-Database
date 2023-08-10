@@ -15,28 +15,21 @@ import java.util.SortedMap;
  * @Version 1.0
  */
 public interface INode {
-    public int getPort();
-    public String getHost();
-    public long heartbeat();
-    public String toString();
-    public boolean isResponsible(String key);
-    public Range getRange(DataType dataType);
-    public HashMap<String, String> copy(DataType where, Range range) throws Exception;
-    public String get(String key, String transactionId) throws Exception;
-    public void put(String key, String value, String transactionID) throws Exception;
-    public void putBackup(String key, String value) throws Exception;
-    public void delete(String key, String transactionId) throws Exception;
-    public boolean hasKey(String key) throws Exception;
-    public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception;
-    public void rollBack(String transactionId) throws Exception;
-    public void lock(String key, String transactionId) throws Exception;
-    public void unlock(String key, String transactionId) throws Exception;
-    public void unlockAll(String transactionId) throws Exception;
-//    public void lock(String key) throws Exception;
-    // Only called by ECS
-    //public void init() throws Exception;
-    //public void startKVServer() throws Exception;
-    //public void recover(INode removedNode) throws Exception;
-    //public void updateRing(SortedMap<String, INode> ring);
-    //public void deleteExpiredData(DataType dataType, Range range) throws Exception;
+    int getPort();
+    String getHost();
+    long heartbeat();
+    String toString();
+    boolean isResponsible(String key);
+    Range getRange(DataType dataType);
+    HashMap<String, String> copy(DataType where, Range range) throws Exception;
+    String get(String key, String transactionId) throws Exception;
+    void put(String key, String value, String transactionID) throws Exception;
+    void putBackup(String key, String value) throws Exception;
+    void delete(String key, String transactionId) throws Exception;
+    boolean hasKey(String key) throws Exception;
+    List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception;
+    void rollBack(String transactionId) throws Exception;
+    void lock(String key, String transactionId) throws Exception;
+    void unlock(String key, String transactionId) throws Exception;
+    void unlockAll(String transactionId) throws Exception;
 }

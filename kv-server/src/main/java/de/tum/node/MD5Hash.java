@@ -32,8 +32,6 @@ public class MD5Hash {
                 sb.append(String.format("%02x", b));
             }
 
-            //TODO: mod calculation to 2^32
-
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

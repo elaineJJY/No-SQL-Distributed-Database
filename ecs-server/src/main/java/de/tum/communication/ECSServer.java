@@ -82,7 +82,6 @@ public class ECSServer {
         @Override
         public void register(de.tum.grpc_api.ECSProto.RegisterRequest request,
                              io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-            //ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(() -> {
                 System.out.println("test register starts");
                 String host = request.getNode().getHost();
@@ -97,12 +96,9 @@ public class ECSServer {
 
                 System.out.println("Adding new KVServer<" + host + ":" + portForClient + "> to consistent hash ring");
 
-                // new Thread?
                 NodeProxy node = new NodeProxy(host, rpcPort, portForClient);
                 try {
-//                    System.out.println(node.heartbeat());
                     ConsistentHash.INSTANCE.addNode(node);
-//                } catch (io.grpc.StatusRuntimeException e) {
                 } catch (Exception e) {
                     // TODO: shutdown when 2 KVServers are running
                     ConsistentHash.INSTANCE.removeNode(node);

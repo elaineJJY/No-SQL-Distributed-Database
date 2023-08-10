@@ -57,11 +57,6 @@ public class NodeProxy implements INode {
         return new Range(response.getRange().getFrom(), response.getRange().getTo());
     }
 
-//    @Override
-//    public String toString() {
-//        KVServerProto.ToStringResponse response = this.stub.toString(emptyRequest);
-//        return response.getHostPort();
-//    }
     public String toString() {
         return this.host + ":" + this.portForClient;
     }
@@ -83,7 +78,6 @@ public class NodeProxy implements INode {
 
         KVServerProto.CopyRequest request = KVServerProto.CopyRequest.newBuilder()
                 .setWhere(whereProto).setRange(rangeProto).build();
-        //TODO: Check if cast into HashMap<String, String> is safe
         Map<String, String> returnMap = this.stub.copy(request).getDataMap();
         HashMap<String, String> returnHashMap = new HashMap<>();
         for (Map.Entry<String, String> entry : returnMap.entrySet()) {

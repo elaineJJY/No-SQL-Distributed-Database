@@ -24,7 +24,6 @@ public class NodeProxy {
     private int rpcPort;
     private int portForClient;
     static Empty emptyRequest = Empty.newBuilder().build();
-    //public io.grpc.stub.AbstractBlockingStub stub;
     private final ManagedChannel managedChannel;
     private final KVServiceGrpc.KVServiceBlockingStub stub;
 
@@ -58,11 +57,6 @@ public class NodeProxy {
         return new Range(response.getRange().getFrom(), response.getRange().getTo());
     }
 
-//    @Override
-//    public String toString() {
-//		ECSProto.ToStringResponse response = this.stub.toString(emptyRequest);
-//        return response.getHostPort();
-//    }
     @Override
     public String toString() {
         return host + ":" + portForClient;

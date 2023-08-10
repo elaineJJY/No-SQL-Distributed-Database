@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class BackupDatabase implements IDatabase {
+
 	private PersistentStorage persistentStorage;
 	private static final String DEFAULT_DIR = "src/main/java/de/tum/database/data/backupData";
 	private SortedMap<String, String> hashToKeyMap;   // Store <Hash, Key>
@@ -27,13 +28,6 @@ public class BackupDatabase implements IDatabase {
 		persistentStorage.setDirectory(directory);
 	}
 
-//	public void put(String key, String value) throws Exception {
-//		String hash = MD5Hash.hash(key);
-//		hashToKeyMap.put(hash, key);
-//		persistentStorage.storeToDisk(key, value);
-//		System.out.println("finish put in backup: " + hashToKeyMap.get(key));
-//	}
-
 	public void put(String key, String value, String transactionId) throws Exception {
 		String hash = MD5Hash.hash(key);
 		hashToKeyMap.put(hash, key);
@@ -41,18 +35,10 @@ public class BackupDatabase implements IDatabase {
 		System.out.println("finish put in backup: " + hashToKeyMap.get(key));
 	}
 
-//	public String get(String key) throws Exception {
-//		return persistentStorage.readFromDisk(key);
-//	}
-
 	public String get(String key, String transactionId) throws Exception {
 		return persistentStorage.readFromDisk(key);
 	}
 
-//	public void delete(String key) throws Exception {
-//		hashToKeyMap.remove(key);
-//		persistentStorage.deleteFromDisk(key);
-//	}
 
 	public void delete(String key, String transactionId) throws Exception {
 		hashToKeyMap.remove(key);

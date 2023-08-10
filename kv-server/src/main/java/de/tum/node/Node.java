@@ -192,9 +192,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 			response = KVServerProto.CopyResponse.newBuilder()
 					.putAllData(data)
 					.build();
-//			response = KVServerProto.CopyResponse.newBuilder()
-//					.putAllData(database.getDataByRange(new Range(request.getRange().getFrom(), request.getRange().getTo())))
-//					.build();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -202,6 +199,11 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	/**
+	 * Get the value of the given key
+	 * @param key
+	 * @return value of the given key
+	 */
 	public String get(String key, String transactionID) throws Exception {
 		return mainDatabase.get(key, transactionID);
 	}
@@ -222,6 +224,11 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	/**
+	 * Put the given (key, value) pair into the database
+	 * @param key
+	 * @param value
+	 */
 	public void put(String key, String value, String transactionId) throws Exception {
 		mainDatabase.put(key, value, transactionId);
 		System.out.println("Put data on database " + this.port + " <" + key + ":" + value + ">");
@@ -243,6 +250,11 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	/**
+	 * Put the given (key, value) pair into the backup database
+	 * @param key
+	 * @param value
+	 */
 	public void putBackup(String key, String value) throws Exception {
 		backupDatabase.put(key, value, null);
 		System.out.println("Put backup data on database " + this.port + " <" + key + ":" + value + ">");
@@ -263,7 +275,10 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-
+	/**
+	 * Delete the given key
+	 * @param key
+	 */
 	public void delete(String key, String transactionID) throws Exception {
 		mainDatabase.delete(key, transactionID);
 		System.out.println("Delete data on database " + this.port + ": " + key );
@@ -284,6 +299,11 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	/**
+	 * Check if the given key exists in the database
+	 * @param key
+	 * @return true if the given key exists in the database
+	 */
 	public boolean hasKey(String key) throws Exception {
 		return mainDatabase.hasKey(key);
 	}
@@ -304,6 +324,12 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	/**
+	 * Execute the given transactions
+	 * @param localCommands
+	 * @param transactionId
+	 * @return the result of the given transactions
+	 */
 	public List<String> executeTransactions(List<String> localCommands, String transactionId) throws Exception {
 		return server.executeTransactions(localCommands, transactionId);
 	}
@@ -325,6 +351,10 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
+	/**
+	 * Roll back the given transaction
+	 * @param transactionId
+	 */
 	public void rollBack(String transactionId) throws Exception {
 		server.rollBack(transactionId);
 	}
@@ -343,16 +373,28 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-
-	// TODO key local, transactionId remote
+	/**
+	 * Lock the given key
+	 * @param key
+	 * @param transactionId
+	 */
 	public void unlock(String key, String transactionId) throws Exception {
 		mainDatabase.unlock(key, transactionId);
 	}
 
+	/**
+	 * Lock the given key
+	 * @param key
+	 * @param transactionId
+	 */
 	public void lock(String key, String transactionId) throws Exception {
 		mainDatabase.lock(key, transactionId);
 	}
 
+	/**
+	 * Unlock the keys that are locked by the given transaction
+	 * @param transactionId
+	 */
 	public void unlockAll(String transactionId) throws Exception {
 		server.unlockAll(transactionId);
 	}
@@ -384,8 +426,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 
 			HashMap<String, String> backup = previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP));
 			backupDatabase.saveAllData(backup);
-//			mainDatabase.saveAllData(nextNode.copy(DataType.DATA, getRange(DataType.DATA)));
-//			backupDatabase.saveAllData(previousNode.copy(DataType.BACKUP, getRange(DataType.BACKUP)));
 		}
 		// Start KVServer
 		System.out.println("Start KVServer: " + this.host + ":" + this.port);
@@ -422,15 +462,16 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		responseObserver.onCompleted();
 	}
 
-
+	/**
+	 * Recover data from the removed node and transfer the data to the new node
+	 * @param removedNode
+	 * @throws Exception
+	 */
 	public void recover(INode removedNode) throws Exception {
 
-//		String removedHash = ConsistentHash.INSTANCE.getHash(removedNode);
 		String removedHost = removedNode.getHost();
 		int removedPort = removedNode.getPort();
 		String removedHash = MD5Hash.hash(removedPort + ":" + removedHost);
-//		String removedHash = MD5Hash.hash(removedNode.getHost() + ":" + removedNode.getPort());
-		//removedNode.closeRpcChannel();
 
 		// recover data from the removed node
 		// If the removed node is the previous node of this node
@@ -438,15 +479,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
 			INode newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
 			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
-//			try {
-//				removedNode.heartbeat(); // check whether the removed node is alive
-//				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
-//			}
-//			catch (Exception e) {
-//				System.out.println("Node " + removedNode + " is dead");
-//				// recover data from the backup
-//				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
-//			}
 			// if work flow goes here, it means the removed node is dead, and we should also close
 			// form this node to the removed node
 			mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
@@ -458,73 +490,19 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 		if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
 			INode newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
 			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
-//			try {
-//				removedNode.heartbeat(); // check whether the removed node is alive
-//				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
-//			}
-//			catch (Exception e) {
-//				System.out.println("Node " + removedNode + " is dead");
-//				// recover data from the backup
-//				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
-//			}
 			backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
 		}
 	}
 
-//	public void recover(String removedHost, int removedPort) throws Exception {
-//
-//		String removedHash = MD5Hash.hash(removedHost + ":" + removedPort);
-//		//removedNode.closeRpcChannel();
-//
-//		// recover data from the removed node
-//		// If the removed node is the previous node of this node
-//		INode previousNode = ConsistentHash.INSTANCE.getPreviousNode(this);
-//		if (MD5Hash.hash(previousNode.getHost() + ":" + previousNode.getPort()).equals(removedHash)) {
-//			INode newPreviousNode = ConsistentHash.INSTANCE.getPreviousNode(removedNode);
-//			Range dataRangeOfRemovedNode = new Range(ConsistentHash.INSTANCE.getHash(newPreviousNode), removedHash);
-////			try {
-////				removedNode.heartbeat(); // check whether the removed node is alive
-////				mainDatabase.saveAllData(newPreviousNode.copy(DataType.DATA, dataRangeOfRemovedNode));
-////			}
-////			catch (Exception e) {
-////				System.out.println("Node " + removedNode + " is dead");
-////				// recover data from the backup
-////				mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
-////			}
-//			// if work flow goes here, it means the removed node is dead, and we should also close
-//			// form this node to the removed node
-//			mainDatabase.saveAllData(newPreviousNode.copy(DataType.BACKUP, dataRangeOfRemovedNode));
-//		}
-//
-//		// recover backup from the removed node
-//		// If the removed node is the next node of this node
-//		INode nextNode = ConsistentHash.INSTANCE.getNextNode(this);
-//		if (MD5Hash.hash(nextNode.getHost() + ":" + nextNode.getPort()).equals(removedHash)) {
-//			INode newNextNode = ConsistentHash.INSTANCE.getNextNode(removedNode);
-//			Range backupRangeOfRemovedNode = new Range(removedHash, ConsistentHash.INSTANCE.getHash(newNextNode));
-////			try {
-////				removedNode.heartbeat(); // check whether the removed node is alive
-////				backupDatabase.saveAllData(newNextNode.copy(DataType.BACKUP, backupRangeOfRemovedNode));
-////			}
-////			catch (Exception e) {
-////				System.out.println("Node " + removedNode + " is dead");
-////				// recover data from the backup
-////				backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
-////			}
-//			backupDatabase.saveAllData(newNextNode.copy(DataType.DATA, backupRangeOfRemovedNode));
-//		}
-//	}
 
 	@Override
 	public void recover(de.tum.grpc_api.KVServerProto.RecoverRequest request,
 						io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
 		KVServerProto.NodeMessage nodeProto = request.getNode();
-//		NodeProxy nodeProxy = new NodeProxy(nodeProto.getHost(), nodeProto.getRpcPort(), nodeProto.getPortForClient());
 		String removedHost = nodeProto.getHost();
 		int removedPortForClient = nodeProto.getPortForClient();
 		String removedHash = removedHost + ":" + removedPortForClient;
 		INode removedNode = ConsistentHash.INSTANCE.getResponsibleServerByKey(removedHash);
-//		INode removedNode = ConsistentHash.INSTANCE.getResponsibleServerByKey(removedHost + ":" + removedPortForClient);
 		try {
 			recover(removedNode);
 		} catch (Exception e) {
@@ -554,12 +532,7 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 			node.closeRpcChannel();
 		}
 
-		if ((ringNodeMessage.size() == 2) && (!ringNodeMessage.containsKey("653795696acaf8eae91ccdcadbb29410"))) {
-			// if the ring is empty, then add the current node to the ring
-			System.out.println("stop");
-		}
 		// Process each entry in the map
-		// TODO: NEEDS TO BE IMPROVED
 		try {
 			for (Map.Entry<String, KVServerProto.NodeMessage> entry : ringNodeMessage.entrySet()) {
 				String key = entry.getKey();
@@ -573,8 +546,6 @@ public class Node extends KVServiceGrpc.KVServiceImplBase implements Serializabl
 				}
 				System.out.println("host: " + host + ", rpcPort: " + rpcPort + ", portForClient: " + portForClient);
 				ring.put(key, new NodeProxy(host, rpcPort, portForClient));
-
-//			System.out.println("Key: " + key + ", Host: " + host + ", Port: " + this.port);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);

@@ -66,12 +66,6 @@ public enum ConsistentHash {
 	 * @return hash value
 	 */
 	public String getHash(NodeProxy nodeProxy) {
-//		String nodeHash = MD5Hash.hash(
-//				nodeProxy.toString()); // hash value of the node, key is string <ip:port>
-//		int i = 1;
-//		while (!ring.get(nodeHash).equals(node)) {
-//			nodeHash = MD5Hash.hash(nodeHash + String.valueOf(i++));
-//		}
 		return MD5Hash.hash(nodeProxy.getHost() + ":" + nodeProxy.getPortForClient());
 	}
 
@@ -84,7 +78,6 @@ public enum ConsistentHash {
 	public NodeProxy getNextNode(NodeProxy nodeProxy) {
 		String nodeHash = getHash(nodeProxy);
 		// tailMap: returns a view of the portion of this map whose keys are greater than or equal to fromKey
-		// TODO: can we copy tailmap
 		SortedMap<String, NodeProxy> tailMap = ring.tailMap(nodeHash + 1);
 		tailMap.remove(nodeHash);
 		String nextHash = tailMap.isEmpty() ? ring.firstKey() : tailMap.firstKey();
@@ -104,7 +97,11 @@ public enum ConsistentHash {
 		return ring.get(previousHash);
 	}
 
-
+	/**
+	 * Update ring for all nodes
+	 *
+	 * @param except: node that should not be updated
+	 */
 	private void updateRingForAllNodes(NodeProxy except) {
 		for (NodeProxy nodeProxy : ring.values()) {
 			if (nodeProxy.equals(except)) {

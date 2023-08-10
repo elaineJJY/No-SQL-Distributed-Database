@@ -8,7 +8,6 @@ public class Range {
 		this.from = from;
 		this.to = to;
 	}
-
 	public String getFrom() {
 		return from;
 	}
